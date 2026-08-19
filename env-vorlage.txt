@@ -10,8 +10,8 @@ IG_ACCESS_TOKEN=
 
 # Öffentliche Basis-URL, unter der die gerenderten Bilder liegen.
 # Instagram lädt das Bild selbst herunter – ein lokaler Pfad geht nicht.
-# Beispiel bei GitHub Pages:
-MEDIA_BASE_URL=https://IHR-GITHUB-NAME.github.io/berisabau-social/posts
+# GitHub Pages ist für dieses Repo bereits aktiviert (Quelle: /docs):
+MEDIA_BASE_URL=https://daiworld450.github.io/berisabau-socialmedial-automatik/posts
 
 # Optional: Facebook-Seite mitbespielen. Ohne diese beiden Werte bleibt
 # Facebook aus. Werte holen mit: python src/main.py fb-seiten --token ...
