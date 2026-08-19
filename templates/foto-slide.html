@@ -1,0 +1,27 @@
+{# Folgeslide eines Foto-Carousels.
+   Bewusst zurückhaltend: Auf Slide 1 steht die Botschaft, hier zählt das Bild.
+   Nur Logo, Seitenzähler und ein Wischpfeil – kein Text, der das Foto zudeckt. #}
+{% extends "_layout.html" %}
+
+{% block hintergrund %}
+<div class="foto"><img src="{{ bild }}" alt="" /></div>
+<div class="schleier leicht"></div>
+{% endblock %}
+
+{% block mitte %}
+<div class="mitte" style="justify-content:flex-end;padding-bottom:14px">
+  {% if bildunterschrift %}
+  <p class="bildunterschrift">{{ bildunterschrift }}</p>
+  {% endif %}
+</div>
+
+{% if seite and gesamt %}
+<div class="seitenzaehler">{{ seite }}<span>/{{ gesamt }}</span></div>
+{% endif %}
+
+{% if not letzte %}
+<div class="wisch-hinweis klein">
+  <span class="pfeil">&#8594;</span>
+</div>
+{% endif %}
+{% endblock %}

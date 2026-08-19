@@ -1,0 +1,44 @@
+{# Innenseite eines Carousels – Slide 2 bis n.
+   Ein Gedanke pro Slide. Feste Positionen: Seitenzahl oben, Inhalt in der
+   Mitte, Wischpfeil unten. Genau diese Vorhersagbarkeit macht das Raster
+   im Profil ruhig. #}
+{% extends "_layout.html" %}
+
+{% block hintergrund %}
+  {% if bild %}
+  <div class="foto"><img src="{{ bild }}" alt="" /></div>
+  <div class="schleier symmetrisch"></div>
+  {% endif %}
+  {% if seite %}<div class="wasserzahl">{{ '%02d' % seite }}</div>{% endif %}
+{% endblock %}
+
+{% block mitte %}
+<div class="mitte">
+  {% if eyebrow %}<div class="eyebrow">{{ eyebrow }}</div>{% endif %}
+
+  <h2 class="slide-titel">{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h2>
+
+  {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
+
+  {% if punkte %}
+  <div class="punkte">
+    {% for p in punkte %}
+    <div class="punkt-zeile">
+      {% if nummeriert %}
+      <span class="zahl">{{ loop.index }}</span>
+      {% else %}
+      <span class="haken"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+      {% endif %}
+      <span class="txt">{{ p | safe }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+{% if not letzte %}
+<div class="wisch-hinweis klein">
+  <span class="pfeil">&#8594;</span>
+</div>
+{% endif %}
+{% endblock %}

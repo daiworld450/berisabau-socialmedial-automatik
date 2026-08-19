@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+# Render-Ausgabe ist ephemer und wird nie direkt committet - die Automatik
+# kopiert nur das tatsächlich veröffentlichte Bild gezielt nach docs/posts.
+out/
+.venv/
+venv/
+# logs/posts.jsonl wird bewusst mitversioniert – Nachvollziehbarkeit
+content/freigaben.json
+# Lokaler Prüfordner für die Monatsabnahme, kein Teil der Automatik selbst.
+monatspakete/

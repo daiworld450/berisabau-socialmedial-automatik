@@ -1,0 +1,147 @@
+name: Zweiwöchentlicher Instagram-Post
+
+# Läuft technisch täglich an, postet aber nur an den beiden Wochentagen aus
+# content/themen.json -> "posttage" (Standard: Dienstag und Donnerstag) -
+# an allen anderen Tagen beendet sich python src/main.py heute von selbst,
+# ohne zu rendern oder zu posten. So bleibt die Steuerung an einer Stelle
+# (der Themenbank), nicht doppelt im Cron-Ausdruck gepflegt.
+#
+# Recherchierte Bestzeit (Sprout Social / Hootsuite 2026): Dienstag und
+# Donnerstag zählen branchenübergreifend zu den stärksten Tagen; B2C-Nutzung
+# auf Instagram findet überwiegend abends außerhalb der Arbeitszeit statt.
+# Gewählt: 18:30 Uhr.
+on:
+  schedule:
+    # 16:30 UTC = 18:30 deutscher Sommerzeit. GitHub-Cron kennt keine
+    # Zeitzonen - im Winter verschiebt sich der Post dadurch auf 19:30 Uhr.
+    - cron: "30 16 * * *"
+  workflow_dispatch:
+    inputs:
+      nur_erzeugen:
+        description: "Nur Bild erzeugen, nicht veröffentlichen"
+        type: boolean
+        default: false
+      datum:
+        description: "Abweichendes Datum (JJJJ-MM-TT), leer = heute"
+        type: string
+        default: ""
+
+# Nötig, damit der Job das gerenderte Bild committen kann.
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  posten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Abhängigkeiten installieren
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Frisch hochgeladene Fotos verarbeiten
+        run: python src/main.py fotos-verarbeiten
+
+      - name: Verarbeitete Fotos committen
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add content/medien
+          git commit -m "Fotos aus dem Eingang verarbeitet" || echo "nichts zu committen"
+          git push || true
+
+      - name: Post erzeugen
+        id: erzeugen
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+        run: |
+          if [ -n "${{ inputs.datum }}" ]; then
+            python src/main.py heute --datum "${{ inputs.datum }}"
+          else
+            python src/main.py heute
+          fi
+          BILD=$(ls -t out/*.jpg | head -1)
+          echo "bild=$(basename "$BILD")" >> "$GITHUB_OUTPUT"
+          echo "Erzeugt: $BILD"
+
+      - name: Bild öffentlich ablegen
+        id: hochladen
+        run: |
+          mkdir -p docs/posts
+          cp "out/${{ steps.erzeugen.outputs.bild }}" docs/posts/
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add docs/posts content/verlauf.json logs 2>/dev/null || true
+          git commit -m "Post ${{ steps.erzeugen.outputs.bild }}" || echo "nichts zu committen"
+          git push
+
+      - name: Prüfen, ob Instagram das Bild laden kann
+        if: ${{ !inputs.nur_erzeugen }}
+        env:
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+        run: |
+          URL="$MEDIA_BASE_URL/${{ steps.erzeugen.outputs.bild }}"
+          echo "Prüfe $URL"
+          # Bei raw.githubusercontent.com ist die Datei direkt nach dem Push da.
+          # Die Schleife fängt GitHub Pages ab, das erst bauen muss.
+          for i in $(seq 1 20); do
+            CODE=$(curl -sL -o /dev/null -w "%{http_code}" "$URL")
+            if [ "$CODE" = "200" ]; then echo "Erreichbar nach $((i*10))s"; exit 0; fi
+            echo "  Versuch $i: HTTP $CODE"
+            sleep 10
+          done
+          echo "::error::Bild ist nicht öffentlich erreichbar: $URL"
+          echo "Ist das Repository öffentlich? Stimmt MEDIA_BASE_URL?"
+          exit 1
+
+      - name: Auf Instagram posten
+        if: ${{ !inputs.nur_erzeugen }}
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+          FREIGABE_PFLICHT: ${{ vars.FREIGABE_PFLICHT }}
+          MAX_POSTS_24H: ${{ vars.MAX_POSTS_24H }}
+          # Fehlen diese beiden, bleibt Facebook einfach aus.
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          # Nötig, damit dieser Schritt weiß, ob eine Telegram-Freigabe
+          # aussteht - ohne diese beiden bleibt es sonst bei FREIGABE_PFLICHT.
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -n "${{ inputs.datum }}" ]; then
+            python src/main.py heute --datum "${{ inputs.datum }}" --posten
+          else
+            python src/main.py heute --posten
+          fi
+
+      - name: Verlauf und Protokoll sichern
+        if: ${{ always() && !inputs.nur_erzeugen }}
+        run: |
+          git add content/verlauf.json logs 2>/dev/null || true
+          git commit -m "Verlauf aktualisiert" || echo "nichts zu committen"
+          git push || true
+
+      - name: Ergebnis als Artefakt ablegen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-${{ github.run_number }}
+          path: out/
+          retention-days: 14

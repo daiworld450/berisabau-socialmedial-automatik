@@ -1,0 +1,32 @@
+{% extends "_layout.html" %}
+
+{% block hintergrund %}
+  {% if bild %}
+  <div class="foto"><img src="{{ bild }}" alt="" /></div>
+  <div class="schleier"></div>
+  {% endif %}
+{% endblock %}
+
+{% block mitte %}
+<div class="mitte" style="justify-content:center">
+  <div class="eyebrow">{{ eyebrow | default('Berisa Bau') }}</div>
+  <h1>{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h1>
+  {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
+
+  {% if punkte %}
+  <div class="punkte">
+    {% for p in punkte %}
+    <div class="punkt-zeile">
+      <span class="haken"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+      <span class="txt">{{ p | safe }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+<div class="story-wisch">
+  {{ wisch | default('Link in Bio') }}
+  <span class="pfeil">&#8593;</span>
+</div>
+{% endblock %}

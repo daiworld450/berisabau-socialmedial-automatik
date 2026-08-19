@@ -1,0 +1,24 @@
+{% extends "_layout.html" %}
+
+{% block hintergrund %}
+  <div class="wasserzahl">?</div>
+{% endblock %}
+
+{# Abstand nach oben, sonst klebt die Überzeile am Logo. #}
+{% block mitte %}
+<div class="mitte faq">
+  <div class="eyebrow">{{ eyebrow | default('Häufig gefragt') }}</div>
+
+  <div class="karte rot frage-karte">
+    <div class="frage">{{ frage }}</div>
+  </div>
+
+  <div class="karte">
+    <div class="antwort">{{ antwort | safe }}</div>
+  </div>
+
+  {% if hinweis %}
+  <p class="faq-hinweis">{{ hinweis }}</p>
+  {% endif %}
+</div>
+{% endblock %}

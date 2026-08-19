@@ -1,0 +1,1624 @@
+{
+  "_hinweis": "Themenbank nach content/CONTENT-PROMPT.md. Jede caption beginnt mit einem Hook (max. 80 Zeichen), dann Leerzeile, dann 2-4 Absätze. CTA und Hashtags hängt src/texter.py automatisch an - nicht selbst schreiben.",
+  "_freigabe": "Themen mit \"pruefen\": true werden vom Planer übersprungen. Schützt davor, unbelegte Kundenstimmen zu veröffentlichen.",
+  "_saeulen": "vorher-nachher | detail | wissen | fehler | mensch. Zielverhältnis über einen Monat: 30/25/25/10/10.",
+  "_cadence_hinweis": "Zwei Beitraege pro Woche statt taeglich, ab 2026-08-19. Tage und Uhrzeit recherchiert (Sprout Social / Hootsuite 2026: Dienstag und Donnerstag zaehlen branchenuebergreifend zu den staerksten Tagen; B2C-Engagement auf Instagram liegt ueberwiegend abends ausserhalb der Arbeitszeit). Gewaehlt: Dienstag und Donnerstag, 18:30 Uhr. Aenderbar ueber 'posttage' unten (0=Montag ... 6=Sonntag) und die Uhrzeit im GitHub-Workflow.",
+  "posttage": [
+    1,
+    3
+  ],
+  "_rotation_je_wochentag_hinweis": "Dienstag = Wissens-/Ratgeberkachel (Text), Donnerstag = echtes Baustellenfoto (faellt automatisch auf Text zurueck, wenn im Ordner nichts Frisches liegt - siehe FOTO_SAEULEN in planer.py). Schluessel sind die Wochentags-Zahlen aus 'posttage'. Ohne passenden Eintrag greift die alte flache 'rotation' als Ausweichoption.",
+  "rotation_je_wochentag": {
+    "1": ["wissen", "fehler", "wissen"],
+    "3": ["vorher-nachher", "detail", "mensch", "vorher-nachher"]
+  },
+  "rotation": [
+    "vorher-nachher",
+    "wissen",
+    "detail",
+    "wissen",
+    "vorher-nachher",
+    "fehler",
+    "wissen",
+    "mensch"
+  ],
+  "rueckfall": {
+    "vorher-nachher": [
+      "detail",
+      "wissen",
+      "mensch",
+      "fehler"
+    ],
+    "detail": [
+      "wissen",
+      "mensch",
+      "fehler"
+    ],
+    "mensch": [
+      "wissen",
+      "detail",
+      "fehler"
+    ]
+  },
+  "themen": [
+    {
+      "id": "w-abdichtung",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Was unter der Fliese liegt",
+        "nummer": "01",
+        "titel_vor": "Fliesen sind ",
+        "titel_stark": "keine Abdichtung",
+        "titel_nach": ".",
+        "lead": "Wasser läuft durch Fugen und Silikon. Dahinter muss etwas sein, das dicht hält.",
+        "punkte": [
+          "<b>Duschbereich</b> gilt als hoch beanspruchte Fläche – Klasse W3-I nach DIN 18534",
+          "<b>Dichtband</b> in jede Ecke, jeden Übergang, jede Rohrdurchführung",
+          "<b>Ein System:</b> Grundierung, Dichtschlämme und Kleber müssen vom selben Hersteller sein"
+        ]
+      },
+      "caption": "Die Fliese hält kein Wasser auf. Das macht die Schicht darunter.\n\nWir sehen es bei fast jeder Sanierung: Unter dem alten Belag fehlt die Verbundabdichtung. Bis das auffällt, ist der Estrich durchfeuchtet – und aus einer Fliesenreparatur wird eine Kernsanierung.\n\nVerbundabdichtung heißt: eine flüssig aufgetragene Schicht, die mit Dichtbändern in allen Ecken verbunden wird. Sie sitzt zwischen Untergrund und Kleber und ist danach nie wieder sichtbar.\n\nDeshalb fotografieren wir sie, bevor die erste Fliese draufkommt. Du sollst sehen, was du bezahlt hast."
+    },
+    {
+      "id": "w-gefaelle",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Bodengleiche Dusche",
+        "nummer": "02",
+        "titel_vor": "Bodengleich heißt nicht ",
+        "titel_stark": "waagerecht",
+        "titel_nach": ".",
+        "lead": "Ohne Gefälle steht das Wasser genau da, wo du barfuß stehst.",
+        "punkte": [
+          "<b>Rund 2 % Gefälle</b> zum Ablauf, sauber in den Estrich eingearbeitet",
+          "<b>Ablaufleistung</b> zum Duschkopf passend wählen – 0,5 l/s reicht oft nicht",
+          "<b>Aufbauhöhe zuerst klären:</b> sie entscheidet, ob bodengleich überhaupt geht"
+        ]
+      },
+      "caption": "Die teuerste Fliese rettet kein schlechtes Gefälle.\n\nEine bodengleiche Dusche sieht flach aus, ist es aber nicht. Auf zwei Metern liegen etwa vier Zentimeter Höhenunterschied – eingearbeitet in den Estrich, damit man nichts davon sieht.\n\nWird das vergessen, läuft das Wasser nicht ab. Es bleibt stehen, trocknet langsam, und in den Fugen setzt sich fest, was du nicht willst.\n\nWir klären die Aufbauhöhe, bevor der erste Fliesenkatalog aufgeht. Danach lässt sich daran nichts mehr ändern."
+    },
+    {
+      "id": "w-estrich-zeit",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Warum es dauert",
+        "nummer": "03",
+        "nummeriert": true,
+        "titel_vor": "Estrich braucht ",
+        "titel_stark": "Zeit",
+        "titel_nach": ".",
+        "lead": "Zu früh belegt heißt Risse, Wölbungen und abgelöste Fliesen.",
+        "punkte": [
+          "<b>Zementestrich:</b> grob ein Zentimeter pro Woche, danach wird es langsamer",
+          "<b>CM-Messung</b> statt Kalender: Fliesen ab etwa 2,0 CM-%, Parkett ab 1,8",
+          "<b>Mit Fußbodenheizung</b> zusätzlich Aufheizprotokoll – sonst keine Abnahme"
+        ]
+      },
+      "caption": "„Kann man da nächste Woche drauf?\" – meistens nein.\n\nEstrich trocknet nicht von außen nach innen, sondern gibt Feuchtigkeit langsam über die gesamte Dicke ab. Sechs Zentimeter brauchen deutlich länger als sechsmal eine Woche.\n\nWir messen die Restfeuchte mit dem CM-Gerät: eine Probe wird zerkleinert, mit Calciumcarbid in eine Druckflasche gegeben, der Druck verrät den Wassergehalt. Zahl statt Gefühl.\n\nDas kostet ein paar Tage Geduld. Und spart im Zweifel den kompletten Bodenaufbau."
+    },
+    {
+      "id": "w-grossformat",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Großformat",
+        "nummer": "04",
+        "titel_vor": "60×120 verzeiht ",
+        "titel_stark": "nichts",
+        "titel_nach": ".",
+        "lead": "Große Platten sehen ruhig aus – aber nur auf einem wirklich ebenen Untergrund.",
+        "punkte": [
+          "<b>Buttering-Floating:</b> Kleber auf Wand und Platte, sonst bleiben Hohlstellen",
+          "<b>Nivelliersystem</b> gegen Überzähne an den Kanten",
+          "<b>Versatz höchstens ein Drittel</b> statt der Hälfte – sonst schüsselt die Platte sichtbar"
+        ]
+      },
+      "caption": "Je größer die Fliese, desto weniger darf der Untergrund schief sein.\n\nBei 20×20 gleicht der Kleber kleine Unebenheiten aus. Bei 60×120 nicht mehr – da kippt die Platte und du siehst an jeder Kante einen Überzahn.\n\nDeshalb ist der Aufwand beim Großformat nicht das Verlegen, sondern das Vorbereiten: spachteln, abziehen, prüfen, nachziehen. Erst wenn die Fläche wirklich eben ist, kommt die erste Platte.\n\nEin Detail noch: Großformat wird im Drittelverband verlegt, nicht im Halbverband. Große Platten sind minimal gewölbt – bei halbem Versatz trifft der höchste Punkt auf den niedrigsten und die Kante steht."
+    },
+    {
+      "id": "w-silikon",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Verschleißteil",
+        "nummer": "05",
+        "titel_vor": "Silikon ist eine ",
+        "titel_stark": "Wartungsfuge",
+        "titel_nach": ".",
+        "lead": "Keine Ewigkeitsfuge. So steht es im Merkblatt des IVD.",
+        "punkte": [
+          "<b>Alle zwei bis fünf Jahre</b> prüfen und bei Bedarf erneuern",
+          "<b>Dunkle Punkte</b> sitzen im Material, nicht darauf – wegwischen hilft nicht",
+          "<b>Nach dem Duschen lüften</b> verlängert die Standzeit deutlich"
+        ]
+      },
+      "caption": "Wird die Silikonfuge nach zwei Jahren schwarz, liegt es selten am Putzen.\n\nSilikon sitzt überall dort, wo zwei Bauteile sich unterschiedlich bewegen: Wanne zu Wand, Boden zu Wand, Ecken. Genau deshalb ist es elastisch – und genau deshalb altert es.\n\nDas Fachwort dafür ist Wartungsfuge. Sie ist von der Gewährleistung ausgenommen, nicht weil jemand sich drücken will, sondern weil sie ein Verschleißteil ist. Wie ein Reifen.\n\nWichtig ist nur, dass du sie erneuern lässt, bevor Feuchtigkeit dahinter kommt. Danach wird es teuer."
+    },
+    {
+      "id": "w-dauer-bad",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Die häufigste Frage",
+        "frage": "Wie lange dauert eine Badsanierung?",
+        "antwort": "Ein Bad mit 6–8 m² schaffen wir meistens in <b>zwei bis drei Wochen</b> – Abbruch, Rohinstallation, Abdichtung, Fliesen, Feinmontage.<br><br>Länger wird es bei Trocknungszeiten, Sonderanfertigungen oder wenn hinter der alten Wand mehr steckt als erwartet.",
+        "hinweis": "Den Zeitplan bekommst du mit dem Angebot – nicht erst auf der Baustelle."
+      },
+      "caption": "„Wie lange sind wir ohne Bad?\" – die Frage kommt bei jeder Besichtigung.\n\nDie ehrliche Antwort hat zwei Teile. Die reine Arbeitszeit für ein normales Bad liegt bei zwei bis drei Wochen. Dazu kommen Wartezeiten, die niemand abkürzen kann: Estrich trocknen, Abdichtung durchhärten.\n\nWas den Zeitplan wirklich sprengt, ist selten das Handwerk. Es sind Materialentscheidungen, die zu spät fallen. Wer die Fliese in Woche zwei aussucht, verliert eine Woche.\n\nDeshalb bekommst du den Ablauf schriftlich, bevor der erste Hammer fällt."
+    },
+    {
+      "id": "w-kosten",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Alle Gewerke",
+      "hashtags": "allgemein",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Preisfrage",
+        "frage": "Was kostet das bei mir?",
+        "antwort": "Seriös lässt sich das erst nach einer <b>Besichtigung</b> sagen. Derselbe Grundriss fällt je nach Zustand von Leitungen, Estrich und Wänden völlig unterschiedlich aus.<br><br>Besichtigung und Angebot sind bei uns <b>kostenlos und unverbindlich</b>.",
+        "hinweis": "Was den Preis treibt: Leitungsführung, Aufbauhöhe, Format der Fliese, Zustand des Untergrunds."
+      },
+      "caption": "Jede Zahl, die ich dir hier nenne, wäre wahrscheinlich falsch.\n\nWas den Preis wirklich treibt, sind vier Dinge: wie die Leitungen liegen, wie viel Aufbauhöhe du hast, welches Fliesenformat du willst und in welchem Zustand der Untergrund ist.\n\nZwei gleich große Bäder im selben Haus können deshalb weit auseinanderliegen. In einem müssen nur Oberflächen neu, im anderen liegen die Abflüsse falsch.\n\nDeshalb: Termin machen, wir schauen es uns an, du bekommst ein Angebot mit einzelnen Positionen. Dann weißt du, wofür du zahlst."
+    },
+    {
+      "id": "w-wohnen-bleiben",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Alltag auf der Baustelle",
+        "frage": "Können wir während der Sanierung wohnen bleiben?",
+        "antwort": "Meistens ja. Bei einem Bad richten wir – wenn möglich – eine <b>Übergangslösung</b> ein und stimmen die Tage ohne Wasser vorher mit dir ab.<br><br>Bei einer Kernsanierung ist Ausziehen sinnvoller. Das sagen wir dir, bevor du beauftragst.",
+        "hinweis": "Staubschutzwände und tägliche Grobreinigung sind bei uns Standard, kein Aufpreis."
+      },
+      "caption": "Wohnen bleiben während der Sanierung ist der Normalfall.\n\nEntscheidend sind zwei bis drei Tage: wenn die alten Leitungen raus sind und die neuen noch nicht dicht. Die planen wir so, dass du vorher weißt, wann kein Wasser läuft.\n\nStaub lässt sich nicht vermeiden, aber eingrenzen. Staubschutzwand mit Reißverschluss in der Tür, Abdeckung auf den Laufwegen, abends grob durchgekehrt.\n\nDie Wohnung soll am Feierabend bewohnbar sein. Auch mitten in der Sanierung."
+    },
+    {
+      "id": "w-fliese-auf-fliese",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Geht das?",
+        "frage": "Kann man auf alte Fliesen neu verfliesen?",
+        "antwort": "Manchmal. Nötig ist ein <b>fester, hohlstellenfreier</b> Untergrund, genug Aufbauhöhe und eine Haftbrücke.<br><br>Im Nassbereich fast nie sinnvoll: die Abdichtung fehlt darunter und lässt sich so nicht nachrüsten.",
+        "hinweis": "Abklopfen verrät viel: Klingt es hohl, muss der alte Belag runter."
+      },
+      "caption": "„Können wir die alten Fliesen einfach drauflassen?\" – kommt fast jede Woche.\n\nIm Wohnbereich geht das oft. Wir klopfen die Fläche ab: Wo es hohl klingt, hat der alte Kleber losgelassen – das muss raus. Der Rest wird angeschliffen, grundiert, dann kommt die Haftbrücke.\n\nIm Bad ist die Antwort meistens nein. Nicht weil es technisch unmöglich wäre, sondern weil die Abdichtung unter dem alten Belag liegt oder ganz fehlt. Die bekommst du nachträglich nicht dazwischen.\n\nDazu kommt Aufbauhöhe: zwei Zentimeter mehr, und die Tür schleift."
+    },
+    {
+      "id": "w-vermieter",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Für Vermieter",
+        "frage": "Instandhaltung oder Modernisierung?",
+        "antwort": "Der Unterschied entscheidet über die Abrechnung. <b>Instandhaltung</b> stellt den ursprünglichen Zustand wieder her. <b>Modernisierung</b> verbessert ihn – etwa Wanne raus, bodengleiche Dusche rein.<br><br>Beides sauber zu trennen ist Sache deiner Steuerberatung, nicht unsere.",
+        "hinweis": "Wir schreiben die Positionen im Angebot so auf, dass die Zuordnung nachvollziehbar bleibt."
+      },
+      "caption": "Für Vermieter ist die Rechnung oft wichtiger als die Fliese.\n\nInstandhaltung und Modernisierung werden steuerlich unterschiedlich behandelt. Wer beides in einer Sammelposition abrechnet, macht sich die Zuordnung unnötig schwer.\n\nWir können und dürfen dich steuerlich nicht beraten. Was wir tun können: die Leistungen einzeln und eindeutig benennen, damit deine Steuerberatung damit arbeiten kann.\n\nSag uns einfach vorher Bescheid, wenn es sich um eine vermietete Einheit handelt."
+    },
+    {
+      "id": "w-mikrozement",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Mikrozement",
+      "hashtags": "mikrozement",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Fugenlos",
+        "nummer": "06",
+        "nummeriert": true,
+        "titel_vor": "Zwei Millimeter, ",
+        "titel_stark": "sieben Schichten",
+        "titel_nach": ".",
+        "lead": "Mikrozement ist kein Anstrich, sondern ein kompletter Systemaufbau.",
+        "punkte": [
+          "Untergrund prüfen, Risse schließen, grundieren",
+          "Armierungsgewebe einbetten – ohne das reißt es nach",
+          "Zwei Grund-, zwei Feinschichten, dann zweimal versiegeln"
+        ]
+      },
+      "caption": "Fugenlos heißt: keine Silikonecken, keine schwarzen Fugen.\n\nMikrozement trägt nur zwei bis drei Millimeter auf. Genau deshalb ist er bei Sanierungen oft die Lösung, wenn die Türhöhe knapp ist und ein neuer Estrich nicht mehr reinpasst.\n\nDer Haken: Er verzeiht keine Eile. Jede der sieben Schichten braucht ihre Trocknungszeit, und die Versiegelung entscheidet, wie fleckempfindlich die Fläche später ist.\n\nWer da abkürzt, sieht es nach einem halben Jahr."
+    },
+    {
+      "id": "w-rutschklasse",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Auf dem Karton",
+        "nummer": "07",
+        "titel_vor": "R9, R10, R11 – was ",
+        "titel_stark": "steht da",
+        "titel_nach": "?",
+        "lead": "Die Rutschhemmung ist keine Werbeangabe, sondern eine geprüfte Klasse.",
+        "punkte": [
+          "<b>R9:</b> Wohnbereich, trockene Räume",
+          "<b>R10:</b> Bad, Küche, Hauswirtschaftsraum – der Standard zu Hause",
+          "<b>R11 und höher:</b> Außenbereich, Gewerbe, echte Nassbereiche"
+        ]
+      },
+      "caption": "Die wichtigste Angabe beim Fliesenkauf steht klein auf dem Karton.\n\nDie R-Klasse wird auf einer schiefen Ebene gemessen: Ein Prüfer läuft auf der geölten Fläche, bis er rutscht. Der Neigungswinkel ergibt die Klasse.\n\nFür ein normales Bad ist R10 richtig. R9 wird barfuß auf nasser Fläche schnell unangenehm.\n\nMehr ist übrigens nicht besser. Je rauer die Oberfläche, desto schwerer die Reinigung – R12 im Privatbad putzt du dir dumm und dämlich."
+    },
+    {
+      "id": "w-fugenfarbe",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Kleine Entscheidung, große Wirkung",
+        "nummer": "08",
+        "titel_vor": "Die Fugenfarbe ändert ",
+        "titel_stark": "den Raum",
+        "titel_nach": ".",
+        "lead": "Gleiche Fliese, andere Fuge – und alles wirkt anders.",
+        "punkte": [
+          "<b>Ton in Ton</b> beruhigt und lässt Flächen größer wirken",
+          "<b>Kontrast</b> betont das Format – stark bei Metro und Verbänden",
+          "<b>Am Boden etwas dunkler</b> als die Fliese bleibt länger schön"
+        ]
+      },
+      "caption": "Gleiche Fliese, andere Fugenfarbe – und keiner erkennt sie wieder.\n\nHelle Fuge zu heller Fliese löst das Raster fast auf. Die Fläche wirkt größer und ruhiger. Dunkle Fuge zu heller Fliese macht aus derselben Wand ein Muster.\n\nAm Boden gilt eine praktische Regel: eine Spur dunkler als die Fliese. Nicht aus optischen Gründen, sondern weil Bodenfugen in Laufzonen nun mal nachdunkeln.\n\nWir legen Musterstücke an, bevor verfugt wird. Sehen schlägt Vorstellen."
+    },
+    {
+      "id": "w-reihenfolge",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Der Ablauf",
+        "nummer": "09",
+        "nummeriert": true,
+        "titel_vor": "Die richtige ",
+        "titel_stark": "Reihenfolge",
+        "titel_nach": " spart Wochen.",
+        "lead": "Der teuerste Fehler bei Sanierungen ist kein Materialfehler.",
+        "punkte": [
+          "Abbruch und Entsorgung, dann Rohinstallation für Wasser, Abwasser, Strom",
+          "Estrich und Abdichtung, danach Trocknungszeit einplanen",
+          "Fliesen, Maler, zum Schluss Feinmontage Sanitär und Elektro"
+        ]
+      },
+      "caption": "Ein Gewerk zu früh, und das nächste muss wieder aufmachen.\n\nGenau da entstehen die Verzögerungen, über die sich am Ende alle ärgern. Der Fliesenleger kann nicht, weil der Estrich noch feucht ist. Der Elektriker kommt nicht, weil der Maler noch drin ist.\n\nDas Problem ist selten Können. Es ist Koordination – und die fällt bei getrennten Aufträgen zwischen die Stühle.\n\nBei uns kommen alle Gewerke aus einer Hand. Es gibt niemanden, der auf jemand anderen wartet."
+    },
+    {
+      "id": "w-leerrohr",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Smart Home",
+      "hashtags": "smarthome",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Jetzt oder nie",
+        "nummer": "10",
+        "titel_vor": "Leg ",
+        "titel_stark": "Leerrohre",
+        "titel_nach": ".",
+        "lead": "Der günstigste Zeitpunkt für Technik, die du erst in fünf Jahren willst, ist heute.",
+        "punkte": [
+          "<b>Ein Leerrohr pro Raum</b> kostet in der Rohbauphase fast nichts",
+          "<b>Tiefe Schalterdosen</b> setzen – dort sitzt später die Aktorik",
+          "<b>Netzwerkkabel</b> schlägt WLAN bei allem, was dauerhaft läuft"
+        ]
+      },
+      "caption": "Die Wand ist offen. Das ist der einzige Moment, in dem Vorsorge nichts kostet.\n\nSmart Home muss nicht sofort komplett sein. Es muss nur nachrüstbar bleiben. Ein Leerrohr kostet ein paar Euro pro Meter, solange der Putz noch nicht drauf ist.\n\nDasselbe gilt für tiefe Schalterdosen. Wer später einen Funkaktor einbauen will, braucht Platz dahinter – normale Dosen sind dafür zu flach.\n\nOb du das jemals nutzt, entscheidest du. Aufstemmen musst du dann jedenfalls nicht mehr."
+    },
+    {
+      "id": "w-asbest",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Altbau",
+        "nummer": "11",
+        "titel_vor": "Vor 1993 gebaut? ",
+        "titel_stark": "Erst prüfen",
+        "titel_nach": ".",
+        "lead": "Alter Fliesenkleber kann Asbest enthalten. Trocken schleifen ist dann gefährlich.",
+        "punkte": [
+          "<b>Baujahr klären</b> – in Deutschland war Asbest bis 1993 zugelassen",
+          "<b>Probe ins Labor</b> statt Vermutung: kostet wenig, schafft Klarheit",
+          "<b>Bei Fund:</b> Fachbetrieb nach TRGS 519, nicht selbst rausreißen"
+        ]
+      },
+      "caption": "Der gefährlichste Moment im Altbau ist der erste Schlag.\n\nAsbest steckt nicht nur in Dachplatten. Er steckt in Fliesenklebern, in Bodenbelägen, in Spachtelmassen – überall dort, wo bis 1993 gebaut wurde.\n\nSolange das Material fest gebunden ist, passiert nichts. Gefährlich wird es beim Trockenschleifen und Aufstemmen, weil dabei Fasern frei werden, die man weder sieht noch riecht.\n\nWir schauen deshalb immer zuerst aufs Baujahr. Bei Verdacht wird beprobt, bevor irgendetwas aufgeht. Das ist kein Papierkram."
+    },
+    {
+      "id": "w-nische",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Details, die man plant",
+        "nummer": "12",
+        "titel_vor": "Die Nische gehört ins ",
+        "titel_stark": "Fugenraster",
+        "titel_nach": ".",
+        "lead": "Sonst sitzt sie schief im Bild, auch wenn sie waagerecht ist.",
+        "punkte": [
+          "<b>Kanten auf Fugenlinien</b> legen – dann wirkt sie eingebaut, nicht ausgeschnitten",
+          "<b>Höhe nach Nutzung:</b> Shampoo braucht mehr Kopfhöhe, als man denkt",
+          "<b>Gefälle auch hier</b> – ein Grad reicht, damit kein Wasser stehen bleibt"
+        ]
+      },
+      "caption": "Eine Duschnische kann waagerecht sitzen und trotzdem falsch aussehen.\n\nDer Grund ist das Fugenraster. Läuft die Nischenkante mitten durch eine Fliese, wirkt sie wie nachträglich reingeschnitten. Liegt sie auf einer Fugenlinie, sieht sie aus, als wäre die Wand so geplant worden.\n\nDeshalb wird die Nische nicht nach Zentimetern gesetzt, sondern nach dem Verlegeplan. Und der entsteht, bevor die erste Fliese an der Wand hängt.\n\nZweite Sache, die oft vergessen wird: leichtes Gefälle im Nischenboden. Sonst steht dort Wasser."
+    },
+    {
+      "id": "w-aufmass",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Alle Gewerke",
+      "hashtags": "allgemein",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Vor dem Angebot",
+        "nummer": "13",
+        "titel_vor": "Zweimal messen, ",
+        "titel_stark": "einmal schneiden",
+        "titel_nach": ".",
+        "lead": "Die älteste Regel im Handwerk hält sich, weil sie stimmt.",
+        "punkte": [
+          "<b>Aufmaß vor Angebot</b> – alles andere ist geraten",
+          "<b>Diagonalen prüfen:</b> kaum ein Altbauraum ist rechtwinklig",
+          "<b>Höhen addieren:</b> Estrich, Kleber und Fliese ergeben schnell vier Zentimeter"
+        ]
+      },
+      "caption": "Die meisten Baustellenprobleme entstehen beim Messen davor.\n\nEin Beispiel: Kaum ein Altbauraum ist rechtwinklig. Wer nur Länge und Breite misst, merkt das nicht – und stellt es fest, wenn die Fliesenreihe an der gegenüberliegenden Wand zwei Zentimeter aus dem Ruder läuft.\n\nDeshalb messen wir auch die Diagonalen. Weichen sie ab, wird der Verlegeplan darauf ausgerichtet, statt den Fehler durch den Raum mitzuschleppen.\n\nDas Aufmaß kostet uns eine Stunde. Dich kostet es nichts."
+    },
+    {
+      "id": "w-eigenleistung",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Selber machen",
+        "nummer": "14",
+        "titel_vor": "Was du ",
+        "titel_stark": "selbst machen",
+        "titel_nach": " kannst.",
+        "lead": "Nicht alles muss der Betrieb machen. Manches solltest du aber lassen.",
+        "punkte": [
+          "<b>Sinnvoll:</b> ausräumen, alte Möbel entsorgen, Malerarbeiten in Nebenräumen",
+          "<b>Grenzwertig:</b> Abbruch – Schutt richtig zu trennen ist mehr Arbeit als gedacht",
+          "<b>Bitte nicht:</b> Abdichtung, Elektro, Gas. Da hängt Gewährleistung dran"
+        ]
+      },
+      "caption": "Eigenleistung spart Geld – aber nicht überall gleich viel.\n\nAusräumen und entsorgen ist der dankbarste Teil: reine Zeit, kein Fachwissen, und du sparst echte Stunden.\n\nBeim Abbruch wird es schon knapper. Bauschutt muss getrennt werden, der Container kostet, und was falsch sortiert ist, wird teuer.\n\nBei Abdichtung, Elektro und Gas hört es auf. Nicht weil wir den Auftrag wollen, sondern weil wir für nichts geradestehen können, was wir nicht selbst ausgeführt haben. Sag uns einfach vorher, was du übernehmen willst – dann planen wir es ein."
+    },
+    {
+      "id": "w-winter",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Terminplanung",
+        "nummer": "15",
+        "titel_vor": "Innenausbau geht auch im ",
+        "titel_stark": "Winter",
+        "titel_nach": ".",
+        "lead": "Bad, Fliesen und Maler sind wetterunabhängig.",
+        "punkte": [
+          "<b>Innenräume:</b> ganzjährig, solange beheizt und trocken",
+          "<b>Trocknungszeiten</b> verlängern sich bei kalter, feuchter Luft spürbar",
+          "<b>Vorteil Winter:</b> mehr Kapazität, kürzere Wartezeit auf einen Termin"
+        ]
+      },
+      "caption": "Alle verschieben aufs Frühjahr. Genau deshalb lohnt der Winter.\n\nInnenausbau braucht kein Wetter. Er braucht einen beheizten, trockenen Raum – und den hast du im Januar genauso wie im Mai.\n\nEinschränkung: Trocknungszeiten werden länger. Kalte Luft nimmt weniger Feuchtigkeit auf, Estrich und Putz brauchen mehr Geduld. Das planen wir ein.\n\nDafür bekommst du schneller einen Termin. Im Frühjahr fragen alle gleichzeitig."
+    },
+    {
+      "id": "w-foerderung",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Barrierefrei",
+        "nummer": "16",
+        "titel_vor": "Antrag ",
+        "titel_stark": "vor",
+        "titel_nach": " dem Auftrag.",
+        "lead": "Für altersgerechten Umbau gibt es Zuschüsse – aber nur, wenn die Reihenfolge stimmt.",
+        "punkte": [
+          "<b>KfW „Altersgerecht Umbauen\"</b> als Zuschuss oder Kredit",
+          "<b>Pflegekasse:</b> Zuschuss für Wohnumfeldverbesserung bei Pflegegrad",
+          "<b>Entscheidend:</b> Antrag stellen, bevor der Auftrag erteilt wird"
+        ]
+      },
+      "caption": "Der häufigste Fehler bei Fördermitteln ist die Reihenfolge.\n\nErst beauftragen, dann Antrag stellen – und der Zuschuss ist weg. Die Programme setzen fast immer voraus, dass der Antrag vor Vertragsschluss liegt.\n\nWir beraten nicht zu Förderanträgen, das machen die jeweiligen Stellen. Was wir können: die Planung so ausrichten, dass sie die Anforderungen erfüllt – Türbreiten, Bewegungsflächen, schwellenlose Übergänge.\n\nSag früh Bescheid, wenn barrierefrei ein Thema ist. Nicht erst beim Fliesenaussuchen."
+    },
+    {
+      "id": "w-verband",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Verlegemuster",
+        "nummer": "17",
+        "titel_vor": "Der ",
+        "titel_stark": "Römische Verband",
+        "titel_nach": ".",
+        "lead": "Vier Formate, ein wiederkehrendes Raster – ein Muster, das seit der Antike funktioniert.",
+        "punkte": [
+          "<b>Kein Fugenkreuz</b> läuft über vier Ecken durch – das beruhigt die Fläche",
+          "<b>Verzeiht schiefe Wände</b>, deshalb stark im Altbau",
+          "<b>Braucht einen Verlegeplan</b> – improvisiert sieht man das Raster sofort"
+        ]
+      },
+      "caption": "Ein Verlegemuster, das seit zweitausend Jahren funktioniert.\n\nDer römische Verband kombiniert vier Plattenformate zu einem Raster, das sich alle paar Reihen wiederholt. Weil keine durchgehenden Fugenkreuze entstehen, wirkt die Fläche ruhig statt gerastert.\n\nDer eigentliche Vorteil ist praktischer Natur: In Räumen, die nicht rechtwinklig sind, fällt eine leichte Abweichung im unregelmäßigen Muster kaum auf. Im strengen Raster sieht man sie sofort.\n\nEr braucht allerdings Planung. Wer ihn frei Schnauze legt, bekommt Zufall statt Muster."
+    },
+    {
+      "id": "f-abdichtung-fehlt",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Woran du Pfusch erkennst",
+        "nummer": "01",
+        "nummeriert": true,
+        "titel_vor": "Drei Zeichen für ein ",
+        "titel_stark": "undichtes Bad",
+        "titel_nach": ".",
+        "lead": "Keins davon braucht einen Fachmann, um es zu sehen.",
+        "punkte": [
+          "Fugen im Duschbereich werden dunkel und bleiben es nach dem Putzen",
+          "Der Sockel im Nachbarraum wirft Blasen oder der Putz sandet",
+          "Die Fliese klingt beim Klopfen hohl – der Kleber hat losgelassen"
+        ]
+      },
+      "caption": "Drei Dinge, die dir sagen, dass unter deiner Dusche etwas nicht stimmt.\n\nErstens: Fugen, die nach dem Putzen sofort wieder dunkel werden. Dann sitzt die Feuchtigkeit nicht auf der Fuge, sondern dahinter.\n\nZweitens: Blasen im Putz oder sandender Sockel im Raum nebenan. Wasser wandert. Der Schaden zeigt sich oft an der anderen Seite der Wand.\n\nDrittens: hohl klingende Fliesen. Klopf mit dem Fingerknöchel über die Fläche – wo es dumpf wird, hat der Kleber losgelassen.\n\nEins davon allein muss nichts heißen. Alle drei zusammen schon."
+    },
+    {
+      "id": "f-fugen-schwarz",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Ursache statt Symptom",
+        "nummer": "02",
+        "titel_vor": "Schimmel ist meist ein ",
+        "titel_stark": "Lüftungsproblem",
+        "titel_nach": ".",
+        "lead": "Nicht jeder dunkle Fleck ist ein Baumangel. Oft ist es einfach zu viel Feuchte in der Luft.",
+        "punkte": [
+          "<b>Nach dem Duschen</b> fünf bis zehn Minuten Stoßlüften, Fenster ganz auf",
+          "<b>Innenliegendes Bad</b> braucht einen Lüfter mit Nachlauf, nicht ans Licht gekoppelt",
+          "<b>Dauerhaft über 65 % Luftfeuchte:</b> dann liegt es am Gebäude, nicht am Nutzer"
+        ]
+      },
+      "caption": "Überstreichen ist bei echtem Schimmel keine Lösung.\n\nWichtiger als die Beseitigung ist immer die Ursache. Kommt die Feuchtigkeit von innen – Duschen, Wäsche, zu wenig Lüften? Oder von außen, durch eine Wärmebrücke oder einen echten Schaden?\n\nEin Hygrometer für ein paar Euro beantwortet die halbe Frage. Liegt die Luftfeuchte dauerhaft über 65 %, reicht Lüften nicht mehr aus.\n\nWir sagen dir ehrlich, was zutrifft. Auch wenn die Antwort manchmal lautet, dass kein Auftrag nötig ist."
+    },
+    {
+      "id": "f-schlitze",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanitär",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Statik",
+        "nummer": "03",
+        "titel_vor": "Nicht jede Wand darf ",
+        "titel_stark": "geschlitzt",
+        "titel_nach": " werden.",
+        "lead": "Für Schlitze in tragenden Wänden gibt es Grenzen. Aus gutem Grund.",
+        "punkte": [
+          "<b>Tragende Wände:</b> Tiefe und Länge sind in DIN EN 1996 begrenzt",
+          "<b>Waagerechte Schlitze</b> sind kritischer als senkrechte",
+          "<b>Im Zweifel Vorwandinstallation</b> – schneller, sicherer, später revidierbar"
+        ]
+      },
+      "caption": "Quer durch eine tragende Wand gefräst – sehen wir regelmäßig.\n\nEin waagerechter Schlitz durchtrennt den Kraftfluss auf ganzer Länge. Senkrecht ist deutlich unkritischer, weil die Last daran vorbeigeführt wird. Deshalb sind die zulässigen Maße in der Norm auch so unterschiedlich.\n\nDas lässt sich reparieren. Es ist nur unnötig teuer – und in seltenen Fällen wirklich gefährlich.\n\nEine Vorwandinstallation kostet dich ein paar Zentimeter Raum und löst dasselbe Problem sauber. Nebeneffekt: Wer in zehn Jahren an die Leitung muss, kommt dran."
+    },
+    {
+      "id": "f-billig-teuer",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Alle Gewerke",
+      "hashtags": "allgemein",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Angebote vergleichen",
+        "nummer": "04",
+        "nummeriert": true,
+        "titel_vor": "Woran du ein ",
+        "titel_stark": "schlechtes Angebot",
+        "titel_nach": " erkennst.",
+        "lead": "Auch wenn es am Ende nicht unseres wird – diese drei Dinge solltest du prüfen.",
+        "punkte": [
+          "Eine Pauschalsumme ohne einzelne Positionen und Mengen",
+          "„Hochwertige Fliesen\" statt Hersteller, System und Format",
+          "Kein Zeitraum, kein Zahlungsplan, keine Angabe zur Gewährleistung"
+        ]
+      },
+      "caption": "Hol dir ruhig mehrere Angebote. Vergleich aber nicht nur die Zahl ganz unten.\n\nEin Angebot mit einer einzigen Zeile und einer Summe darunter ist kein Angebot. Es ist ein Versprechen ohne Inhalt – und der Streit darüber, was alles „inklusive\" war, kommt später.\n\nAchte besonders auf die Abdichtung. Taucht sie als eigene Position auf? Wenn nicht: nachfragen. Das ist die Leistung, an der am häufigsten gespart wird, weil sie hinterher niemand sieht.\n\nUnd auf die Entsorgung. Ein Container für ein Bad ist kein Rundungsfehler."
+    },
+    {
+      "id": "f-material-charge",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Beim Bestellen",
+        "nummer": "05",
+        "titel_vor": "Immer aus ",
+        "titel_stark": "einer Charge",
+        "titel_nach": ".",
+        "lead": "Nachbestellte Fliesen haben oft einen minimal anderen Ton. Und den sieht man.",
+        "punkte": [
+          "<b>Chargennummer</b> steht auf dem Karton – beim Kauf prüfen",
+          "<b>Zehn Prozent Verschnitt</b> mitbestellen, bei Diagonalverlegung mehr",
+          "<b>Reste aufheben</b> für spätere Reparaturen"
+        ]
+      },
+      "caption": "Zwei Kartons derselben Fliese, zwei Chargen. Man sieht es.\n\nKeramik wird gebrannt. Zwischen zwei Bränden liegen minimale Unterschiede in Farbe und Maß. Innerhalb einer Charge ist das ausgeglichen, zwischen zwei Chargen nicht.\n\nDeshalb: lieber zehn Prozent zu viel bestellen als zwei Kartons zu wenig. Und die Chargennummer beim Kauf notieren.\n\nDie Reste hebst du auf. Wenn in fünf Jahren eine Fliese springt, ist genau dieser eine Karton im Keller Gold wert."
+    },
+    {
+      "id": "f-tuer-schleift",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Aufbauhöhe",
+        "nummer": "06",
+        "titel_vor": "Vier Zentimeter, die keiner ",
+        "titel_stark": "eingeplant",
+        "titel_nach": " hat.",
+        "lead": "Neuer Boden heißt neue Höhe. Und die Tür passt danach nicht mehr.",
+        "punkte": [
+          "<b>Ausgleich, Abdichtung, Kleber, Fliese</b> addieren sich schnell auf drei bis vier Zentimeter",
+          "<b>Türblatt kürzen</b> geht – bei Glastüren nicht",
+          "<b>Übergänge zu Nachbarräumen</b> vorher festlegen, nicht hinterher lösen"
+        ]
+      },
+      "caption": "Der Boden ist fertig, sieht super aus – und die Tür geht nicht mehr auf.\n\nJede Schicht baut auf: Ausgleichsmasse, Abdichtung, Kleberbett, Fliese. Zusammen sind das schnell drei bis vier Zentimeter mehr als vorher.\n\nBei einer normalen Holztür lässt sich das Blatt kürzen. Bei einer Glastür nicht – die ist dann Ersatz. Und der Übergang zum Flur muss ohnehin geplant werden, sonst hast du eine Stolperkante.\n\nDeshalb steht die Aufbauhöhe bei uns im Aufmaß, nicht im Nachtrag."
+    },
+    {
+      "id": "m-werkzeug",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Alle Gewerke",
+      "hashtags": "allgemein",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Was im Koffer liegt",
+        "nummer": "01",
+        "titel_vor": "Das wichtigste Werkzeug ist der ",
+        "titel_stark": "Zollstock",
+        "titel_nach": ".",
+        "lead": "Alles andere kommt danach.",
+        "punkte": [
+          "<b>Zollstock und Laser</b> – gemessen wird vor jedem Handgriff",
+          "<b>Gummihammer und Nivelliersystem</b> für die Fläche ohne Überzahn",
+          "<b>Feuchtemessgerät</b> – die Zahl entscheidet, nicht das Gefühl"
+        ]
+      },
+      "caption": "Wie sorgfältig ein Betrieb arbeitet, verraten die Messwerkzeuge.\n\nEin Fliesenschneider steht in jedem Transporter. Ein CM-Messgerät für die Estrichfeuchte nicht – weil es Zeit kostet, es zu benutzen, und keiner sieht, ob man es getan hat.\n\nGenauso das Nivelliersystem beim Großformat. Ohne geht auch. Man sieht es nur später an jeder Kante.\n\nDie Werkzeuge, die Qualität ausmachen, sind selten die teuren."
+    },
+    {
+      "id": "m-tag-eins",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Woche 1",
+        "nummer": "02",
+        "nummeriert": true,
+        "titel_vor": "Was am ",
+        "titel_stark": "ersten Tag",
+        "titel_nach": " passiert.",
+        "lead": "Damit du weißt, was auf dich zukommt.",
+        "punkte": [
+          "Staubschutz stellen, Laufwege abdecken, Container stellen",
+          "Alles raus: Sanitär, Fliesen, alter Estrich, wenn nötig bis auf den Rohbau",
+          "Erst dann sieht man, was hinter der Wand wirklich los ist"
+        ]
+      },
+      "caption": "Tag 1 ist der lauteste Tag. Danach wird es besser.\n\nZuerst kommt der Schutz: Staubwand in die Tür, Abdeckung auf die Laufwege, Container vor die Haustür. Das dauert eine Stunde und entscheidet darüber, wie deine Wohnung nach zwei Wochen aussieht.\n\nDanach geht alles raus. Sanitärobjekte, Fliesen, oft auch der Estrich. Am Ende des Tages steht ein leerer Raum.\n\nUnd genau dann sieht man zum ersten Mal, was wirklich dahinter ist. Deshalb machen wir nach dem Abbruch immer eine kurze Zwischenmeldung – manchmal ändert sich der Plan an dieser Stelle."
+    },
+    {
+      "id": "m-uebergabe",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Alle Gewerke",
+      "hashtags": "allgemein",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Der letzte Tag",
+        "nummer": "03",
+        "titel_vor": "Übergabe heißt ",
+        "titel_stark": "gemeinsam durchgehen",
+        "titel_nach": ".",
+        "lead": "Nicht Schlüssel in die Hand drücken und weg.",
+        "punkte": [
+          "<b>Raum für Raum</b> abgehen, alles anfassen, alles aufdrehen",
+          "<b>Protokoll</b> mit dem, was noch offen ist – schriftlich, nicht mündlich",
+          "<b>Fotodokumentation</b> von allem, was jetzt hinter Fliesen liegt"
+        ]
+      },
+      "caption": "Der letzte Tag ist der, an dem sich zeigt, wie ein Betrieb arbeitet.\n\nWir gehen mit dir durch jeden Raum. Wasser aufdrehen, Ablauf prüfen, jede Schublade, jede Tür. Was auffällt, kommt ins Protokoll – auch Kleinigkeiten.\n\nDazu bekommst du die Fotos von allem, was jetzt nicht mehr sichtbar ist: Leitungsführung, Abdichtung, Dichtbänder in den Ecken. Wenn in zehn Jahren jemand bohrt, weiß er, wo nichts liegt.\n\nEine Übergabe ohne Protokoll ist keine Übergabe."
+    },
+    {
+      "id": "z-01",
+      "rubrik": "mensch",
+      "vorlage": "zitat.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "pruefen": true,
+      "_beleg": "Wortlaut aus dem Screenshot-Beitrag vom 05.07.2026 auf @berisabau",
+      "_hinweis": "Wortlaut belegt. Vor dem ersten Posten bestätigen, dass die Kundin mit der Veröffentlichung einverstanden ist – dann 'pruefen' entfernen.",
+      "felder": {
+        "badge": "Kundenstimme",
+        "eyebrow": "Nach der Übergabe",
+        "sterne": 5,
+        "zitat": "Das Endergebnis kann sich sehen lassen.",
+        "quelle": "Kundin nach Badsanierung",
+        "ort": "Mülheim a. d. Ruhr"
+      },
+      "caption": "Zwei Wochen vorher stand hier noch das Bad von 1994.\n\nSolche Nachrichten sind der Grund, warum sich der Aufwand bei den Details lohnt – auch bei dem, was man hinterher nicht mehr sieht.\n\nWenn du auch überlegst, dein Bad anzugehen: Besichtigung und Angebot kosten dich nichts."
+    },
+    {
+      "id": "z-02",
+      "rubrik": "mensch",
+      "vorlage": "zitat.html",
+      "gewerk": "Alle Gewerke",
+      "hashtags": "allgemein",
+      "pruefen": true,
+      "_hinweis": "PLATZHALTER – kein echtes Zitat. Durch eine tatsächlich erhaltene Kundenaussage ersetzen, dann 'pruefen' entfernen.",
+      "felder": {
+        "badge": "Kundenstimme",
+        "eyebrow": "Kundenstimme",
+        "sterne": 5,
+        "zitat": "PLATZHALTER – hier eine echte Kundenaussage eintragen.",
+        "quelle": "Quelle eintragen",
+        "ort": ""
+      },
+      "caption": "PLATZHALTER – Text zur echten Kundenaussage ergänzen."
+    },
+    {
+      "id": "d-gehrung-aussenecke",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen/Bodenleger",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Außenecke im Bad",
+        "nummer": "01",
+        "nummeriert": false,
+        "titel_vor": "Ecke auf ",
+        "titel_stark": "Gehrung",
+        "titel_nach": " statt Profil",
+        "lead": "Zwei Fliesen auf 45 Grad angeschliffen ergeben eine Kante ohne Schiene.",
+        "punkte": [
+          "<b>Sichtprüfung</b> Die Fuge läuft als feine Linie um die Ecke, kein Profil steht vor",
+          "<b>Aufwand</b> Gehrung heißt schleifen von Hand, Profil heißt aufstecken in Sekunden",
+          "<b>Grenze</b> An stark genutzten Kanten ist ein Profil die robustere Wahl, nicht die faule"
+        ]
+      },
+      "caption": "An der Außenecke sieht man schnell, wie sauber gearbeitet wurde.\n\nZwei Wege gibt es. Eckprofil: eine Schiene aus Alu oder Kunststoff wird in den Kleber gesetzt, die Fliesenkante verschwindet dahinter. Gehrung: beide Fliesen werden auf 45 Grad angeschliffen und stoßen mit einer feinen Fuge aneinander.\n\nGehrung ist Handarbeit. Jede Kante läuft über den Schleifteller und wird danach leicht gebrochen, sonst platzt sie beim ersten Anstoßen ab.\n\nSie ist trotzdem nicht immer richtig. Bei dunkel glasierter Ware sieht man im Schnitt den hellen Scherben, also den Fliesenkern. An einem Vorsprung im Flur, wo täglich etwas anschlägt, hält das Profil länger.\n\nWir entscheiden das pro Ecke, nicht pro Bad."
+    },
+    {
+      "id": "d-fugenbreite-raster",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen/Bodenleger",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Fugenbreite im Detail",
+        "nummer": "02",
+        "nummeriert": false,
+        "titel_vor": "Die Fugenbreite ist ",
+        "titel_stark": "kein Zufall",
+        "titel_nach": "",
+        "lead": "Sie richtet sich nach Format und Kantenart der Fliese, nicht nach Geschmack.",
+        "punkte": [
+          "<b>Format</b> Je größer die Fliese, desto mehr Maßtoleranz muss die Fuge aufnehmen",
+          "<b>Kante</b> Rektifiziert, also nachgeschnitten, erlaubt schmal – Naturkante braucht mehr",
+          "<b>Bewegung</b> Dafür sind Rand- und Feldfugen da, nicht die Verlegefuge"
+        ]
+      },
+      "caption": "„Kann man die Fugen nicht schmaler machen?“ – kommt in fast jeder Beratung.\n\nKann man. Nur entscheidet das nicht der Geschmack, sondern das Material. Jede Fliese hat Maßtoleranzen, und die Fuge muss sie schlucken. Je größer das Format, desto größer die Abweichung über die Länge.\n\nRektifizierte Fliesen sind nach dem Brand rundum nachgeschnitten und damit sehr maßgenau. Da geht schmal. Ware mit gebrannter Naturkante braucht mehr Luft, sonst läuft die Fugenlinie sichtbar aus der Flucht.\n\nEin Missverständnis hält sich hartnäckig: Bewegung im Bauteil nimmt nicht die Verlegefuge auf. Dafür sind die elastischen Rand- und Feldfugen da. Die Verlegefuge gleicht Maßtoleranzen und Verlegeungenauigkeit aus. Ist sie zu schmal, fehlt ihr genau dieser Spielraum.\n\nDeshalb sagen wir vor dem Verlegen, welche Breite zur Fliese passt – und warum."
+    },
+    {
+      "id": "d-anschnitt-aufteilung",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Aufteilung der Reihen",
+        "nummer": "03",
+        "nummeriert": false,
+        "titel_vor": "Der ",
+        "titel_stark": "Anschnitt",
+        "titel_nach": " verrät den Plan",
+        "lead": "Vor der ersten Fliese wird gerechnet, wo die letzte endet.",
+        "punkte": [
+          "<b>Symmetrie</b> Links und rechts gleich breit anschneiden – einseitig wirkt schief",
+          "<b>Mindestbreite</b> Ein Streifen unter etwa einem Drittel Fliese sieht nach Rest aus",
+          "<b>Blickachse</b> Die volle Fliese gehört dorthin, wo man beim Eintreten hinschaut"
+        ]
+      },
+      "caption": "Die letzte Fliese entscheidet sich vor der ersten.\n\nBevor eine Wand beginnt, wird die Fläche durchgerechnet: wie viele volle Fliesen passen, was bleibt übrig, und wohin geht der Rest.\n\nDer Fehler, den man danach oft sieht: in der Ecke mit einer vollen Fliese starten und einfach loslegen. Am anderen Ende bleibt ein fingerbreiter Streifen. Das Auge zieht diese schmale Linie sofort an.\n\nBesser ist die Aufteilung von der Mitte aus. Dann bleibt links und rechts der gleiche Anschnitt, und beide sind breit genug, um wie eine Absicht zu wirken. Als Richtwert nehmen wir mindestens ein Drittel Fliesenbreite.\n\nIn welche Achse ausgeteilt wird, hängt vom Raum ab: die Wand gegenüber der Tür, die Duschnische, das Fenster. Diese Entscheidung fällt auf dem Papier, nicht auf dem Boden."
+    },
+    {
+      "id": "d-randfuge-estrich",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung/Renovierung/Kernsanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Randfuge im Boden",
+        "nummer": "04",
+        "nummeriert": false,
+        "titel_vor": "Die Fuge ",
+        "titel_stark": "am Rand",
+        "titel_nach": " bleibt frei",
+        "lead": "Der Bodenaufbau darf die Wand nicht berühren, sonst arbeitet er dagegen.",
+        "punkte": [
+          "<b>Randstreifen</b> Bleibt stehen bis zuletzt, abgeschnitten wird erst nach dem Verfugen",
+          "<b>Kein Mörtel</b> Läuft Kleber in die Randfuge, ist die Trennung wirkungslos",
+          "<b>Abdeckung</b> Sockelleiste oder Silikon deckt ab – starr verfüllen darf man nicht"
+        ]
+      },
+      "caption": "Ein Estrich, der die Wand berührt, arbeitet gegen das Mauerwerk.\n\nBei schwimmendem Estrich und bei Heizestrich steht am Rand ein Streifen aus Schaum, senkrecht zwischen Boden und Wand. Der ist nicht nur Schallschutz. Der ist Platz.\n\nEstrich dehnt sich, wenn er warm wird, und schwindet, wenn er trocknet. Ohne freien Rand stemmt sich die Platte gegen Mauerwerk und Türzargen. Die Spannung sucht sich dann eine andere Stelle, oft mitten in der Fläche.\n\nDeshalb bleibt der Randstreifen bis zum Schluss stehen. Abgeschnitten wird er erst, wenn Belag und Fugen fertig sind. Wer ihn vorher wegschneidet, riskiert, dass Kleber oder Fugenmörtel in den Spalt läuft – dann ist die Trennung nur noch Optik.\n\nAbgedeckt wird die Fuge mit Sockelleiste oder elastisch. Hart verfüllen hebt die Wirkung wieder auf."
+    },
+    {
+      "id": "d-duschrinne-wandbuendig",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Detail Duschrinne",
+        "nummer": "05",
+        "nummeriert": false,
+        "titel_vor": "Rinne ",
+        "titel_stark": "an der Wand",
+        "titel_nach": ", nicht mittig",
+        "lead": "Sitzt die Rinne direkt an der Wand, fällt der Boden nur in eine Richtung.",
+        "punkte": [
+          "<b>Gefälle</b> Nur eine schiefe Ebene statt Trichter – die Fliesen laufen ganz durch",
+          "<b>Anschluss</b> Die Rinne wird in die Abdichtung eingebunden, nicht nur aufgelegt",
+          "<b>Fugenbild</b> Rinne ins Fugenraster gesetzt, dann läuft keine Fuge daneben ins Leere"
+        ]
+      },
+      "caption": "Wo die Rinne liegt, entscheidet über jeden Schnitt im Boden.\n\nPunktablauf in der Mitte heißt: Der Boden fällt aus vier Richtungen zur Mitte. Vier Ebenen, viele keilförmige Schnitte, bei großen Formaten deutlich sichtbar.\n\nWandbündige Rinne heißt: eine einzige geneigte Ebene. Die Fliesen laufen in voller Größe durch, die Fugen bleiben gerade, das Wasser hat einen Weg.\n\nEntscheidend ist, was darunter passiert. Die Rinne wird mit der Abdichtung verbunden, meist über eine eingeklebte Manschette. Aufgelegt und außen herum abgesilikoniert reicht nicht – das sieht fertig aus und ist es nicht.\n\nUnd noch ein Detail: Die Rinnenlänge sollte ins Fugenraster passen. Sonst endet direkt daneben eine Fuge, die nirgendwo hinführt."
+    },
+    {
+      "id": "d-bohrung-in-fliese",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanitärtechnik",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Halterung an der Wand",
+        "nummer": "06",
+        "nummeriert": false,
+        "titel_vor": "Bohren in die ",
+        "titel_stark": "Fliese",
+        "titel_nach": ", nicht in die Fuge",
+        "lead": "Die Fuge sieht unauffällig aus, ist aber die schwächste Stelle der Fläche.",
+        "punkte": [
+          "<b>Bohrort</b> In der Fuge verläuft der Bohrer, die Fliesenkanten platzen ab",
+          "<b>Dusche</b> Befestigungspunkte planen wir vorher ein – jede Bohrung geht durch die Abdichtung",
+          "<b>Lage</b> Mittig in der Fliese bohren, mit Abstand zur Kante und ohne Schlagwerk"
+        ]
+      },
+      "caption": "„Bohr doch in die Fuge, dann sieht man nichts.“ Hält leider nicht.\n\nDer Wunsch ist verständlich. Ein Loch in der Fuge fällt kaum auf, eins in der Fliese bleibt sichtbar.\n\nNur ist die Fuge der schlechtere Ort. Der Bohrer verläuft auf dem weichen Streifen, die angrenzenden Fliesenkanten platzen ab, und unter der Fuge sitzt öfter ein Hohlraum im Kleberbett. Halt gibt die Wand dahinter – der Dübel muss sie gerade treffen.\n\nGebohrt wird deshalb mittig in der Fliese, mit Abstand zur Kante, mit Fliesenbohrer und ohne Schlagwerk. Vorher prüfen, wo Leitungen liegen – über Waschtisch und WC verlaufen sie öfter, als man denkt.\n\nIn der Dusche planen wir Befestigungspunkte vorher ein. Jede Bohrung durch die Abdichtung muss dauerhaft dicht bleiben, und ein Schaden dahinter zeigt sich erst spät an der Nachbarwand. Wer unsicher ist, bohrt dort besser nicht selbst."
+    },
+    {
+      "id": "d-dosen-im-fliesenraster",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "allgemein",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Dosen im Fliesenspiegel",
+        "nummer": "07",
+        "nummeriert": false,
+        "titel_vor": "Steckdose ",
+        "titel_stark": "im Raster",
+        "titel_nach": ", nicht im Kreuz",
+        "lead": "Wo die Dose sitzt, entscheidet sich beim Aufmaß – nicht beim Bohren.",
+        "punkte": [
+          "<b>Fugenkreuz</b> Eine Dose auf vier Fliesen verteilt braucht vier passende Ausschnitte",
+          "<b>Mittig</b> Ganz in einer Fliese heißt ein Ausschnitt, eine Kante, kein Versatz",
+          "<b>Reihenfolge</b> Erst Schutzbereich und Installationszone, dann Feinlage im Raster"
+        ]
+      },
+      "caption": "Vier Fliesenkanten um eine Steckdose – da hat vorher niemand gerechnet.\n\nEine Dose sitzt entweder mitten in einer Fliese oder unglücklich auf einem Fugenkreuz. Im ersten Fall ist es ein sauberer Kreisausschnitt. Im zweiten vier Ausschnitte, die exakt zusammenpassen müssen – jede Abweichung sieht man später unter dem Rahmen.\n\nLösbar ist das nur vorher, und nicht nach Optik allein. Den Rahmen geben die Schutzbereiche nach DIN VDE 0100-701 und die Installationszonen vor: Sie legen fest, wo im Bad eine Dose überhaupt sitzen darf. Erst innerhalb dieses Rahmens wird auf das Fugenraster feinjustiert, bevor jemand die Wand schlitzt.\n\nDas kostet ein Gespräch. Wir stimmen die Dosenlage mit dem Elektrobetrieb ab, bevor die erste Wand geschlitzt wird.\n\nNebenbei: Mehrere Dosen nebeneinander gehören auf eine Achse. Zwei Millimeter Versatz sieht man an der Rahmenkante sofort."
+    },
+    {
+      "id": "d-trennschnitt-deckenanschluss",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Maler/Lackier",
+      "hashtags": "maler",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Wand trifft Decke",
+        "nummer": "08",
+        "nummeriert": false,
+        "titel_vor": "Der ",
+        "titel_stark": "Trennschnitt",
+        "titel_nach": " an der Decke",
+        "lead": "Wo zwei Bauteile aneinanderstoßen, wird die Fläche getrennt statt durchgezogen.",
+        "punkte": [
+          "<b>Kellenschnitt</b> Mit der Kellenspitze gezogen, gibt er dem Riss eine gerade Linie",
+          "<b>Material</b> Gips an Beton arbeitet unterschiedlich – starr verspachtelt reißt es auf",
+          "<b>Ergebnis</b> Feine gerade Fuge statt Zickzack quer über die Decke"
+        ]
+      },
+      "caption": "Risse an der Deckenkante haben meist denselben Grund: die Trennfuge fehlt.\n\nAn der Stelle, wo Wand und Decke aufeinandertreffen, stoßen zwei Bauteile zusammen, die sich unterschiedlich bewegen. Beton, Gips, Mauerwerk, Holzbalken: jedes arbeitet anders.\n\nZieht man Spachtel und Farbe starr darüber, entsteht ein Riss. Nach unserer Erfahrung ist das nur eine Frage der Zeit. Er läuft dann unregelmäßig und sieht nach Schaden aus.\n\nDeshalb wird dieser Anschluss bewusst getrennt: ein Kellenschnitt mit der Kellenspitze in den frischen Putz, ein Trennstreifen oder eine elastische Fuge. Der Riss bekommt eine gerade Linie und bleibt unauffällig.\n\nDer gleiche Gedanke gilt am Übergang zur Türzarge und dort, wo Trockenbau an eine massive Wand stößt."
+    },
+    {
+      "id": "d-plattenstoss-versatz",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Trockenbau",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Stöße im Trockenbau",
+        "nummer": "09",
+        "nummeriert": false,
+        "titel_vor": "Keine ",
+        "titel_stark": "Kreuzfuge",
+        "titel_nach": " in der Wand",
+        "lead": "Die Plattenstöße werden versetzt, damit kein Punkt vier Kanten auf einmal trägt.",
+        "punkte": [
+          "<b>Versatz</b> Plattenstöße reihenweise verspringen lassen, wie Steine im Verband",
+          "<b>Kanten</b> Werkskante gegen Werkskante spachteln, Schnittkanten vorher anfasen",
+          "<b>Türen</b> Kein Stoß in der Achse der Zarge – dort zieht jede Bewegung der Tür an"
+        ]
+      },
+      "caption": "Wo vier Plattenecken zusammentreffen, reißt die Wand am ehesten.\n\nGipsplatten werden nicht wie Kacheln in Reih und Glied gesetzt. Die Stöße springen von Reihe zu Reihe, ähnlich wie Steine im Mauerwerksverband.\n\nGrund ist die Kreuzfuge. Treffen vier Plattenecken auf einen Punkt, sammelt sich dort jede Bewegung des Ständerwerks. Spachtelmasse und Gewebeband halten das nur begrenzt.\n\nZweites Detail sind die Kanten. Die abgeflachte Werkskante nimmt Spachtelmasse auf, ohne dass die Fläche aufträgt. Eine frisch geschnittene Kante ist rechtwinklig – die wird angefast, sonst zeichnet der Stoß sich später als Linie ab.\n\nUnd kein Stoß in der Verlängerung einer Türzarge. Dort zieht jede Bewegung der Tür genau an dieser Naht."
+    },
+    {
+      "id": "d-mikrozement-kanten",
+      "rubrik": "detail",
+      "vorlage": "tipp.html",
+      "gewerk": "Mikrozement",
+      "hashtags": "mikrozement",
+      "felder": {
+        "badge": "Detail",
+        "eyebrow": "Kanten in Mikrozement",
+        "nummer": "10",
+        "nummeriert": false,
+        "titel_vor": "Fugenlos ist ",
+        "titel_stark": "nicht kantenlos",
+        "titel_nach": "",
+        "lead": "Ohne Fugenraster entscheidet die Ecke, ob die Fläche ruhig bleibt.",
+        "punkte": [
+          "<b>Innenecke</b> Leichter Radius statt scharfer Kante – dort reißt die Schicht sonst",
+          "<b>Außenecke</b> Kantenprofil einlegen oder mit Gewebe umgreifen, sonst schlägt es ab",
+          "<b>Untergrund</b> Im Nassbereich gehört darunter eine Verbundabdichtung nach DIN 18534"
+        ]
+      },
+      "caption": "Fugenlos heißt nicht, dass sich nichts bewegt.\n\nMikrozement wird in dünnen Lagen aufgezogen, oft nur wenige Millimeter. Das ist die Stärke: kein Fugenraster, keine Unterbrechung, eine durchgehende Fläche.\n\nEins vorweg, weil es oft verwechselt wird: Mikrozement ist die Oberfläche, nicht die Abdichtung. Im Bad gehört darunter eine Verbundabdichtung nach DIN 18534. Ohne die ist die fugenlose Fläche nur eine schöne Verkleidung.\n\nDie eigentliche Arbeit liegt an den Kanten. In der Innenecke wird kein scharfer Winkel gezogen, sondern ein leichter Radius – die scharfe Ecke ist die dünnste Stelle im Aufbau. Außenecken bekommen ein Profil oder Armierungsgewebe, sonst schlägt die Kante beim ersten harten Stoß ab.\n\nAm Übergang zu Wanne, Türzarge und anderem Belag bleibt eine elastische Trennung. Starr durchziehen sieht am Abnahmetag besser aus und hält kürzer."
+    },
+    {
+      "id": "m-staubschutz-wohnung",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Staub im Griff",
+        "nummer": "01",
+        "nummeriert": false,
+        "titel_vor": "Der Staub bleibt ",
+        "titel_stark": "im Bad",
+        "titel_nach": "",
+        "lead": "Was sich in der Wohnung verteilt, entscheidet sich, bevor der erste Meißel läuft.",
+        "punkte": [
+          "<b>Staubschutztür</b> Reißverschluss im Rahmen statt Folie, die beim Durchgehen wegklappt",
+          "<b>Unterdruck</b> Ein Abluftgerät mit Filter hält den Staub im Bad, statt ihn zu verteilen",
+          "<b>Wege</b> Vlies auf Laminat und Treppe, nicht nur im Raum, in dem gearbeitet wird"
+        ]
+      },
+      "caption": "Die meisten Klagen über Handwerker haben nichts mit Handwerk zu tun.\n\nEs geht um Staub im Wohnzimmer, um Abdrücke auf dem Parkett, um ein Bad, das drei Tage nicht nutzbar war, ohne dass es jemand vorher gesagt hat.\n\nStaubschutz kostet Zeit, jeden Morgen neu. Reißverschlusstür in den Rahmen, ein Abluftgerät mit Filter, Vlies auf den Laufwegen bis zur Wohnungstür. Das steht in keinem Angebot als eigene Zeile und entscheidet trotzdem, ob du während der Arbeiten in deiner Wohnung leben kannst.\n\nFeinstaub aus Fliesenkleber und Altputz setzt sich überall ab, auch zwei Räume weiter auf dem Schrank. Ein Abluftgerät hilft nur mit Filter, sonst schiebt es den Staub bloß woanders hin.\n\nUns ist lieber, du merkst am Abend, dass gearbeitet wurde, und siehst es am Morgen nicht mehr im Flur."
+    },
+    {
+      "id": "m-fotos-vor-dem-verschliessen",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanitärtechnik",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Vor dem Verschließen",
+        "nummer": "02",
+        "nummeriert": false,
+        "titel_vor": "Jede Leitung wird ",
+        "titel_stark": "fotografiert",
+        "titel_nach": "",
+        "lead": "Was einmal hinter Putz liegt, findet später nur wieder, wer es dokumentiert hat.",
+        "punkte": [
+          "<b>Bestandsfoto</b> Jede Leitung im Bild, bevor Putz, Estrich oder Fliese sie zudecken",
+          "<b>Maßbezug</b> Zollstock liegt mit im Bild, so bleibt der Abstand zur Ecke ablesbar",
+          "<b>Grenze</b> Die Bilder bekommst du am Ende. Ein Ortungsgerät ersetzen sie nicht"
+        ]
+      },
+      "caption": "In zehn Jahren bohrt jemand in diese Wand. Vielleicht du.\n\nBevor Leitungen verschwinden, wird fotografiert. Jede Wasserleitung, jedes Leerrohr, jede Dose, mit Zollstock im Bild, damit später nicht nur zu sehen ist, dass dort etwas liegt, sondern auch wo genau.\n\nDas ist keine Dokumentationsromantik. Wer nach Jahren einen Handtuchhalter setzt oder eine Wand öffnet, spart sich mit diesen Bildern das Suchen und das Aufstemmen auf Verdacht.\n\nEin Foto ersetzt trotzdem kein Ortungsgerät. Leitungen rutschen beim Verputzen, später kommen fremde Arbeiten dazu, und die Perspektive im Bild trügt. Die Bilder sagen dir, wo du genauer hinschauen musst, nicht, wo du blind bohren kannst. Vor dem Bohren gehört ein Leitungssucher an die Wand, im Zweifel fragst du deine Elektrofachkraft.\n\nDie Bilder bleiben deshalb nicht bei uns. Sie gehören zur Wohnung, so wie der Grundriss."
+    },
+    {
+      "id": "m-ablauf-ortstermin",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Der erste Termin",
+        "nummer": "03",
+        "nummeriert": true,
+        "titel_vor": "Was beim ",
+        "titel_stark": "Ortstermin",
+        "titel_nach": " passiert",
+        "lead": "Der Termin dauert länger, als viele erwarten, und das hat einen Grund.",
+        "punkte": [
+          "<b>Zuhören</b> Erst was dich stört, dann was du dir vorstellst, dann unsere Einschätzung",
+          "<b>Messen</b> Raum aufmessen, Aufbauhöhen prüfen, Leitungswege und Anschlüsse fotografieren",
+          "<b>Klartext</b> Was geht, was nicht geht und wo wir erst hinter die Wand schauen müssen"
+        ]
+      },
+      "caption": "Ein Ortstermin ohne Zollstock ist ein Verkaufsgespräch.\n\nWir kommen, hören zu und messen. In dieser Reihenfolge. Erst was dich am jetzigen Bad stört, dann was du dir vorstellst, dann unsere Einschätzung. Wer sofort Lösungen erzählt, hat die Aufgabe noch nicht verstanden.\n\nGemessen wird der Raum, die Aufbauhöhe vom Rohboden bis Oberkante fertig, die Lage von Fallrohr und Steigleitung, Türbreiten und Fensterlaibung. Dazu Fotos von allem, was später hinter Fliesen verschwindet.\n\nAm Ende sagen wir, was geht, was nicht geht und wo wir es noch nicht wissen, weil erst der Abbruch zeigt, was in der Wand steckt. Dieser dritte Punkt ist der wichtigste."
+    },
+    {
+      "id": "m-warum-angebot-dauert",
+      "rubrik": "mensch",
+      "vorlage": "faq.html",
+      "gewerk": "Sanierung/Renovierung/Kernsanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Vor dem Angebot",
+        "nummer": "04",
+        "nummeriert": false,
+        "lead": "Was nach Verzögerung aussieht, ist meistens Rechnerei.",
+        "frage": "Warum kommt das Angebot nicht am selben Abend?",
+        "antwort": "<b>Weil dazwischen gerechnet wird.</b><br><br>Nach dem Ortstermin werden Flächen ausgewertet, Aufbauhöhen geprüft und die Reihenfolge der Gewerke durchgeplant: Abbruch, Rohinstallation, Estrich mit Trocknungszeit, Abdichtung, Fliese, Montage. Bei Material fragen wir die Verfügbarkeit an, bevor es im Angebot steht.<br><br>Ein Angebot ohne diesen Zwischenschritt ist eine Schätzung. Die hält bis zum ersten Abbruchtag.",
+        "hinweis": "Wer keine Maße nimmt, hat auch keine Grundlage."
+      },
+      "caption": "Zwischen Ortstermin und Angebot liegen bei uns ein paar Tage. Absicht.\n\nIn dieser Zeit wird gerechnet, nicht getippt. Aufmaß auf Quadratmeter und laufende Meter umgelegt, Aufbauhöhen geprüft, Leitungswege durchgedacht, bei Material die Verfügbarkeit angefragt.\n\nDazu die Reihenfolge der Gewerke. Abbruch, Rohinstallation, Estrich mit seiner Trocknungszeit, Abdichtung, Fliese, Montage. Erst wenn diese Kette steht, steht auch, was sie umfasst und was nicht.\n\nEin Angebot ist ein Versprechen über Arbeit, die noch niemand sehen kann. Je genauer vorher gerechnet wird, desto weniger taucht später zwischen den Zeilen auf."
+    },
+    {
+      "id": "m-material-frueh-entscheiden",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen/Bodenleger",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Früh entscheiden",
+        "nummer": "05",
+        "nummeriert": false,
+        "titel_vor": "Die Fliese muss ",
+        "titel_stark": "früher",
+        "titel_nach": " feststehen",
+        "lead": "Materialwahl ist Maßarbeit, nicht Geschmackssache am Ende der Baustelle.",
+        "punkte": [
+          "<b>Lieferzeit</b> Was heute bestellt wird, liegt selten in derselben Woche auf der Baustelle",
+          "<b>Aufbauhöhe</b> Fliese, Kleber und Entkopplung entscheiden über Türblatt und Übergänge",
+          "<b>Raster</b> Erst mit dem Format lassen sich Nische, Ablauf und Fugenbild sauber planen"
+        ]
+      },
+      "caption": "„Die Fliese suchen wir aus, wenn die Wände stehen.“ Das geht selten gut.\n\nMaterial ist keine Deko-Entscheidung am Schluss, sondern eine Maßentscheidung am Anfang. Fliesenstärke, Kleberbett und, wo nötig, Abdichtung oder eine Entkopplungsmatte gegen Risse aus dem Untergrund bestimmen die fertige Höhe des Bodens. Daran hängen Türblatt, Übergangsprofil zum Flur und die Einbauhöhe der Duschrinne.\n\nDas Format bestimmt das Raster. Wo die Nische sitzt, ob eine Fuge sauber an der Wandecke ausläuft oder ein schmaler Streifen stehen bleibt, wo der Ablauf in der Fläche liegt: das wird auf Papier entschieden, nicht später auf dem Boden.\n\nDeshalb fragen wir früh und manchmal hartnäckig. Nicht um zu drängen, sondern weil eine späte Entscheidung Arbeit rückgängig macht, die schon getan ist."
+    },
+    {
+      "id": "m-ueberraschung-hinter-der-wand",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung/Renovierung/Kernsanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Wenn es anders kommt",
+        "nummer": "06",
+        "nummeriert": false,
+        "titel_vor": "Wenn die Wand ",
+        "titel_stark": "anders",
+        "titel_nach": " aussieht",
+        "lead": "Entscheidend ist nicht, ob etwas auftaucht, sondern was danach passiert.",
+        "punkte": [
+          "<b>Stopp</b> Wir machen nichts zu, bevor du weißt, was wir vorgefunden haben",
+          "<b>Beleg</b> Foto und Maß vom Zustand, bevor irgendetwas daran verändert wird",
+          "<b>Wahl</b> Zwei Wege mit ihren Folgen. Nur bei Asbestverdacht gibt es keine Wahl"
+        ]
+      },
+      "caption": "Altbau hält sich nicht an Grundrisse.\n\nHinter der Wand kann alles liegen. Eine stillgelegte Leitung, die doch Wasser führt. Mauerwerk, wo ein Kaminzug sein sollte. Ein Balken quer durch die geplante Nische.\n\nWenn das auftaucht, wird nicht weitergearbeitet und hinterher erklärt. Wir halten an, machen Fotos mit Maß und melden uns bei dir, bevor es weitergeht. Du bekommst keine fertige Entscheidung, sondern zwei Wege mit ihren Folgen. Welcher genommen wird, entscheidest du.\n\nEine Ausnahme gibt es. Bei Verdacht auf asbesthaltige Baustoffe, etwa altem Fliesenkleber oder Bodenbelag aus den Siebzigern, wird nicht abgewogen, sondern sofort gestoppt. Dann nimmt eine sachkundige Person die Probe, sie geht ins Labor, und weiter macht ein Fachbetrieb nach TRGS 519, der Regel für Arbeiten mit Asbest. Kein Wahlrecht, für keinen von uns.\n\nÜberraschungen im Bestand sind kein Zeichen für schlechte Planung. Sie zu verschweigen schon."
+    },
+    {
+      "id": "m-ein-ansprechpartner",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung/Renovierung/Kernsanierung",
+      "hashtags": "allgemein",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Während der Bauzeit",
+        "nummer": "07",
+        "nummeriert": false,
+        "titel_vor": "Eine Nummer, ",
+        "titel_stark": "ein Name",
+        "titel_nach": "",
+        "lead": "Koordination ist eine Leistung, auch wenn sie in keiner Position steht.",
+        "punkte": [
+          "<b>Ansprechpartner</b> Wer auf der Baustelle steht, ist auch der, der zurückruft",
+          "<b>Rückruf</b> Zwischen Flex und Bohrhammer hört niemand ein Handy. Der Rückruf kommt trotzdem",
+          "<b>Schriftlich</b> Was am Bau besprochen wird, kommt als kurze Nachricht hinterher"
+        ]
+      },
+      "caption": "Wer drei Nummern hat, hat keinen Ansprechpartner.\n\nAuf einer Sanierung laufen Abbruch, Sanitär, Elektro, Trockenbau, Fliese und Maler nacheinander. Elektro und Gas macht die jeweilige Fachkraft, geplant wird der Ablauf mit ihr. Jedes Gewerk baut auf dem vorherigen auf. Das koordiniert jemand, oder es koordiniert sich niemand.\n\nBei uns ist der, der auf der Baustelle steht, auch der, der zurückruft. Nicht immer sofort, dazu ist es zu laut. Aber der Rückruf kommt von jemandem, der die Wand gerade selbst gesehen hat, und nicht von jemandem, der erst nachfragen muss.\n\nWas am Bau besprochen wird, schreiben wir hinterher kurz auf. Nicht aus Formalität, sondern weil sich zwei Menschen an dasselbe Gespräch unterschiedlich erinnern."
+    },
+    {
+      "id": "m-aufraeumen-ist-arbeitszeit",
+      "rubrik": "mensch",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanierung/Renovierung/Kernsanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Baustelle",
+        "eyebrow": "Ende jedes Tages",
+        "nummer": "08",
+        "nummeriert": false,
+        "titel_vor": "Aufräumen ist ",
+        "titel_stark": "Arbeitszeit",
+        "titel_nach": "",
+        "lead": "Der Sauger gehört zum Werkzeug wie die Flex.",
+        "punkte": [
+          "<b>Täglich</b> Schutt raus, Wege frei, Werkzeug an einem Platz statt quer im Flur",
+          "<b>Absaugen</b> Feinstaub kommt in den M-Sauger, trockenes Kehren verteilt ihn nur neu",
+          "<b>Container</b> Entsorgung ist eingeplant, nicht erst dann, wenn der Schutt im Weg steht"
+        ]
+      },
+      "caption": "Wie eine Baustelle abends aussieht, sagt mehr als jede Referenz.\n\nAufräumen ist keine Geste am Ende, sondern Teil jedes Arbeitstages. Schutt kommt raus, solange er lose liegt, und nicht erst, wenn neues Material darauf steht.\n\nFeinstaub wird abgesaugt, nicht gekehrt. Ein Sauger der Staubklasse M nimmt ihn dort weg, wo er entsteht, den Rest nehmen wir nass auf. Trocken zu kehren verteilt ihn nur neu, danach sitzt er auf Schränken zwei Räume weiter.\n\nAuch die Entsorgung gehört von Anfang an in die Planung. Wohin mit Altfliesen, Estrichbruch und alter Wanne, wie lange steht der Container, wer meldet den Stellplatz an. Das klärt man vorher, nicht am vollen Tag.\n\nEine Baustelle, auf der abends aufgeräumt wird, ist morgens schneller. Das ist kein Service, das ist Arbeitsweise."
+    },
+    {
+      "id": "f-punktverklebung",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen/Bodenleger",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Kleber unter der Fliese",
+        "nummer": "07",
+        "nummeriert": false,
+        "titel_vor": "Kleber gehört ",
+        "titel_stark": "vollflächig",
+        "titel_nach": " drunter.",
+        "lead": "Vier Batzen in die Ecken gehen schnell — darunter bleibt die Fliese hohl.",
+        "punkte": [
+          "<b>Buttering-Floating</b> heißt: Kleber auf den Untergrund und dünn auf die Fliesenrückseite",
+          "<b>Hohlräume</b> sind Stellen ohne Auflager — unter Punktlast bricht die Fliese dort",
+          "<b>Zahnung passend zum Format:</b> zu klein gewählt füllt sie bei Großformat nie die Fläche"
+        ]
+      },
+      "caption": "Hohl liegende Fliesen sieht man nicht – man hört sie.\n\nPunktverklebung geht schnell und spart Material. Unter der Fliese bleiben dabei Hohlräume — Stellen ohne Auflager. Genau dort bricht die Fliese, wenn Last draufkommt, und an den Kanten platzen Stücke aus der Fliese.\n\nRichtig ist das kombinierte Verfahren: Kleber mit der Zahnkelle auf den Untergrund ziehen und zusätzlich dünn auf die Fliesenrückseite spachteln. Buttering-Floating heißt das im Fachjargon. Danach liegt die Fliese vollflächig auf.\n\nBeim Abriss sieht man sofort, wie gearbeitet wurde. Klebt der Untergrund flächig, hat sich jemand Mühe gegeben."
+    },
+    {
+      "id": "f-randfuge",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Fliesen/Bodenleger",
+      "hashtags": "fliesen",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Was am Rand passiert",
+        "nummer": "08",
+        "nummeriert": false,
+        "titel_vor": "Der Estrich braucht ",
+        "titel_stark": "Platz",
+        "titel_nach": " am Rand.",
+        "lead": "Ein Boden, der sich ausdehnen will und nicht kann, drückt sich irgendwo nach oben.",
+        "punkte": [
+          "<b>Randstreifen</b> trennt Estrich von der Wand — er wird erst nach dem Verfugen gekürzt",
+          "<b>Große Flächen</b> brauchen Feldbegrenzungsfugen, die durch Estrich und Belag gehen",
+          "<b>Symptom:</b> der Belag wölbt sich am Rand oder springt mit einem Knall hoch"
+        ]
+      },
+      "caption": "Fliesen, die von selbst hochspringen, hatten keinen Platz.\n\nEstrich arbeitet. Er dehnt sich bei Wärme aus und zieht sich wieder zusammen, jahrelang. Deshalb liegt beim Einbau ein Randstreifen aus Schaumstoff zwischen Estrich und Wand.\n\nDer Fehler passiert später: Vor dem Fliesen wird der Streifen bündig abgeschnitten, danach landet Kleber oder Fugenmasse im Spalt. Damit ist die Fuge tot und der Boden starr eingespannt.\n\nGemerkt wird das oft erst nach dem ersten Winter mit Fußbodenheizung. Der Belag hat dann nur noch einen Weg, und der geht nach oben.\n\nRichtig ist: Randstreifen erst nach dem Verfugen kürzen, Fuge offen lassen, Sockelleiste oder dauerelastisches Silikon darüber. Beides lässt Bewegung zu."
+    },
+    {
+      "id": "f-gipskarton-nass",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Trockenbau",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Vorwand im Bad",
+        "nummer": "09",
+        "nummeriert": false,
+        "titel_vor": "Im Bad zählt der ",
+        "titel_stark": "Kern",
+        "titel_nach": " der Platte.",
+        "lead": "Gips saugt Wasser. Welche Platte hinter der Fliese steckt, sieht später niemand.",
+        "punkte": [
+          "<b>Typ H2</b> ist die imprägnierte Platte — grüner Karton, Kern gegen Feuchte eingestellt",
+          "<b>Auch grün ist keine Abdichtung</b> — die kommt als eigene Schicht darüber",
+          "<b>Direkt im Spritzwasser</b> der Dusche ist die Zementfaserplatte die sichere Wahl"
+        ]
+      },
+      "caption": "Grün heißt nicht dicht. Grün heißt nur: hält Feuchte länger aus.\n\nIn fast jedem Bad steht eine Vorwand aus Trockenbauplatten. Was dahinter verbaut ist, prüft nach dem Fliesen niemand mehr — und genau deshalb wird hier gespart.\n\nNormaler Gipskarton zieht Wasser wie ein Schwamm. Der Kern quillt, die Platte verliert ihre Festigkeit, die Fliese darauf hat keinen Halt mehr. Imprägnierte Platten haben einen wasserabweisend eingestellten Kern; ihr Karton ist zur Unterscheidung grün.\n\nAußerhalb der feuchtebelasteten Zonen darf die Standardplatte bleiben. Im Spritzwasserbereich der Dusche gehen wir einen Schritt weiter und nehmen Zementfaserplatten. Die interessiert Feuchte gar nicht.\n\nIn den feuchtebelasteten Zonen – Vorwand am Waschtisch, Wände um Wanne und WC – kommt die imprägnierte Platte. Außerhalb davon reicht die Standardplatte. Im Spritzwasserbereich der Dusche gehen wir einen Schritt weiter und nehmen Zementfaserplatten. Die interessiert Feuchte gar nicht."
+    },
+    {
+      "id": "f-grundierung",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Maler/Lackier",
+      "hashtags": "maler",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Vor dem Anstrich",
+        "nummer": "10",
+        "nummeriert": false,
+        "titel_vor": "Der Untergrund ",
+        "titel_stark": "trinkt mit",
+        "titel_nach": ".",
+        "lead": "Frischer Putz zieht der Farbe das Wasser weg, bevor das Bindemittel abbinden kann.",
+        "punkte": [
+          "<b>Benetzungsprobe:</b> Wasser auf den Putz — dunkelt er sofort nach, saugt er stark",
+          "<b>Tiefengrund</b> verfestigt sandende Flächen und gleicht die Saugfähigkeit an",
+          "<b>Ohne Grundierung</b> wird die Farbe fleckig und der Kleber verliert seine Haftung"
+        ]
+      },
+      "caption": "Wolkige Wand nach zwei Anstrichen — das liegt selten an der Farbe.\n\nFrischer Putz, Gipsplatten, alter Kalkputz: Diese Untergründe saugen, und über die Fläche verteilt unterschiedlich stark. Wo viel Wasser weggezogen wird, kann das Bindemittel der Farbe nicht richtig abbinden. Dort bleibt sie stumpf und kreidet später ab.\n\nDeshalb kommt zuerst eine Grundierung. Tiefengrund auf sandende Flächen, Haftgrund auf glatte. Sie verfestigt und gleicht an, sodass die Farbe überall gleich lange zum Trocknen braucht.\n\nDasselbe gilt unter Fliesenkleber und Spachtelmasse. Ohne Grundierung wird dem Kleber das Anmachwasser entzogen, bevor er Festigkeit aufbauen kann.\n\nGrundieren ist ein kurzer Arbeitsschritt. Wer ihn auslässt, streicht zweimal."
+    },
+    {
+      "id": "f-schutzbereiche-elektro",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Elektro",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Steckdosen im Bad",
+        "nummer": "11",
+        "nummeriert": false,
+        "titel_vor": "Im Bad gibt es ",
+        "titel_stark": "Schutzbereiche",
+        "titel_nach": ".",
+        "lead": "Rund um Wanne und Dusche entscheidet der Abstand, was dort überhaupt hängen darf.",
+        "punkte": [
+          "<b>Bereich 0</b> ist das Innere von Wanne und Dusche – dort ist nur Kleinspannung zulässig",
+          "<b>DIN VDE 0100-701</b> teilt das Bad in Bereiche und regelt, was wo zulässig ist",
+          "<b>Fehlerstromschutz</b> mit 30 mA verlangt die Norm heute für die Stromkreise im Bad"
+        ]
+      },
+      "caption": "„Da war doch vorher auch eine Steckdose“ — stimmt oft. Trotzdem falsch.\n\nDas Bad ist in Schutzbereiche eingeteilt, die sich am Abstand zu Wanne und Dusche orientieren. Je näher am Wasser, desto weniger ist erlaubt.\n\nIm Inneren von Wanne und Dusche darf nichts sitzen außer fest installierten Geräten, die ausdrücklich dafür gebaut sind. Direkt darüber und im Umkreis gelten weitere Einschränkungen, unter anderem für die Schutzart der Leuchten.\n\nIn Altbauten finden wir regelmäßig eine Steckdose in Armlänge zur Wanne, nachträglich gesetzt, ohne Fehlerstromschutz. Früher wurde das so gemacht. Heute ist es schlicht gefährlich.\n\nBei einer Sanierung stimmen wir das früh mit der Elektrofachkraft ab. Wo eine Dose sitzen darf und was am Stromkreis geändert wird, prüft und macht sie — das ist kein Job fürs Wochenende."
+    },
+    {
+      "id": "f-mikrozement-bewegung",
+      "rubrik": "fehler",
+      "vorlage": "tipp.html",
+      "gewerk": "Mikrozement",
+      "hashtags": "mikrozement",
+      "felder": {
+        "badge": "Achtung",
+        "eyebrow": "Warum Risse entstehen",
+        "nummer": "12",
+        "nummeriert": false,
+        "titel_vor": "Mikrozement schluckt ",
+        "titel_stark": "keine Bewegung",
+        "titel_nach": ".",
+        "lead": "Eine Schicht von wenigen Millimetern nimmt keinem Untergrund seine Ausdehnung.",
+        "punkte": [
+          "<b>Bewegungsfugen</b> im Untergrund werden oben weitergeführt, nicht überzogen",
+          "<b>Alte Fliesen</b> tragen nur, wenn jede einzelne fest sitzt und angeschliffen ist",
+          "<b>Armierungsgewebe</b> verteilt Spannung in der Fläche, ersetzt aber keine Fuge"
+        ]
+      },
+      "caption": "Fugenlos heißt nicht, dass darunter keine Fugen mehr nötig sind.\n\nMikrozement wird nur wenige Millimeter dick aufgetragen, je nach System. Das ist der ganze Reiz: eine Fläche ohne Raster, ohne Fugenkreuz. Es heißt aber auch, dass die Schicht keine eigene Statik hat. Sie folgt dem, was darunter liegt.\n\nLäuft unter der Beschichtung eine Bewegungsfuge, muss sie oben weitergeführt werden. Wird sie einfach überzogen, reißt die Fläche irgendwann genau auf dieser Linie — nur unregelmäßig und damit unschöner als eine saubere Fuge.\n\nDasselbe gilt für alte Fliesen als Untergrund. Eine einzige hohl liegende Fliese arbeitet sich später durch die Beschichtung.\n\nDeshalb dauert bei uns die Vorbereitung länger als das Beschichten. Das Ergebnis entsteht vorher."
+    },
+    {
+      "id": "w-q-stufen",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Maler",
+      "hashtags": "maler",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Oberflächen Q1 bis Q4",
+        "nummer": "18",
+        "nummeriert": false,
+        "titel_vor": "Glatt ist nicht gleich ",
+        "titel_stark": "glatt",
+        "titel_nach": ".",
+        "lead": "Welche Stufe du brauchst, entscheidet das Licht im Raum, nicht der Geschmack.",
+        "punkte": [
+          "<b>Q1</b> nur Fugen und Schraubenköpfe gefüllt, Untergrund für Fliesen statt für Farbe",
+          "<b>Q2 und Q3</b> der Normalfall für Raufaser, Tapete und matte Wandfarbe",
+          "<b>Q4</b> ganze Fläche gespachtelt und geschliffen, nötig bei Glanzlack und Streiflicht"
+        ]
+      },
+      "caption": "Vier Buchstaben im Angebot entscheiden, wie deine Wand später aussieht.\n\nQ1 bis Q4 beschreibt, wie weit eine Gipsplatten- oder Putzfläche gespachtelt ist. Q1 füllt nur Fugen und Schraubenköpfe. Bei Q4 ist die komplette Fläche überzogen, geschliffen und staubfrei.\n\nDer Unterschied fällt erst auf, wenn Licht flach über die Wand streicht. Unter einer Leuchte in der Raummitte sieht Q2 gut aus. Neben einem bodentiefen Fenster oder unter einem Wandfluter zeigt dieselbe Wand jede Spachtelkante.\n\nDeshalb fragen wir vor dem Spachteln nach der Beleuchtung und nach der Farbe. Glänzende Lacke und glatte Tapeten verlangen mehr Vorarbeit als eine matte Wandfarbe im Flur.\n\nSteht keine Q-Stufe im Angebot, gilt das übliche Maß. Wer mehr will, vereinbart es vorher."
+    },
+    {
+      "id": "w-streiflicht",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Maler",
+      "hashtags": "maler",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Wände selbst prüfen",
+        "nummer": "19",
+        "nummeriert": false,
+        "titel_vor": "Streiflicht ist der ",
+        "titel_stark": "Härtetest",
+        "titel_nach": ".",
+        "lead": "Eine flach gehaltene Lampe zeigt an der Wand, was Tageslicht gnädig verschweigt.",
+        "punkte": [
+          "<b>Flach halten</b> Lampe dicht an die Fläche richten statt frontal draufleuchten",
+          "<b>Nicht der Maßstab</b> bewertet wird bei Raumlicht, außer Streiflicht ist vereinbart",
+          "<b>Vor dem Anstrich</b> Kanten anzeichnen, nachspachteln, schleifen, danach hilft nur neu"
+        ]
+      },
+      "caption": "Nimm dein Handy und leuchte flach an die frisch gespachtelte Wand.\n\nWas du dann siehst, sieht sonst niemand: jede Spachtelkante, jede Schleifwelle, jeden Rest von Kleber. Streiflicht zeigt Unebenheiten, die bei normalem Raumlicht unsichtbar bleiben.\n\nWichtig ist der Unterschied zwischen Prüfen und Bewerten. Bewertet wird eine Wand bei normalem Raumlicht, solange im Vertrag nichts anderes steht, und nicht mit dem Strahler aus kurzer Distanz. Sonst fällt jede Wand durch, auch eine sauber gearbeitete.\n\nSinnvoll ist der Test trotzdem, aber vorher. Dann sind die Stellen mit Bleistift markiert, nachgespachtelt und geschliffen, bevor die Farbe alles festhält.\n\nHängt später ein Wandfluter oder steht ein bodentiefes Fenster daneben, planen wir die Fläche gleich eine Stufe höher."
+    },
+    {
+      "id": "w-grundierung",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Maler",
+      "hashtags": "maler",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Vor dem ersten Anstrich",
+        "nummer": "20",
+        "nummeriert": false,
+        "titel_vor": "Erst den ",
+        "titel_stark": "Untergrund",
+        "titel_nach": " lesen.",
+        "lead": "Welche Grundierung nötig ist, entscheidet die Wand, nicht die Gewohnheit.",
+        "punkte": [
+          "<b>Saugend</b> Gipsputz zieht das Bindemittel weg, Tiefengrund verfestigt die Oberfläche",
+          "<b>Kritisch</b> Nikotin, Ruß und Wasserränder schlagen durch, hier sperrt nur Isoliergrund",
+          "<b>Glatt</b> Altlack, Sichtbeton und Fliese brauchen Haftgrund mit Quarzsand für den Griff"
+        ]
+      },
+      "caption": "Farbe hält nur so gut wie der Untergrund, auf dem sie liegt.\n\nDrei Untergründe, drei Grundierungen. Saugende Flächen wie frischer Gipsputz ziehen das Bindemittel aus der Farbe. Ohne Tiefengrund kann der Anstrich fleckig auftrocknen und später kreiden.\n\nKritisch sind Nikotin, Ruß, Wasserränder und Filzstift. Die schlagen durch, egal wie oft du drüberrollst. Da hilft nur ein Isoliergrund, der die Stoffe einschließt.\n\nGlatte Flächen haben das umgekehrte Problem: Altlack, dichter Sichtbeton oder Fliese saugen kaum, also greift auch nichts. Hier braucht es einen Haftgrund mit Quarzsand, der der nächsten Schicht Halt gibt.\n\nDeshalb kommen Wischprobe und Wassertest vor das Angebot. Was die Wand vorher gesehen hat, bestimmt die Grundierung."
+    },
+    {
+      "id": "w-trockenbau-schall",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Trockenbau",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Wand mit Schallschutz",
+        "nummer": "21",
+        "nummeriert": false,
+        "titel_vor": "Eine Platte ist eine ",
+        "titel_stark": "Trommel",
+        "titel_nach": ".",
+        "lead": "Bei einer Ständerwand entscheidet nicht die Dicke, sondern der Aufbau dahinter.",
+        "punkte": [
+          "<b>Doppelt beplanken</b> zwei Lagen je Seite mit versetzten Stößen bringen Masse",
+          "<b>Hohlraum dämmen</b> Mineralwolle locker einlegen statt stopfen, sie soll bremsen",
+          "<b>Ränder entkoppeln</b> Dichtband unter jedes Profil, Steckdosen nie Rücken an Rücken"
+        ]
+      },
+      "caption": "Schall geht nicht nur durch die Platte, sondern auch über jeden Anschluss.\n\nEine einfach beplankte Ständerwand ist im Kern eine Trommel: zwei dünne Häute, dazwischen Luft. Der Schall bringt die eine Seite zum Schwingen, die andere gibt ihn an den nächsten Raum weiter.\n\nDrei Dinge ändern das. Masse durch eine zweite Plattenlage mit versetzten Stößen. Dämpfung durch Mineralwolle, die den Hohlraum locker füllt. Entkopplung an den Rändern, damit die Wand nicht starr auf Estrich und Rohdecke sitzt.\n\nDas Detail, das oft vergessen wird, sind Steckdosen. Liegen zwei davon Rücken an Rücken im selben Gefach, ist die Wand genau dort offen.\n\nWer Ruhe will, sagt es vor dem Aufstellen. Nachträglich heißt es: Platten wieder runter."
+    },
+    {
+      "id": "w-feuchtraumplatte",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Trockenbau",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Trockenbau im Bad",
+        "nummer": "22",
+        "nummeriert": false,
+        "frage": "Reicht eine grüne Platte im Bad als Feuchtigkeitsschutz?",
+        "antwort": "Nein. Die grüne Imprägnierung <b>verzögert</b> nur, wie schnell die Gipsplatte Feuchtigkeit aufnimmt. Wasserdicht ist sie nicht.<br><br>In der Dusche gehört eine <b>zementgebundene Bauplatte</b> hin. Außerhalb reicht die imprägnierte Platte, im Spritzwasserbereich aber nur mit <b>Verbundabdichtung</b> darüber.",
+        "hinweis": "Grün ist eine Materialeigenschaft. Dicht wird das Bad durch die Schicht darüber.",
+        "lead": "Die Imprägnierung verzögert die Feuchteaufnahme, dicht wird die Wand darüber."
+      },
+      "caption": "„Die Platten sind doch grün“ – das kommt oft erst, wenn schon gefliest ist.\n\nDie Imprägnierung macht eine Gipsplatte widerstandsfähiger gegen Luftfeuchte, etwa gegen den Dampf nach dem Duschen. Sie macht sie nicht wasserdicht. Läuft Wasser an der Wand herunter, saugt sich auch eine grüne Platte voll.\n\nDeshalb entscheidet zuerst der Ort: in der Dusche eine zementgebundene Platte, außerhalb die imprägnierte Platte mit Verbundabdichtung darüber. Das ist ein flüssiger Dichtanstrich in zwei Lagen, dazu Dichtband in jede Ecke und Manschetten um jedes Rohr, das aus der Wand kommt.\n\nDer zweite Punkt ist der Fußpunkt. Steht die Platte direkt im Estrich, zieht sie Feuchtigkeit nach oben wie ein Docht, und man sieht es erst am aufgeplatzten Sockel.\n\nWer wissen will, ob im eigenen Bad abgedichtet wurde: Auf Fotos von der Baustelle ist die farbige Dichtschicht kaum zu übersehen."
+    },
+    {
+      "id": "w-vorsatzschale",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Trockenbau",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Kalte Außenwand",
+        "nummer": "23",
+        "nummeriert": false,
+        "titel_vor": "Dämmen nach ",
+        "titel_stark": "innen",
+        "titel_nach": " ist heikel.",
+        "lead": "Die Vorsatzschale wird warm, die alte Wand dahinter wird kälter als vorher.",
+        "punkte": [
+          "<b>Feuchte fällt aus</b> gelangt Raumluft hinter die Schale, wird sie dort zu Wasser",
+          "<b>Systemwahl</b> Dampfbremse dicht verklebt oder kapillaraktiv dämmen, nie beides mischen",
+          "<b>Kein Luftpolster</b> Dämmung vollflächig an die Wand, sonst zieht Feuchte dahinter"
+        ]
+      },
+      "caption": "Innendämmung wirkt sofort. Ob sie hält, entscheidet die Ausführung.\n\nEine Vorsatzschale vor der kalten Außenwand ist schnell gebaut. Die Oberfläche fühlt sich wärmer an, es zieht weniger. Nur liegt die alte Wand dahinter jetzt außerhalb der Dämmung und kühlt stärker aus als vorher.\n\nWarme Raumluft trägt Feuchtigkeit. Findet sie einen Weg in den Zwischenraum, schlägt sie sich an der kalten Fläche nieder. Sichtbar wird das erst, wenn die Platte weich wird oder es muffig riecht.\n\nDeshalb zählt die Ausführung mehr als das Material. Dämmung vollflächig an die Wand, ohne Luftpolster. Dann entweder eine raumseitig durchgehend verklebte Dampfbremse oder ein kapillaraktiver Aufbau, der Feuchte wieder abgibt – nie beides gemischt. Steckdosen und Leitungen gehören in eine Ebene davor.\n\nWelcher Weg passt, entscheidet eine Feuchteberechnung vor dem Aufbau, nicht das Gefühl."
+    },
+    {
+      "id": "w-mikrozement-versiegelung",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Mikrozement",
+      "hashtags": "mikrozement",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Fugenlose Flächen",
+        "nummer": "24",
+        "nummeriert": false,
+        "frage": "Ist Mikrozement in der Dusche wasserdicht?",
+        "antwort": "<b>Versiegelt</b> nimmt die Fläche kaum Wasser auf, unversiegelt saugt sie. Dicht wird die Dusche ohnehin durch den <b>Aufbau darunter</b>, nicht durch den Mikrozement.<br><br>Oben liegt die <b>Versiegelung</b>, eine dünne Schutzschicht. Sie bestimmt den Glanzgrad und wie empfindlich die Fläche auf Öl, Rotwein und saure Reiniger reagiert.<br><br>Im Bad gehören mehrere Lagen davon drauf. Stumpf gewordene Flächen lassen sich nachversiegeln, sinnvoll immer als ganze Fläche, damit keine Ansätze stehen bleiben.",
+        "hinweis": "Scharfe Reiniger setzen der Versiegelung mehr zu als tägliches Duschen."
+      },
+      "caption": "Nicht der Mikrozement fleckt, sondern die Versiegelung darüber.\n\nMikrozement ist mineralisch, unversiegelt aber saugfähig. Erst die Versiegelung macht die Oberfläche wasserabweisend. Die Abdichtung der Dusche liegt trotzdem darunter, aufgebracht vor der ersten Schicht. Wer nur Mikrozement aufträgt und die Abdichtung weglässt, spart an der falschen Stelle.\n\nDie oberste Lage ist ein dünner Schutzfilm. Er entscheidet, ob die Fläche matt oder seidig wirkt und wie sie auf Öl, Rotwein und Kalkentferner reagiert. Angegriffen wird zuerst er. Ist er durch, geht es an die Schicht darunter.\n\nDaraus folgt die Pflege: pH-neutral wischen, saure Reiniger weglassen, Flecken zeitnah aufnehmen.\n\nUnd der Vorteil bleibt: Eine stumpf gewordene Fläche lässt sich nachversiegeln, sinnvoll als ganze Fläche. Bei einer gerissenen Fuge geht das nicht."
+    },
+    {
+      "id": "w-mikrozement-heizung",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Mikrozement",
+      "hashtags": "mikrozement",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Boden mit Heizung",
+        "nummer": "25",
+        "nummeriert": false,
+        "titel_vor": "Fugenlos über ",
+        "titel_stark": "Heizschlangen",
+        "titel_nach": ".",
+        "lead": "Der Belag ist selten das Problem, der Estrich darunter schon.",
+        "punkte": [
+          "<b>Belegreifheizen</b> folgt auf das Funktionsheizen, danach entscheidet die Messung",
+          "<b>Dünne Schicht</b> der Aufbau bleibt im Millimeterbereich und steht der Wärme kaum im Weg",
+          "<b>Fugen übernehmen</b> Bewegungsfugen des Estrichs müssen nach oben durchgehen"
+        ]
+      },
+      "caption": "Der Estrich muss einmal geschwitzt haben, bevor Mikrozement drauf darf.\n\nFunktionsheizen prüft die Anlage. Belegreifheizen kommt danach: Die Fußbodenheizung wird stufenweise hochgefahren, einige Tage auf Temperatur gehalten und wieder abgesenkt. Ob der Estrich belegreif ist, sagt aber weder das eine noch das andere, sondern die Messung der Restfeuchte. Beide Protokolle gehören zu den Unterlagen, nicht in die Erinnerung.\n\nIst das erledigt, spricht wenig gegen die fugenlose Fläche. Der Aufbau bleibt im Millimeterbereich und steht der Wärme kaum im Weg, und es gibt keine Fugen, in denen sich etwas festsetzt.\n\nEntscheidend sind die Bewegungsfugen. Wo der Estrich getrennt ist, muss auch der Belag getrennt bleiben. Sonst reißt die Fläche genau an dieser Stelle.\n\nWir messen die Restfeuchte, bevor die erste Schicht kommt. Ohne Wert kein Auftrag."
+    },
+    {
+      "id": "w-vorwand-statt-schlitzen",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanitärtechnik",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Leitungen und Wand",
+        "nummer": "41",
+        "nummeriert": false,
+        "titel_vor": "Rohre in die ",
+        "titel_stark": "Vorwand",
+        "titel_nach": ", nicht in die Wand",
+        "lead": "Leitungen brauchen Platz, den eine gemauerte Wand selten hergibt.",
+        "punkte": [
+          "<b>Vorwand</b> Rohre laufen vor der Wand im Ständerwerk, die Wand selbst bleibt unberührt",
+          "<b>Gefälle</b> Abflussrohre brauchen Neigung, in der Vorwand ist der Platz dafür da",
+          "<b>Schall</b> Entscheidend ist die entkoppelte Rohrbefestigung, nicht die Vorwand allein"
+        ]
+      },
+      "caption": "Ein Schlitz in der tragenden Wand ist schnell gesetzt und schwer rückgängig.\n\nWir legen Leitungen deshalb möglichst in eine Vorwand: ein Ständerwerk aus Metallprofilen vor der Wand, beplankt mit feuchtebeständiger Bauplatte. Die tragende Wand bleibt unangetastet.\n\nDas kostet Tiefe im Raum. Dafür entstehen eine Ablage, Platz für den Unterputz-Spülkasten und eine Ebene mit Gefälle für das Abflussrohr.\n\nDazu der Schall. Ein Fallrohr hörst du vor allem dann, wenn es starr an der Wand hängt. Wir arbeiten deshalb mit entkoppelten Schellen und ummantelten Rohren. Wie viel das bringt, hängt daran, wie schwer die Wand zum Nachbarraum ist. Vor einer leichten Trennwand reicht die Vorwand allein nicht.\n\nIm Altbau schauen wir vorher, woraus die Wand besteht. Verboten ist ein Schlitz nicht, aber Tiefe, Länge und Lage sind geregelt – Hohlblock verzeiht dabei weniger als Vollziegel."
+    },
+    {
+      "id": "w-druckprobe-protokoll",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Sanitärtechnik",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Prüfen vor Verschließen",
+        "nummer": "42",
+        "nummeriert": false,
+        "titel_vor": "Druckprobe ohne ",
+        "titel_stark": "Protokoll",
+        "titel_nach": " bleibt unbelegt",
+        "lead": "Bevor die Vorwand zugeht, steht die Leitung unter Druck und wird beobachtet.",
+        "punkte": [
+          "<b>Ablauf</b> Erst Druck aufbauen, dann Prüfzeit abwarten, erst danach verschließen",
+          "<b>Protokoll</b> Prüfmedium, Druck, Dauer und Datum werden schriftlich festgehalten",
+          "<b>Nachweis</b> Das Blatt dokumentiert, in welchem Zustand die Installation übergeben wurde"
+        ]
+      },
+      "caption": "Ohne Protokoll ist die Druckprobe später nur eine Behauptung.\n\nVor dem Verschließen der Vorwand wird die Trinkwasserleitung unter Druck gesetzt, bei uns in der Regel mit ölfreier Druckluft. Stehendes Wasser in einer neuen Leitung ist ein Hygienethema, deshalb prüfen wir nur dann mit Wasser, wenn die Anlage kurzfristig in Betrieb geht. Der Test besteht danach aus Warten: Der Druck muss über die Prüfzeit stehen bleiben.\n\nNotiert werden Prüfmedium, Prüfdruck, Prüfdauer, Datum und wer geprüft hat. Das Blatt gehört zu deinen Unterlagen, nicht in den Bauschutt.\n\nWarum so formell? Weil eine undichte Verbindung hinter Fliesen und Estrich niemand sieht, bis der Schaden unten ankommt. Das Protokoll hält fest, wie die Leitung am Prüftag dastand.\n\nFotos der offenen Vorwand gehören dazu. Wer später eine Ablage anbohren will, weiß dann, wo die Leitung liegt."
+    },
+    {
+      "id": "w-revisionsoeffnung-frei",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Sanitärtechnik",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Wartung im Bad",
+        "nummer": "43",
+        "nummeriert": false,
+        "lead": "Hinter jeder Unterputz-Technik muss eine Hand hinkommen können.",
+        "frage": "Können wir die Wartungsklappe vom Spülkasten überfliesen?",
+        "antwort": "<b>Nein.</b> Hinter der Betätigungsplatte sitzen Füllventil und Spülventil des Unterputz-Spülkastens. Beides sind Verschleißteile und werden irgendwann getauscht.<br><br>Was geht: Die Platte gibt es in vielen Größen, in Glas, Kunststoff oder Metall. Wer sie mittig ins Fugenraster setzt, nimmt sie kaum noch wahr. Bei Unterputzarmaturen in der Dusche gilt dasselbe Prinzip: Die Kartusche sitzt im Einbaukörper und muss hinter der Rosette erreichbar bleiben.<br><br>Zugefliest heißt im Schadensfall: Fliesen raus, Wand auf, Abdichtung neu.",
+        "hinweis": "Die Plattengröße legen wir vor dem Fliesen fest, damit sie sauber im Raster liegt."
+      },
+      "caption": "„Die Klappe stört optisch, können wir die zufliesen?“ – fragt fast jeder.\n\nDer Unterputz-Spülkasten steckt in der Vorwand. Erreichbar ist er nur über die Betätigungsplatte, also die Drückerplatte. Nimmt man sie ab, liegen Füllventil und Spülventil frei.\n\nBeide sind Verschleißteile. Ein Füllventil, das nach Jahren durchläuft, ist schnell getauscht, wenn man rankommt. Ist die Öffnung zugefliest, wird daraus eine Baustelle mit Stemmen, neuer Abdichtung und Fliesenarbeit.\n\nDasselbe gilt für Unterputzarmaturen in der Dusche. Die Kartusche sitzt im Einbaukörper hinter der Rosette und muss dort ohne Aufstemmen erreichbar bleiben.\n\nOptisch lässt sich viel machen. Wir legen die Plattengröße vor dem Fliesen fest und setzen sie mittig ins Fugenraster, dann fällt sie kaum noch auf."
+    },
+    {
+      "id": "w-strom-im-bad-zonen",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Elektro",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Elektro im Nassbereich",
+        "nummer": "44",
+        "nummeriert": false,
+        "titel_vor": "Strom im Bad folgt ",
+        "titel_stark": "Zonen",
+        "titel_nach": ", nicht Gefühl",
+        "lead": "Wie nah an Wanne und Dusche etwas sitzen darf, ist geregelt.",
+        "punkte": [
+          "<b>Bereiche</b> Um Wanne und Dusche gelten abgestufte Zonen mit eigenen Anforderungen",
+          "<b>FI-Schutz</b> Badstromkreise laufen über einen Fehlerstrom-Schutzschalter",
+          "<b>Fachkraft</b> Planung, Ausführung und Prüfung macht die Elektrofachkraft, nicht du"
+        ]
+      },
+      "caption": "Zwischen Waschtisch und Duschwand gelten für Strom verschiedene Regeln.\n\nDas Bad ist für die Elektrik ein Sonderfall. Rund um Badewanne und Dusche wird der Raum in Bereiche eingeteilt, und je näher am Wasser, desto strenger die Anforderungen an Leuchten, Geräte und Dosen.\n\nDirekt in der Dusche hat eine normale Steckdose nichts zu suchen. Weiter außen wird es freier, ab einem gewissen Abstand gelten die üblichen Regeln.\n\nDazu kommt der Fehlerstrom-Schutzschalter, kurz FI oder RCD. Er trennt den Stromkreis, wenn Strom einen Weg nimmt, den er nicht nehmen soll, zum Beispiel über einen Menschen. In vielen Altbauten fehlt er noch.\n\nWir legen die Positionen fest, bevor die Vorwand zugeht. Ausführen und prüfen darf das nur eine Elektrofachkraft. An 230 Volt ist Selbermachen keine Option."
+    },
+    {
+      "id": "w-steckdosen-vor-fliesen",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Elektro",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Planung vor dem Fliesen",
+        "nummer": "45",
+        "nummeriert": false,
+        "titel_vor": "Steckdosen plant man ",
+        "titel_stark": "vor",
+        "titel_nach": " dem Fliesen",
+        "lead": "Jede vergessene Dose kostet nach dem Verfugen einen Eingriff in die fertige Fläche.",
+        "punkte": [
+          "<b>Erst messen</b> Höhen von Waschtisch und Spiegelschrank festlegen, dann Dosen anzeichnen",
+          "<b>Dann setzen</b> Der Elektriker bohrt die Dosen, solange die Wand noch roh ist",
+          "<b>Dann fliesen</b> Wir richten das Fugenraster nach Möglichkeit an den Dosen aus"
+        ]
+      },
+      "caption": "Nach dem Verfugen wird aus einer vergessenen Steckdose eine Baustelle.\n\nIm Bad braucht Strom mehr Punkte, als die meisten zuerst denken. Spiegelschrank mit Licht und Innensteckdose, Föhn neben dem Waschtisch, elektrischer Handtuchheizkörper, später vielleicht ein Dusch-WC.\n\nDiese Punkte legen wir fest, bevor die Vorwand geschlossen wird. Dabei hilft es, sich vor die leere Wand zu stellen und den Morgen durchzuspielen: Wo stehst du, wo hängt das Handtuch, welche Hand hält den Föhn.\n\nBeim Fliesen kommt der zweite Teil. Eine Dose, die halb auf einer Fuge sitzt, siehst du jeden Tag. Wir bohren die Löcher mit Dosenbohrer und Wasser, nicht mit dem Winkelschleifer quer durch die Fliese.\n\nWo eine Dose am Ende sitzen darf, entscheidet die Elektrofachkraft – rund um Wanne und Dusche gelten je nach Abstand eigene Regeln."
+    },
+    {
+      "id": "w-licht-in-schichten",
+      "rubrik": "wissen",
+      "vorlage": "tipp.html",
+      "gewerk": "Elektro",
+      "hashtags": "bad",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Licht im Bad planen",
+        "nummer": "46",
+        "nummeriert": false,
+        "titel_vor": "Licht im Bad in drei ",
+        "titel_stark": "Schichten",
+        "titel_nach": "",
+        "lead": "Grundlicht, Spiegellicht und Akzent haben eigene Aufgaben und eigene Schalter.",
+        "punkte": [
+          "<b>Grundlicht</b> Deckenleuchte oder Spots für den Raum, gleichmäßig und ohne harte Schatten",
+          "<b>Spiegellicht</b> Licht von links und rechts auf Augenhöhe statt nur von oben",
+          "<b>Akzentlicht</b> Band in Nische oder Sockel, in der Dusche nur mit Schutzkleinspannung"
+        ]
+      },
+      "caption": "Wer sich im Spiegel schlecht sieht, hat meistens kein Spiegelproblem.\n\nDie übliche Badbeleuchtung ist eine Leuchte mittig an der Decke. Sobald du vor dem Spiegel stehst, steht sie hinter dir. Das Ergebnis sind Schatten in den Augenhöhlen und unter dem Kinn.\n\nBesser sind drei Ebenen. Grundlicht von oben, Spiegellicht von links und rechts auf Augenhöhe, dazu eine gedimmte Ebene für abends, etwa ein Band unter der Waschtischplatte. In der Duschnische nur mit Schutzkleinspannung und passender Schutzart, ausgelegt von der Fachkraft.\n\nDazu die Lichtqualität. Am Spiegel zählt die Farbwiedergabe, Ra 90 oder besser. Sonst wirken Hauttöne flau, unabhängig von der Farbtemperatur. Wer warm und neutral will, nimmt eine Leuchte mit einstellbarer Farbtemperatur.\n\nUnruhig wird es, wenn Decke, Spiegel und Nische jeweils eine andere Lichtfarbe haben. Geplant wird all das vor dem Fliesen."
+    },
+    {
+      "id": "w-smarthome-nachruestbar",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Smart Home",
+      "hashtags": "smarthome",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Technik offen halten",
+        "nummer": "47",
+        "nummeriert": false,
+        "lead": "Was heute in der Wand liegt, entscheidet, was in zehn Jahren noch möglich ist.",
+        "frage": "Muss ich mich beim Umbau schon auf ein Smart-Home-System festlegen?",
+        "antwort": "<b>Nein, aber auf die Vorbereitung.</b> Systeme kommen und gehen, die Elektroinstallation bleibt.<br><br>Drei Dinge halten dir Optionen offen: tiefe Schalterdosen, weil Funkmodule hinter dem Schalter Platz brauchen. Ein Neutralleiter an der Schalterstelle, den viele smarte Schalter benötigen und der in Altbauten oft fehlt. Und ein Netzwerkkabel dorthin, wo später ein Bedienpanel oder ein Zugangspunkt sitzen soll.<br><br>Damit kannst du mit einer einzelnen Leuchte anfangen und später erweitern, meistens ohne neuen Eingriff in die Wand.",
+        "hinweis": "Welche Marke es wird, entscheidest du später. Die Vorbereitung entscheidest du jetzt."
+      },
+      "caption": "„Und wenn es den Hersteller in zehn Jahren nicht mehr gibt?“ – gute Frage.\n\nSmart Home scheitert selten an der App. Es scheitert daran, dass beim Umbau die Vorbereitung fehlt und jede Nachrüstung wieder Wand kostet.\n\nDie haltbaren Entscheidungen sind unspektakulär. Tiefe Schalterdosen, damit ein Funkmodul dahinter Platz hat. Ein Neutralleiter an der Schalterstelle, den viele smarte Schalter brauchen und der in Altbauten oft fehlt. Ein Netzwerkkabel dorthin, wo später ein Bedienpanel oder ein Zugangspunkt sitzen könnte.\n\nKabel sind langweilig und genau deshalb gut. Sie funktionieren unabhängig davon, welche Marke noch am Markt ist oder welche Cloud abgeschaltet wird.\n\nSo kannst du klein anfangen und später erweitern, ohne für jeden Schritt wieder aufzustemmen. Geplant und eingebaut wird das mit der Elektrofachkraft."
+    },
+    {
+      "id": "w-bad-vor-neuvermietung",
+      "rubrik": "wissen",
+      "vorlage": "faq.html",
+      "gewerk": "Sanierung/Renovierung/Kernsanierung",
+      "hashtags": "sanierung",
+      "felder": {
+        "badge": "Wissen",
+        "eyebrow": "Für Vermieter gedacht",
+        "nummer": "48",
+        "nummeriert": false,
+        "lead": "Im Leerstand zwischen zwei Mietern kommt man an das heran, was sonst verbaut ist.",
+        "frage": "Lohnt es sich, das Bad zwischen zwei Mietern zu machen?",
+        "antwort": "<b>Es kommt darauf an, was ansteht.</b> Der Vorteil des Leerstands ist der Vollzugriff: keine Rücksicht auf Duschzeiten, keine Staubschleuse, kein Wohnen auf der Baustelle. Gewerke können parallel arbeiten.<br><br>Zuerst schauen wir auf das, was hinter Fliesen und Estrich liegt und im bewohnten Zustand kaum zu machen ist: Leitungen, Abflüsse, Abdichtung, Zuleitungen. Oberflächen kann man später tauschen, Rohre nicht.<br><br>Danach kommt, was jeder Interessent sofort sieht: Licht am Spiegel, funktionierende Lüftung, ausreichend Steckdosen, saubere Fugen.",
+        "hinweis": "Ob das steuerlich Erhaltung oder Modernisierung ist, klärt deine Steuerberatung."
+      },
+      "caption": "Zwischen zwei Mietern ist die Wohnung leer – und das Bad voll zugänglich.\n\nAls Vermieter hast du eine Möglichkeit, die ein Selbstnutzer selten hat: die leere Wohnung. Kein Rücksichtnehmen, keine Duschzeiten, keine Staubschutzwand quer durch den Flur. Gewerke können parallel arbeiten.\n\nWir sortieren nach Erreichbarkeit. Was hinter Fliesen und Estrich liegt, wird jetzt gemacht: Leitungen, Abflüsse, Abdichtung, Zuleitungen. Eine Armatur lässt sich später tauschen, ein Rohr in der Wand nicht.\n\nDer zweite Block ist das, was ein Interessent bei der Besichtigung wahrnimmt: Licht am Spiegel, funktionierende Lüftung, genügend Steckdosen, saubere Silikonfugen.\n\nUnd die Mappe. Druckprüfprotokoll, Fotos der offenen Wände, Datenblätter der Armaturen. Beim nächsten Handwerkereinsatz spart das Suchen und Rätselraten."
+    }
+  ]
+}

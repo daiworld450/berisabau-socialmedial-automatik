@@ -1,0 +1,109 @@
+{
+  "_hinweis": "10–14 Hashtags pro Post, regional zuerst. Wer im Umkreis von 30 km sucht, ist der einzige Follower, der zählt. Die Mischung erzeugt src/texter.py deterministisch pro Tag – so wiederholt sich kein Block.",
+  "_fest": "Marke und Hauptort stehen in JEDEM Post. Für einen lokalen Betrieb ist der Ortstag der wichtigste überhaupt – er darf nie ausrotieren.",
+  "fest": [
+    "#berisabau",
+    "#mülheimanderruhr"
+  ],
+  "regional": [
+    "#mülheimruhr",
+    "#ruhrgebiet",
+    "#handwerkruhrgebiet",
+    "#handwerkmülheim",
+    "#mülheimhandwerker",
+    "#essen",
+    "#duisburg",
+    "#oberhausen",
+    "#nrwhandwerk",
+    "#ruhrpott"
+  ],
+  "sets": {
+    "bad": [
+      "#badsanierung",
+      "#badezimmerrenovierung",
+      "#badumbau",
+      "#traumbad",
+      "#bodengleichedusche",
+      "#badezimmerideen",
+      "#sanitär",
+      "#badideen"
+    ],
+    "fliesen": [
+      "#fliesenleger",
+      "#fliesenverlegen",
+      "#großformatfliesen",
+      "#fliesen",
+      "#bodenleger",
+      "#fliesenspiegel",
+      "#handwerkskunst"
+    ],
+    "maler": [
+      "#malerarbeiten",
+      "#maler",
+      "#wandgestaltung",
+      "#anstrich",
+      "#renovieren",
+      "#trockenbau",
+      "#innenausbau"
+    ],
+    "mikrozement": [
+      "#mikrozement",
+      "#fugenlos",
+      "#microcement",
+      "#betonoptik",
+      "#designboden",
+      "#fugenlosebad",
+      "#innenausbau"
+    ],
+    "sanierung": [
+      "#sanierung",
+      "#renovierung",
+      "#kernsanierung",
+      "#altbausanierung",
+      "#bauunternehmen",
+      "#innenausbau",
+      "#modernisierung"
+    ],
+    "smarthome": [
+      "#smarthome",
+      "#elektroinstallation",
+      "#hausautomation",
+      "#modernisierung",
+      "#innenausbau",
+      "#sanierung"
+    ],
+    "allgemein": [
+      "#handwerk",
+      "#bauunternehmen",
+      "#renovierung",
+      "#sanierung",
+      "#innenausbau",
+      "#baustelle",
+      "#handwerkskunst"
+    ]
+  },
+  "breit": [
+    "#handwerk",
+    "#renovierung",
+    "#hausrenovierung",
+    "#wohnen",
+    "#immobilien",
+    "#eigenheim",
+    "#zuhause",
+    "#qualitätsarbeit"
+  ],
+  "cta_varianten": [
+    "Schreib mir eine DM, wenn dein Bad ansteht.",
+    "Fragen? Kommentar reicht, ich antworte selbst.",
+    "Speicher dir das für deine Planung.",
+    "Wir schauen uns das vor Ort an – das Aufmaß kostet dich nichts.",
+    "Folg uns, wenn du gerade planst.",
+    "Ruf durch, wenn du es genauer wissen willst: {telefon}",
+    "Mehr Projekte auf {website}"
+  ],
+  "_projekt_hinweis": "Nur fuer die Saeule vorher-nachher, automatisch angehaengt durch src/texter.py._hashtags(). Quelle: famefact.com Instagram-Marketing fuer Handwerksbetriebe (2026).",
+  "projekt": [
+    "#vorhernachher",
+    "#badtransformation"
+  ]
+}

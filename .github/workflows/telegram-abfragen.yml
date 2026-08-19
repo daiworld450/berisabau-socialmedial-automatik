@@ -1,0 +1,126 @@
+name: Telegram-Antworten abfragen
+
+# Fragt alle paar Minuten ab, ob im Chat auf "Freigeben" oder "Ablehnen"
+# getippt wurde. Kein Webhook, kein eigener Server nötig - GitHub-Cron
+# reicht, weil der Nutzer nicht sekundengenau reagieren muss.
+#
+# Bei "Freigeben": Bild wird gerendert, nach docs/posts kopiert und gepusht,
+# auf Erreichbarkeit geprüft (Instagram lädt das Bild selbst herunter - ohne
+# öffentliche URL geht nichts) und erst danach wirklich veröffentlicht.
+# Bei "Ablehnen": ein neuer Kandidat wird gerendert und erneut geschickt.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  abfragen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Abhängigkeiten installieren
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Telegram-Antworten abholen und auswerten
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python src/main.py telegram-abfragen
+
+      - name: Warteschlange sichern
+        if: always()
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add content/telegram_warteschlange.json 2>/dev/null || true
+          git commit -m "Telegram-Warteschlange aktualisiert" || echo "nichts zu committen"
+          git push || true
+
+      - name: Freigegebene Bilder veröffentlichen
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+          MAX_POSTS_24H: ${{ vars.MAX_POSTS_24H }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ ! -s out/_freigegeben.json ] || [ "$(cat out/_freigegeben.json)" = "[]" ]; then
+            echo "Keine Freigaben in diesem Lauf."
+            exit 0
+          fi
+
+          echo "Freigegebene Beiträge werden veröffentlicht …"
+          BILDER=$(python -c "
+          import json
+          d = json.load(open('out/_freigegeben.json'))
+          names = sorted({n for e in d for n in e['bilder']})
+          print('\n'.join(names))
+          ")
+
+          mkdir -p docs/posts
+          for B in $BILDER; do cp "out/$B" "docs/posts/$B"; done
+
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add docs/posts
+          git commit -m "Freigegebene Bilder öffentlich abgelegt" || echo "nichts zu committen"
+          git push
+
+          for B in $BILDER; do
+            URL="$MEDIA_BASE_URL/$B"
+            echo "Prüfe $URL"
+            ERREICHBAR=0
+            for i in $(seq 1 20); do
+              CODE=$(curl -sL -o /dev/null -w "%{http_code}" "$URL")
+              if [ "$CODE" = "200" ]; then
+                echo "Erreichbar nach $((i*10))s"
+                ERREICHBAR=1
+                break
+              fi
+              echo "  Versuch $i: HTTP $CODE"
+              sleep 10
+            done
+            if [ "$ERREICHBAR" != "1" ]; then
+              echo "::error::Bild ist nicht öffentlich erreichbar: $URL"
+              exit 1
+            fi
+          done
+
+          python src/main.py telegram-veroeffentlichen
+
+      - name: Verlauf und Protokoll sichern
+        if: always()
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add content/verlauf.json logs 2>/dev/null || true
+          git commit -m "Telegram-Freigabe verarbeitet" || echo "nichts zu committen"
+          git push || true
+
+      - name: Ergebnis als Artefakt ablegen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-${{ github.run_number }}
+          path: out/
+          retention-days: 7

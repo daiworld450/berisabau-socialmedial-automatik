@@ -1,0 +1,38 @@
+# Diese Datei als ".env" in denselben Ordner kopieren und ausfüllen.
+# Die .env gehört NICHT ins Git – sie steht bereits in der .gitignore.
+# Anleitung Schritt für Schritt: docs/02-INSTAGRAM-EINRICHTEN.md
+
+# Numerische ID des Instagram-Profikontos (nicht der Benutzername)
+IG_USER_ID=
+
+# Langlebiger Zugriffstoken (60 Tage gültig, wird automatisch verlängert)
+IG_ACCESS_TOKEN=
+
+# Öffentliche Basis-URL, unter der die gerenderten Bilder liegen.
+# Instagram lädt das Bild selbst herunter – ein lokaler Pfad geht nicht.
+# Beispiel bei GitHub Pages:
+MEDIA_BASE_URL=https://IHR-GITHUB-NAME.github.io/berisabau-social/posts
+
+# Optional: Facebook-Seite mitbespielen. Ohne diese beiden Werte bleibt
+# Facebook aus. Werte holen mit: python src/main.py fb-seiten --token ...
+# Anleitung: docs/03-FACEBOOK-EINRICHTEN.md
+FB_PAGE_ID=
+FB_PAGE_TOKEN=
+
+# Optional: Freigabe per Telegram, bevor irgendetwas veröffentlicht wird.
+# Ohne beide Werte bleibt alles wie bisher vollautomatisch. Anleitung:
+# docs/04-TELEGRAM-EINRICHTEN.md (Bot bei @BotFather anlegen, Chat-ID holen).
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+
+# Optional: KI schreibt neue Themen (python src/main.py ki-thema ...).
+# ChatGPT wird zuerst versucht, Claude als Ausweichoption. Ohne beide läuft
+# das System unverändert kostenlos und regelbasiert weiter.
+#
+# ACHTUNG: Diese Datei ist für Claude Code aus Sicherheitsgründen komplett
+# gesperrt (Read+Write) – tragen Sie Ihren Schlüssel hier bitte SELBST ein,
+# nicht über den Chat. OPENAI_API_KEY: platform.openai.com → API keys.
+# Dort auch das Guthaben prüfen (Settings → Billing) – ohne Guthaben lehnt
+# OpenAI jede Anfrage mit Code 429 ab, auch bei gültigem Schlüssel.
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=

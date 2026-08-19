@@ -1,0 +1,57 @@
+name: Instagram-Token erneuern
+
+# Der langlebige Token gilt 60 Tage. Dieser Job verlängert ihn alle 14 Tage,
+# solange er noch gültig ist. Läuft er einmal ab, muss er einmalig von Hand
+# neu erzeugt werden – siehe docs/02-INSTAGRAM-EINRICHTEN.md.
+
+on:
+  schedule:
+    - cron: "30 5 1,15 * *"      # am 1. und 15. jeden Monats
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  erneuern:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Token verlängern
+        id: token
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          ANTWORT=$(curl -s -G "https://graph.instagram.com/refresh_access_token" \
+            --data-urlencode "grant_type=ig_refresh_token" \
+            --data-urlencode "access_token=$IG_ACCESS_TOKEN")
+          NEU=$(echo "$ANTWORT" | python -c "import sys,json;print(json.load(sys.stdin).get('access_token',''))")
+          if [ -z "$NEU" ]; then
+            echo "::error::Verlängerung fehlgeschlagen: $ANTWORT"
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "::add-mask::$NEU"
+          echo "neu=$NEU" >> "$GITHUB_OUTPUT"
+          echo "ok=true"  >> "$GITHUB_OUTPUT"
+
+      - name: Neuen Token als Secret speichern
+        if: steps.token.outputs.ok == 'true' && env.GH_PAT != ''
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set IG_ACCESS_TOKEN --body "${{ steps.token.outputs.neu }}" --repo "${{ github.repository }}"
+          echo "Secret aktualisiert."
+
+      - name: Bei Fehlschlag erinnern
+        if: steps.token.outputs.ok != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "${{ github.repository }}" \
+            --title "Instagram-Token erneuern" \
+            --body "Die automatische Verlängerung ist fehlgeschlagen. Bitte den Token nach docs/02-INSTAGRAM-EINRICHTEN.md neu erzeugen und als Secret IG_ACCESS_TOKEN hinterlegen." \
+            || true

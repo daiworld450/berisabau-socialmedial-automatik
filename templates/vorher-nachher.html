@@ -1,0 +1,26 @@
+{% extends "_layout.html" %}
+
+{% block hintergrund %}
+<div class="vn">
+  <div class="haelfte vorher"><img src="{{ bild_vorher }}" alt="" /></div>
+  <div class="haelfte nachher"><img src="{{ bild_nachher }}" alt="" /></div>
+  <div class="trenner"></div>
+</div>
+<div class="schleier symmetrisch"></div>
+<span class="vn-label l">Vorher</span>
+<span class="vn-label r">Nachher</span>
+{% endblock %}
+
+{% block mitte %}
+<div class="mitte" style="justify-content:flex-end;padding-bottom:20px">
+  <div class="eyebrow">{{ eyebrow | default('Vorher / Nachher') }}</div>
+  <h1 style="font-size:{{ (m.h1 * 0.86) | round | int }}px">{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h1>
+  {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
+  {% if dauer or ort_projekt %}
+  <div style="display:flex;gap:16px;margin-top:28px;flex-wrap:wrap">
+    {% if dauer %}<span class="gewerk-pille" style="font-size:20px;letter-spacing:1.5px">{{ dauer }}</span>{% endif %}
+    {% if ort_projekt %}<span class="gewerk-pille" style="font-size:20px;letter-spacing:1.5px">{{ ort_projekt }}</span>{% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

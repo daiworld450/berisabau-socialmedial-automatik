@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+{# 'safe' ist hier zwingend: sonst escaped Jinja die Anführungszeichen im CSS
+   und font-family: 'Rajdhani' wird ungültig. Das CSS stammt aus dem Projekt,
+   nicht aus Nutzereingaben. #}
+<style>{{ css | safe }}</style>
+</head>
+<body>
+<div class="buehne">
+
+  {% block hintergrund %}{% endblock %}
+
+  <div class="raster"></div>
+
+  <div class="inhalt">
+
+    <div class="kopf">
+      <img class="logo" src="{{ logo_rot }}" alt="Berisa Bau" />
+      {# badge schlägt gewerk: ein Wort, das die Säule benennt (Wissen, Detail, Achtung …) #}
+      {% set kennzeichen = badge | default(gewerk) %}
+      {% if kennzeichen %}
+      <span class="gewerk-pille"><span class="punkt"></span>{{ kennzeichen }}</span>
+      {% endif %}
+    </div>
+
+    {% block mitte %}{% endblock %}
+
+    <div class="fuss">
+      <div class="links">
+        <div>
+          <div class="handle">{{ b.firma.instagram }}</div>
+          <div class="ort">{{ b.firma.plz_ort }} · {{ b.firma.website }}</div>
+        </div>
+      </div>
+      <span class="cta-pille">{{ cta | default('Jetzt anfragen') }}</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

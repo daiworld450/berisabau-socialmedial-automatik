@@ -1,0 +1,132 @@
+{
+  "_hinweis": "Carousels nach dem Fünf-Beat-Aufbau: Hook (Cover) -> Versprechen -> Pull -> Payoff -> Ask. Reels machen dich auffindbar, Carousels bringen Anfragen: Leser bleiben länger, speichern öfter und lesen bis zum Handlungsaufruf. Instagram erlaubt bis zu 10 Slides; 5 bis 7 ist der brauchbare Bereich.",
+
+  "_regeln": [
+    "Slide 1 ist das Cover. Wird hier nicht gestoppt, liest niemand weiter.",
+    "Ein Gedanke je Slide. Wer zwei unterbringen will, braucht zwei Slides.",
+    "Headline im Cover und Hook in der Caption sind NICHT derselbe Satz.",
+    "Nur die letzte Slide fragt. Vorher wird erklärt.",
+    "Feste Positionen über alle Slides – die Vorhersagbarkeit macht das Raster ruhig."
+  ],
+
+  "carousels": [
+
+    {
+      "id": "c-bad-ablauf",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "caption": "„Wie lange sind wir ohne Bad?\" – die erste Frage bei jeder Besichtigung.\n\nHier ist der ehrliche Ablauf einer Badsanierung, Woche für Woche. Ohne geschönte Zahlen und ohne die Wartezeiten zu verschweigen, die niemand abkürzen kann.\n\nWas den Zeitplan wirklich sprengt, ist selten das Handwerk. Es sind Materialentscheidungen, die zu spät fallen.",
+      "slides": [
+        { "vorlage": "cover.html", "badge": "Wissen", "eyebrow": "Badsanierung",
+          "titel_vor": "Drei Wochen. ", "titel_stark": "Woche für Woche", "titel_nach": ".",
+          "versprechen": "Was in deinem Bad wann passiert – und wo die Wartezeiten liegen, die keiner abkürzen kann.",
+          "wisch": "Weiterwischen" },
+        { "vorlage": "slide.html", "seite": 2, "badge": "Woche 1", "eyebrow": "Abbruch",
+          "titel_vor": "Alles ", "titel_stark": "raus", "titel_nach": ".",
+          "lead": "Der lauteste Teil, und er ist schnell vorbei.",
+          "punkte": ["Staubschutz und Laufwege zuerst, dann der Container",
+                     "Sanitär, Fliesen, oft auch der alte Estrich",
+                     "Erst jetzt sieht man, was hinter der Wand wirklich los ist"] },
+        { "vorlage": "slide.html", "seite": 3, "badge": "Woche 1", "eyebrow": "Rohinstallation",
+          "titel_vor": "Leitungen ", "titel_stark": "neu", "titel_nach": ".",
+          "lead": "Wasser, Abwasser, Strom – alles, was später hinter der Wand verschwindet.",
+          "punkte": ["Vorwandinstallation statt Schlitze in tragende Wände",
+                     "Druckprobe mit Protokoll, bevor irgendetwas zugemacht wird",
+                     "Fotos von jeder Leitung – für dich, für später"] },
+        { "vorlage": "slide.html", "seite": 4, "badge": "Woche 2", "eyebrow": "Abdichtung",
+          "titel_vor": "Die Schicht, die keiner ", "titel_stark": "sieht", "titel_nach": ".",
+          "lead": "Und die einzige, die wirklich Wasser aufhält.",
+          "punkte": ["Verbundabdichtung nach DIN 18534 im gesamten Duschbereich",
+                     "Dichtband in jede Ecke und um jede Rohrdurchführung",
+                     "Danach Trocknungszeit – hier wird nicht abgekürzt"] },
+        { "vorlage": "slide.html", "seite": 5, "badge": "Woche 2–3", "eyebrow": "Fliesen",
+          "titel_vor": "Jetzt wird es ", "titel_stark": "sichtbar", "titel_nach": ".",
+          "lead": "Der Teil, den alle meinen, wenn sie „Badsanierung\" sagen.",
+          "punkte": ["Verlegeplan zuerst: Nischen und Kanten liegen auf Fugenlinien",
+                     "Großformat mit Nivelliersystem, damit keine Kante steht",
+                     "Verfugen erst, wenn der Kleber wirklich durch ist"] },
+        { "vorlage": "slide.html", "seite": 6, "badge": "Woche 3", "eyebrow": "Feinmontage",
+          "titel_vor": "Die letzten ", "titel_stark": "zwei Tage", "titel_nach": ".",
+          "lead": "Armaturen, Sanitärobjekte, Silikon, Übergabe.",
+          "letzte": true,
+          "punkte": ["Alles wird aufgedreht und geprüft, Raum für Raum",
+                     "Übergabeprotokoll mit dem, was noch offen ist",
+                     "Fotodokumentation von allem, was jetzt hinter Fliesen liegt"] },
+        { "vorlage": "abschluss.html", "badge": "Anfrage", "eyebrow": "Dein Bad",
+          "titel_vor": "Wie lange dauert es bei ", "titel_stark": "dir", "titel_nach": "?",
+          "lead": "Das sagen wir dir nach einer Besichtigung – mit Zeitplan, schriftlich, vor dem Auftrag." }
+      ]
+    },
+
+    {
+      "id": "c-pfusch-erkennen",
+      "gewerk": "Badsanierung",
+      "hashtags": "bad",
+      "caption": "Fünf Dinge, die dir sagen, dass in deinem Bad gepfuscht wurde.\n\nFür keins davon brauchst du einen Fachmann. Du brauchst nur zehn Minuten und einen Fingerknöchel.\n\nEins allein muss nichts heißen. Mehrere zusammen schon – und dann ist es besser, früh nachzusehen als spät aufzustemmen.",
+      "slides": [
+        { "vorlage": "cover.html", "badge": "Achtung", "eyebrow": "Selbst prüfen",
+          "titel_vor": "Fünf Zeichen für ", "titel_stark": "Pfusch", "titel_nach": " im Bad.",
+          "versprechen": "Zehn Minuten, ein Fingerknöchel, keine Fachkenntnisse nötig.",
+          "wisch": "Weiterwischen" },
+        { "vorlage": "slide.html", "seite": 2, "badge": "Nr. 1", "eyebrow": "Fugen",
+          "titel_vor": "Dunkel trotz ", "titel_stark": "Putzen", "titel_nach": ".",
+          "lead": "Wenn die Fuge nach dem Reinigen sofort wieder dunkel wird, sitzt die Feuchtigkeit dahinter – nicht darauf." },
+        { "vorlage": "slide.html", "seite": 3, "badge": "Nr. 2", "eyebrow": "Klopftest",
+          "titel_vor": "Es klingt ", "titel_stark": "hohl", "titel_nach": ".",
+          "lead": "Klopf mit dem Fingerknöchel über die Fläche. Wo es dumpf wird, hat der Kleber losgelassen. Meist zu wenig Kleber, oft nur punktweise aufgetragen." },
+        { "vorlage": "slide.html", "seite": 4, "badge": "Nr. 3", "eyebrow": "Nachbarraum",
+          "titel_vor": "Blasen an der ", "titel_stark": "anderen Wand", "titel_nach": ".",
+          "lead": "Wasser wandert. Der Schaden zeigt sich oft dort, wo man ihn nicht sucht: als sandender Sockel oder Blasen im Putz im Raum nebenan." },
+        { "vorlage": "slide.html", "seite": 5, "badge": "Nr. 4", "eyebrow": "Dusche",
+          "titel_vor": "Das Wasser ", "titel_stark": "steht", "titel_nach": ".",
+          "lead": "Nach dem Duschen bleibt eine Pfütze stehen. Dann fehlt das Gefälle – rund zwei Prozent zum Ablauf gehören in den Estrich eingearbeitet." },
+        { "vorlage": "slide.html", "seite": 6, "badge": "Nr. 5", "eyebrow": "Ecken",
+          "titel_vor": "Fuge statt ", "titel_stark": "Dichtband", "titel_nach": ".",
+          "lead": "In Innenecken gehört ein elastisches Dichtband unter die Abdichtung. Wurde dort nur verfugt, ist die Ecke die Schwachstelle.",
+          "letzte": true },
+        { "vorlage": "abschluss.html", "badge": "Anfrage", "eyebrow": "Unsicher?",
+          "titel_vor": "Wir schauen ", "titel_stark": "ehrlich", "titel_nach": " nach.",
+          "lead": "Manchmal lautet die Antwort, dass kein Auftrag nötig ist. Die bekommst du dann auch." }
+      ]
+    },
+
+    {
+      "id": "c-fliesenformat",
+      "gewerk": "Fliesen",
+      "hashtags": "fliesen",
+      "caption": "„Machen große Fliesen ein kleines Bad größer?\" – meistens ja, aber nicht immer.\n\nDas Format entscheidet über mehr als die Optik: über den Aufwand am Untergrund, über den Verschnitt und darüber, wie viel Fuge du später putzt.\n\nHier die Entscheidungshilfe, die wir bei jeder Beratung durchgehen.",
+      "slides": [
+        { "vorlage": "cover.html", "badge": "Wissen", "eyebrow": "Kleines Bad",
+          "titel_vor": "Groß oder ", "titel_stark": "klein", "titel_nach": " fliesen?",
+          "versprechen": "Was das Format wirklich ausmacht – jenseits von „große Fliesen wirken größer\".",
+          "wisch": "Weiterwischen" },
+        { "vorlage": "slide.html", "seite": 2, "badge": "Für Groß", "eyebrow": "Weniger Fugen",
+          "titel_vor": "Ruhiger und ", "titel_stark": "leichter zu putzen", "titel_nach": ".",
+          "lead": "Weniger Fugen heißt weniger sichtbares Raster – und weniger Stellen, an denen sich Schmutz hält.",
+          "punkte": ["Fläche wirkt zusammenhängend statt gekachelt",
+                     "Deutlich weniger Fugenmeter zu reinigen",
+                     "Sehr stark bei durchgehendem Boden-Wand-Übergang"] },
+        { "vorlage": "slide.html", "seite": 3, "badge": "Gegen Groß", "eyebrow": "Der Haken",
+          "titel_vor": "Der Untergrund muss ", "titel_stark": "stimmen", "titel_nach": ".",
+          "lead": "Bei 60×120 gleicht der Kleber nichts mehr aus.",
+          "punkte": ["Wand und Boden müssen vorher gespachtelt und geprüft werden",
+                     "Buttering-Floating: Kleber auf Wand und Platte",
+                     "Mehr Verschnitt, weil jeder Zuschnitt eine große Platte kostet"] },
+        { "vorlage": "slide.html", "seite": 4, "badge": "Für Klein", "eyebrow": "Wo es passt",
+          "titel_vor": "Klein ist nicht ", "titel_stark": "altmodisch", "titel_nach": ".",
+          "lead": "In der Dusche hat kleines Format einen handfesten Vorteil.",
+          "punkte": ["Nimmt Gefälle mit, ohne dass Kanten stehen",
+                     "Mehr Fugen heißt mehr Rutschhemmung unter nassen Füßen",
+                     "Reparatur einzelner Fliesen ist realistisch machbar"] },
+        { "vorlage": "slide.html", "seite": 5, "badge": "Praxis", "eyebrow": "Unsere Empfehlung",
+          "titel_vor": "Oft ist es ", "titel_stark": "beides", "titel_nach": ".",
+          "lead": "Großformat an Wand und Boden, kleineres Format im Duschbereich. Fugenfarbe durchgehend gleich – dann wirkt der Wechsel gewollt statt zufällig.",
+          "letzte": true },
+        { "vorlage": "abschluss.html", "badge": "Anfrage", "eyebrow": "Unentschlossen?",
+          "titel_vor": "Wir legen ", "titel_stark": "Muster", "titel_nach": " an.",
+          "lead": "Sehen schlägt Vorstellen. Vor der Bestellung, nicht danach." }
+      ]
+    }
+
+  ]
+}

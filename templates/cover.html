@@ -1,0 +1,30 @@
+{# Slide 1 eines Carousels – das Cover.
+   Alles hängt daran: Wird hier nicht gestoppt, liest niemand die restlichen
+   Slides. Deshalb bewusst reduziert – große Headline, ein Versprechen,
+   sichtbarer Wischhinweis. Keine Aufzählung, kein Fließtext. #}
+{% extends "_layout.html" %}
+
+{% block hintergrund %}
+  {% if bild %}
+  <div class="foto"><img src="{{ bild }}" alt="" /></div>
+  <div class="schleier symmetrisch"></div>
+  {% endif %}
+  <div class="wasserzahl">01</div>
+{% endblock %}
+
+{% block mitte %}
+<div class="mitte cover">
+  {% if eyebrow %}<div class="eyebrow">{{ eyebrow }}</div>{% endif %}
+
+  <h1 class="gross">{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h1>
+
+  {% if versprechen %}
+  <p class="versprechen">{{ versprechen }}</p>
+  {% endif %}
+</div>
+
+<div class="wisch-hinweis">
+  <span class="text">{{ wisch | default('Weiterwischen') }}</span>
+  <span class="pfeil">&#8594;</span>
+</div>
+{% endblock %}

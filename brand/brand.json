@@ -1,0 +1,89 @@
+{
+  "_quelle": "Abgeleitet aus berisabau.de (build/assets/app-BUxTJ3zJ.css), der Google-Ads-Landingpage (berisabau-landingpage/index.html) und dem Original-Logo (#D00000). Stand: 2026-08-15.",
+
+  "firma": {
+    "name": "Berisa Bau",
+    "inhaber": "Damir Berisa",
+    "claim": "Alle Gewerke aus einer Hand",
+    "claim_lang": "Planung, Renovierung und Sanierung aus einer Hand. Terminsicher und präzise im Wohn-, Gewerbe- und Industriebau.",
+    "strasse": "Heiermannstr. 5",
+    "plz_ort": "45475 Mülheim an der Ruhr",
+    "region": "Mülheim an der Ruhr und Umgebung",
+    "telefon": "+49 1556 5535 408",
+    "telefon_link": "+4915565535408",
+    "email": "info@berisabau.de",
+    "website": "berisabau.de",
+    "instagram": "@berisabau",
+    "tiktok": "@berisabau"
+  },
+
+  "farben": {
+    "rot": "#D00000",
+    "rot_hell": "#FF2D2D",
+    "rot_dunkel": "#A00000",
+    "blau": "#1032CF",
+    "blau_hell": "#2A4EEF",
+    "blau_web": "#0071FF",
+    "gelb": "#FDC448",
+    "schwarz": "#0B0B0F",
+    "schwarz_2": "#101018",
+    "tinte": "#141414",
+    "grau": "#5D6570",
+    "grau_hell": "#F4F4F4",
+    "weiss": "#FFFFFF",
+    "gruen": "#38D17A",
+    "linie": "rgba(255,255,255,0.14)",
+    "flaeche": "rgba(255,255,255,0.05)"
+  },
+
+  "schriften": {
+    "headline": { "familie": "Rajdhani", "gewichte": [500, 600, 700], "laufweite": "0.5px", "zeilenhoehe": 1.05 },
+    "fliesstext": { "familie": "Rubik", "gewichte": [400, 500, 600], "zeilenhoehe": 1.55 },
+    "eyebrow": { "familie": "Rajdhani", "gewicht": 600, "laufweite": "3px", "transform": "uppercase" }
+  },
+
+  "formen": {
+    "radius_karte": "22px",
+    "radius_element": "14px",
+    "radius_pille": "500px",
+    "raster": "56px",
+    "rahmenstaerke": "1px"
+  },
+
+  "bildformate": {
+    "feed": { "breite": 1080, "hoehe": 1350, "verhaeltnis": "4:5" },
+    "story": { "breite": 1080, "hoehe": 1920, "verhaeltnis": "9:16" },
+    "quadrat": { "breite": 1080, "hoehe": 1080, "verhaeltnis": "1:1" }
+  },
+
+  "tonalitaet": {
+    "stimme": "Handwerker, der erklärt – nicht Agentur, die bewirbt. Kurze Sätze, konkrete Substantive statt Adjektive. Fachbegriffe verwenden und im Nebensatz erklären.",
+    "anrede": "Du",
+    "_anrede_hinweis": "Instagram duzt, berisabau.de siezt. Bewusster Unterschied: Instagram ist der informelle Kanal. Wer angleichen will, ändert diesen Wert und die Captions gemeinsam.",
+    "kernversprechen": [
+      "Alle Gewerke aus einer Hand",
+      "Termintreu",
+      "Sauber und dokumentiert",
+      "Ein Ansprechpartner",
+      "Gewährleistung nach BGB/VOB",
+      "Antwort in 24 Stunden"
+    ],
+    "verboten": [
+      "Billig", "Schnäppchen", "unschlagbar", "Nr. 1", "beste Firma",
+      "Preisangaben ohne Besichtigung", "Garantiezusagen über die Gewährleistung hinaus"
+    ]
+  },
+
+  "gewerke": [
+    { "id": "badsanierung",   "name": "Badsanierung",            "kurz": "Komplettes Bad aus einer Hand" },
+    { "id": "sanierung",      "name": "Sanierung & Renovierung", "kurz": "Wohnung, Haus, Gewerbe" },
+    { "id": "fliesen",        "name": "Fliesen & Bodenleger",    "kurz": "Verlegung & Abdichtung" },
+    { "id": "maler",          "name": "Maler & Lackierarbeiten", "kurz": "Oberflächen & Wände" },
+    { "id": "mikrozement",    "name": "Mikrozement",             "kurz": "Fugenlose Oberflächen" },
+    { "id": "sanitaer",       "name": "Sanitärtechnik",          "kurz": "Installation & Feinmontage" },
+    { "id": "trockenbau",     "name": "Trockenbau",              "kurz": "Wände, Decken, Vorsatzschalen" },
+    { "id": "elektro",        "name": "Elektroinstallation",     "kurz": "Leitungen bis Feinmontage" },
+    { "id": "smarthome",      "name": "Smart Home",              "kurz": "Licht, Heizung, Steuerung" },
+    { "id": "kernsanierung",  "name": "Kernsanierung",           "kurz": "Vom Rohbau zum Meisterwerk" }
+  ]
+}

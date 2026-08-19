@@ -1,0 +1,59 @@
+{# Cover-Kachel nach dem Rastermuster.
+   Vorbild: Profile, die im Raster als Ganzes wirken – jede Spalte eine
+   Grundfarbe, Logo oben mittig, Foto in einem Player-Rahmen, Website unten.
+   Umgesetzt mit den Farben von berisabau.de: Rot, Schwarz, Hellgrau.
+
+   Dieses Layout ersetzt NICHT die Textkacheln – es ist für das, was man
+   zuerst sieht: erste Slide eines Carousels und Reel-Cover. #}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<style>{{ css | safe }}</style>
+</head>
+<body>
+<div class="buehne kachel v-{{ variante | default('rot') }}">
+
+  {% if variante == 'dunkel' %}<div class="raster"></div>{% endif %}
+
+  <div class="kachel-inhalt">
+
+    <div class="kachel-kopf">
+      <img class="logo-mittig" src="{{ logo_kachel }}" alt="Berisa Bau" />
+    </div>
+
+    {% if oberlabel %}
+    <div class="oberlabel">{{ oberlabel }}</div>
+    {% endif %}
+
+    <h1 class="kachel-titel{% if titel_gross %} sehr-gross{% endif %}">
+      {{ titel_vor }}{% if titel_stark %}<span class="markiert">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}
+    </h1>
+
+    {% if bild %}
+    {# Foto im Rahmen mit Player-Leiste: hebt das Bild von der Farbfläche ab
+       und signalisiert „hier läuft etwas". #}
+    <div class="fensterrahmen">
+      <div class="fenster-bild"><img src="{{ bild }}" alt="" /></div>
+      {% if bildlabel %}<span class="bildlabel">{{ bildlabel }}</span>{% endif %}
+      <div class="player-leiste">
+        <span class="pl-play"></span>
+        <span class="pl-sprung"></span>
+        <span class="pl-balken"><i></i></span>
+        <span class="pl-ton"></span>
+        <span class="pl-zahn"></span>
+      </div>
+    </div>
+    {% elif versprechen %}
+    <p class="kachel-versprechen">{{ versprechen }}</p>
+    {% endif %}
+
+    <div class="kachel-fuss">
+      <span class="web">{{ b.firma.website }}</span>
+      <svg class="lupe" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"/></svg>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

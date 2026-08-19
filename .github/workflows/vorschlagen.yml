@@ -1,0 +1,73 @@
+name: Post-Vorschlag an Telegram
+
+# Läuft gut anderthalb Stunden vor dem eigentlichen Posttermin (18:30, siehe
+# taeglich-posten.yml) und schickt den nächsten Kandidaten zur Freigabe an
+# Telegram. Das lässt Zeit für eine oder mehrere Ablehnungsrunden, bevor der
+# planmäßige Post-Job feuert. Ohne TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID bricht
+# der Schritt einfach ab - dann läuft alles wie bisher vollautomatisch über
+# taeglich-posten.yml.
+on:
+  schedule:
+    - cron: "0 15 * * *"     # 17:00 deutscher Sommerzeit
+  workflow_dispatch:
+    inputs:
+      datum:
+        description: "Abweichendes Datum (JJJJ-MM-TT), leer = heute"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  vorschlagen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Abhängigkeiten installieren
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Frisch hochgeladene Fotos verarbeiten
+        run: python src/main.py fotos-verarbeiten
+
+      - name: Verarbeitete Fotos committen
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add content/medien
+          git commit -m "Fotos aus dem Eingang verarbeitet" || echo "nichts zu committen"
+          git push || true
+
+      - name: Kandidat rendern und an Telegram schicken
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -n "${{ inputs.datum }}" ]; then
+            python src/main.py vorschlagen --datum "${{ inputs.datum }}"
+          else
+            python src/main.py vorschlagen
+          fi
+
+      - name: Warteschlange sichern
+        if: always()
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add content/telegram_warteschlange.json 2>/dev/null || true
+          git commit -m "Telegram-Vorschlag verschickt" || echo "nichts zu committen"
+          git push || true

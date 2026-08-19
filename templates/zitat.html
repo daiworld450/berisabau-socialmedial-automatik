@@ -1,0 +1,16 @@
+{% extends "_layout.html" %}
+
+{% block mitte %}
+<div class="mitte">
+  <div class="eyebrow">{{ eyebrow | default('Kundenstimme') }}</div>
+
+  <div class="karte">
+    <span class="gaense">&bdquo;</span>
+    <div class="zitat">{{ zitat }}</div>
+    <div class="zitat-quelle">{{ quelle }}{% if ort %} · {{ ort }}{% endif %}</div>
+    {% if sterne %}
+    <div style="margin-top:22px;font-size:38px;letter-spacing:6px;color:{{ b.farben.gelb }}">{{ '★' * sterne }}</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{# Letzte Slide eines Carousels – der Ask.
+   Hier und nur hier wird gefragt. Vorher wird erklärt. #}
+{% extends "_layout.html" %}
+
+{% block hintergrund %}
+  {% if bild %}
+  <div class="foto"><img src="{{ bild }}" alt="" /></div>
+  <div class="schleier symmetrisch"></div>
+  {% endif %}
+{% endblock %}
+
+{% block mitte %}
+<div class="mitte">
+  <div class="eyebrow">{{ eyebrow | default('Und jetzt?') }}</div>
+
+  <h2 class="slide-titel">{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h2>
+
+  {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
+
+  {# Speicher-Hinweis vor dem Kontakt: Saves sind bei Carousels das Signal,
+     das Instagram am stärksten gewichtet – und der Leser findet den Post
+     wieder, wenn die Sanierung ein Jahr später tatsächlich ansteht. #}
+  <div class="speichern">
+    <span class="symbol">&#9733;</span>
+    <span>{{ speichern | default('Speicher dir das für deine Planung.') }}</span>
+  </div>
+
+  <div class="kontakt-block">
+    <div class="zeile"><span class="wert">{{ b.firma.telefon }}</span></div>
+    <div class="zeile"><span class="wert">{{ b.firma.website }}</span></div>
+    <div class="zeile"><span class="klein">{{ b.firma.region }}</span></div>
+  </div>
+</div>
+{% endblock %}
