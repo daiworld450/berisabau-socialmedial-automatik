@@ -42,6 +42,10 @@ def schon_gemeldet(hash_id: str) -> bool:
     return hash_id in _lade()["gemeldet"]
 
 
+def ist_ignoriert(hash_id: str) -> bool:
+    return hash_id in _lade()["ignoriert"]
+
+
 def merke_meldung(hash_id: str, ueberschrift: str, url: str, volltext: str) -> None:
     daten = _lade()
     daten["gemeldet"][hash_id] = {

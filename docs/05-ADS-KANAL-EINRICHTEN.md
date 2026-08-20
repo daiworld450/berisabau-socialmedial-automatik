@@ -1,8 +1,9 @@
 # Google-Ads-Update-Kanal einrichten
 
 Einmalig, etwa 10 Minuten (die Google-Ads-Zugangsdaten liegen dank
-google-ads-mcp schon vor). Kosten: **0 €** (der einzige laufende Posten ist
-der tägliche Claude-Aufruf für den News-Filter, im Cent-Bereich pro Monat).
+google-ads-mcp schon vor). Kosten: **0 €**, auch laufend — der News-Filter
+arbeitet komplett regelbasiert (Stichwort- und Datumserkennung im Code),
+ohne API-Aufruf an ein Sprachmodell.
 
 Ein separater privater Telegram-Kanal, der dich
 
@@ -58,9 +59,6 @@ GOOGLE_ADS_LOGIN_CUSTOMER_ID=…
 Die sechs `GOOGLE_ADS_*`-Werte stehen schon in `google-ads-mcp/.env` –
 einfach von dort herüberkopieren.
 
-`ANTHROPIC_API_KEY` wird für den täglichen News-Filter mitverwendet (steht
-vermutlich schon in der `.env`, siehe Abschnitt „KI schreibt Themen").
-
 ### Für die Automatik (GitHub Actions)
 
 ```bash
@@ -73,8 +71,8 @@ gh secret set GOOGLE_ADS_CUSTOMER_ID --body "…"
 gh secret set GOOGLE_ADS_LOGIN_CUSTOMER_ID --body "…"
 ```
 
-`TELEGRAM_BOT_TOKEN` und `ANTHROPIC_API_KEY` sind vermutlich schon als
-Secret hinterlegt (Instagram-Freigabe bzw. `ki-thema`).
+`TELEGRAM_BOT_TOKEN` ist vermutlich schon als Secret hinterlegt
+(Instagram-Freigabe).
 
 ---
 
@@ -121,7 +119,13 @@ Tasten unter jeder Meldung:
   `google-ads-mcp/README.md`), liefert `ads-kurzcheck`/`ads-empfehlung` einen
   Testkonto-Fehler statt echter Zahlen. `ads-news` ist davon nicht betroffen
   – der News-Check braucht keinen Google-Ads-API-Zugriff, nur die
-  öffentlichen Google-Quellen und den Claude-Schlüssel.
+  öffentlichen Google-Quellen.
+- **Regelbasiert statt frei formuliert.** Die Überschrift ist ein festes
+  Kategorie-Etikett (bzw. der echte Blog-Titel), „Was passiert" ist ein
+  wörtlicher Ausschnitt aus der Quelle, „Bedeutung" und „Tun" kommen aus
+  festen Textbausteinen je Kategorie (`FILTER_KATEGORIEN` in
+  `src/ads_news.py`). Weniger elegant formuliert als eine KI-Zusammenfassung,
+  dafür kostenlos und ohne externe Abhängigkeit.
 - **Richtlinienänderungen** werden aktuell nur über die Google-Ads-Hilfe-
   Ankündigungsseite miterfasst, nicht über eine eigene Richtlinien-Quelle –
   einzelne Policy-Updates haben keine stabile, vorhersagbare URL. Reicht das

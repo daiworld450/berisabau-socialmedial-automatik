@@ -35,7 +35,6 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID_ADS: ${{ secrets.TELEGRAM_CHAT_ID_ADS }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python src/main.py ads-news
 
       - name: Verlauf sichern

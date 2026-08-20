@@ -1,25 +1,31 @@
 """Täglicher Google-Ads-News-Check: Quellen abrufen, filtern, im festen
 Format an den Kanal schicken.
 
+Komplett regelbasiert, ohne API-Aufruf an ein Sprachmodell - kostet also
+nichts im laufenden Betrieb. Der Preis dafür: die Meldungen sind wörtliche
+Ausschnitte aus der Quelle statt einer freien Zusammenfassung, und die
+Überschrift kommt aus einem festen Kategorie-Etikett statt frei formuliert.
+
 Ablauf:
   1. Rohtext aller offiziellen Quellen abrufen (kein Aggregator, keine
-     Zweitverwertung - siehe QUELLEN_SEITEN/ENTWICKLER_BLOG_FEED unten).
-  2. Claude bekommt den Rohtext + den Relevanzfilter + bereits gemeldete und
-     vom Nutzer ignorierte Themen und liefert eine Liste neuer, relevanter
-     Meldungen im festen Format zurück (oder eine leere Liste). Die
-     inhaltliche Filterentscheidung liegt bewusst bei der KI, nicht bei
-     Stichwortlisten - "betrifft Suchkampagnen" lässt sich nicht zuverlässig
-     per Keyword-Matching erkennen.
-  3. Jede Meldung wird per URL-Hash gegen Doppelmeldung geprüft, formatiert,
-     mit den drei Tasten (Merken/Mehr dazu/Ignorieren) verschickt und in
-     ads_verlauf.json vermerkt.
+     Zweitverwertung - siehe QUELLEN_SEITEN/ENTWICKLER_BLOG_FEED unten),
+     dabei Absatzgrenzen aus dem HTML als Zeilenumbrüche erhalten.
+  2. Text in überlappende Mini-Abschnitte (ein paar Zeilen) zerlegt, jeder
+     Abschnitt gegen die Stichwortlisten in FILTER_KATEGORIEN geprüft UND
+     auf ein Datum im Prüfzeitraum. Pro (Kategorie, Datum)-Kombination wird
+     nur der längste Treffer behalten, damit nicht zehn überlappende
+     Fenster dieselbe Meldung zehnmal auslösen.
+  3. Jede Meldung wird per Hash (URL bzw. Quelle+Kategorie+Datum) gegen
+     Doppelmeldung geprüft, formatiert, mit den drei Tasten (Merken/Mehr
+     dazu/Ignorieren) verschickt und in ads_verlauf.json vermerkt. Bereits
+     ignorierte Meldungen (gleicher Hash) werden nicht erneut geschickt.
   4. Ist nichts Relevantes dabei und die letzte Kanal-Nachricht liegt mehr
      als STILLE_SCHWELLE_TAGE zurück, kommt eine einzelne Lebenszeichen-
      Zeile statt täglichem Rauschen um seiner selbst willen.
 """
 from __future__ import annotations
 
-import json
+import html
 import logging
 import re
 from datetime import date, datetime, timedelta
@@ -29,16 +35,15 @@ import requests
 
 import ads_verlauf
 import telegram_bot
-from config import ANTHROPIC_API_KEY, TELEGRAM_CHAT_ID_ADS
+from config import TELEGRAM_CHAT_ID_ADS
 
 log = logging.getLogger(__name__)
 
 TIMEOUT = 30
-ANTHROPIC_MODELL = "claude-sonnet-5"
 STILLE_SCHWELLE_TAGE = 3
-# Etwas Überlappung zum Vortag, damit bei einem verpassten/fehlgeschlagenen
-# Lauf nichts durchrutscht - schon gemeldete URLs werden ohnehin per Hash
-# aussortiert, doppeltes Prüfen kostet nur unwesentlich mehr.
+# Wie weit zurück ein gefundenes Datum noch als "neu" zählt. Diese
+# Google-Seiten sind kumulative Changelogs mit Jahren an Historie - ohne
+# dieses Fenster würde jeder alte Eintrag jeden Tag neu gemeldet.
 PRUEFZEITRAUM_TAGE = 4
 
 # Nur Originalquellen, kein Aggregator, kein SEO-Blog.
@@ -52,169 +57,272 @@ QUELLEN_SEITEN = [
 ]
 ENTWICKLER_BLOG_FEED = "http://feeds.feedburner.com/GoogleAdsDeveloperBlog"
 
+# Kategorie -> (Stichwörter fürs Erkennen, feste Überschrift, Bedeutungssatz,
+# Handlungsempfehlung). Deckt die fünf Filterkriterien aus der Vorgabe ab.
+FILTER_KATEGORIEN = {
+    "suche_pmax": {
+        "schlagwoerter": [
+            "search campaign", "search ads", "performance max", "pmax",
+            "smart bidding", "broad match", "dynamic search ads", " dsa ",
+            "ai max", "responsive search ad", "search terms", "search partner",
+        ],
+        "ueberschrift": "Update zu Suche/Performance Max",
+        "bedeutung": "Betrifft Suchkampagnen oder Performance Max direkt.",
+        "tun": "In den eigenen Kampagnen gegenchecken.",
+    },
+    "budget_gebot": {
+        "schlagwoerter": [
+            "budget", "bid strategy", "bidding", "target cpa", "target roas",
+            "cost cap", "billing", "invoice", "payment method", "spending limit",
+        ],
+        "ueberschrift": "Update zu Budget/Geboten",
+        "bedeutung": "Kann Auswirkungen auf Budget oder Gebotsstrategie haben.",
+        "tun": "In den eigenen Kampagnen gegenchecken.",
+    },
+    "lokal": {
+        "schlagwoerter": [
+            "local campaign", "location extension", "location targeting",
+            "service area", "local ads", "store visits", "affiliate location",
+        ],
+        "ueberschrift": "Update zu lokalen Anzeigen",
+        "bedeutung": "Betrifft lokale Anzeigen bzw. Standorterweiterungen.",
+        "tun": "Prüfen, ob sich das für die eigenen Anzeigen nutzen lässt.",
+    },
+    "abschaltung": {
+        "schlagwoerter": [
+            "deprecat", "sunset", "discontinu", "no longer support",
+            "will be removed", "phased out", "phase out", "shut down",
+            "migrat", "will stop",
+        ],
+        "ueberschrift": "Funktion wird abgeschaltet",
+        "bedeutung": "Eine Funktion wird abgeschaltet oder zwangsweise umgestellt.",
+        "tun": "Prüfen, ob eigene Kampagnen betroffen sind.",
+    },
+    "richtlinie": {
+        "schlagwoerter": [
+            "policy update", "policy change", "advertising polic", "suspend",
+            "disapprov", "violation", "compliance", "account restriction",
+        ],
+        "ueberschrift": "Richtlinienänderung mit Sperr-Risiko",
+        "bedeutung": "Richtlinienänderung mit möglichem Sperr-Risiko fürs Konto.",
+        "tun": "Prüfen, ob eigene Kampagnen betroffen sind.",
+    },
+}
+
+_DATUM_ISO = re.compile(r"\b(20\d{2}-\d{2}-\d{2})\b")
+_MONATE_EN = {m: i + 1 for i, m in enumerate([
+    "january", "february", "march", "april", "may", "june",
+    "july", "august", "september", "october", "november", "december"])}
+_DATUM_TEXT_EN = re.compile(
+    r"\b(" + "|".join(_MONATE_EN) + r")\s+(\d{1,2}),?\s+(20\d{2})\b", re.I)
+_MONATE_DE = {m: i + 1 for i, m in enumerate([
+    "januar", "februar", "märz", "april", "mai", "juni",
+    "juli", "august", "september", "oktober", "november", "dezember"])}
+_DATUM_TEXT_DE = re.compile(
+    r"\b(\d{1,2})\.\s*(" + "|".join(_MONATE_DE) + r")\s+(20\d{2})\b", re.I)
+
 
 class NewsFehler(RuntimeError):
     pass
 
 
 # --------------------------------------------------------------------------- #
-def _seite_als_text(url: str, maximal: int = 12000) -> str:
+def _seite_als_text(url: str, maximal: int = 90000) -> str:
+    """HTML zu Text, aber mit erhaltenen Zeilenumbrüchen an Absatzgrenzen -
+    sonst verschmilzt die ganze Seite zu einem einzigen langen Satz und eine
+    zeilenweise Stichwortsuche findet keine sinnvollen Ausschnitte mehr.
+    maximal liegt bewusst hoch: die developers.google.com-Seiten haben ein
+    langes Navigationsmenü VOR dem eigentlichen Inhalt - bei einem knappen
+    Limit wird der Inhalt abgeschnitten, bevor er überhaupt beginnt."""
     antwort = requests.get(
         url, timeout=TIMEOUT,
         headers={"User-Agent": "Mozilla/5.0 (kompatibel; berisabau-ads-kanal)"})
     antwort.raise_for_status()
-    text = re.sub(r"<script.*?</script>|<style.*?</style>", " ", antwort.text,
-                 flags=re.S | re.I)
-    text = re.sub(r"<[^>]+>", " ", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text[:maximal]
+    roh = re.sub(r"<script.*?</script>|<style.*?</style>", " ", antwort.text,
+                flags=re.S | re.I)
+    roh = re.sub(r"</(p|div|li|h[1-6]|tr|section|article)\s*>", "\n", roh, flags=re.I)
+    roh = re.sub(r"<br\s*/?>", "\n", roh, flags=re.I)
+    text = re.sub(r"<[^>]+>", " ", roh)
+    text = html.unescape(text)
+    text = re.sub(r"[ \t]+", " ", text)
+    zeilen = [z.strip() for z in text.split("\n")]
+    zeilen = [z for z in zeilen if z]
+    return "\n".join(zeilen)[:maximal]
 
 
-def _entwickler_blog_text(tage: int = PRUEFZEITRAUM_TAGE) -> str:
+def _finde_datum(text: str) -> date | None:
+    treffer = _DATUM_ISO.search(text)
+    if treffer:
+        try:
+            return date.fromisoformat(treffer.group(1))
+        except ValueError:
+            pass
+    treffer = _DATUM_TEXT_EN.search(text)
+    if treffer:
+        monat = _MONATE_EN.get(treffer.group(1).lower())
+        if monat:
+            try:
+                return date(int(treffer.group(3)), monat, int(treffer.group(2)))
+            except ValueError:
+                pass
+    treffer = _DATUM_TEXT_DE.search(text)
+    if treffer:
+        monat = _MONATE_DE.get(treffer.group(2).lower())
+        if monat:
+            try:
+                return date(int(treffer.group(3)), monat, int(treffer.group(1)))
+            except ValueError:
+                pass
+    return None
+
+
+def _kategorie_treffer(text: str) -> str | None:
+    text_klein = text.lower()
+    for schluessel, angaben in FILTER_KATEGORIEN.items():
+        if any(wort in text_klein for wort in angaben["schlagwoerter"]):
+            return schluessel
+    return None
+
+
+def _kandidaten_aus_seite(quelle_name: str, url: str, text: str, ab_datum: date) -> list[dict]:
+    """Diese Seiten sind Changelogs: eine Datumszeile, gefolgt von dem Text,
+    der zu genau diesem Datum gehört, bis zur nächsten Datumszeile. Ein
+    Abschnitt reicht darum exakt von einer Datumszeile bis zur nächsten -
+    ein festes N-Zeilen-Fenster würde bei kurzen Einträgen (Tabellen) in den
+    nächsten Eintrag hineinlaufen und Datum und Inhalt verschiedener
+    Meldungen vermischen, und bei langen Einträgen (Versions-Changelogs) vor
+    dem eigentlichen Inhalt abbrechen."""
+    zeilen = text.split("\n")
+    datum_zeilen = []
+    for i, zeile in enumerate(zeilen):
+        datum = _finde_datum(zeile)
+        if datum is not None and ab_datum <= datum <= date.today():
+            datum_zeilen.append((i, datum))
+
+    beste: dict[tuple[str, date], str] = {}
+    for pos, (i, datum) in enumerate(datum_zeilen):
+        ende = datum_zeilen[pos + 1][0] if pos + 1 < len(datum_zeilen) else len(zeilen)
+        ende = min(ende, i + 150)  # Deckel, falls ein Datum ganz am Seitenende isoliert steht
+        ausschnitt = " ".join(zeilen[i:ende]).strip()
+        if len(ausschnitt) < 40:
+            continue
+        kategorie = _kategorie_treffer(ausschnitt)
+        if kategorie is None:
+            continue
+        schluessel = (kategorie, datum)
+        if schluessel not in beste or len(ausschnitt) > len(beste[schluessel]):
+            beste[schluessel] = ausschnitt
+
+    return [
+        {
+            "quelle_name": quelle_name,
+            "quelle_url": url,
+            "kategorie": kategorie,
+            "datum": datum,
+            "text": ausschnitt[:600],
+        }
+        for (kategorie, datum), ausschnitt in beste.items()
+    ]
+
+
+def _entwickler_blog_kandidaten(ab_datum: date) -> list[dict]:
     antwort = requests.get(ENTWICKLER_BLOG_FEED, timeout=TIMEOUT)
     antwort.raise_for_status()
     ns = {"a": "http://www.w3.org/2005/Atom"}
     wurzel = ET.fromstring(antwort.content)
-    grenze = date.today() - timedelta(days=tage)
 
-    bloecke = []
+    kandidaten = []
     for eintrag in wurzel.findall("a:entry", ns):
         veroeffentlicht_roh = eintrag.findtext("a:published", default="", namespaces=ns)
         try:
             datum = date.fromisoformat(veroeffentlicht_roh[:10])
         except ValueError:
             continue
-        if datum < grenze:
+        if datum < ab_datum:
             continue
+
         titel = (eintrag.findtext("a:title", default="", namespaces=ns) or "").strip()
-        link = next((l.get("href") for l in eintrag.findall("a:link", ns)
-                    if l.get("rel") == "alternate"), "")
         inhalt_roh = (eintrag.findtext("a:content", default="", namespaces=ns)
                      or eintrag.findtext("a:summary", default="", namespaces=ns) or "")
         inhalt = re.sub(r"<[^>]+>", " ", inhalt_roh)
-        inhalt = re.sub(r"\s+", " ", inhalt).strip()[:1500]
-        bloecke.append(f"### {titel}\nDatum: {veroeffentlicht_roh[:10]}\nURL: {link}\n{inhalt}\n")
+        inhalt = re.sub(r"\s+", " ", inhalt).strip()
 
-    return "\n".join(bloecke) if bloecke else "(keine Einträge im Prüfzeitraum)"
+        kategorie = _kategorie_treffer(f"{titel} {inhalt}")
+        if kategorie is None:
+            continue
+
+        link = next((l.get("href") for l in eintrag.findall("a:link", ns)
+                    if l.get("rel") == "alternate"), "")
+        kandidaten.append({
+            "quelle_name": "Google Ads Entwickler-Blog",
+            "quelle_url": link,
+            "kategorie": kategorie,
+            "datum": datum,
+            "text": inhalt[:600],
+            "titel": titel,
+        })
+    return kandidaten
 
 
-def _quellen_abrufen() -> dict[str, str]:
+def _alle_kandidaten() -> list[dict]:
     """Holt alle Quellen, überspringt einzelne bei Netzwerkfehlern statt den
     ganzen Lauf abzubrechen - eine tote Quelle darf die anderen nicht mit
     ausknocken."""
-    rohtexte: dict[str, str] = {}
+    ab_datum = date.today() - timedelta(days=PRUEFZEITRAUM_TAGE)
+    kandidaten: list[dict] = []
+
     for name, url in QUELLEN_SEITEN:
         try:
-            rohtexte[name] = _seite_als_text(url)
+            text = _seite_als_text(url)
+            kandidaten.extend(_kandidaten_aus_seite(name, url, text, ab_datum))
         except requests.RequestException as fehler:
             log.warning("Quelle nicht erreichbar, übersprungen: %s (%s)", name, fehler)
+
     try:
-        rohtexte["Google Ads Entwickler-Blog"] = _entwickler_blog_text()
+        kandidaten.extend(_entwickler_blog_kandidaten(ab_datum))
     except (requests.RequestException, ET.ParseError) as fehler:
         log.warning("Entwickler-Blog nicht erreichbar, übersprungen: %s", fehler)
-    return rohtexte
+
+    return kandidaten
 
 
 # --------------------------------------------------------------------------- #
-def _system_prompt(gemeldete: list[str], ignoriert: list[str]) -> str:
-    gemeldete_text = "; ".join(gemeldete) or "(noch keine)"
-    ignoriert_text = "; ".join(ignoriert) or "(keine)"
-    return f"""Du bist Redakteur für einen privaten Telegram-Kanal zu Google Ads.
-Der Kanalbetreiber führt ein Handwerksunternehmen (Bau/Sanierung, regional)
-und nutzt Google Ads mit Suchkampagnen und Performance Max. Er will nur
-erfahren, was für ihn wirklich zählt - kein Rauschen, keine Zweitverwertung.
-
-Du bekommst den aktuellen Rohtext mehrerer offizieller Google-Quellen. Melde
-NUR Punkte, die MINDESTENS eines dieser Kriterien erfüllen:
-- betrifft Suchkampagnen oder Performance Max
-- betrifft Budget, Gebotsstrategie oder Abrechnung
-- betrifft lokale Anzeigen / Standorterweiterungen (Handwerk, regional)
-- eine Funktion wird abgeschaltet oder erzwungen umgestellt
-- Richtlinienänderung mit Sperr-Risiko fürs Konto
-
-Alles andere ignorieren. Auch ignorieren:
-- Themen, die inhaltlich zu bereits gemeldeten Überschriften passen, selbst
-  wenn eine andere Quelle sie erneut aufgreift
-- Themen, die der Nutzer per Ignorieren-Taste als uninteressant markiert hat
-- reine Video-/App-/Display-/Shopping-Themen ohne Bezug zu Suche/PMax
-- Marketing-Erfolgsmeldungen ohne konkrete Handlungsrelevanz
-
-Bereits gemeldet (nicht erneut melden): {gemeldete_text}
-Vom Nutzer ignoriert (nicht erneut melden): {ignoriert_text}
-
-Gib AUSSCHLIESSLICH ein JSON-Array zurück, keinen Fließtext davor oder
-danach. Leeres Array [], wenn nichts qualifiziert. Pro relevanter Meldung
-genau dieses Objekt:
-{{
-  "ueberschrift": "max. 6 Wörter, Deutsch, Fachbegriffe im Original lassen",
-  "was_passiert": "genau 2 Sätze, konkret, keine Floskeln",
-  "bedeutung": "1 Satz: was heißt das konkret für ein Handwerksunternehmen mit Suchkampagnen/PMax",
-  "tun": "1 kurze Zeile Handlungsempfehlung, oder das Wort 'nichts tun'",
-  "quelle_name": "Name der Quelle, z.B. Google Ads API Release Notes",
-  "quelle_url": "die exakte URL aus dem Rohtext, zu der diese Meldung gehört",
-  "datum": "JJJJ-MM-TT, aus dem Rohtext"
-}}
-
-WICHTIG: Erfinde keine Zahlen, Daten oder Fakten, die nicht wörtlich im
-Rohtext stehen. Steht kein Datum im Text, nimm das heutige Datum."""
+def _hash_fuer(kandidat: dict) -> str:
+    # Blog-Einträge haben eine echte, eindeutige Artikel-URL - direkt per
+    # URL-Hash deduplizieren (genau wie in der Vorgabe verlangt). Die drei
+    # HTML-Seiten liefern nur die Seiten-URL, nicht die einzelne Meldung -
+    # dort zusätzlich Kategorie+Datum in den Hash einrechnen, sonst würden
+    # alle Treffer derselben Seite denselben Hash teilen.
+    if kandidat["quelle_name"] == "Google Ads Entwickler-Blog":
+        return ads_verlauf.url_hash(kandidat["quelle_url"])
+    schluessel = f"{kandidat['quelle_url']}#{kandidat['kategorie']}#{kandidat['datum'].isoformat()}"
+    return ads_verlauf.url_hash(schluessel)
 
 
-def _frage_claude(rohtexte: dict[str, str]) -> list[dict]:
-    if not ANTHROPIC_API_KEY:
-        raise NewsFehler("ANTHROPIC_API_KEY fehlt - ohne KI kein Nachrichtenfilter.")
-
-    system = _system_prompt(ads_verlauf.gemeldete_ueberschriften(),
-                            ads_verlauf.ignorierte_themen())
-    nutzer = "\n\n".join(f"## Quelle: {name}\n{text}" for name, text in rohtexte.items())
-
-    antwort = requests.post(
-        "https://api.anthropic.com/v1/messages",
-        headers={"x-api-key": ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01"},
-        json={
-            "model": ANTHROPIC_MODELL,
-            "max_tokens": 2000,
-            "system": system,
-            "messages": [{"role": "user", "content": nutzer}],
-        },
-        timeout=90,
-    )
-    daten = antwort.json()
-    if antwort.status_code >= 400:
-        fehler = daten.get("error", {}).get("message", antwort.text[:300])
-        raise NewsFehler(f"Anthropic-Fehler ({antwort.status_code}): {fehler}")
-
-    inhalt = daten["content"][0]["text"].strip()
-    if inhalt.startswith("```"):
-        inhalt = re.sub(r"^```[a-zA-Z]*\n?", "", inhalt)
-        inhalt = re.sub(r"```\s*$", "", inhalt)
-    try:
-        ergebnis = json.loads(inhalt)
-    except json.JSONDecodeError as fehler:
-        raise NewsFehler(f"KI-Antwort ist kein gültiges JSON: {fehler}\n"
-                         f"Antwort: {inhalt[:400]}")
-    if not isinstance(ergebnis, list):
-        raise NewsFehler("KI-Antwort ist kein JSON-Array.")
-    return ergebnis
-
-
-# --------------------------------------------------------------------------- #
-def _formatiere(meldung: dict) -> str:
+def _formatiere(kandidat: dict) -> str:
+    angaben = FILTER_KATEGORIEN[kandidat["kategorie"]]
+    ueberschrift = kandidat.get("titel") or angaben["ueberschrift"]
+    was_passiert = kandidat["text"]
+    if len(was_passiert) > 280:
+        was_passiert = was_passiert[:279].rstrip() + "…"
     return (
-        f"{meldung['ueberschrift']}\n"
-        f"{meldung['was_passiert']}\n"
-        f"{meldung['bedeutung']}\n"
-        f"{meldung['tun']}\n"
-        f"{meldung['quelle_name']}, {meldung['datum']}"
+        f"{ueberschrift}\n"
+        f"{was_passiert}\n"
+        f"{angaben['bedeutung']}\n"
+        f"{angaben['tun']}\n"
+        f"{kandidat['quelle_name']}, {kandidat['datum'].strftime('%d.%m.%Y')}"
     )
 
 
-def _mehr_dazu_text(meldung: dict) -> str:
+def _mehr_dazu_text(kandidat: dict) -> str:
+    angaben = FILTER_KATEGORIEN[kandidat["kategorie"]]
+    ueberschrift = kandidat.get("titel") or angaben["ueberschrift"]
     return (
-        f"{meldung['ueberschrift']}\n\n"
-        f"{meldung['was_passiert']}\n\n"
-        f"Bedeutung: {meldung['bedeutung']}\n"
-        f"Handlung: {meldung['tun']}\n\n"
-        f"Quelle: {meldung['quelle_url']}"
+        f"{ueberschrift}\n\n"
+        f"{kandidat['text']}\n\n"
+        f"Bedeutung: {angaben['bedeutung']}\n"
+        f"Handlung: {angaben['tun']}\n\n"
+        f"Quelle: {kandidat['quelle_url']}"
     )
 
 
@@ -230,23 +338,18 @@ def pruefe_und_melde() -> dict:
         raise NewsFehler(
             "Ads-Kanal ist nicht eingerichtet (TELEGRAM_CHAT_ID_ADS fehlt).")
 
-    rohtexte = _quellen_abrufen()
-    if not rohtexte:
-        raise NewsFehler("Keine einzige Quelle war erreichbar - nichts geprüft.")
-
-    meldungen = _frage_claude(rohtexte)
+    kandidaten = _alle_kandidaten()
 
     verschickt = []
-    for m in meldungen:
-        url = (m.get("quelle_url") or "").strip()
-        if not url or not m.get("ueberschrift"):
+    for kandidat in kandidaten:
+        hash_id = _hash_fuer(kandidat)
+        if ads_verlauf.schon_gemeldet(hash_id) or ads_verlauf.ist_ignoriert(hash_id):
             continue
-        hash_id = ads_verlauf.url_hash(url)
-        if ads_verlauf.schon_gemeldet(hash_id):
-            continue
-        telegram_bot.sende_meldung(_formatiere(m), hash_id, chat_id=TELEGRAM_CHAT_ID_ADS)
-        ads_verlauf.merke_meldung(hash_id, m["ueberschrift"], url, _mehr_dazu_text(m))
-        verschickt.append(m["ueberschrift"])
+        ueberschrift = kandidat.get("titel") or FILTER_KATEGORIEN[kandidat["kategorie"]]["ueberschrift"]
+        telegram_bot.sende_meldung(_formatiere(kandidat), hash_id, chat_id=TELEGRAM_CHAT_ID_ADS)
+        ads_verlauf.merke_meldung(hash_id, ueberschrift, kandidat["quelle_url"],
+                                  _mehr_dazu_text(kandidat))
+        verschickt.append(ueberschrift)
 
     if not verschickt:
         letzte = ads_verlauf.letzte_meldung_am()
@@ -258,4 +361,5 @@ def pruefe_und_melde() -> dict:
                                     chat_id=TELEGRAM_CHAT_ID_ADS)
             ads_verlauf.vermerke_leermeldung()
 
-    return {"geprueft_quellen": list(rohtexte), "verschickt": verschickt}
+    return {"geprueft_quellen": [n for n, _ in QUELLEN_SEITEN] + ["Google Ads Entwickler-Blog"],
+            "verschickt": verschickt}
