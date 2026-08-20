@@ -21,7 +21,7 @@ from pathlib import Path
 
 import requests
 
-from config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+from config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_CHAT_ID_ADS
 
 log = logging.getLogger(__name__)
 
@@ -37,6 +37,10 @@ class TelegramFehler(Exception):
 
 def aktiv() -> bool:
     return bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID)
+
+
+def aktiv_ads() -> bool:
+    return bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID_ADS)
 
 
 def _basis_url() -> str:
@@ -107,21 +111,53 @@ def sende_vorschlag(bild: Path, kurztext: str, volltext: str, plan_id: str,
     return Vorschlag(nachricht_id=ergebnis["message_id"], chat_id=str(ergebnis["chat"]["id"]))
 
 
-def sende_text(text: str) -> None:
-    if not aktiv():
+def sende_text(text: str, chat_id: str | None = None, markdown: bool = False) -> None:
+    ziel = chat_id or TELEGRAM_CHAT_ID
+    if not (TELEGRAM_BOT_TOKEN and ziel):
         return
-    _api("sendMessage", chat_id=TELEGRAM_CHAT_ID, text=text, disable_web_page_preview=True)
+    zusatz = {"parse_mode": "Markdown"} if markdown else {}
+    _api("sendMessage", chat_id=ziel, text=text, disable_web_page_preview=True, **zusatz)
 
 
-def markiere(nachricht_id: int, zusatz: str) -> None:
+def markiere(nachricht_id: int, zusatz: str, chat_id: str | None = None) -> None:
     """Hängt eine Statuszeile an die Bildunterschrift, damit im Chat sichtbar
     bleibt, was aus dem Vorschlag geworden ist, statt dass die Tasten einfach
     verschwinden."""
     try:
-        _api("editMessageCaption", chat_id=TELEGRAM_CHAT_ID,
+        _api("editMessageCaption", chat_id=chat_id or TELEGRAM_CHAT_ID,
             message_id=nachricht_id, caption=zusatz)
     except TelegramFehler as fehler:
         log.warning("Bildunterschrift konnte nicht aktualisiert werden: %s", fehler)
+
+
+def markiere_text(nachricht_id: int, neuer_text: str, chat_id: str | None = None) -> None:
+    """Wie markiere(), aber für reine Textnachrichten (editMessageText statt
+    editMessageCaption) - für Ads-Meldungen, die kein Bild haben."""
+    try:
+        _api("editMessageText", chat_id=chat_id or TELEGRAM_CHAT_ID,
+            message_id=nachricht_id, text=neuer_text,
+            disable_web_page_preview=True)
+    except TelegramFehler as fehler:
+        log.warning("Text konnte nicht aktualisiert werden: %s", fehler)
+
+
+def sende_meldung(text: str, hash_id: str, chat_id: str | None = None) -> int:
+    """Schickt eine Ads-Kanal-Meldung mit den drei Tasten Merken / Mehr dazu /
+    Ignorieren. Gibt die message_id zurück (für spätere markiere_text()-
+    Aufrufe, wenn der Nutzer eine Taste drückt).
+    """
+    import json as _json
+    tasten = {
+        "inline_keyboard": [[
+            {"text": "📌 Merken", "callback_data": f"merken:{hash_id}"[:64]},
+            {"text": "ℹ️ Mehr dazu", "callback_data": f"mehr:{hash_id}"[:64]},
+            {"text": "🚫 Ignorieren", "callback_data": f"ignorieren:{hash_id}"[:64]},
+        ]]
+    }
+    ergebnis = _api("sendMessage", chat_id=chat_id or TELEGRAM_CHAT_ID_ADS,
+                    text=text, reply_markup=_json.dumps(tasten),
+                    disable_web_page_preview=True)
+    return ergebnis["message_id"]
 
 
 def beantworte_callback(callback_query_id: str, text: str = "") -> None:

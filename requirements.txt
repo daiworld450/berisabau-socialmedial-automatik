@@ -3,3 +3,6 @@ playwright>=1.48
 requests>=2.32
 python-dotenv>=1.0
 pillow>=11.0
+
+# Google-Ads-Update-Kanal
+google-ads>=24.1.0

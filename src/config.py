@@ -58,6 +58,23 @@ FB_API_VERSION = os.getenv("FB_API_VERSION", "v23.0")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
+# --- Google-Ads-Update-Kanal (optional, separater Telegram-Kanal) --------- #
+# Gleicher Bot, zweite Chat-ID - die Instagram-Freigabe oben bleibt davon
+# unberührt. Ohne TELEGRAM_CHAT_ID_ADS bleibt dieser Kanal einfach aus.
+TELEGRAM_CHAT_ID_ADS = os.getenv("TELEGRAM_CHAT_ID_ADS", "")
+
+# Nur-lesender Zugang für den Dienstags-Kurzcheck und den Donnerstags-
+# Optimierungsvorschlag. Dieselben Werte wie in google-ads-mcp/.env, hier
+# als eigene Kopie, weil dieses Projekt separat in GitHub Actions läuft.
+GOOGLE_ADS_DEVELOPER_TOKEN = os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN", "")
+GOOGLE_ADS_CLIENT_ID = os.getenv("GOOGLE_ADS_CLIENT_ID", "")
+GOOGLE_ADS_CLIENT_SECRET = os.getenv("GOOGLE_ADS_CLIENT_SECRET", "")
+GOOGLE_ADS_REFRESH_TOKEN = os.getenv("GOOGLE_ADS_REFRESH_TOKEN", "")
+GOOGLE_ADS_CUSTOMER_ID = os.getenv("GOOGLE_ADS_CUSTOMER_ID", "")
+GOOGLE_ADS_LOGIN_CUSTOMER_ID = os.getenv("GOOGLE_ADS_LOGIN_CUSTOMER_ID", "")
+
+ADS_VERLAUF_DATEI = CONTENT_DIR / "ads_verlauf.json"
+
 # --- KI-Textautor (optional) ----------------------------------------------- #
 # ChatGPT primaer (der Nutzer nennt es so und hat einen Schluessel), Claude
 # als Ausweichoption. Ohne einen von beiden bleibt das Schreiben regelbasiert

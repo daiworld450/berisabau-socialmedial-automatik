@@ -1,0 +1,48 @@
+name: Google-Ads-News täglich prüfen
+
+# Prüft täglich die offiziellen Google-Ads-Quellen und schickt Relevantes an
+# den separaten Ads-Update-Kanal. Siehe src/ads_news.py für den Ablauf und
+# den Relevanzfilter.
+on:
+  schedule:
+    - cron: "0 5 * * *"   # ca. 07:00 MESZ / 06:00 MEZ
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ads-kanal
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Abhängigkeiten installieren
+        run: pip install requests python-dotenv google-ads
+
+      - name: Quellen prüfen und ggf. an den Ads-Kanal schicken
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID_ADS: ${{ secrets.TELEGRAM_CHAT_ID_ADS }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python src/main.py ads-news
+
+      - name: Verlauf sichern
+        if: always()
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add content/ads_verlauf.json 2>/dev/null || true
+          git commit -m "Ads-Kanal: Verlauf aktualisiert" || echo "nichts zu committen"
+          git push || true

@@ -25,6 +25,22 @@ FB_PAGE_TOKEN=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
 
+# Optional: separater privater Kanal für Google-Ads-Updates. Gleicher Bot
+# wie oben, andere Chat-ID - lässt die Instagram-Freigabe unberührt.
+# Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md
+TELEGRAM_CHAT_ID_ADS=
+
+# Optional: nur-lesender Google-Ads-API-Zugang für den Update-Kanal
+# (Dienstags-Kurzcheck, Donnerstags-Empfehlung). Dieselben sechs Werte wie
+# in google-ads-mcp/.env - hier als eigene Kopie, weil dieses Projekt
+# separat in GitHub Actions läuft. Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md
+GOOGLE_ADS_DEVELOPER_TOKEN=
+GOOGLE_ADS_CLIENT_ID=
+GOOGLE_ADS_CLIENT_SECRET=
+GOOGLE_ADS_REFRESH_TOKEN=
+GOOGLE_ADS_CUSTOMER_ID=
+GOOGLE_ADS_LOGIN_CUSTOMER_ID=
+
 # Optional: KI schreibt neue Themen (python src/main.py ki-thema ...).
 # ChatGPT wird zuerst versucht, Claude als Ausweichoption. Ohne beide läuft
 # das System unverändert kostenlos und regelbasiert weiter.

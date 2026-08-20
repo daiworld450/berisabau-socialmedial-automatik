@@ -349,12 +349,46 @@ def cmd_vorschlagen(args) -> int:
     return 0
 
 
+def _verarbeite_ads_callback(aktion: str, hash_id: str, antwort: dict) -> None:
+    """Merken/Mehr dazu/Ignorieren für den Google-Ads-Kanal - unabhängig von
+    der Instagram-Warteschlange, Nachschlagen per URL-Hash statt plan_id."""
+    import ads_verlauf
+    import telegram_bot
+    from config import TELEGRAM_CHAT_ID_ADS
+
+    eintrag = ads_verlauf.hole_meldung(hash_id)
+    if eintrag is None:
+        telegram_bot.beantworte_callback(antwort["callback_query_id"],
+                                         "Dazu liegt kein Eintrag mehr vor.")
+        return
+
+    if aktion == "merken":
+        ads_verlauf.merken(hash_id)
+        telegram_bot.beantworte_callback(antwort["callback_query_id"], "Gemerkt.")
+    elif aktion == "mehr":
+        telegram_bot.beantworte_callback(antwort["callback_query_id"], "Kommt …")
+        telegram_bot.sende_text(eintrag["volltext"], chat_id=TELEGRAM_CHAT_ID_ADS)
+    elif aktion == "ignorieren":
+        ads_verlauf.ignorieren(hash_id, eintrag["ueberschrift"])
+        telegram_bot.beantworte_callback(antwort["callback_query_id"],
+                                         "Ignoriert – kommt nicht wieder.")
+        telegram_bot.markiere_text(antwort["nachricht_id"],
+                                   f"🚫 Ignoriert: {eintrag['ueberschrift']}",
+                                   chat_id=TELEGRAM_CHAT_ID_ADS)
+
+
 def cmd_telegram_abfragen(args) -> int:
-    """Wertet Tastendrücke aus Telegram aus: freigeben -> veröffentlichen,
-    ablehnen -> neuen Kandidaten rendern und erneut schicken."""
+    """Wertet Tastendrücke aus Telegram aus.
+
+    Instagram-Kanal: freigeben -> veröffentlichen, ablehnen -> neuen
+    Kandidaten rendern und erneut schicken.
+    Ads-Kanal: merken/mehr dazu/ignorieren, siehe _verarbeite_ads_callback().
+    Ein Poll-Job für beide Kanäle - getUpdates liefert ohnehin alle
+    Tastendrücke des Bots über beide Chats hinweg in einem Aufruf.
+    """
     import telegram_bot
 
-    if not telegram_bot.aktiv():
+    if not (telegram_bot.aktiv() or telegram_bot.aktiv_ads()):
         print("\nTelegram ist nicht eingerichtet.\n", file=sys.stderr)
         return 1
 
@@ -369,7 +403,12 @@ def cmd_telegram_abfragen(args) -> int:
         return 0
 
     for antwort in antworten:
-        aktion, _, _rest = antwort["daten"].partition(":")
+        aktion, _, rest = antwort["daten"].partition(":")
+
+        if aktion in ("merken", "mehr", "ignorieren"):
+            _verarbeite_ads_callback(aktion, rest, antwort)
+            continue
+
         treffer = next((kv for kv in schlange["wartend"].items()
                         if kv[1]["nachricht_id"] == antwort["nachricht_id"]), None)
 
@@ -491,6 +530,88 @@ def cmd_telegram_veroeffentlichen(args) -> int:
 
     datei.write_text("[]", encoding="utf-8")
     return 1 if fehler_anzahl else 0
+
+
+def cmd_ads_news(args) -> int:
+    """Täglicher Google-Ads-News-Check: Quellen prüfen, filtern, an den
+    Ads-Kanal schicken. Siehe ads_news.py für den Ablauf."""
+    import ads_news
+
+    try:
+        ergebnis = ads_news.pruefe_und_melde()
+    except ads_news.NewsFehler as fehler:
+        print(f"\nFEHLER: {fehler}\n", file=sys.stderr)
+        return 1
+
+    print(f"\nQuellen geprüft: {', '.join(ergebnis['geprueft_quellen'])}")
+    if ergebnis["verschickt"]:
+        print(f"Verschickt ({len(ergebnis['verschickt'])}):")
+        for titel in ergebnis["verschickt"]:
+            print(f"  - {titel}")
+    else:
+        print("Nichts Relevantes gefunden.")
+    print()
+    return 0
+
+
+def _ads_kanal_bereit() -> bool:
+    """Gemeinsame Voraussetzungsprüfung für Kurzcheck und Empfehlung: beide
+    brauchen sowohl den Ads-Kanal als auch den Google-Ads-Zugang."""
+    import google_ads_client
+    import telegram_bot
+
+    if not telegram_bot.aktiv_ads():
+        print("\nAds-Kanal ist nicht eingerichtet (TELEGRAM_CHAT_ID_ADS "
+              "fehlt).\n", file=sys.stderr)
+        return False
+    if not google_ads_client.aktiv():
+        print("\nGoogle-Ads-Zugang fehlt (GOOGLE_ADS_* in .env bzw. "
+              "GitHub Secrets). Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md\n",
+              file=sys.stderr)
+        return False
+    return True
+
+
+def cmd_ads_kurzcheck(args) -> int:
+    """Dienstags-Kurzcheck: Kampagnentabelle der letzten 7 Tage an den
+    Ads-Kanal schicken."""
+    import ads_stats
+    import telegram_bot
+    from config import TELEGRAM_CHAT_ID_ADS
+
+    if not _ads_kanal_bereit():
+        return 1
+
+    try:
+        bericht = ads_stats.baue_bericht()
+    except Exception as fehler:  # noqa: BLE001
+        print(f"\nFEHLER beim Abruf der Google-Ads-Daten: {fehler}\n", file=sys.stderr)
+        return 1
+
+    print(f"\n{bericht}\n")
+    telegram_bot.sende_text(bericht, chat_id=TELEGRAM_CHAT_ID_ADS, markdown=True)
+    return 0
+
+
+def cmd_ads_empfehlung(args) -> int:
+    """Donnerstags-Optimierungsvorschlag: ein konkreter, zahlenbasierter
+    Punkt an den Ads-Kanal."""
+    import ads_empfehlung
+    import telegram_bot
+    from config import TELEGRAM_CHAT_ID_ADS
+
+    if not _ads_kanal_bereit():
+        return 1
+
+    try:
+        vorschlag = ads_empfehlung.baue_vorschlag()
+    except Exception as fehler:  # noqa: BLE001
+        print(f"\nFEHLER beim Abruf der Google-Ads-Daten: {fehler}\n", file=sys.stderr)
+        return 1
+
+    print(f"\n{vorschlag}\n")
+    telegram_bot.sende_text(vorschlag, chat_id=TELEGRAM_CHAT_ID_ADS)
+    return 0
 
 
 def cmd_ki_thema(args) -> int:
@@ -934,6 +1055,23 @@ def cmd_zugang(args) -> int:
         except telegram_bot.TelegramFehler as fehler:
             print(f"Telegram : FEHLER  {fehler}")
 
+    if not telegram_bot.aktiv_ads():
+        print("Ads-Kanal: nicht eingerichtet – TELEGRAM_CHAT_ID_ADS fehlt")
+        print("           Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md")
+    else:
+        print("Ads-Kanal: eingerichtet (gleicher Bot, eigene Chat-ID)")
+
+    import google_ads_client
+    if not google_ads_client.aktiv():
+        print("Google Ads: nicht eingerichtet – GOOGLE_ADS_* fehlen")
+        print("           Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md")
+    else:
+        try:
+            zeilen = google_ads_client.wochenvergleich()
+            print(f"Google Ads: OK  {len(zeilen)} Kampagne(n) mit Daten in den letzten 7 Tagen")
+        except Exception as fehler:  # noqa: BLE001 - Zugangsprüfung, jeder Fehler zählt
+            print(f"Google Ads: FEHLER  {fehler}")
+
     return 0 if instagram_ok else 1
 
 
@@ -1003,6 +1141,18 @@ def main() -> int:
     ta = unter.add_parser("telegram-abfragen",
                           help="Telegram-Antworten abholen: freigeben -> posten, ablehnen -> neu vorschlagen")
     ta.set_defaults(func=cmd_telegram_abfragen)
+
+    an = unter.add_parser("ads-news",
+                          help="Google-Ads-Quellen prüfen und Neuigkeiten an den Ads-Kanal schicken")
+    an.set_defaults(func=cmd_ads_news)
+
+    ak = unter.add_parser("ads-kurzcheck",
+                          help="Dienstags-Kampagnentabelle an den Ads-Kanal schicken")
+    ak.set_defaults(func=cmd_ads_kurzcheck)
+
+    ae = unter.add_parser("ads-empfehlung",
+                          help="Donnerstags-Optimierungsvorschlag an den Ads-Kanal schicken")
+    ae.set_defaults(func=cmd_ads_empfehlung)
 
     tv = unter.add_parser("telegram-veroeffentlichen",
                           help="zweiter Schritt: das per Telegram Freigegebene tatsächlich posten "
