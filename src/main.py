@@ -23,11 +23,20 @@ try:
 except ImportError:
     pass
 
-import freigaben         # noqa: E402
-import planer            # noqa: E402
-import texter            # noqa: E402
 from config import OUT_DIR   # noqa: E402
-from renderer import kuerze_dateiname, rendere   # noqa: E402
+
+# Nur für die Instagram-Beitragserzeugung nötig (jinja2/playwright). Die
+# Google-Ads-Kanal-Befehle (ads-news/ads-kurzcheck/ads-empfehlung) brauchen
+# das nicht und laufen in einer schlankeren GitHub-Actions-Umgebung ohne
+# diese Abhängigkeiten - deshalb hier optional statt hart importiert.
+try:
+    import freigaben         # noqa: E402
+    import planer            # noqa: E402
+    import texter            # noqa: E402
+    from renderer import kuerze_dateiname, rendere   # noqa: E402
+except ImportError:
+    freigaben = planer = texter = None
+    kuerze_dateiname = rendere = None
 
 
 def _erzeuge(plan: dict, format: str = "feed") -> Path:
