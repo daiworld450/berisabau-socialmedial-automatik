@@ -5,6 +5,12 @@
       "url": "https://developers.google.com/google-ads/api/docs/release-notes",
       "volltext": "Update zu Suche/Performance Max\n\nv25.1 (2026-08-19) The following new features and updates were added in Google Ads API v25.1. Minor versions like v25.1 don't contain breaking changes. Features and updates Type Description Assets AssetFieldType.TEXT_DISCLAIMER ServedAssetFieldType.TEXT_DISCLAIMER New enum values Added support for text disclaimer assets. Campaigns Campaign.aca_migration_date_time Campaign.broad_match_migration_date_time New fields Track the upcoming auto-migration to AI Max. Conversions Brand Lift measurements New features Added support for Brand Lift measurements with the following updates: Added new read-onl\n\nBedeutung: Betrifft Suchkampagnen oder Performance Max direkt.\nHandlung: In den eigenen Kampagnen gegenchecken.\n\nQuelle: https://developers.google.com/google-ads/api/docs/release-notes",
       "gesendet_am": "2026-08-20T00:54:08"
+    },
+    "b51d02d02d182c0e": {
+      "ueberschrift": "Google Ads API Developer Assistant v4.0.0",
+      "url": "http://ads-developers.googleblog.com/2026/08/google-ads-api-developer-assistant-v400.html",
+      "volltext": "Google Ads API Developer Assistant v4.0.0\n\nA major release of the Google Ads API Developer Assistant is now available. This release transitions the assistant from a standalone project setup to a unified plugin architecture designed to bring specialized Google Ads API capabilities directly into AI agent workflows. What is it? The Google Ads API Developer Assistant brings deep Google Ads domain expertise into AI coding environments like Antigravity and Claude Code. It equips your AI assistant with specialized tools and guardrails. Functions include: Generate idiomatic code : Create tested, best-practice integration code across Python, Ja\n\nBedeutung: Betrifft Suchkampagnen oder Performance Max direkt.\nHandlung: In den eigenen Kampagnen gegenchecken.\n\nQuelle: http://ads-developers.googleblog.com/2026/08/google-ads-api-developer-assistant-v400.html",
+      "gesendet_am": "2026-08-26T05:39:49"
     }
   },
   "gemerkt": {},
