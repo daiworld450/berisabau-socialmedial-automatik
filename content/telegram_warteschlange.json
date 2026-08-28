@@ -1,9 +1,11 @@
 {
   "wartend": {
     "2026-09-01": {
-      "plan_id": "w-abdichtung",
-      "nachricht_id": 6,
-      "abgelehnt": []
+      "plan_id": "w-gefaelle",
+      "nachricht_id": 8,
+      "abgelehnt": [
+        "w-abdichtung"
+      ]
     }
   },
   "letzte_update_id_social": 252660748,
