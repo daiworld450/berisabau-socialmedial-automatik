@@ -21,7 +21,8 @@ from pathlib import Path
 
 import requests
 
-from config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_CHAT_ID_ADS
+from config import (TELEGRAM_BOT_TOKEN_SOCIAL, TELEGRAM_BOT_TOKEN_ADS,
+                    TELEGRAM_CHAT_ID, TELEGRAM_CHAT_ID_ADS)
 
 log = logging.getLogger(__name__)
 
@@ -36,20 +37,20 @@ class TelegramFehler(Exception):
 
 
 def aktiv() -> bool:
-    return bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID)
+    return bool(TELEGRAM_BOT_TOKEN_SOCIAL and TELEGRAM_CHAT_ID)
 
 
 def aktiv_ads() -> bool:
-    return bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID_ADS)
+    return bool(TELEGRAM_BOT_TOKEN_ADS and TELEGRAM_CHAT_ID_ADS)
 
 
-def _basis_url() -> str:
-    return f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
+def _basis_url(bot_token: str) -> str:
+    return f"https://api.telegram.org/bot{bot_token}"
 
 
-def _api(methode: str, **daten) -> dict:
+def _api(methode: str, bot_token: str = TELEGRAM_BOT_TOKEN_SOCIAL, **daten) -> dict:
     try:
-        antwort = requests.post(f"{_basis_url()}/{methode}", data=daten, timeout=TIMEOUT)
+        antwort = requests.post(f"{_basis_url(bot_token)}/{methode}", data=daten, timeout=TIMEOUT)
     except requests.RequestException as fehler:
         raise TelegramFehler(f"{methode}: keine Verbindung – {fehler}") from None
 
@@ -59,10 +60,10 @@ def _api(methode: str, **daten) -> dict:
     return inhalt["result"]
 
 
-def _api_datei(methode: str, feld: str, pfad: Path, **daten) -> dict:
+def _api_datei(methode: str, feld: str, pfad: Path, bot_token: str = TELEGRAM_BOT_TOKEN_SOCIAL, **daten) -> dict:
     try:
         with pfad.open("rb") as f:
-            antwort = requests.post(f"{_basis_url()}/{methode}", data=daten,
+            antwort = requests.post(f"{_basis_url(bot_token)}/{methode}", data=daten,
                                     files={feld: f}, timeout=TIMEOUT)
     except requests.RequestException as fehler:
         raise TelegramFehler(f"{methode}: keine Verbindung – {fehler}") from None
@@ -105,18 +106,24 @@ def sende_vorschlag(bild: Path, kurztext: str, volltext: str, plan_id: str,
         chat_id=TELEGRAM_CHAT_ID,
         caption=_kuerzen(kurztext, 1000),
         reply_markup=_json.dumps(tasten),
+        bot_token=TELEGRAM_BOT_TOKEN_SOCIAL,
     )
     _api("sendMessage", chat_id=TELEGRAM_CHAT_ID, text=volltext,
-        disable_web_page_preview=True)
+        disable_web_page_preview=True, bot_token=TELEGRAM_BOT_TOKEN_SOCIAL)
     return Vorschlag(nachricht_id=ergebnis["message_id"], chat_id=str(ergebnis["chat"]["id"]))
 
 
 def sende_text(text: str, chat_id: str | None = None, markdown: bool = False) -> None:
+    """chat_id=TELEGRAM_CHAT_ID_ADS schickt automatisch über den Ads-Bot,
+    sonst über den Social-Media-Bot - beide haben getrennte Tokens."""
     ziel = chat_id or TELEGRAM_CHAT_ID
-    if not (TELEGRAM_BOT_TOKEN and ziel):
+    ist_ads = ziel == TELEGRAM_CHAT_ID_ADS
+    bot_token = TELEGRAM_BOT_TOKEN_ADS if ist_ads else TELEGRAM_BOT_TOKEN_SOCIAL
+    if not (bot_token and ziel):
         return
     zusatz = {"parse_mode": "Markdown"} if markdown else {}
-    _api("sendMessage", chat_id=ziel, text=text, disable_web_page_preview=True, **zusatz)
+    _api("sendMessage", chat_id=ziel, text=text, disable_web_page_preview=True,
+        bot_token=bot_token, **zusatz)
 
 
 def markiere(nachricht_id: int, zusatz: str, chat_id: str | None = None) -> None:
@@ -125,7 +132,7 @@ def markiere(nachricht_id: int, zusatz: str, chat_id: str | None = None) -> None
     verschwinden."""
     try:
         _api("editMessageCaption", chat_id=chat_id or TELEGRAM_CHAT_ID,
-            message_id=nachricht_id, caption=zusatz)
+            message_id=nachricht_id, caption=zusatz, bot_token=TELEGRAM_BOT_TOKEN_SOCIAL)
     except TelegramFehler as fehler:
         log.warning("Bildunterschrift konnte nicht aktualisiert werden: %s", fehler)
 
@@ -134,9 +141,9 @@ def markiere_text(nachricht_id: int, neuer_text: str, chat_id: str | None = None
     """Wie markiere(), aber für reine Textnachrichten (editMessageText statt
     editMessageCaption) - für Ads-Meldungen, die kein Bild haben."""
     try:
-        _api("editMessageText", chat_id=chat_id or TELEGRAM_CHAT_ID,
+        _api("editMessageText", chat_id=chat_id or TELEGRAM_CHAT_ID_ADS,
             message_id=nachricht_id, text=neuer_text,
-            disable_web_page_preview=True)
+            disable_web_page_preview=True, bot_token=TELEGRAM_BOT_TOKEN_ADS)
     except TelegramFehler as fehler:
         log.warning("Text konnte nicht aktualisiert werden: %s", fehler)
 
@@ -156,27 +163,32 @@ def sende_meldung(text: str, hash_id: str, chat_id: str | None = None) -> int:
     }
     ergebnis = _api("sendMessage", chat_id=chat_id or TELEGRAM_CHAT_ID_ADS,
                     text=text, reply_markup=_json.dumps(tasten),
-                    disable_web_page_preview=True)
+                    disable_web_page_preview=True, bot_token=TELEGRAM_BOT_TOKEN_ADS)
     return ergebnis["message_id"]
 
 
-def beantworte_callback(callback_query_id: str, text: str = "") -> None:
-    """Nimmt der Taste im Chat den Lade-Kreis - ohne das bleibt sie hängen."""
+def beantworte_callback(callback_query_id: str, text: str = "", ads: bool = False) -> None:
+    """Nimmt der Taste im Chat den Lade-Kreis - ohne das bleibt sie hängen.
+    ads=True beantwortet über den Ads-Bot (für merken/mehr/ignorieren)."""
+    bot_token = TELEGRAM_BOT_TOKEN_ADS if ads else TELEGRAM_BOT_TOKEN_SOCIAL
     try:
-        _api("answerCallbackQuery", callback_query_id=callback_query_id, text=text)
+        _api("answerCallbackQuery", callback_query_id=callback_query_id, text=text,
+            bot_token=bot_token)
     except TelegramFehler as fehler:
         log.warning("Callback-Antwort fehlgeschlagen: %s", fehler)
 
 
-def hole_antworten(letzte_update_id: int) -> tuple[list[dict], int]:
-    """Neue Tastendrücke seit letzte_update_id.
+def hole_antworten(letzte_update_id: int, bot_token: str = TELEGRAM_BOT_TOKEN_SOCIAL) -> tuple[list[dict], int]:
+    """Neue Tastendrücke seit letzte_update_id, für EINEN Bot.
 
     Gibt (Liste von {"daten": "ok:t-x", "callback_query_id": ..., "nachricht_id": ...},
     neue_letzte_update_id) zurück. Kurzes Poll (timeout=0) statt Long-Poll,
     weil das hier per Cron alle paar Minuten läuft statt dauerhaft zu laufen.
+    Seit 28.08.2026 zwei getrennte Bots (Social/Ads) - getUpdates ist pro Bot-
+    Token, deshalb muss diese Funktion für jeden Bot einzeln aufgerufen werden.
     """
     updates = _api("getUpdates", offset=letzte_update_id + 1, timeout=0,
-                   allowed_updates='["callback_query"]')
+                   allowed_updates='["callback_query"]', bot_token=bot_token)
     treffer = []
     neue_letzte = letzte_update_id
     for u in updates:
@@ -192,7 +204,8 @@ def hole_antworten(letzte_update_id: int) -> tuple[list[dict], int]:
     return treffer, neue_letzte
 
 
-def pruefe_zugang() -> str:
+def pruefe_zugang(ads: bool = False) -> str:
     """Für 'zugang': Botname zurückgeben oder eine TelegramFehler auslösen."""
-    info = _api("getMe")
+    bot_token = TELEGRAM_BOT_TOKEN_ADS if ads else TELEGRAM_BOT_TOKEN_SOCIAL
+    info = _api("getMe", bot_token=bot_token)
     return f"@{info.get('username', '?')}"

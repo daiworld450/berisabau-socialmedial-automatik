@@ -122,7 +122,7 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           # Nötig, damit dieser Schritt weiß, ob eine Telegram-Freigabe
           # aussteht - ohne diese beiden bleibt es sonst bei FREIGABE_PFLICHT.
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           if [ -n "${{ inputs.datum }}" ]; then

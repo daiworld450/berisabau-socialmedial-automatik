@@ -54,7 +54,7 @@ jobs:
 
       - name: Kandidat rendern und an Telegram schicken
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           if [ -n "${{ inputs.datum }}" ]; then

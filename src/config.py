@@ -55,12 +55,14 @@ FB_API_VERSION = os.getenv("FB_API_VERSION", "v23.0")
 # Ohne beide Werte bleibt die Automatik wie bisher voll automatisch. Sind sie
 # gesetzt, wartet die Veröffentlichung auf eine Freigabe per Tastendruck im
 # Chat, statt direkt zu posten - siehe docs/04-TELEGRAM-EINRICHTEN.md.
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+# Eigener Bot (getrennt vom Ads-Bot unten), seit 28.08.2026.
+TELEGRAM_BOT_TOKEN_SOCIAL = os.getenv("TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
 # --- Google-Ads-Update-Kanal (optional, separater Telegram-Kanal) --------- #
-# Gleicher Bot, zweite Chat-ID - die Instagram-Freigabe oben bleibt davon
-# unberührt. Ohne TELEGRAM_CHAT_ID_ADS bleibt dieser Kanal einfach aus.
+# Eigener Bot (TELEGRAM_BOT_TOKEN, historischer Name) - die Instagram-Freigabe
+# oben läuft seit 28.08.2026 über einen zweiten, eigenen Bot.
+TELEGRAM_BOT_TOKEN_ADS = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID_ADS = os.getenv("TELEGRAM_CHAT_ID_ADS", "")
 
 # Nur-lesender Zugang für den Dienstags-Kurzcheck und den Donnerstags-

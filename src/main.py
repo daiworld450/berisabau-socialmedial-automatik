@@ -294,8 +294,14 @@ WARTESCHLANGE_DATEI = Path(__file__).resolve().parent.parent / "content" / "tele
 
 def _warteschlange_laden() -> dict:
     if WARTESCHLANGE_DATEI.exists():
-        return json.loads(WARTESCHLANGE_DATEI.read_text(encoding="utf-8"))
-    return {"letzte_update_id": 0, "wartend": {}}
+        daten = json.loads(WARTESCHLANGE_DATEI.read_text(encoding="utf-8"))
+        # Migration: altes Feld letzte_update_id galt für den einen,
+        # gemeinsamen Bot - seit 28.08.2026 zwei getrennte Bots/Zähler.
+        if "letzte_update_id" in daten and "letzte_update_id_social" not in daten:
+            daten["letzte_update_id_social"] = daten.pop("letzte_update_id")
+            daten.setdefault("letzte_update_id_ads", 0)
+        return daten
+    return {"letzte_update_id_social": 0, "letzte_update_id_ads": 0, "wartend": {}}
 
 
 def _warteschlange_speichern(daten: dict) -> None:
@@ -319,7 +325,7 @@ def cmd_vorschlagen(args) -> int:
     import telegram_bot
 
     if not telegram_bot.aktiv():
-        print("\nTelegram ist nicht eingerichtet (TELEGRAM_BOT_TOKEN / "
+        print("\nTelegram ist nicht eingerichtet (TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA / "
               "TELEGRAM_CHAT_ID fehlen). Anleitung: "
               "docs/04-TELEGRAM-EINRICHTEN.md\n", file=sys.stderr)
         return 1
@@ -368,19 +374,19 @@ def _verarbeite_ads_callback(aktion: str, hash_id: str, antwort: dict) -> None:
     eintrag = ads_verlauf.hole_meldung(hash_id)
     if eintrag is None:
         telegram_bot.beantworte_callback(antwort["callback_query_id"],
-                                         "Dazu liegt kein Eintrag mehr vor.")
+                                         "Dazu liegt kein Eintrag mehr vor.", ads=True)
         return
 
     if aktion == "merken":
         ads_verlauf.merken(hash_id)
-        telegram_bot.beantworte_callback(antwort["callback_query_id"], "Gemerkt.")
+        telegram_bot.beantworte_callback(antwort["callback_query_id"], "Gemerkt.", ads=True)
     elif aktion == "mehr":
-        telegram_bot.beantworte_callback(antwort["callback_query_id"], "Kommt …")
+        telegram_bot.beantworte_callback(antwort["callback_query_id"], "Kommt …", ads=True)
         telegram_bot.sende_text(eintrag["volltext"], chat_id=TELEGRAM_CHAT_ID_ADS)
     elif aktion == "ignorieren":
         ads_verlauf.ignorieren(hash_id, eintrag["ueberschrift"])
         telegram_bot.beantworte_callback(antwort["callback_query_id"],
-                                         "Ignoriert – kommt nicht wieder.")
+                                         "Ignoriert – kommt nicht wieder.", ads=True)
         telegram_bot.markiere_text(antwort["nachricht_id"],
                                    f"🚫 Ignoriert: {eintrag['ueberschrift']}",
                                    chat_id=TELEGRAM_CHAT_ID_ADS)
@@ -401,9 +407,20 @@ def cmd_telegram_abfragen(args) -> int:
         print("\nTelegram ist nicht eingerichtet.\n", file=sys.stderr)
         return 1
 
+    from config import TELEGRAM_BOT_TOKEN_SOCIAL, TELEGRAM_BOT_TOKEN_ADS
+
     schlange = _warteschlange_laden()
-    antworten, neue_update_id = telegram_bot.hole_antworten(schlange.get("letzte_update_id", 0))
-    schlange["letzte_update_id"] = neue_update_id
+    antworten: list[dict] = []
+    if telegram_bot.aktiv():
+        social_antworten, neue_id = telegram_bot.hole_antworten(
+            schlange.get("letzte_update_id_social", 0), bot_token=TELEGRAM_BOT_TOKEN_SOCIAL)
+        schlange["letzte_update_id_social"] = neue_id
+        antworten.extend(social_antworten)
+    if telegram_bot.aktiv_ads():
+        ads_antworten, neue_id = telegram_bot.hole_antworten(
+            schlange.get("letzte_update_id_ads", 0), bot_token=TELEGRAM_BOT_TOKEN_ADS)
+        schlange["letzte_update_id_ads"] = neue_id
+        antworten.extend(ads_antworten)
     freigegeben: list[dict] = []
 
     if not antworten:
@@ -1065,10 +1082,14 @@ def cmd_zugang(args) -> int:
             print(f"Telegram : FEHLER  {fehler}")
 
     if not telegram_bot.aktiv_ads():
-        print("Ads-Kanal: nicht eingerichtet – TELEGRAM_CHAT_ID_ADS fehlt")
+        print("Ads-Kanal: nicht eingerichtet – TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID_ADS fehlt")
         print("           Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md")
     else:
-        print("Ads-Kanal: eingerichtet (gleicher Bot, eigene Chat-ID)")
+        try:
+            ads_bot = telegram_bot.pruefe_zugang(ads=True)
+            print(f"Ads-Kanal: OK  {ads_bot} (eigener Bot, seit 28.08.2026 getrennt vom Social-Bot)")
+        except telegram_bot.TelegramFehler as fehler:
+            print(f"Ads-Kanal: FEHLER  {fehler}")
 
     import google_ads_client
     if not google_ads_client.aktiv():
