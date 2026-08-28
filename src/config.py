@@ -42,7 +42,7 @@ IG_API_VERSION = os.getenv("IG_API_VERSION", "v23.0")
 
 # Eigene Sicherheitsgrenze. Metas Limit liegt höher, aber ein Ausreißer nach
 # oben wäre bei diesem Konto immer ein Fehler, kein Feature.
-MAX_POSTS_24H = int(os.getenv("MAX_POSTS_24H", "5"))
+MAX_POSTS_24H = int(os.getenv("MAX_POSTS_24H") or "5")
 
 # --- Facebook-Seite (optional) -------------------------------------------- #
 # Facebook-Seiten laufen immer über graph.facebook.com und brauchen einen
