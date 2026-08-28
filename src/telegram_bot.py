@@ -21,8 +21,7 @@ from pathlib import Path
 
 import requests
 
-from config import (TELEGRAM_BOT_TOKEN_SOCIAL, TELEGRAM_BOT_TOKEN_ADS,
-                    TELEGRAM_CHAT_ID, TELEGRAM_CHAT_ID_ADS)
+from config import TELEGRAM_BOT_TOKEN_SOCIAL, TELEGRAM_CHAT_ID
 
 log = logging.getLogger(__name__)
 
@@ -38,10 +37,6 @@ class TelegramFehler(Exception):
 
 def aktiv() -> bool:
     return bool(TELEGRAM_BOT_TOKEN_SOCIAL and TELEGRAM_CHAT_ID)
-
-
-def aktiv_ads() -> bool:
-    return bool(TELEGRAM_BOT_TOKEN_ADS and TELEGRAM_CHAT_ID_ADS)
 
 
 def _basis_url(bot_token: str) -> str:
@@ -114,11 +109,9 @@ def sende_vorschlag(bild: Path, kurztext: str, volltext: str, plan_id: str,
 
 
 def sende_text(text: str, chat_id: str | None = None, markdown: bool = False) -> None:
-    """chat_id=TELEGRAM_CHAT_ID_ADS schickt automatisch über den Ads-Bot,
-    sonst über den Social-Media-Bot - beide haben getrennte Tokens."""
+    """Schickt eine Textnachricht über den Social-Media-Bot."""
     ziel = chat_id or TELEGRAM_CHAT_ID
-    ist_ads = ziel == TELEGRAM_CHAT_ID_ADS
-    bot_token = TELEGRAM_BOT_TOKEN_ADS if ist_ads else TELEGRAM_BOT_TOKEN_SOCIAL
+    bot_token = TELEGRAM_BOT_TOKEN_SOCIAL
     if not (bot_token and ziel):
         return
     zusatz = {"parse_mode": "Markdown"} if markdown else {}
@@ -137,40 +130,9 @@ def markiere(nachricht_id: int, zusatz: str, chat_id: str | None = None) -> None
         log.warning("Bildunterschrift konnte nicht aktualisiert werden: %s", fehler)
 
 
-def markiere_text(nachricht_id: int, neuer_text: str, chat_id: str | None = None) -> None:
-    """Wie markiere(), aber für reine Textnachrichten (editMessageText statt
-    editMessageCaption) - für Ads-Meldungen, die kein Bild haben."""
-    try:
-        _api("editMessageText", chat_id=chat_id or TELEGRAM_CHAT_ID_ADS,
-            message_id=nachricht_id, text=neuer_text,
-            disable_web_page_preview=True, bot_token=TELEGRAM_BOT_TOKEN_ADS)
-    except TelegramFehler as fehler:
-        log.warning("Text konnte nicht aktualisiert werden: %s", fehler)
-
-
-def sende_meldung(text: str, hash_id: str, chat_id: str | None = None) -> int:
-    """Schickt eine Ads-Kanal-Meldung mit den drei Tasten Merken / Mehr dazu /
-    Ignorieren. Gibt die message_id zurück (für spätere markiere_text()-
-    Aufrufe, wenn der Nutzer eine Taste drückt).
-    """
-    import json as _json
-    tasten = {
-        "inline_keyboard": [[
-            {"text": "📌 Merken", "callback_data": f"merken:{hash_id}"[:64]},
-            {"text": "ℹ️ Mehr dazu", "callback_data": f"mehr:{hash_id}"[:64]},
-            {"text": "🚫 Ignorieren", "callback_data": f"ignorieren:{hash_id}"[:64]},
-        ]]
-    }
-    ergebnis = _api("sendMessage", chat_id=chat_id or TELEGRAM_CHAT_ID_ADS,
-                    text=text, reply_markup=_json.dumps(tasten),
-                    disable_web_page_preview=True, bot_token=TELEGRAM_BOT_TOKEN_ADS)
-    return ergebnis["message_id"]
-
-
-def beantworte_callback(callback_query_id: str, text: str = "", ads: bool = False) -> None:
-    """Nimmt der Taste im Chat den Lade-Kreis - ohne das bleibt sie hängen.
-    ads=True beantwortet über den Ads-Bot (für merken/mehr/ignorieren)."""
-    bot_token = TELEGRAM_BOT_TOKEN_ADS if ads else TELEGRAM_BOT_TOKEN_SOCIAL
+def beantworte_callback(callback_query_id: str, text: str = "") -> None:
+    """Nimmt der Taste im Chat den Lade-Kreis - ohne das bleibt sie hängen."""
+    bot_token = TELEGRAM_BOT_TOKEN_SOCIAL
     try:
         _api("answerCallbackQuery", callback_query_id=callback_query_id, text=text,
             bot_token=bot_token)
@@ -204,8 +166,8 @@ def hole_antworten(letzte_update_id: int, bot_token: str = TELEGRAM_BOT_TOKEN_SO
     return treffer, neue_letzte
 
 
-def pruefe_zugang(ads: bool = False) -> str:
+def pruefe_zugang() -> str:
     """Für 'zugang': Botname zurückgeben oder eine TelegramFehler auslösen."""
-    bot_token = TELEGRAM_BOT_TOKEN_ADS if ads else TELEGRAM_BOT_TOKEN_SOCIAL
+    bot_token = TELEGRAM_BOT_TOKEN_SOCIAL
     info = _api("getMe", bot_token=bot_token)
     return f"@{info.get('username', '?')}"

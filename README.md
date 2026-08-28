@@ -161,9 +161,6 @@ docs/           Markenanalyse und Einrichtungsanleitung
 | `python src/main.py fotos-verarbeiten` | Eingang sichten, ausrichten, in den Pool legen |
 | `python src/main.py vorschlagen` | Kandidat rendern, zur Freigabe an Telegram schicken |
 | `python src/main.py telegram-abfragen` | Telegram-Antworten auswerten (freigeben/ablehnen/merken/mehr/ignorieren) |
-| `python src/main.py ads-news` | Google-Ads-Quellen prüfen, Neuigkeiten an den Ads-Kanal |
-| `python src/main.py ads-kurzcheck` | Kampagnentabelle der letzten 7 Tage an den Ads-Kanal |
-| `python src/main.py ads-empfehlung` | ein zahlenbasierter Optimierungsvorschlag an den Ads-Kanal |
 
 ---
 
@@ -296,16 +293,17 @@ Einrichtung (etwa 10 Minuten, kostenlos):
 
 ---
 
-## Google-Ads-Update-Kanal (optional)
+## Google-Ads-Update-Kanal — umgezogen
 
-Separater privater Telegram-Kanal (gleicher Bot, eigene Chat-ID) – meldet
-täglich relevante Google-Ads-Neuerungen im festen Kurzformat, dienstags eine
-Kampagnentabelle der letzten 7 Tage, donnerstags einen zahlenbasierten
-Optimierungsvorschlag. Nur lesender Google-Ads-API-Zugriff, ändert nie
-selbst etwas im Konto. Jede Meldung hat drei Tasten: **📌 Merken**,
-**ℹ️ Mehr dazu**, **🚫 Ignorieren**.
+Der Ads-Kanal liegt seit dem **28.08.2026 im privaten Repo**
+`daiworld450/ads-autopilot`, samt Workflows, Quelltext und Einrichtungs-
+anleitung.
 
-Einrichtung: [`docs/05-ADS-KANAL-EINRICHTEN.md`](docs/05-ADS-KANAL-EINRICHTEN.md)
+**Warum:** Die `GOOGLE_ADS_*`-Zugänge können Geld ausgeben. In einem
+öffentlichen Repo genügt ein unbedachtes `echo` zur Fehlersuche, und sie
+stehen im Protokoll. Im privaten Repo bleibt derselbe Fehler folgenlos.
+
+Dieses Repo kümmert sich nur noch um Instagram und Facebook.
 
 ---
 gemeldet, der Tageslauf gilt nicht als gescheitert.

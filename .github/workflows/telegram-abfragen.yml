@@ -43,7 +43,6 @@ jobs:
           TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID_ADS: ${{ secrets.TELEGRAM_CHAT_ID_ADS }}
         run: python src/main.py telegram-abfragen
 
       - name: Warteschlange und Ads-Verlauf sichern
@@ -51,7 +50,7 @@ jobs:
         run: |
           git config user.name  "berisabau-bot"
           git config user.email "actions@github.com"
-          git add content/telegram_warteschlange.json content/ads_verlauf.json 2>/dev/null || true
+          git add content/telegram_warteschlange.json 2>/dev/null || true
           git commit -m "Telegram-Warteschlange aktualisiert" || echo "nichts zu committen"
           git push || true
 

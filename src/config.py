@@ -61,21 +61,10 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
 # --- Google-Ads-Update-Kanal (optional, separater Telegram-Kanal) --------- #
 # Eigener Bot (TELEGRAM_BOT_TOKEN, historischer Name) - die Instagram-Freigabe
-# oben läuft seit 28.08.2026 über einen zweiten, eigenen Bot.
-TELEGRAM_BOT_TOKEN_ADS = os.getenv("TELEGRAM_BOT_TOKEN", "")
-TELEGRAM_CHAT_ID_ADS = os.getenv("TELEGRAM_CHAT_ID_ADS", "")
+# Der Google-Ads-Kanal ist am 28.08.2026 in das private Repo
+# daiworld450/ads-autopilot umgezogen. Die GOOGLE_ADS_*-Zugaenge koennen
+# Geld ausgeben und gehoeren nicht in ein oeffentliches Repo.
 
-# Nur-lesender Zugang für den Dienstags-Kurzcheck und den Donnerstags-
-# Optimierungsvorschlag. Dieselben Werte wie in google-ads-mcp/.env, hier
-# als eigene Kopie, weil dieses Projekt separat in GitHub Actions läuft.
-GOOGLE_ADS_DEVELOPER_TOKEN = os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN", "")
-GOOGLE_ADS_CLIENT_ID = os.getenv("GOOGLE_ADS_CLIENT_ID", "")
-GOOGLE_ADS_CLIENT_SECRET = os.getenv("GOOGLE_ADS_CLIENT_SECRET", "")
-GOOGLE_ADS_REFRESH_TOKEN = os.getenv("GOOGLE_ADS_REFRESH_TOKEN", "")
-GOOGLE_ADS_CUSTOMER_ID = os.getenv("GOOGLE_ADS_CUSTOMER_ID", "")
-GOOGLE_ADS_LOGIN_CUSTOMER_ID = os.getenv("GOOGLE_ADS_LOGIN_CUSTOMER_ID", "")
-
-ADS_VERLAUF_DATEI = CONTENT_DIR / "ads_verlauf.json"
 
 # --- KI-Textautor (optional) ----------------------------------------------- #
 # ChatGPT primaer (der Nutzer nennt es so und hat einen Schluessel), Claude
