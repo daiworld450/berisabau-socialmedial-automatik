@@ -411,16 +411,24 @@ def cmd_telegram_abfragen(args) -> int:
 
     schlange = _warteschlange_laden()
     antworten: list[dict] = []
+    # Getrennt abgesichert: ein toter/ungueltiger Token in einem Kanal (z. B.
+    # der Ads-Bot) darf den anderen, funktionierenden Kanal nicht blockieren.
     if telegram_bot.aktiv():
-        social_antworten, neue_id = telegram_bot.hole_antworten(
-            schlange.get("letzte_update_id_social", 0), bot_token=TELEGRAM_BOT_TOKEN_SOCIAL)
-        schlange["letzte_update_id_social"] = neue_id
-        antworten.extend(social_antworten)
+        try:
+            social_antworten, neue_id = telegram_bot.hole_antworten(
+                schlange.get("letzte_update_id_social", 0), bot_token=TELEGRAM_BOT_TOKEN_SOCIAL)
+            schlange["letzte_update_id_social"] = neue_id
+            antworten.extend(social_antworten)
+        except telegram_bot.TelegramFehler as fehler:
+            print(f"\nSocial-Bot: Antworten konnten nicht abgeholt werden – {fehler}\n", file=sys.stderr)
     if telegram_bot.aktiv_ads():
-        ads_antworten, neue_id = telegram_bot.hole_antworten(
-            schlange.get("letzte_update_id_ads", 0), bot_token=TELEGRAM_BOT_TOKEN_ADS)
-        schlange["letzte_update_id_ads"] = neue_id
-        antworten.extend(ads_antworten)
+        try:
+            ads_antworten, neue_id = telegram_bot.hole_antworten(
+                schlange.get("letzte_update_id_ads", 0), bot_token=TELEGRAM_BOT_TOKEN_ADS)
+            schlange["letzte_update_id_ads"] = neue_id
+            antworten.extend(ads_antworten)
+        except telegram_bot.TelegramFehler as fehler:
+            print(f"\nAds-Bot: Antworten konnten nicht abgeholt werden – {fehler}\n", file=sys.stderr)
     freigegeben: list[dict] = []
 
     if not antworten:
