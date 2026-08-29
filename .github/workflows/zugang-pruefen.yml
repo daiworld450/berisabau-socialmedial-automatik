@@ -1,0 +1,50 @@
+name: Zugang prüfen
+
+# Fragt Instagram, Facebook und Telegram, ob die hinterlegten Zugangsdaten
+# noch gültig sind. Postet nichts. Gibt nur Meldungen aus, nie ein Token.
+#
+# Der Instagram-Token läuft nach 60 Tagen ab. Wenn ein Beitrag ohne
+# erkennbaren Grund nicht rausgeht, ist das hier die erste Anlaufstelle.
+on:
+  workflow_dispatch:
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Abhängigkeiten installieren
+        run: pip install requests python-dotenv
+
+      - name: Zugang abfragen
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python src/main.py zugang
+
+      - name: Bildablage erreichbar?
+        if: always()
+        env:
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+        run: |
+          # Prüft die Ablage selbst, nicht eine einzelne Datei: liefert der
+          # Server überhaupt etwas, oder ist GitHub Pages aus?
+          CODE=$(curl -sL -o /dev/null -w "%{http_code}" "$MEDIA_BASE_URL/")
+          echo "Bildablage antwortet mit HTTP $CODE"
+          if [ "$CODE" = "000" ]; then
+            echo "::error::Bildablage nicht erreichbar - ist GitHub Pages aktiv?"
+            exit 1
+          fi

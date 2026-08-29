@@ -48,9 +48,23 @@ jobs:
         run: |
           git config user.name  "berisabau-bot"
           git config user.email "actions@github.com"
-          git add content/medien
+          # Fehlt EINER dieser Pfade, bricht "git add" mit allen ab und
+          # committet nichts - deshalb einzeln und nur, was existiert.
+          for pfad in content/medien; do
+            if [ -e "$pfad" ]; then git add "$pfad"; fi
+          done
           git commit -m "Fotos aus dem Eingang verarbeitet" || echo "nichts zu committen"
-          git push || true
+          # Parallel laufende Workflows schieben den Remote weiter.
+          # Ohne Rebase scheitert der Push und das Bild landet nie auf Pages.
+          gepusht=0
+          for versuch in 1 2 3 4 5; do
+            if git pull --rebase --autostash -q && git push -q; then gepusht=1; break; fi
+            echo "Push-Versuch $versuch fehlgeschlagen, neuer Anlauf"
+            sleep $((versuch * 5))
+          done
+          if [ "$gepusht" != 1 ]; then
+            echo "Push nicht moeglich - wird beim naechsten Lauf nachgeholt"
+          fi
 
       - name: Kandidat rendern und an Telegram schicken
         env:
@@ -68,6 +82,20 @@ jobs:
         run: |
           git config user.name  "berisabau-bot"
           git config user.email "actions@github.com"
-          git add content/telegram_warteschlange.json 2>/dev/null || true
+          # Fehlt EINER dieser Pfade, bricht "git add" mit allen ab und
+          # committet nichts - deshalb einzeln und nur, was existiert.
+          for pfad in content/telegram_warteschlange.json; do
+            if [ -e "$pfad" ]; then git add "$pfad"; fi
+          done
           git commit -m "Telegram-Vorschlag verschickt" || echo "nichts zu committen"
-          git push || true
+          # Parallel laufende Workflows schieben den Remote weiter.
+          # Ohne Rebase scheitert der Push und das Bild landet nie auf Pages.
+          gepusht=0
+          for versuch in 1 2 3 4 5; do
+            if git pull --rebase --autostash -q && git push -q; then gepusht=1; break; fi
+            echo "Push-Versuch $versuch fehlgeschlagen, neuer Anlauf"
+            sleep $((versuch * 5))
+          done
+          if [ "$gepusht" != 1 ]; then
+            echo "Push nicht moeglich - wird beim naechsten Lauf nachgeholt"
+          fi
