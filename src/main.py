@@ -466,8 +466,10 @@ def _schicke_vorschlag_auf_wunsch(schlange: dict, anderes_thema: bool = False) -
     eintrag = (schlange.get("wartend") or {}).get(tag_iso)
     ausschluss = set(eintrag["abgelehnt"]) if eintrag else set()
 
-    if eintrag and anderes_thema:
-        # Das gerade gezeigte Thema mit ausschließen, sonst käme dasselbe.
+    if eintrag:
+        # Liegt schon ein Vorschlag offen, will der Nutzer per /neu ausdrücklich
+        # etwas ANDERES sehen - sonst käme derselbe Beitrag noch einmal und es
+        # sähe aus, als sei nichts passiert.
         ausschluss.add(eintrag["plan_id"])
         telegram_bot.markiere(eintrag["nachricht_id"], "↩︎ ersetzt")
 
@@ -477,12 +479,6 @@ def _schicke_vorschlag_auf_wunsch(schlange: dict, anderes_thema: bool = False) -
             f"Für {tag_iso} sind alle Themen dieser Rubrik durch. "
             "Neue Themen in content/themen.json ergänzen oder frische Fotos "
             "in content/medien/eingang/ legen.")
-        return
-
-    if eintrag and not anderes_thema and plan["id"] == eintrag["plan_id"]:
-        telegram_bot.sende_text(
-            f"Für {tag.strftime('%A, %d.%m.')} liegt oben schon dieser Vorschlag "
-            f"({plan['id']}). Mit /anders bekommst du ein anderes Thema.")
         return
 
     print(f"\nVorschlag auf Wunsch für {tag_iso}: {plan['id']}")
