@@ -48,3 +48,39 @@ jobs:
             echo "::error::Bildablage nicht erreichbar - ist GitHub Pages aktiv?"
             exit 1
           fi
+
+      - name: Führt der Seiten-Token zum Instagram-Konto?
+        if: always()
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          # Der Seiten-Token laeuft nicht ab. Wenn das Instagram-Konto an der
+          # Seite haengt, kann er auch Instagram bespielen - dann braucht es
+          # gar kein eigenes Instagram-Token mehr.
+          python - <<'PY'
+          import json, os, urllib.request
+          seite, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+          basis = "https://graph.facebook.com/v21.0"
+
+          def hole(pfad, felder):
+              url = f"{basis}/{pfad}?fields={felder}&access_token={token}"
+              try:
+                  with urllib.request.urlopen(url, timeout=20) as r:
+                      return json.load(r)
+              except Exception as fehler:
+                  leib = getattr(fehler, "read", lambda: b"")().decode() or str(fehler)
+                  return {"_fehler": leib.replace(token, "***")}
+
+              
+          antwort = hole(seite, "instagram_business_account,name")
+          print("Seite:", json.dumps(antwort, ensure_ascii=False))
+
+          konto = (antwort.get("instagram_business_account") or {}).get("id")
+          if not konto:
+              print("::warning::Kein Instagram-Konto an der Seite - Seiten-Token reicht nicht")
+              raise SystemExit(0)
+
+          print("Instagram-Konto-ID ueber die Seite:", konto)
+          print("Konto:", json.dumps(hole(konto, "username,followers_count,media_count"), ensure_ascii=False))
+          PY
