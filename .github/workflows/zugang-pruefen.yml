@@ -41,12 +41,20 @@ jobs:
         env:
           MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
         run: |
-          # Prüft die Ablage selbst, nicht eine einzelne Datei: liefert der
-          # Server überhaupt etwas, oder ist GitHub Pages aus?
-          CODE=$(curl -sL -o /dev/null -w "%{http_code}" "$MEDIA_BASE_URL/")
+          # Auf ein echtes Bild prüfen, nicht auf den Ordner: GitHub Pages
+          # liefert für ein Verzeichnis ohne index.html immer 404, das sagt
+          # über die Erreichbarkeit nichts aus und führt in die Irre.
+          DATEI=$(ls docs/posts/*.jpg 2>/dev/null | head -1)
+          if [ -z "$DATEI" ]; then
+            echo "Noch kein Bild in docs/posts - nichts zu prüfen."
+            exit 0
+          fi
+          URL="$MEDIA_BASE_URL/$(basename "$DATEI")"
+          CODE=$(curl -sL -o /dev/null -w "%{http_code}" "$URL")
           echo "Bildablage antwortet mit HTTP $CODE"
-          if [ "$CODE" = "000" ]; then
-            echo "::error::Bildablage nicht erreichbar - ist GitHub Pages aktiv?"
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Instagram könnte das Bild nicht laden (HTTP $CODE)"
+            echo "Ist das Repository öffentlich? Ist GitHub Pages an? Stimmt MEDIA_BASE_URL?"
             exit 1
           fi
 
