@@ -75,12 +75,23 @@ jobs:
           else
             python src/main.py heute
           fi
-          BILD=$(ls -t out/*.jpg | head -1)
+          # An einem Nicht-Posttag beendet sich main.py ohne zu rendern.
+          # Dann gibt es kein Bild - das ist kein Fehler, sondern der Normalfall
+          # an fuenf von sieben Tagen. Die folgenden Schritte werden dann
+          # uebersprungen, statt den ganzen Lauf rot zu faerben.
+          BILD=$(ls -t out/*.jpg 2>/dev/null | head -1 || true)
+          if [ -z "$BILD" ]; then
+            echo "hat_bild=false" >> "$GITHUB_OUTPUT"
+            echo "Kein Bild erzeugt - heute ist kein Posttag, oder es fehlt ein Foto."
+            exit 0
+          fi
+          echo "hat_bild=true" >> "$GITHUB_OUTPUT"
           echo "bild=$(basename "$BILD")" >> "$GITHUB_OUTPUT"
           echo "Erzeugt: $BILD"
 
       - name: Bild öffentlich ablegen
         id: hochladen
+        if: ${{ steps.erzeugen.outputs.hat_bild == 'true' }}
         run: |
           mkdir -p docs/posts
           cp "out/${{ steps.erzeugen.outputs.bild }}" docs/posts/
@@ -91,7 +102,7 @@ jobs:
           git push
 
       - name: Prüfen, ob Instagram das Bild laden kann
-        if: ${{ !inputs.nur_erzeugen }}
+        if: ${{ steps.erzeugen.outputs.hat_bild == 'true' && !inputs.nur_erzeugen }}
         env:
           MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
         run: |
@@ -110,7 +121,7 @@ jobs:
           exit 1
 
       - name: Auf Instagram posten
-        if: ${{ !inputs.nur_erzeugen }}
+        if: ${{ steps.erzeugen.outputs.hat_bild == 'true' && !inputs.nur_erzeugen }}
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
@@ -132,14 +143,14 @@ jobs:
           fi
 
       - name: Verlauf und Protokoll sichern
-        if: ${{ always() && !inputs.nur_erzeugen }}
+        if: ${{ always() && steps.erzeugen.outputs.hat_bild == 'true' && !inputs.nur_erzeugen }}
         run: |
           git add content/verlauf.json logs 2>/dev/null || true
           git commit -m "Verlauf aktualisiert" || echo "nichts zu committen"
           git push || true
 
       - name: Ergebnis als Artefakt ablegen
-        if: always()
+        if: ${{ always() && steps.erzeugen.outputs.hat_bild == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: post-${{ github.run_number }}
