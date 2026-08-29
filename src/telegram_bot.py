@@ -187,6 +187,31 @@ def hole_antworten(letzte_update_id: int, bot_token: str = TELEGRAM_BOT_TOKEN_SO
     Seit 28.08.2026 zwei getrennte Bots (Social/Ads) - getUpdates ist pro Bot-
     Token, deshalb muss diese Funktion für jeden Bot einzeln aufgerufen werden.
     """
+    # Plausibilitaetspruefung des Zaehlerstands.
+    #
+    # Telegram fuehrt die update_id PRO BOT. Bei der Trennung in Social- und
+    # Ads-Bot am 28.08.2026 wurde der Stand des alten gemeinsamen Bots
+    # uebernommen (252.660.748) - der neue Social-Bot zaehlt aber viel
+    # niedriger (131.777.xxx). Der Bot fragte also nach Updates ab einer
+    # Nummer, die es nie geben wird, und war seitdem blind.
+    #
+    # Deshalb: erst ohne Offset nachsehen, was tatsaechlich anliegt. Liegt der
+    # gespeicherte Stand ueber der hoechsten echten Nummer, ist er falsch und
+    # wird auf die aktuelle Lage gesetzt. Bewusst NICHT auf 0 - sonst wuerden
+    # alte, laengst ueberholte Tastendruecke nachtraeglich verarbeitet. Genau
+    # so waere am 28.08. beinahe ein Testbeitrag veroeffentlicht worden.
+    if letzte_update_id > 0:
+        vorschau = _api("getUpdates", offset=0, timeout=0, limit=100,
+                        allowed_updates='["callback_query","message"]',
+                        bot_token=bot_token)
+        if vorschau:
+            hoechste = max(u["update_id"] for u in vorschau)
+            if letzte_update_id > hoechste:
+                log.warning(
+                    "Zaehlerstand %s liegt ueber der hoechsten echten "
+                    "update_id %s - wird korrigiert.", letzte_update_id, hoechste)
+                letzte_update_id = hoechste - 1
+
     updates = _api("getUpdates", offset=letzte_update_id + 1, timeout=0,
                    allowed_updates='["callback_query","message"]', bot_token=bot_token)
     treffer = []
