@@ -1,0 +1,44 @@
+name: Telegram-Diagnose
+
+# Liest die offenen Updates des Social-Bots und zeigt nur ihre Nummern und
+# Typen an. Verarbeitet NICHTS - kein Freigeben, kein Veroeffentlichen.
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Offene Updates ansehen
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          token = os.environ["TOKEN"]
+          url = f"https://api.telegram.org/bot{token}/getUpdates?offset=0&timeout=0"
+          with urllib.request.urlopen(url, timeout=20) as r:
+              d = json.load(r)
+          updates = d.get("result", [])
+          print(f"Offene Updates: {len(updates)}")
+          for u in updates:
+              art = ("callback_query" if "callback_query" in u
+                     else "message" if "message" in u else "sonstiges")
+              zusatz = ""
+              if art == "callback_query":
+                  zusatz = " daten=" + str(u["callback_query"].get("data"))
+              elif art == "message":
+                  zusatz = " text=" + str((u["message"].get("text") or ""))[:40]
+              print(f"  update_id={u['update_id']}  {art}{zusatz}")
+          if updates:
+              print(f"\nKleinste: {min(u['update_id'] for u in updates)}")
+              print(f"Groesste: {max(u['update_id'] for u in updates)}")
+          print("\nGespeicherter Stand in der Warteschlange:")
+          try:
+              s = json.load(open("content/telegram_warteschlange.json"))
+              print("  letzte_update_id_social =", s.get("letzte_update_id_social"))
+          except Exception as e:
+              print("  nicht lesbar:", e)
+          PY
