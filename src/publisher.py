@@ -21,7 +21,7 @@ from datetime import datetime
 import requests
 
 from config import (IG_HOST, IG_API_VERSION, IG_TOKEN, IG_USER_ID,
-                    LOG_DATEI, MAX_POSTS_24H, MEDIA_BASE_URL)
+                    IG_UEBER_SEITE, LOG_DATEI, MAX_POSTS_24H, MEDIA_BASE_URL)
 
 log = logging.getLogger(__name__)
 
@@ -336,19 +336,26 @@ def veroeffentliche_reel(video_dateiname: str, caption: str,
 
 
 def pruefe_zugang() -> Ergebnis:
-    """Selbsttest: Token gültig, Konto ein Profikonto?"""
+    """Selbsttest: Token gültig, Konto erreichbar?
+
+    Die verfügbaren Felder hängen vom Weg ab: `account_type` gibt es nur auf
+    graph.instagram.com. Geht der Zugriff über die Facebook-Seite, kennt die
+    Graph API dieses Feld nicht und antwortet mit Fehler 100 – die Abfrage
+    muss sich also nach dem Weg richten.
+    """
     _pruefe_konfiguration()
+    felder = ("id,username,media_count" if IG_UEBER_SEITE
+              else "id,username,account_type,media_count")
     try:
-        daten = _anfrage("GET", IG_USER_ID,
-                         fields="id,username,account_type,media_count")
+        daten = _anfrage("GET", IG_USER_ID, fields=felder)
     except VeroeffentlichungsFehler as fehler:
         hinweis = " (Token abgelaufen oder ungültig – Schritt 4 der Anleitung)" \
             if fehler.token_problem else ""
         return Ergebnis(False, meldung=f"{fehler}{hinweis}")
+    weg = "über die Facebook-Seite" if IG_UEBER_SEITE else f"Kontotyp {daten.get('account_type')}"
     return Ergebnis(
         True, daten.get("id"),
-        f"@{daten.get('username')} · Kontotyp {daten.get('account_type')} · "
-        f"{daten.get('media_count')} Beiträge",
+        f"@{daten.get('username')} · {weg} · {daten.get('media_count')} Beiträge",
     )
 
 
