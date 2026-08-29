@@ -1,13 +1,14 @@
 {
   "wartend": {
     "2026-09-01": {
-      "plan_id": "w-gefaelle",
-      "nachricht_id": 14,
+      "plan_id": "w-estrich-zeit",
+      "nachricht_id": 17,
       "abgelehnt": [
-        "w-abdichtung"
+        "w-abdichtung",
+        "w-gefaelle"
       ]
     }
   },
-  "letzte_update_id_social": 131777216,
+  "letzte_update_id_social": 131777219,
   "letzte_update_id_ads": 0
 }
