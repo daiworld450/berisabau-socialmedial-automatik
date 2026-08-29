@@ -82,6 +82,7 @@ jobs:
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_UEBER_SEITE: ${{ vars.IG_UEBER_SEITE }}
           MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
         run: |
           if [ -n "${{ inputs.datum }}" ]; then
@@ -154,6 +155,7 @@ jobs:
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_UEBER_SEITE: ${{ vars.IG_UEBER_SEITE }}
           MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
           FREIGABE_PFLICHT: ${{ vars.FREIGABE_PFLICHT }}
           MAX_POSTS_24H: ${{ vars.MAX_POSTS_24H }}
