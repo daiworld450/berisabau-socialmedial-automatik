@@ -21,7 +21,8 @@ from pathlib import Path
 
 import requests
 
-from config import TELEGRAM_BOT_TOKEN_SOCIAL, TELEGRAM_CHAT_ID
+from config import (TELEGRAM_BOT_TOKEN_SOCIAL, TELEGRAM_BOT_TOKEN_ADS,
+                    TELEGRAM_CHAT_ID, TELEGRAM_CHAT_ID_ADS)
 
 log = logging.getLogger(__name__)
 
@@ -37,6 +38,10 @@ class TelegramFehler(Exception):
 
 def aktiv() -> bool:
     return bool(TELEGRAM_BOT_TOKEN_SOCIAL and TELEGRAM_CHAT_ID)
+
+
+def aktiv_ads() -> bool:
+    return bool(TELEGRAM_BOT_TOKEN_ADS and TELEGRAM_CHAT_ID_ADS)
 
 
 def _basis_url(bot_token: str) -> str:
@@ -109,9 +114,11 @@ def sende_vorschlag(bild: Path, kurztext: str, volltext: str, plan_id: str,
 
 
 def sende_text(text: str, chat_id: str | None = None, markdown: bool = False) -> None:
-    """Schickt eine Textnachricht über den Social-Media-Bot."""
+    """chat_id=TELEGRAM_CHAT_ID_ADS schickt automatisch über den Ads-Bot,
+    sonst über den Social-Media-Bot - beide haben getrennte Tokens."""
     ziel = chat_id or TELEGRAM_CHAT_ID
-    bot_token = TELEGRAM_BOT_TOKEN_SOCIAL
+    ist_ads = ziel == TELEGRAM_CHAT_ID_ADS
+    bot_token = TELEGRAM_BOT_TOKEN_ADS if ist_ads else TELEGRAM_BOT_TOKEN_SOCIAL
     if not (bot_token and ziel):
         return
     zusatz = {"parse_mode": "Markdown"} if markdown else {}
@@ -130,9 +137,40 @@ def markiere(nachricht_id: int, zusatz: str, chat_id: str | None = None) -> None
         log.warning("Bildunterschrift konnte nicht aktualisiert werden: %s", fehler)
 
 
-def beantworte_callback(callback_query_id: str, text: str = "") -> None:
-    """Nimmt der Taste im Chat den Lade-Kreis - ohne das bleibt sie hängen."""
-    bot_token = TELEGRAM_BOT_TOKEN_SOCIAL
+def markiere_text(nachricht_id: int, neuer_text: str, chat_id: str | None = None) -> None:
+    """Wie markiere(), aber für reine Textnachrichten (editMessageText statt
+    editMessageCaption) - für Ads-Meldungen, die kein Bild haben."""
+    try:
+        _api("editMessageText", chat_id=chat_id or TELEGRAM_CHAT_ID_ADS,
+            message_id=nachricht_id, text=neuer_text,
+            disable_web_page_preview=True, bot_token=TELEGRAM_BOT_TOKEN_ADS)
+    except TelegramFehler as fehler:
+        log.warning("Text konnte nicht aktualisiert werden: %s", fehler)
+
+
+def sende_meldung(text: str, hash_id: str, chat_id: str | None = None) -> int:
+    """Schickt eine Ads-Kanal-Meldung mit den drei Tasten Merken / Mehr dazu /
+    Ignorieren. Gibt die message_id zurück (für spätere markiere_text()-
+    Aufrufe, wenn der Nutzer eine Taste drückt).
+    """
+    import json as _json
+    tasten = {
+        "inline_keyboard": [[
+            {"text": "📌 Merken", "callback_data": f"merken:{hash_id}"[:64]},
+            {"text": "ℹ️ Mehr dazu", "callback_data": f"mehr:{hash_id}"[:64]},
+            {"text": "🚫 Ignorieren", "callback_data": f"ignorieren:{hash_id}"[:64]},
+        ]]
+    }
+    ergebnis = _api("sendMessage", chat_id=chat_id or TELEGRAM_CHAT_ID_ADS,
+                    text=text, reply_markup=_json.dumps(tasten),
+                    disable_web_page_preview=True, bot_token=TELEGRAM_BOT_TOKEN_ADS)
+    return ergebnis["message_id"]
+
+
+def beantworte_callback(callback_query_id: str, text: str = "", ads: bool = False) -> None:
+    """Nimmt der Taste im Chat den Lade-Kreis - ohne das bleibt sie hängen.
+    ads=True beantwortet über den Ads-Bot (für merken/mehr/ignorieren)."""
+    bot_token = TELEGRAM_BOT_TOKEN_ADS if ads else TELEGRAM_BOT_TOKEN_SOCIAL
     try:
         _api("answerCallbackQuery", callback_query_id=callback_query_id, text=text,
             bot_token=bot_token)
@@ -150,24 +188,44 @@ def hole_antworten(letzte_update_id: int, bot_token: str = TELEGRAM_BOT_TOKEN_SO
     Token, deshalb muss diese Funktion für jeden Bot einzeln aufgerufen werden.
     """
     updates = _api("getUpdates", offset=letzte_update_id + 1, timeout=0,
-                   allowed_updates='["callback_query"]', bot_token=bot_token)
+                   allowed_updates='["callback_query","message"]', bot_token=bot_token)
     treffer = []
     neue_letzte = letzte_update_id
     for u in updates:
         neue_letzte = max(neue_letzte, u["update_id"])
+
         cq = u.get("callback_query")
-        if not cq or "data" not in cq:
+        if cq and "data" in cq:
+            treffer.append({
+                "art": "taste",
+                "daten": cq["data"],
+                "callback_query_id": cq["id"],
+                "nachricht_id": cq["message"]["message_id"],
+            })
             continue
+
+        # Getippte Befehle. Seit 29.08.2026 hört der Bot auch auf Text, damit
+        # jederzeit ein neuer Vorschlag angefordert werden kann - nicht nur
+        # dann, wenn gerade einer zur Freigabe offen ist.
+        nachricht = u.get("message") or {}
+        text = (nachricht.get("text") or "").strip()
+        if not text.startswith("/"):
+            continue
+        # "/neu@MeinBot arg" -> befehl "neu"
+        befehl = text.split()[0].lstrip("/").split("@")[0].lower()
         treffer.append({
-            "daten": cq["data"],
-            "callback_query_id": cq["id"],
-            "nachricht_id": cq["message"]["message_id"],
+            "art": "befehl",
+            "daten": f"befehl:{befehl}",
+            "befehl": befehl,
+            "callback_query_id": None,
+            "nachricht_id": nachricht.get("message_id"),
+            "chat_id": str((nachricht.get("chat") or {}).get("id", "")),
         })
     return treffer, neue_letzte
 
 
-def pruefe_zugang() -> str:
+def pruefe_zugang(ads: bool = False) -> str:
     """Für 'zugang': Botname zurückgeben oder eine TelegramFehler auslösen."""
-    bot_token = TELEGRAM_BOT_TOKEN_SOCIAL
+    bot_token = TELEGRAM_BOT_TOKEN_ADS if ads else TELEGRAM_BOT_TOKEN_SOCIAL
     info = _api("getMe", bot_token=bot_token)
     return f"@{info.get('username', '?')}"
