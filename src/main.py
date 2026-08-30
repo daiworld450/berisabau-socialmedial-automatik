@@ -1267,16 +1267,20 @@ def cmd_zugang(args) -> int:
         except telegram_bot.TelegramFehler as fehler:
             print(f"Ads-Kanal: FEHLER  {fehler}")
 
-    import google_ads_client
-    if not google_ads_client.aktiv():
-        print("Google Ads: nicht eingerichtet – GOOGLE_ADS_* fehlen")
-        print("           Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md")
+    try:
+        import google_ads_client
+    except ImportError:
+        pass
     else:
-        try:
-            zeilen = google_ads_client.wochenvergleich()
-            print(f"Google Ads: OK  {len(zeilen)} Kampagne(n) mit Daten in den letzten 7 Tagen")
-        except Exception as fehler:  # noqa: BLE001 - Zugangsprüfung, jeder Fehler zählt
-            print(f"Google Ads: FEHLER  {fehler}")
+        if not google_ads_client.aktiv():
+            print("Google Ads: nicht eingerichtet – GOOGLE_ADS_* fehlen")
+            print("           Anleitung: docs/05-ADS-KANAL-EINRICHTEN.md")
+        else:
+            try:
+                zeilen = google_ads_client.wochenvergleich()
+                print(f"Google Ads: OK  {len(zeilen)} Kampagne(n) mit Daten in den letzten 7 Tagen")
+            except Exception as fehler:  # noqa: BLE001 - Zugangsprüfung, jeder Fehler zählt
+                print(f"Google Ads: FEHLER  {fehler}")
 
     return 0 if instagram_ok else 1
 
