@@ -1,0 +1,84 @@
+name: Beitrag freigeben
+
+# Wird vom Cloudflare Worker angestossen, sobald im Telegram-Chat auf
+# "Freigeben" gedrueckt wurde. Der Worker kann nicht selbst veroeffentlichen -
+# das braucht die Graph API, das gerenderte Bild und den Verlauf im Repo.
+#
+# Der Worker meldet dem Nutzer sofort "wird veroeffentlicht", dieser Lauf
+# erledigt es dann in rund einer Minute.
+on:
+  repository_dispatch:
+    types: [beitrag-freigeben]
+  workflow_dispatch:
+    inputs:
+      plan_id:
+        description: "Welcher Beitrag (z. B. w-abdichtung)"
+        type: string
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  freigeben:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Abhängigkeiten
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Freigabe vermerken
+        env:
+          PLAN_ID: ${{ github.event.client_payload.plan_id || inputs.plan_id }}
+        run: |
+          if [ -z "$PLAN_ID" ]; then
+            echo "::error::Keine plan_id uebergeben"
+            exit 1
+          fi
+          echo "Freigegeben: $PLAN_ID"
+          python - <<'PY'
+          import os, sys
+          sys.path.insert(0, "src")
+          import freigaben
+          freigaben.freigeben(os.environ["PLAN_ID"])
+          print("Freigabe vermerkt.")
+          PY
+
+      - name: Veröffentlichen
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_UEBER_SEITE: ${{ vars.IG_UEBER_SEITE }}
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          MAX_POSTS_24H: ${{ vars.MAX_POSTS_24H }}
+          TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python src/main.py telegram-veroeffentlichen
+
+      - name: Verlauf sichern
+        if: always()
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          for pfad in content/verlauf.json content/telegram_warteschlange.json docs/posts logs; do
+            if [ -e "$pfad" ]; then git add "$pfad"; fi
+          done
+          git commit -m "Beitrag veroeffentlicht" || echo "nichts zu committen"
+          for versuch in 1 2 3 4 5; do
+            if git pull --rebase --autostash -q && git push -q; then exit 0; fi
+            sleep $((versuch * 5))
+          done
+          echo "Push nicht moeglich - wird beim naechsten Lauf nachgeholt"
