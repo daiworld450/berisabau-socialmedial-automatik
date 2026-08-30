@@ -24,6 +24,7 @@ except ImportError:
     pass
 
 import shutil                # noqa: E402
+import datetime as _dt       # noqa: E402
 from config import OUT_DIR   # noqa: E402
 
 # Nur für die Instagram-Beitragserzeugung nötig (jinja2/playwright). Die
@@ -543,7 +544,7 @@ def cmd_vorrat(args) -> int:
         print(f"  {plan['id']:<22} {plan.get('saeule', '')}")
 
     index = {
-        "erzeugt": datetime.now().isoformat(timespec="seconds"),
+        "erzeugt": _dt.datetime.now().isoformat(timespec="seconds"),
         "tag": tag.isoformat(),
         "eintraege": eintraege,
     }
