@@ -6,6 +6,9 @@ name: Vorrat rendern
 on:
   schedule:
     - cron: "0 3 * * *"     # 05:00 deutscher Sommerzeit
+  # Der Cloudflare Worker stoesst das an, wenn der Vorrat leer ist.
+  repository_dispatch:
+    types: [vorrat-auffuellen]
   workflow_dispatch:
     inputs:
       anzahl:
@@ -37,7 +40,7 @@ jobs:
       - name: Kandidaten rendern
         env:
           MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
-        run: python src/main.py vorrat --anzahl "${{ inputs.anzahl || '5' }}"
+        run: python src/main.py vorrat --anzahl "${{ inputs.anzahl || github.event.client_payload.anzahl || '5' }}"
       - name: Vorrat veröffentlichen
         run: |
           git config user.name  "berisabau-bot"
