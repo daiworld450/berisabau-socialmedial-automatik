@@ -23,6 +23,7 @@ try:
 except ImportError:
     pass
 
+import shutil                # noqa: E402
 from config import OUT_DIR   # noqa: E402
 
 # Nur für die Instagram-Beitragserzeugung nötig (jinja2/playwright). Die
@@ -493,6 +494,65 @@ def _schicke_vorschlag_auf_wunsch(schlange: dict, anderes_thema: bool = False) -
         "nachricht_id": vorschlag.nachricht_id,
         "abgelehnt": sorted(ausschluss),
     }
+
+
+def cmd_vorrat(args) -> int:
+    """Rendert mehrere Kandidaten auf Vorrat und legt sie öffentlich ab.
+
+    Damit der Cloudflare Worker auf /neu in ein bis zwei Sekunden antworten
+    kann, muss das Bild schon fertig sein. Rendern dauert im Actions-Lauf
+    rund eine Minute - viel zu lang für einen Chat. Also einmal nachts alles
+    vorbereiten, tagsüber nur noch ausliefern.
+
+    Ergebnis: docs/vorrat/<id>.jpg samt docs/vorrat/index.json.
+    """
+    from config import MEDIA_BASE_URL
+
+    ziel = Path(__file__).resolve().parent.parent / "docs" / "vorrat"
+    ziel.mkdir(parents=True, exist_ok=True)
+
+    tag = date.fromisoformat(args.datum) if args.datum else _naechster_posttag()
+    if tag is None:
+        print("\nKein Posttag in den nächsten drei Wochen.\n")
+        return 0
+
+    eintraege = []
+    ausschluss: set[str] = set()
+    for _ in range(args.anzahl):
+        plan = planer.plane(tag, ausschluss=ausschluss)
+        if plan is None:
+            break
+        ausschluss.add(plan["id"])
+
+        bild = _erzeuge(plan)
+        caption_datei = _schreibe_caption(plan, bild, mit_ki=False)
+        caption = caption_datei.read_text(encoding="utf-8")
+
+        name = f"{plan['id']}.jpg"
+        shutil.copy2(bild, ziel / name)
+        eintraege.append({
+            "id": plan["id"],
+            "tag": tag.isoformat(),
+            "saeule": plan.get("saeule") or plan.get("rubrik", ""),
+            "thema": plan.get("thema", ""),
+            "bild": name,
+            "bild_url": f"{MEDIA_BASE_URL.rsplit('/', 1)[0]}/vorrat/{name}" if MEDIA_BASE_URL else "",
+            "kurztext": _telegram_kurztext(plan, caption),
+            "caption": caption,
+        })
+        print(f"  {plan['id']:<22} {plan.get('saeule', '')}")
+
+    index = {
+        "erzeugt": datetime.now().isoformat(timespec="seconds"),
+        "tag": tag.isoformat(),
+        "eintraege": eintraege,
+    }
+    (ziel / "index.json").write_text(
+        json.dumps(index, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    print(f"\n{len(eintraege)} Kandidat(en) auf Vorrat für {tag.isoformat()}.")
+    print(f"Abgelegt in docs/vorrat/\n")
+    return 0
 
 
 def cmd_telegram_abfragen(args) -> int:
@@ -1282,6 +1342,12 @@ def main() -> int:
                           help="nächsten Kandidaten rendern und zur Freigabe an Telegram schicken")
     vs.add_argument("--datum", help="abweichendes Datum, z. B. 2026-08-20")
     vs.set_defaults(func=cmd_vorschlagen)
+
+    vr = unter.add_parser("vorrat",
+                          help="Kandidaten auf Vorrat rendern (für den Worker)")
+    vr.add_argument("--anzahl", type=int, default=5)
+    vr.add_argument("--datum", default="")
+    vr.set_defaults(func=cmd_vorrat)
 
     ta = unter.add_parser("telegram-abfragen",
                           help="Telegram-Antworten abholen: freigeben -> posten, ablehnen -> neu vorschlagen")
