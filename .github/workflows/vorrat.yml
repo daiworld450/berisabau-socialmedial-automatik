@@ -1,0 +1,52 @@
+name: Vorrat rendern
+
+# Rendert mehrere Kandidaten im Voraus und legt sie auf GitHub Pages ab,
+# damit der Cloudflare Worker auf /neu sofort antworten kann, ohne selbst
+# zu rendern. Veroeffentlicht nichts.
+on:
+  schedule:
+    - cron: "0 3 * * *"     # 05:00 deutscher Sommerzeit
+  workflow_dispatch:
+    inputs:
+      anzahl:
+        description: "Wie viele Kandidaten"
+        type: string
+        default: "5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vorrat
+  cancel-in-progress: false
+
+jobs:
+  vorrat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Abhängigkeiten
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Kandidaten rendern
+        env:
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+        run: python src/main.py vorrat --anzahl "${{ inputs.anzahl || '5' }}"
+      - name: Vorrat veröffentlichen
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          git add docs/vorrat
+          git commit -m "Vorrat aufgefuellt" || echo "nichts zu committen"
+          for versuch in 1 2 3 4 5; do
+            if git pull --rebase --autostash -q && git push -q; then exit 0; fi
+            sleep $((versuch * 5))
+          done
+          echo "::error::Push nach 5 Versuchen fehlgeschlagen"
+          exit 1
