@@ -1,16 +1,17 @@
 {
   "wartend": {
     "2026-09-01": {
-      "plan_id": "w-silikon",
-      "nachricht_id": 24,
+      "plan_id": "w-dauer-bad",
+      "nachricht_id": 27,
       "abgelehnt": [
         "w-abdichtung",
         "w-estrich-zeit",
         "w-gefaelle",
-        "w-grossformat"
+        "w-grossformat",
+        "w-silikon"
       ]
     }
   },
-  "letzte_update_id_social": 131777222,
+  "letzte_update_id_social": 131777223,
   "letzte_update_id_ads": 0
 }
