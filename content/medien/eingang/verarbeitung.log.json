@@ -1,0 +1,36 @@
+[
+  {
+    "zeitpunkt": "2026-08-30T15:35:48",
+    "verarbeitet": [
+      {
+        "eingang": "20260830-01-rohranschluesse.jpg",
+        "pool": "20260830-153547_20260830-01-rohranschluesse.jpg"
+      },
+      {
+        "eingang": "20260830-02-vorwand-anschluesse.jpg",
+        "pool": "20260830-153548_20260830-02-vorwand-anschluesse.jpg"
+      },
+      {
+        "eingang": "20260830-03-vorwand-gesamt.jpg",
+        "pool": "20260830-153548_20260830-03-vorwand-gesamt.jpg"
+      },
+      {
+        "eingang": "20260830-04-vorwand-geberit.jpg",
+        "pool": "20260830-153548_20260830-04-vorwand-geberit.jpg"
+      },
+      {
+        "eingang": "20260830-05-vorwand-gehrung.jpg",
+        "pool": "20260830-153548_20260830-05-vorwand-gehrung.jpg"
+      },
+      {
+        "eingang": "20260830-06-vorwand-im-bau.jpg",
+        "pool": "20260830-153548_20260830-06-vorwand-im-bau.jpg"
+      },
+      {
+        "eingang": "20260830-07-vorwand-rohbau.jpg",
+        "pool": "20260830-153548_20260830-07-vorwand-rohbau.jpg"
+      }
+    ],
+    "fehlgeschlagen": []
+  }
+]
