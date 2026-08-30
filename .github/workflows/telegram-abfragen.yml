@@ -10,7 +10,7 @@ name: Telegram-Antworten abfragen
 # Bei "Ablehnen": ein neuer Kandidat wird gerendert und erneut geschickt.
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
