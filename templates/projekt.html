@@ -1,18 +1,30 @@
 {% extends "_layout.html" %}
 
+{# Baustellenfoto mit Aussage.
+
+   Vorher stand die Ueberschrift klein ueber dem Foto und ging im Bild unter -
+   nebeneinander im Raster sah der Kanal aus wie eine Kamerarolle. Jetzt traegt
+   jedes Foto eine Aussage, die auch als Vorschaubild wirkt: kraeftige Zeile,
+   roter Balken darunter, Untertitel eine Stufe kleiner.
+
+   Bewusst NICHT uebernommen von den Vorbildern: deren Farbwelt. Rot, Schwarz
+   und die Rajdhani bleiben - nur die Anordnung ist neu.
+#}
+
 {% block hintergrund %}
 <div class="foto"><img src="{{ bild }}" alt="" /></div>
 <div class="schleier"></div>
 {% endblock %}
 
 {% block mitte %}
-<div class="mitte" style="justify-content:flex-end;padding-bottom:20px">
-  <div class="eyebrow">{{ eyebrow | default('Aus der Werkstatt') }}</div>
-  <h1>{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h1>
+<div class="mitte foto-aussage">
+  {% if eyebrow %}<div class="eyebrow">{{ eyebrow }}</div>{% endif %}
+  <h1 class="gross">{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h1>
+  <div class="aussage-balken"></div>
   {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
   {% if details %}
-  <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap">
-    {% for d in details %}<span class="gewerk-pille" style="font-size:20px;letter-spacing:1.5px">{{ d }}</span>{% endfor %}
+  <div class="foto-pillen">
+    {% for d in details %}<span class="gewerk-pille">{{ d }}</span>{% endfor %}
   </div>
   {% endif %}
 </div>
