@@ -363,7 +363,8 @@ def pruefe_zugang() -> Ergebnis:
 # Protokoll
 # --------------------------------------------------------------------------- #
 def protokolliere(thema_id: str, bild: str, ergebnis: Ergebnis | None,
-                  fehler: str | None = None) -> None:
+                  fehler: str | None = None,
+                  hashtag_satz: str | None = None) -> None:
     """Eine Zeile JSON je Versuch – auch bei Fehlschlag. Macht Störungen nachvollziehbar."""
     LOG_DATEI.parent.mkdir(parents=True, exist_ok=True)
     zeile = {
@@ -374,6 +375,9 @@ def protokolliere(thema_id: str, bild: str, ergebnis: Ergebnis | None,
         "media_id": ergebnis.id if ergebnis else None,
         "permalink": ergebnis.permalink if ergebnis else None,
         "fehler": fehler,
+        # Ohne den verwendeten Hashtag-Satz laesst sich spaeter nicht
+        # zuordnen, welche Variante Reichweite gebracht hat.
+        "hashtag_satz": hashtag_satz,
     }
     with LOG_DATEI.open("a", encoding="utf-8") as f:
         f.write(json.dumps(zeile, ensure_ascii=False) + "\n")
