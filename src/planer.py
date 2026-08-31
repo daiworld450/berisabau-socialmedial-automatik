@@ -23,6 +23,7 @@ import json
 from datetime import date, datetime
 from pathlib import Path
 
+import einwilligung
 from config import MEDIEN_DIR, STATE_DATEI, THEMEN
 
 PROJEKTE_DIR = MEDIEN_DIR / "projekte"
@@ -101,10 +102,17 @@ def _gesperrt(thema_id: str, tag: date, verlauf: dict[str, str]) -> bool:
 # Medien
 # --------------------------------------------------------------------------- #
 def _bilder(ordner: Path) -> list[Path]:
+    """Bilder eines Ordners - nur die mit Einwilligung des Kunden.
+
+    Diese Funktion ist die einzige Stelle, ueber die Fotos in einen Beitrag
+    gelangen. Deshalb sitzt die Sperre hier: Was in
+    content/medien/freigabe.json fehlt, kann gar nicht erst ausgewaehlt werden.
+    """
     if not ordner.exists():
         return []
-    return sorted(p for p in ordner.iterdir()
-                  if p.is_file() and p.suffix.lower() in BILDENDUNGEN)
+    gefunden = sorted(p for p in ordner.iterdir()
+                      if p.is_file() and p.suffix.lower() in BILDENDUNGEN)
+    return einwilligung.filtere(gefunden)
 
 
 def projekte_mit_paar() -> list[Path]:
@@ -134,10 +142,12 @@ def _projekt_bild(ordner: Path, praefix: str) -> Path | None:
 
 
 def _videos(ordner: Path) -> list[Path]:
+    """Videos eines Ordners - dieselbe Sperre wie bei Bildern."""
     if not ordner.exists():
         return []
-    return sorted(p for p in ordner.iterdir()
-                  if p.is_file() and p.suffix.lower() in VIDEOENDUNGEN)
+    gefunden = sorted(p for p in ordner.iterdir()
+                      if p.is_file() and p.suffix.lower() in VIDEOENDUNGEN)
+    return einwilligung.filtere(gefunden)
 
 
 def projekte_mit_video() -> list[Path]:
