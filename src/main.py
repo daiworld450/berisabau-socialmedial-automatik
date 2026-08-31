@@ -63,6 +63,30 @@ def _erzeuge_alle(plan: dict, format: str = "feed") -> list[Path]:
     return pfade
 
 
+def _video_zielname(plan: dict) -> str:
+    """Dateiname, unter dem das Reel-Video in out/ und docs/posts/ landet.
+
+    Dieselbe Namensbildung wie beim Titelbild (_erzeuge) – nur so findet der
+    Veröffentlichungsschritt später dieselbe Datei wieder, die der Render-
+    Schritt schon öffentlich abgelegt hat.
+    """
+    quelle = Path(plan["video"])
+    basis = f"{plan['datum']}_{plan['rubrik']}_{kuerze_dateiname(plan['id'])}"
+    return f"{basis}{quelle.suffix.lower()}"
+
+
+def _kopiere_video(plan: dict) -> Path:
+    """Kopiert das Rohvideo aus content/medien/projekte/ nach out/.
+
+    Das Original bleibt unangetastet im Projektordner; erst diese Kopie wird
+    vom Workflow nach docs/posts/ übernommen und damit öffentlich erreichbar
+    – genau wie das gerenderte Titelbild.
+    """
+    ziel = OUT_DIR / _video_zielname(plan)
+    shutil.copy2(plan["video"], ziel)
+    return ziel
+
+
 def _schreibe_caption(plan: dict, bild: Path, mit_ki: bool) -> Path:
     caption = texter.baue_caption(plan, mit_ki=mit_ki)
     ziel = bild.with_suffix(".txt")
@@ -129,6 +153,9 @@ def cmd_heute(args) -> int:
     caption_datei = _schreibe_caption(plan, bild, mit_ki=args.ki)
     print(f"Bild     : {bild}")
     print(f"Text     : {caption_datei}")
+    if plan.get("typ") == "reel":
+        video = _kopiere_video(plan)
+        print(f"Video    : {video}")
 
     if not args.posten:
         print("\nNicht veröffentlicht (kein --posten). "
@@ -169,9 +196,9 @@ def _veroeffentliche(plan: dict, tag: date, bild: Path, caption_datei: Path,
     typ = plan.get("typ", "einzel")
     try:
         if typ == "reel":
-            print(f"Typ      : Reel ({Path(plan['video']).name})")
+            print(f"Typ      : Reel ({_video_zielname(plan)})")
             ergebnis = publisher.veroeffentliche_reel(
-                Path(plan["video"]).name, caption,
+                _video_zielname(plan), caption,
                 titelbild_dateiname=bild.name, trockenlauf=trocken)
         elif typ == "carousel":
             slides = _erzeuge_alle(plan)
@@ -225,7 +252,7 @@ def _auch_facebook(plan: dict, bild, typ: str, trocken: bool = False,
     try:
         if typ == "reel":
             ergebnis = facebook.veroeffentliche_video(
-                Path(plan["video"]).name, text,
+                _video_zielname(plan), text,
                 titel=plan["felder"].get("titel_stark", ""),
                 trockenlauf=trocken)
         elif typ == "carousel":
@@ -650,11 +677,17 @@ def cmd_telegram_abfragen(args) -> int:
             print(f"\nGerendert, wartet auf Veröffentlichung: {plan['id']} ({tag_iso})")
             bilder = (_erzeuge_alle(plan) if plan.get("typ") == "carousel" else [_erzeuge(plan)])
             _schreibe_caption(plan, bilder[0], mit_ki=False)
+            dateinamen = [b.name for b in bilder]
+            if plan.get("typ") == "reel":
+                # Läuft über dieselbe "bilder"-Liste wie die Bilder – der
+                # Workflow kopiert/prüft jede Datei darin gleich, ob Bild
+                # oder Video.
+                dateinamen.append(_kopiere_video(plan).name)
             freigegeben.append({
                 "tag": tag_iso,
                 "plan_id": plan["id"],
                 "abgelehnt": eintrag["abgelehnt"],
-                "bilder": [b.name for b in bilder],
+                "bilder": dateinamen,
                 "hauptbild": bilder[0].name,
             })
             del schlange["wartend"][tag_iso]
