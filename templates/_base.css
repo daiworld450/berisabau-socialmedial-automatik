@@ -62,7 +62,7 @@ html, body {
 .schleier {
   position: absolute; inset: 0; z-index: 2;
   background:
-    linear-gradient(0deg,  rgba(6,6,10,.95) 0%, rgba(6,6,10,.55) 38%, rgba(6,6,10,.10) 62%),
+    linear-gradient(0deg,  rgba(6,6,10,.97) 0%, rgba(6,6,10,.80) 30%, rgba(6,6,10,.30) 55%, rgba(6,6,10,.06) 72%),
     linear-gradient(90deg, rgba(6,6,10,.72) 0%, rgba(6,6,10,.18) 55%, transparent 100%);
 }
 
@@ -380,14 +380,8 @@ h1.gross .strich::after { height: {{ (m.h1 * 0.19) | round | int }}px; bottom: 1
   padding-bottom: 8px;
 }
 .mitte.foto-aussage h1 {
-  margin-bottom: 0;
+  margin-bottom: 30px;
   text-shadow: 0 4px 30px rgba(0,0,0,.55);
-}
-.aussage-balken {
-  width: 132px; height: 9px; border-radius: 500px;
-  background: var(--rot);
-  margin: 26px 0 24px;
-  box-shadow: 0 8px 26px rgba(208,0,0,.5);
 }
 .mitte.foto-aussage .lead {
   max-width: 88%;
