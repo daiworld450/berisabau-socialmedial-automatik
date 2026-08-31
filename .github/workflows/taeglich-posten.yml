@@ -104,12 +104,28 @@ jobs:
           echo "bild=$(basename "$BILD")" >> "$GITHUB_OUTPUT"
           echo "Erzeugt: $BILD"
 
+          # Ein Reel legt zusätzlich zum Titelbild eine Videodatei in out/ ab
+          # (main.py cmd_heute -> _kopiere_video). Ohne diesen Schritt bliebe
+          # das Video nur im Projektordner - Instagram/Facebook laden es aber
+          # selbst von einer öffentlichen URL, brauchen also die Kopie hier.
+          VIDEO=$(ls -t out/*.mp4 out/*.mov 2>/dev/null | head -1 || true)
+          if [ -n "$VIDEO" ]; then
+            echo "hat_video=true" >> "$GITHUB_OUTPUT"
+            echo "video=$(basename "$VIDEO")" >> "$GITHUB_OUTPUT"
+            echo "Video erzeugt: $VIDEO"
+          else
+            echo "hat_video=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Bild öffentlich ablegen
         id: hochladen
         if: ${{ steps.erzeugen.outputs.hat_bild == 'true' }}
         run: |
           mkdir -p docs/posts
           cp "out/${{ steps.erzeugen.outputs.bild }}" docs/posts/
+          if [ "${{ steps.erzeugen.outputs.hat_video }}" = "true" ]; then
+            cp "out/${{ steps.erzeugen.outputs.video }}" docs/posts/
+          fi
           git config user.name  "berisabau-bot"
           git config user.email "actions@github.com"
           # Fehlt EINER dieser Pfade, bricht "git add" mit allen ab und
@@ -148,6 +164,24 @@ jobs:
           done
           echo "::error::Bild ist nicht öffentlich erreichbar: $URL"
           echo "Ist das Repository öffentlich? Stimmt MEDIA_BASE_URL?"
+          exit 1
+
+      - name: Prüfen, ob das Reel-Video erreichbar ist
+        if: ${{ steps.erzeugen.outputs.hat_video == 'true' && !inputs.nur_erzeugen }}
+        env:
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+        run: |
+          URL="$MEDIA_BASE_URL/${{ steps.erzeugen.outputs.video }}"
+          echo "Prüfe $URL"
+          # HEAD statt GET: die Videodatei muss nur erreichbar sein, nicht
+          # bei jedem der bis zu 20 Versuche komplett heruntergeladen werden.
+          for i in $(seq 1 20); do
+            CODE=$(curl -sL -o /dev/null -w "%{http_code}" -I "$URL")
+            if [ "$CODE" = "200" ]; then echo "Erreichbar nach $((i*10))s"; exit 0; fi
+            echo "  Versuch $i: HTTP $CODE"
+            sleep 10
+          done
+          echo "::error::Video ist nicht öffentlich erreichbar: $URL"
           exit 1
 
       - name: Auf Instagram posten
