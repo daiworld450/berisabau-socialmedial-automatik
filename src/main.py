@@ -1036,6 +1036,51 @@ def cmd_seo(args) -> int:
     return 0
 
 
+
+def cmd_kennzahlen(args) -> int:
+    """Stand je Beitrag 72 Stunden nach der Veröffentlichung festschreiben."""
+    import lernen
+    if args.vergleich:
+        print("\n" + lernen.vergleich() + "\n")
+        return 0
+    print("\n" + lernen.nachtragen(trockenlauf=args.trockenlauf) + "\n")
+    return 0
+
+
+def cmd_lernen(args) -> int:
+    """Versuche festhalten und am Prüfdatum auswerten."""
+    import lernen
+    if args.neu:
+        print("\nNeuer Versuch. Vier Angaben, dann steht er im Protokoll.\n")
+        b = input("Beobachtung : ").strip()
+        h = input("Hypothese   : ").strip()
+        m = input("Maßnahme    : ").strip()
+        e = input("Erwartung   : ").strip()
+        if not all((b, h, m, e)):
+            print("Alle vier Angaben werden gebraucht. Nichts eingetragen.")
+            return 1
+        v = lernen.versuch_anlegen(b, h, m, e, wochen=args.wochen)
+        print(f"\nVersuch {v['nummer']} angelegt. Prüfdatum: {v['pruefdatum']}\n")
+        return 0
+
+    if args.abschliessen:
+        text = input("Was kam heraus? ").strip()
+        if not text:
+            print("Ohne Ergebnis bleibt der Versuch offen.")
+            return 1
+        ok = lernen.versuch_abschliessen(args.abschliessen, text)
+        print("Eingetragen." if ok else f"Versuch {args.abschliessen} nicht gefunden.")
+        return 0 if ok else 1
+
+    print("\n" + lernen.protokoll_text())
+    faellig = lernen.faellige_versuche()
+    if faellig:
+        print(f"{len(faellig)} Versuch(e) fällig — Ergebnis eintragen mit:")
+        for v in faellig:
+            print(f"  python src/main.py lernen --abschliessen {v['nummer']}")
+        print()
+    return 0
+
 def cmd_pruefen(args) -> int:
     import pruefung
     geprueft, befunde = pruefung.alles()
@@ -1430,6 +1475,22 @@ def main() -> int:
 
     so = unter.add_parser("seo-check", help="Anteil lokaler Suchbegriffe im Fließtext (informativ)")
     so.set_defaults(func=cmd_seo)
+
+    kz = unter.add_parser("kennzahlen",
+                          help="Stand je Beitrag 72 Stunden nach dem Posten festschreiben")
+    kz.add_argument("--trockenlauf", action="store_true",
+                    help="nur zeigen, was fällig wäre")
+    kz.add_argument("--vergleich", action="store_true",
+                    help="erfasste Beiträge gegeneinander")
+    kz.set_defaults(func=cmd_kennzahlen)
+
+    ln = unter.add_parser("lernen", help="Versuche festhalten und auswerten")
+    ln.add_argument("--neu", action="store_true", help="neuen Versuch anlegen")
+    ln.add_argument("--abschliessen", type=int, metavar="NR",
+                    help="Ergebnis für diesen Versuch eintragen")
+    ln.add_argument("--wochen", type=int, default=4,
+                    help="Laufzeit bis zum Prüfdatum (Vorgabe 4)")
+    ln.set_defaults(func=cmd_lernen)
 
     pf = unter.add_parser("pruefen", help="Selbstprüfung nach CONTENT-PROMPT.md")
     pf.set_defaults(func=cmd_pruefen)
