@@ -124,8 +124,34 @@ def _schon_veroeffentlicht(tag: date) -> bool:
     return any(e["datum"] == tag.isoformat() for e in planer.lade_verlauf()["eintraege"])
 
 
+def _gesperrte_medien_melden() -> str:
+    """Gibt eine Warnung zurueck, wenn Fotos ohne Einwilligung liegenbleiben.
+
+    Ohne diese Meldung faellt der Planer stillschweigend auf einen Textbeitrag
+    zurueck, und niemand merkt wochenlang, dass die Baustellenfotos gesperrt
+    sind.
+    """
+    import einwilligung
+    from config import MEDIEN_DIR
+    medien = [p for p in MEDIEN_DIR.rglob("*")
+              if p.is_file() and p.suffix.lower() in {".jpg", ".jpeg", ".png",
+                                                      ".mp4", ".mov"}
+              and not p.name.startswith(".")] if MEDIEN_DIR.exists() else []
+    gesperrt = einwilligung.gesperrte(medien)
+    if not gesperrt:
+        return ""
+    motive = {p.name.split("_", 1)[-1] for p in gesperrt}
+    return (f"\n⚠️  {len(motive)} Motiv(e) gesperrt - keine Einwilligung des "
+            f"Kunden hinterlegt.\n    Eintragen: einwilligungen/"
+            f"EINWILLIGUNG-EINTRAGEN.command\n")
+
+
 def cmd_heute(args) -> int:
     tag = date.fromisoformat(args.datum) if args.datum else date.today()
+
+    warnung = _gesperrte_medien_melden()
+    if warnung:
+        print(warnung)
 
     # Früh raus, bevor unnötig gerendert und nach docs/posts gepusht wird:
     # bei --posten zählt nur, ob für diesen Tag schon etwas draußen ist
