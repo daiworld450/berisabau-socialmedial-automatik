@@ -3,9 +3,10 @@
 {# Baustellenfoto mit Aussage.
 
    Vorher stand die Ueberschrift klein ueber dem Foto und ging im Bild unter -
-   nebeneinander im Raster sah der Kanal aus wie eine Kamerarolle. Jetzt traegt
-   jedes Foto eine Aussage, die auch als Vorschaubild wirkt: kraeftige Zeile,
-   roter Balken darunter, Untertitel eine Stufe kleiner.
+   nebeneinander im Raster sah der Kanal aus wie eine Kamerarolle. Jetzt sitzt
+   die Aussage gross und unten im Bild, wo der Verlauf sie traegt. Den roten
+   Akzent liefert der Unterstrich der Vorlage - ein zweiter Balken darunter war
+   einer zu viel.
 
    Bewusst NICHT uebernommen von den Vorbildern: deren Farbwelt. Rot, Schwarz
    und die Rajdhani bleiben - nur die Anordnung ist neu.
@@ -20,7 +21,6 @@
 <div class="mitte foto-aussage">
   {% if eyebrow %}<div class="eyebrow">{{ eyebrow }}</div>{% endif %}
   <h1 class="gross">{{ titel_vor }}{% if titel_stark %}<span class="strich">{{ titel_stark }}</span>{% endif %}{{ titel_nach }}</h1>
-  <div class="aussage-balken"></div>
   {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
   {% if details %}
   <div class="foto-pillen">
