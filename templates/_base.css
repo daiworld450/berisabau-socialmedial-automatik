@@ -191,6 +191,9 @@ h1 .strich::after {
 .fuss .links { display: flex; align-items: center; gap: 16px; }
 .fuss .handle { font-family: var(--head); font-weight: 700; font-size: 28px; letter-spacing: 1px; color: #fff; }
 .fuss .ort { font-family: var(--body); font-size: 22px; color: rgba(255,255,255,.58); }
+/* Die Nummer ist der eigentliche Handlungsaufruf - sie darf nicht mit der
+   Webadresse verschwimmen. */
+.fuss .tel { color: #fff; font-weight: 600; letter-spacing: .3px; }
 .cta-pille {
   display: inline-flex; align-items: center; gap: 12px;
   background: var(--rot); color: #fff; border-radius: 500px; padding: 18px 34px;
@@ -366,3 +369,32 @@ h1.gross .strich::after { height: {{ (m.h1 * 0.19) | round | int }}px; bottom: 1
   text-transform: uppercase; color: rgba(255,255,255,.62);
 }
 .story-wisch .pfeil { display: block; font-size: 40px; margin-top: 8px; color: var(--rot-hell); }
+
+/* ---------- Baustellenfoto mit Aussage ------------------------------------
+   Der Text sitzt unten im Bild, nicht mittig: Der obere Teil bleibt frei fuers
+   Motiv, der Verlauf im .schleier traegt die Schrift. So bleibt das Foto
+   erkennbar und die Zeile trotzdem lesbar - auch als kleines Vorschaubild.
+   -------------------------------------------------------------------------- */
+.mitte.foto-aussage {
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+.mitte.foto-aussage h1 {
+  margin-bottom: 0;
+  text-shadow: 0 4px 30px rgba(0,0,0,.55);
+}
+.aussage-balken {
+  width: 132px; height: 9px; border-radius: 500px;
+  background: var(--rot);
+  margin: 26px 0 24px;
+  box-shadow: 0 8px 26px rgba(208,0,0,.5);
+}
+.mitte.foto-aussage .lead {
+  max-width: 88%;
+  text-shadow: 0 2px 18px rgba(0,0,0,.6);
+}
+.foto-pillen { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+.foto-pillen .gewerk-pille {
+  font-size: 20px; letter-spacing: 1.5px;
+  background: rgba(11,11,15,.55);
+}
