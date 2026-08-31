@@ -31,7 +31,10 @@
       <div class="links">
         <div>
           <div class="handle">{{ b.firma.instagram }}</div>
-          <div class="ort">{{ b.firma.plz_ort }} · {{ b.firma.website }}</div>
+          {# Telefonnummer statt PLZ: Wer den Beitrag sieht, soll anrufen
+             koennen, ohne erst das Profil zu oeffnen. Der Ort steht ohnehin
+             im Profil und in jedem Hashtag-Block. #}
+          <div class="ort"><span class="tel">{{ b.firma.telefon }}</span> · {{ b.firma.website }}</div>
         </div>
       </div>
       <span class="cta-pille">{{ cta | default('Jetzt anfragen') }}</span>
