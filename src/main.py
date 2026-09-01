@@ -24,6 +24,7 @@ except ImportError:
     pass
 
 import shutil                # noqa: E402
+import subprocess            # noqa: E402
 import datetime as _dt       # noqa: E402
 from config import OUT_DIR   # noqa: E402
 
@@ -948,6 +949,182 @@ def cmd_einpflegen(args) -> int:
     return 0
 
 
+# --------------------------------------------------------------------------- #
+# Reel-Werk an die Automatik anschliessen
+# --------------------------------------------------------------------------- #
+REELWERK_FERTIG = Path(__file__).resolve().parent.parent / "reelwerk" / "fertig"
+PROJEKTE_DIR = Path(__file__).resolve().parent.parent / "content" / "medien" / "projekte"
+
+REEL_ENDUNGEN = {".mp4", ".mov"}
+
+# reelwerk/fertig/ sperrt die .gitignore, content/medien/projekte/ nicht.
+# Das ist Absicht: Rohmaterial bleibt draussen, das fertige Reel darf ins Repo.
+# Das Reel-Werk kodiert auf rund 8 MB. Wer deutlich darueber liegt, hat eine
+# unbearbeitete Handydatei erwischt - die gehoert nicht in ein Git-Repo.
+MAX_REEL_MB = 20
+
+_UMLAUTE = {"\u00e4": "ae", "\u00f6": "oe", "\u00fc": "ue", "\u00df": "ss"}
+
+
+def _projektname(text: str) -> str:
+    """Aus einem Dateinamen einen Ordnernamen machen: klein, ASCII, mit Bindestrich."""
+    name = text.strip().lower()
+    for zeichen, ersatz in _UMLAUTE.items():
+        name = name.replace(zeichen, ersatz)
+    name = "".join(z if (z.isascii() and z.isalnum()) else "-" for z in name)
+    while "--" in name:
+        name = name.replace("--", "-")
+    return name.strip("-")
+
+
+def _fertige_reels() -> list[Path]:
+    if not REELWERK_FERTIG.exists():
+        return []
+    return sorted(p for p in REELWERK_FERTIG.iterdir()
+                  if p.is_file() and p.suffix.lower() in REEL_ENDUNGEN)
+
+
+def _ffmpeg() -> str | None:
+    """ffmpeg liegt auf diesem Mac unter ~/.local/bin, oft ausserhalb des PATH."""
+    gefunden = shutil.which("ffmpeg")
+    if gefunden:
+        return gefunden
+    eigen = Path.home() / ".local" / "bin" / "ffmpeg"
+    return str(eigen) if eigen.exists() else None
+
+
+def _titelbild_ziehen(video: Path, ziel: Path, sekunde: float = 0.0) -> bool:
+    """Ein Einzelbild aus dem Video nach ziel schreiben. True, wenn es klappte."""
+    werkzeug = _ffmpeg()
+    if not werkzeug:
+        return False
+    ergebnis = subprocess.run(
+        [werkzeug, "-y", "-ss", f"{sekunde:.3f}", "-i", str(video),
+         "-frames:v", "1", "-q:v", "2", str(ziel)],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return (ergebnis.returncode == 0 and ziel.exists()
+            and ziel.stat().st_size > 0)
+
+
+def cmd_reel_einpflegen(args) -> int:
+    """Fertiges Reel aus reelwerk/fertig/ in einen Projektordner legen.
+
+    Damit haengt das Reel-Werk an der Automatik: der Planer sucht Videos in
+    content/medien/projekte/<name>/ und macht daraus einen Beitrag vom Typ
+    "reel" (planer._aus_video). Er braucht dort drei Dinge - das Video, ein
+    Titelbild mit dem Praefix "cover" oder "nachher", und optional eine
+    info.json mit Titel, Gewerk und Ort. Genau die legt dieser Befehl an.
+    """
+    if not args.datei:
+        vorhanden = _fertige_reels()
+        if not vorhanden:
+            print(f"\nIn {REELWERK_FERTIG} liegt kein fertiges Reel.")
+            print("Erst Clips ablegen und REELS-MACHEN.command starten.\n")
+            return 1
+        print(f"\nFertige Reels in {REELWERK_FERTIG}:\n")
+        for p in vorhanden:
+            print(f"  {p.name}  ({p.stat().st_size / 1024 / 1024:.1f} MB)")
+        print("\nEinpflegen mit:")
+        print("  python src/main.py reel-einpflegen <Datei> [--name bad-heiermannstr]\n")
+        return 0
+
+    quelle = Path(args.datei)
+    if not quelle.exists():
+        # Der blosse Dateiname aus der Liste oben reicht.
+        quelle = REELWERK_FERTIG / Path(args.datei).name
+    if not quelle.exists():
+        print(f"\nFEHLER: {args.datei} gibt es nicht, auch nicht in "
+              f"{REELWERK_FERTIG}.\n", file=sys.stderr)
+        return 1
+    if quelle.suffix.lower() not in REEL_ENDUNGEN:
+        print(f"\nFEHLER: {quelle.name} ist kein Video. Erlaubt sind "
+              f"{', '.join(sorted(REEL_ENDUNGEN))}.\n", file=sys.stderr)
+        return 1
+
+    mb = quelle.stat().st_size / 1024 / 1024
+    if mb > MAX_REEL_MB:
+        print(f"\nABBRUCH: {quelle.name} wiegt {mb:.1f} MB, erlaubt sind "
+              f"{MAX_REEL_MB} MB.", file=sys.stderr)
+        print("content/medien/projekte/ liegt im Git-Repo, reelwerk/fertig/ "
+              "nicht. Ein fertiges Reel aus dem Reel-Werk wiegt rund 8 MB. "
+              "Diese Datei hat das Reel-Werk vermutlich nie gesehen - "
+              "einmal durch REELS-MACHEN.command schicken.\n", file=sys.stderr)
+        return 1
+
+    name = _projektname(args.name or quelle.stem)
+    if not name:
+        print("\nFEHLER: Aus dem Dateinamen laesst sich kein Ordnername "
+              "bilden. Einen mit --name angeben.\n", file=sys.stderr)
+        return 1
+
+    ordner = PROJEKTE_DIR / name
+    ziel_video = ordner / f"reel{quelle.suffix.lower()}"
+    titelbild = ordner / "cover.jpg"
+    info_datei = ordner / "info.json"
+    titel = args.titel or quelle.stem
+
+    if args.trocken:
+        print(f"\nTrockenlauf, es wird nichts geschrieben.")
+        print(f"  Quelle    : {quelle}  ({mb:.1f} MB)")
+        print(f"  Ordner    : {ordner}")
+        print(f"  Video     : {ziel_video.name}")
+        print(f"  Titelbild : {titelbild.name}"
+              + (" (mitgeliefert)" if args.titelbild else " (aus dem Video)"))
+        print(f"  Info      : {info_datei.name}, Titel \"{titel}\"\n")
+        return 0
+
+    if ziel_video.exists() and not args.ueberschreiben:
+        print(f"\nFEHLER: {ziel_video} gibt es schon. Mit --ueberschreiben "
+              "ersetzen oder einen anderen --name waehlen.\n", file=sys.stderr)
+        return 1
+
+    ordner.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(quelle, ziel_video)
+
+    if args.titelbild:
+        eigenes = Path(args.titelbild)
+        if not eigenes.exists():
+            print(f"\nFEHLER: Titelbild {eigenes} gibt es nicht.\n",
+                  file=sys.stderr)
+            return 1
+        shutil.copy2(eigenes, titelbild)
+        bild_ok = True
+    else:
+        bild_ok = _titelbild_ziehen(ziel_video, titelbild, args.sekunde)
+
+    info = {}
+    if info_datei.exists():
+        try:
+            info = json.loads(info_datei.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            info = {}
+    # setdefault statt update: eine von Hand nachgeschaerfte info.json
+    # ueberlebt das erneute Einpflegen desselben Bauvorhabens.
+    for schluessel, wert in (("titel", titel),
+                             ("gewerk", args.gewerk),
+                             ("ort", args.ort),
+                             ("hashtags", args.hashtags),
+                             ("titel_stark", titel)):
+        info.setdefault(schluessel, wert)
+    info_datei.write_text(json.dumps(info, ensure_ascii=False, indent=2) + "\n",
+                          encoding="utf-8")
+
+    print(f"\nReel eingepflegt: {ordner}")
+    print(f"  Video     : {ziel_video.name}  ({mb:.1f} MB)")
+    print(f"  Info      : {info_datei.name}")
+    if bild_ok:
+        print(f"  Titelbild : {titelbild.name}")
+        print("\nDer Planer nimmt den Ordner ab jetzt als Reel auf.")
+        print("Pruefen mit: python src/main.py vorschau --tage 14\n")
+        return 0
+
+    print("  Titelbild : FEHLT")
+    print(f"\nffmpeg wurde nicht gefunden oder der Auszug misslang. Ohne "
+          f"Titelbild rendert der Beitrag nicht. Ein cover.jpg von Hand nach "
+          f"{ordner} legen oder mit --titelbild angeben.\n", file=sys.stderr)
+    return 1
+
+
 def cmd_auswerten(args) -> int:
     import analyse
     import publisher
@@ -1482,6 +1659,24 @@ def main() -> int:
     ep.add_argument("dateien", nargs="+")
     ep.add_argument("--trocken", action="store_true")
     ep.set_defaults(func=cmd_einpflegen)
+
+    rl = unter.add_parser("reel-einpflegen",
+                          help="fertiges Reel aus reelwerk/fertig/ in einen Projektordner legen")
+    rl.add_argument("datei", nargs="?",
+                    help="Dateiname in reelwerk/fertig/; ohne Angabe wird nur aufgelistet")
+    rl.add_argument("--name", help="Ordnername des Bauvorhabens, sonst aus dem Dateinamen")
+    rl.add_argument("--titel", help="Titel für die info.json, sonst der Dateiname")
+    rl.add_argument("--gewerk", default="Sanierung")
+    rl.add_argument("--ort", default="Mülheim an der Ruhr")
+    rl.add_argument("--hashtags", default="sanierung",
+                    help="Satz aus content/hashtags.json")
+    rl.add_argument("--titelbild", help="eigenes Titelbild statt des Auszugs aus dem Video")
+    rl.add_argument("--sekunde", type=float, default=0.0,
+                    help="Zeitpunkt des Einzelbilds in Sekunden (Vorgabe 0 = erstes Bild)")
+    rl.add_argument("--ueberschreiben", action="store_true",
+                    help="vorhandenes Reel im Projektordner ersetzen")
+    rl.add_argument("--trocken", action="store_true", help="nur zeigen, was passieren würde")
+    rl.set_defaults(func=cmd_reel_einpflegen)
 
     aw = unter.add_parser("auswerten", help="eigene Beiträge auswerten (braucht Zugang)")
     aw.add_argument("--tage", type=int, default=30)
