@@ -1,0 +1,174 @@
+name: Wöchentlicher Kennzahlenstand
+
+# Schließt die Lücke, dass `kennzahlen` und `auswerten` zwar seit Wochen in
+# src/main.py stehen, aber in keinem Workflow liefen. Ohne einen regelmäßigen
+# Lauf entsteht der 72-Stunden-Stand je Beitrag nie, und damit lässt sich
+# später kein Beitrag mit einem anderen vergleichen.
+#
+# Dieser Lauf veröffentlicht nichts. Beide Befehle fragen die Graph API nur
+# lesend ab (analyse._hole_medien / analyse._hole_insights, beides GET) und
+# schreiben höchstens content/kennzahlen.json.
+#
+# Bewusst NICHT aufgenommen:
+#   lernen   - fragt bei --neu und --abschliessen über input() nach; in einem
+#              Lauf ohne Tastatur wäre das ein Hänger. Ohne Schalter gibt es
+#              nur das Protokoll aus, das nichts Neues erzeugt.
+#   pruefen  - reine Selbstprüfung der Themenbank und damit an eine Änderung
+#              der Inhalte gebunden, nicht an den Kalender. Der Befehl gibt
+#              bei Beanstandungen 1 zurück und würde den Wochenlauf rot
+#              färben, ohne dass sich seit dem letzten Mal etwas geändert hat.
+on:
+  schedule:
+    # Montag 06:00 UTC = 08:00 deutscher Sommerzeit. Die Woche ist um, der
+    # letzte Donnerstagsbeitrag ist über 72 Stunden alt und damit reif.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      tage:
+        description: "Zeitraum der Auswertung in Tagen"
+        type: string
+        default: "30"
+
+# Nötig, damit der neue Kennzahlenstand committet werden kann.
+permissions:
+  contents: write
+
+# Gleiche Gruppe wie taeglich-posten/vorrat/freigeben: alle pushen auf
+# denselben Branch, sonst rebasen sie sich gegenseitig aus.
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  kennzahlen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Kein "playwright install": hier wird nichts gerendert, nur gelesen.
+      - name: Abhängigkeiten installieren
+        run: pip install -r requirements.txt
+
+      - name: Stand nach 72 Stunden festschreiben
+        id: kennzahlen
+        continue-on-error: true
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_UEBER_SEITE: ${{ vars.IG_UEBER_SEITE }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          mkdir -p bericht
+          # Ohne veröffentlichte Beiträge meldet der Befehl "keine fällig"
+          # und gibt 0 zurück - das ist der Normalfall, solange
+          # content/verlauf.json noch nicht existiert.
+          set -o pipefail
+          python src/main.py kennzahlen 2>&1 | tee bericht/kennzahlen.txt
+
+      - name: Beiträge der letzten Wochen auswerten
+        id: auswerten
+        continue-on-error: true
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_UEBER_SEITE: ${{ vars.IG_UEBER_SEITE }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          mkdir -p bericht
+          # Gibt es noch nichts, schreibt analyse.bericht() einen Satz dazu
+          # und der Befehl endet mit 0. Rot wird der Lauf nur, wenn der
+          # Zugang selbst nicht trägt.
+          set -o pipefail
+          python src/main.py auswerten --tage "${{ inputs.tage || '30' }}" 2>&1 \
+            | tee bericht/auswertung.txt
+
+      - name: Kennzahlenstand committen
+        if: always()
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          # Fehlt EINER dieser Pfade, bricht "git add" mit allen ab und
+          # committet nichts - deshalb einzeln und nur, was existiert.
+          for pfad in content/kennzahlen.json; do
+            if [ -e "$pfad" ]; then git add "$pfad"; fi
+          done
+          git commit -m "Kennzahlenstand nach 72 Stunden" || echo "nichts zu committen"
+          gepusht=0
+          for versuch in 1 2 3 4 5; do
+            if git pull --rebase --autostash -q && git push -q; then gepusht=1; break; fi
+            echo "Push-Versuch $versuch fehlgeschlagen, neuer Anlauf"
+            sleep $((versuch * 5))
+          done
+          if [ "$gepusht" != 1 ]; then
+            echo "Push nicht moeglich - wird beim naechsten Lauf nachgeholt"
+          fi
+
+      - name: Ergebnis nach Telegram melden
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LAGE_KENNZAHLEN: ${{ steps.kennzahlen.outcome }}
+          LAGE_AUSWERTUNG: ${{ steps.auswerten.outcome }}
+        run: |
+          python - <<'PY'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, "src")
+          import telegram_bot
+
+          # Telegram schluckt lange Nachrichten nicht; der volle Bericht
+          # steht ohnehin im Lauf-Protokoll und im Artefakt.
+          GRENZE = 1200
+
+          def lies(datei: str) -> str:
+              pfad = Path("bericht") / datei
+              if not pfad.exists():
+                  return "(kein Ergebnis - der Schritt lief nicht)"
+              text = pfad.read_text(encoding="utf-8").strip()
+              return text[:GRENZE] if text else "(keine Ausgabe)"
+
+          zeichen = {"success": "✅", "failure": "🛑"}
+          teile = [
+              f"{zeichen.get(os.environ.get('LAGE_KENNZAHLEN'), '❓')} Wochenstand Instagram",
+              "",
+              "72-Stunden-Stand:",
+              lies("kennzahlen.txt"),
+              "",
+              f"{zeichen.get(os.environ.get('LAGE_AUSWERTUNG'), '❓')} Auswertung:",
+              lies("auswertung.txt"),
+          ]
+          bericht = "\n".join(teile)
+
+          if not telegram_bot.aktiv():
+              print("Telegram nicht eingerichtet. Bericht:\n")
+              print(bericht)
+              sys.exit(0)
+
+          telegram_bot.sende_text(bericht)
+          print("Gemeldet.")
+          PY
+
+      - name: Bericht als Artefakt ablegen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wochenstand-${{ github.run_number }}
+          path: bericht/
+          retention-days: 60
+
+      - name: Rot werden, wenn ein Befehl scheiterte
+        if: steps.kennzahlen.outcome == 'failure' || steps.auswerten.outcome == 'failure'
+        run: |
+          echo "::error::kennzahlen=${{ steps.kennzahlen.outcome }}, auswerten=${{ steps.auswerten.outcome }}"
+          echo "Meist ein abgelaufener Instagram-Token - siehe token-erneuern.yml."
+          exit 1
