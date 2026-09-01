@@ -8,9 +8,19 @@ name: Telegram-Antworten abfragen
 # auf Erreichbarkeit geprüft (Instagram lädt das Bild selbst herunter - ohne
 # öffentliche URL geht nichts) und erst danach wirklich veröffentlicht.
 # Bei "Ablehnen": ein neuer Kandidat wird gerendert und erneut geschickt.
+# STILLGELEGT am 01.09.2026. Der Cloudflare-Worker haelt seit dem
+# 30.08. den Telegram-Webhook. Telegram laesst Webhook und getUpdates
+# nicht gleichzeitig zu, deshalb lieferte jeder Lauf hier
+# "Conflict: can't use getUpdates method while webhook is active" und
+# holte nie wieder eine Antwort ab. Aufgefallen ist das niemandem, weil
+# der Fehler abgefangen wurde und der Lauf gruen endete.
+#
+# Der Weg ueber den Worker ist der bessere: er antwortet in ein bis zwei
+# Sekunden statt im Zehnminutentakt und stoesst freigeben.yml direkt an.
+# Dieser Workflow bleibt als Notweg von Hand ausloesbar. Wer ihn wieder
+# im Takt laufen lassen will, muss vorher den Webhook des Workers
+# loeschen, sonst scheitert er erneut.
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
