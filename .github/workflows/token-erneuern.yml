@@ -1,8 +1,21 @@
-name: Instagram-Token erneuern
+name: Token prüfen
 
-# Der langlebige Token gilt 60 Tage. Dieser Job verlängert ihn alle 14 Tage,
-# solange er noch gültig ist. Läuft er einmal ab, muss er einmalig von Hand
-# neu erzeugt werden – siehe docs/02-INSTAGRAM-EINRICHTEN.md.
+# Umgebaut am 01.09.2026. Was vorher hier stand, konnte nicht funktionieren:
+#
+#   - Der Lauf verlängerte das Secret IG_ACCESS_TOKEN über
+#     graph.instagram.com/refresh_access_token. Dieses Secret existiert im
+#     Repo nicht. Gepostet wird über FB_PAGE_TOKEN, weil die Variable
+#     IG_UEBER_SEITE auf 1 steht und src/config.py dann umschaltet.
+#   - Der Schritt, der das Ergebnis zurückschreibt, hing an einem Secret
+#     GH_PAT, das ebenfalls fehlt. Er wurde also nie ausgeführt.
+#   - Bei Fehlschlag legte der Lauf ein GitHub-Issue an. In dieses Repo sieht
+#     im Alltag niemand.
+#
+# Ein Seiten-Token, der aus einem langlebigen Nutzer-Token stammt, läuft
+# nicht ab. Stammt er aus einem kurzlebigen, läuft er nach rund 60 Tagen ab.
+# Welcher Fall hier vorliegt, lässt sich von außen nicht sagen, deshalb misst
+# dieser Lauf es und meldet das Ergebnis nach Telegram, statt eine Erneuerung
+# vorzutäuschen, die es nicht gibt.
 
 on:
   schedule:
@@ -11,48 +24,111 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
-  erneuern:
+  pruefen:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
 
-      - name: Token verlängern
-        id: token
-        env:
-          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          IG_UEBER_SEITE: ${{ vars.IG_UEBER_SEITE }}
-        run: |
-          ANTWORT=$(curl -s -G "https://graph.instagram.com/refresh_access_token" \
-            --data-urlencode "grant_type=ig_refresh_token" \
-            --data-urlencode "access_token=$IG_ACCESS_TOKEN")
-          NEU=$(echo "$ANTWORT" | python -c "import sys,json;print(json.load(sys.stdin).get('access_token',''))")
-          if [ -z "$NEU" ]; then
-            echo "::error::Verlängerung fehlgeschlagen: $ANTWORT"
-            echo "ok=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "::add-mask::$NEU"
-          echo "neu=$NEU" >> "$GITHUB_OUTPUT"
-          echo "ok=true"  >> "$GITHUB_OUTPUT"
+      - name: Abhängigkeiten
+        run: pip install -r requirements.txt
 
-      - name: Neuen Token als Secret speichern
-        if: steps.token.outputs.ok == 'true' && env.GH_PAT != ''
+      - name: Gültigkeit und Restlaufzeit messen
+        id: pruefung
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: |
-          gh secret set IG_ACCESS_TOKEN --body "${{ steps.token.outputs.neu }}" --repo "${{ github.repository }}"
-          echo "Secret aktualisiert."
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os, urllib.parse, urllib.request
+          from datetime import datetime, timezone
 
-      - name: Bei Fehlschlag erinnern
-        if: steps.token.outputs.ok != 'true'
+          token = os.environ.get("FB_PAGE_TOKEN", "")
+          if not token:
+              print("lage=fehlt")
+              print("text=FB_PAGE_TOKEN ist nicht gesetzt. Ohne ihn kann nichts posten.")
+              raise SystemExit(0)
+
+          def hole(pfad, **felder):
+              felder["access_token"] = token
+              url = f"https://graph.facebook.com/v21.0/{pfad}?{urllib.parse.urlencode(felder)}"
+              with urllib.request.urlopen(url, timeout=30) as antwort:
+                  return json.load(antwort)
+
+          # Erst der praktische Test: trägt der Token noch das Konto?
+          try:
+              seite = hole(os.environ.get("FB_PAGE_ID", "me"), fields="id,name")
+          except Exception as fehler:
+              print("lage=ungueltig")
+              print(f"text=Der Seiten-Token wird abgelehnt: {fehler}. "
+                    "Es geht derzeit kein Beitrag raus.")
+              raise SystemExit(0)
+
+          # Dann die Restlaufzeit. debug_token liefert sie, wenn die App sie preisgibt.
+          rest_tage = None
+          try:
+              daten = hole("debug_token", input_token=token).get("data", {})
+              ablauf = daten.get("expires_at") or daten.get("data_access_expires_at") or 0
+              if ablauf:
+                  rest = datetime.fromtimestamp(ablauf, tz=timezone.utc) - datetime.now(timezone.utc)
+                  rest_tage = rest.days
+          except Exception:
+              pass
+
+          name = seite.get("name", seite.get("id", "?"))
+          if rest_tage is None:
+              print("lage=ok")
+              print(f"text=Seiten-Token gültig für '{name}'. Kein Ablaufdatum hinterlegt, "
+                    "der Token läuft also nicht ab.")
+          elif rest_tage <= 14:
+              print("lage=knapp")
+              print(f"text=Seiten-Token für '{name}' läuft in {rest_tage} Tagen ab. "
+                    "Jetzt einen neuen erzeugen, siehe docs/02-INSTAGRAM-EINRICHTEN.md, "
+                    "und als Secret FB_PAGE_TOKEN hinterlegen.")
+          else:
+              print("lage=ok")
+              print(f"text=Seiten-Token gültig für '{name}', noch {rest_tage} Tage.")
+          PY
+
+      - name: Ergebnis nach Telegram melden
+        if: always()
         env:
-          GH_TOKEN: ${{ github.token }}
+          TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA: ${{ secrets.TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LAGE: ${{ steps.pruefung.outputs.lage }}
+          TEXT: ${{ steps.pruefung.outputs.text }}
         run: |
-          gh issue create --repo "${{ github.repository }}" \
-            --title "Instagram-Token erneuern" \
-            --body "Die automatische Verlängerung ist fehlgeschlagen. Bitte den Token nach docs/02-INSTAGRAM-EINRICHTEN.md neu erzeugen und als Secret IG_ACCESS_TOKEN hinterlegen." \
-            || true
+          python - <<'PY'
+          import os, sys
+          sys.path.insert(0, "src")
+          import telegram_bot
+
+          lage = os.environ.get("LAGE", "unklar")
+          text = os.environ.get("TEXT", "Die Tokenprüfung hat kein Ergebnis geliefert.")
+          zeichen = {"ok": "✅", "knapp": "⚠️", "ungueltig": "🛑", "fehlt": "🛑"}.get(lage, "❓")
+
+          if not telegram_bot.aktiv():
+              print(f"Telegram nicht eingerichtet. Ergebnis: {lage} – {text}")
+              sys.exit(0)
+
+          # Bei "ok" nur am 1. des Monats melden, sonst wird der Kanal zur Tapete.
+          from datetime import date
+          if lage == "ok" and date.today().day != 1:
+              print(f"Alles in Ordnung ({text}). Keine Meldung nötig.")
+              sys.exit(0)
+
+          telegram_bot.sende_text(f"{zeichen} Tokenprüfung\n\n{text}")
+          print("Gemeldet.")
+          PY
+
+      - name: Rot werden, wenn der Token nicht trägt
+        if: steps.pruefung.outputs.lage == 'ungueltig' || steps.pruefung.outputs.lage == 'fehlt'
+        run: |
+          echo "::error::${{ steps.pruefung.outputs.text }}"
+          exit 1
