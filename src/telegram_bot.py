@@ -48,16 +48,33 @@ def _basis_url(bot_token: str) -> str:
     return f"https://api.telegram.org/bot{bot_token}"
 
 
+def _auswerten(methode: str, antwort) -> dict:
+    """Antwort auspacken - oder eine TelegramFehler auslösen.
+
+    Steht vor dem Proxy oder der Telegram-Wartungsseite eine HTML-Seite, ist
+    der Rumpf kein JSON und .json() wirft einen ValueError. Der lief bisher
+    am Fehlerkorridor vorbei und riss den ganzen Lauf mit. Gleiche Lösung wie
+    in publisher.py:105 - leerer Inhalt, danach greift die normale Prüfung.
+    """
+    try:
+        inhalt = antwort.json()
+    except ValueError:
+        inhalt = {}
+
+    if not inhalt.get("ok"):
+        meldung = inhalt.get("description") or (
+            f"HTTP {antwort.status_code}: {antwort.text[:300]}")
+        raise TelegramFehler(f"{methode}: {meldung}")
+    return inhalt["result"]
+
+
 def _api(methode: str, bot_token: str = TELEGRAM_BOT_TOKEN_SOCIAL, **daten) -> dict:
     try:
         antwort = requests.post(f"{_basis_url(bot_token)}/{methode}", data=daten, timeout=TIMEOUT)
     except requests.RequestException as fehler:
         raise TelegramFehler(f"{methode}: keine Verbindung – {fehler}") from None
 
-    inhalt = antwort.json()
-    if not inhalt.get("ok"):
-        raise TelegramFehler(f"{methode}: {inhalt.get('description', antwort.text)}")
-    return inhalt["result"]
+    return _auswerten(methode, antwort)
 
 
 def _api_datei(methode: str, feld: str, pfad: Path, bot_token: str = TELEGRAM_BOT_TOKEN_SOCIAL, **daten) -> dict:
@@ -68,10 +85,7 @@ def _api_datei(methode: str, feld: str, pfad: Path, bot_token: str = TELEGRAM_BO
     except requests.RequestException as fehler:
         raise TelegramFehler(f"{methode}: keine Verbindung – {fehler}") from None
 
-    inhalt = antwort.json()
-    if not inhalt.get("ok"):
-        raise TelegramFehler(f"{methode}: {inhalt.get('description', antwort.text)}")
-    return inhalt["result"]
+    return _auswerten(methode, antwort)
 
 
 def _kuerzen(text: str, laenge: int = MAX_BILDUNTERSCHRIFT) -> str:
