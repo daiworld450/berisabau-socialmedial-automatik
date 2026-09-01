@@ -10,3 +10,23 @@ venv/
 content/freigaben.json
 # Lokaler Prüfordner für die Monatsabnahme, kein Teil der Automatik selbst.
 monatspakete/
+
+# --- Personenbezogenes und Zugangsdaten, ergaenzt 01.09.2026 ---------------
+# Dieselben Sperren stehen im Wurzel-.gitignore, dort aber mit dem Praefix
+# "berisabau-social/". Innerhalb dieser Datei zeigt dieses Praefix auf
+# berisabau-social/berisabau-social/ und trifft nichts. Deshalb hier noch
+# einmal mit den richtigen Pfaden. Dieses Repo ist oeffentlich.
+#
+# Sprachaufnahme des Inhabers, aus der die geklonte Stimme entsteht.
+reelwerk/stimme/
+# Rohmaterial und Zwischenstaende des Reel-Werks: einzelne Clips sprengen
+# jedes Repo und gehen niemanden ausser dem Betrieb etwas an.
+reelwerk/roh/
+reelwerk/.arbeit/
+reelwerk/fertig/
+# Kundennamen, Objektadressen und Screenshots privater Chats.
+einwilligungen/register.json
+einwilligungen/nachweise/
+# Zugangsdaten.
+.mcp.json
+.mcp.json.*
