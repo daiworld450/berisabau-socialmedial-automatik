@@ -6,6 +6,14 @@ name: Beitrag freigeben
 #
 # Der Worker meldet dem Nutzer sofort "wird veroeffentlicht", dieser Lauf
 # erledigt es dann in rund einer Minute.
+#
+# WICHTIG (behoben am 01.09.2026): Dieser Lauf muss selbst rendern.
+# Frueher sprang er direkt auf "telegram-veroeffentlichen", und das sucht
+# out/_freigegeben.json - eine Datei, die sonst nur "telegram-abfragen"
+# schreibt. Der Abruf-Workflow kann sie seit dem Worker-Webhook nicht mehr
+# schreiben, weil Telegram getUpdates und Webhook nicht gleichzeitig
+# zulaesst. Ergebnis: der Lauf meldete "Nichts zu veroeffentlichen", endete
+# gruen, und der Inhaber sah trotzdem "wird veroeffentlicht" im Chat.
 on:
   repository_dispatch:
     types: [beitrag-freigeben]
@@ -38,7 +46,7 @@ jobs:
           pip install -r requirements.txt
           python -m playwright install --with-deps chromium
 
-      - name: Freigabe vermerken
+      - name: Freigabe vermerken und Beitrag rendern
         env:
           PLAN_ID: ${{ github.event.client_payload.plan_id || inputs.plan_id }}
         run: |
@@ -46,14 +54,83 @@ jobs:
             echo "::error::Keine plan_id uebergeben"
             exit 1
           fi
-          echo "Freigegeben: $PLAN_ID"
-          python - <<'PY'
-          import os, sys
-          sys.path.insert(0, "src")
-          import freigaben
-          freigaben.freigeben(os.environ["PLAN_ID"])
-          print("Freigabe vermerkt.")
-          PY
+          python src/main.py freigabe-vorbereiten "$PLAN_ID"
+
+      - name: Warteschlange sichern
+        if: always()
+        run: |
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          for pfad in content/telegram_warteschlange.json content/freigaben.json; do
+            if [ -e "$pfad" ]; then git add "$pfad"; fi
+          done
+          git commit -m "Freigabe vermerkt" || echo "nichts zu committen"
+          for versuch in 1 2 3 4 5; do
+            if git pull --rebase --autostash -q && git push -q; then exit 0; fi
+            echo "Push-Versuch $versuch fehlgeschlagen, neuer Anlauf"
+            sleep $((versuch * 5))
+          done
+          echo "Push nicht moeglich - wird beim naechsten Lauf nachgeholt"
+
+      - name: Bilder öffentlich ablegen und Erreichbarkeit prüfen
+        env:
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+        run: |
+          if [ ! -s out/_freigegeben.json ] || [ "$(cat out/_freigegeben.json)" = "[]" ]; then
+            echo "::error::out/_freigegeben.json ist leer - der Render-Schritt hat nichts erzeugt"
+            exit 1
+          fi
+
+          BILDER=$(python -c "
+          import json
+          d = json.load(open('out/_freigegeben.json'))
+          names = sorted({n for e in d for n in e['bilder']})
+          print('\n'.join(names))
+          ")
+
+          mkdir -p docs/posts
+          for B in $BILDER; do cp "out/$B" "docs/posts/$B"; done
+
+          git config user.name  "berisabau-bot"
+          git config user.email "actions@github.com"
+          for pfad in docs/posts; do
+            if [ -e "$pfad" ]; then git add "$pfad"; fi
+          done
+          git commit -m "Freigegebene Bilder öffentlich abgelegt" || echo "nichts zu committen"
+          # Parallel laufende Workflows schieben den Remote weiter.
+          # Ohne Rebase scheitert der Push und das Bild landet nie auf Pages.
+          gepusht=0
+          for versuch in 1 2 3 4 5; do
+            if git pull --rebase --autostash -q && git push -q; then gepusht=1; break; fi
+            echo "Push-Versuch $versuch fehlgeschlagen, neuer Anlauf"
+            sleep $((versuch * 5))
+          done
+          if [ "$gepusht" != 1 ]; then
+            echo "::error::Push nach 5 Versuchen fehlgeschlagen"
+            exit 1
+          fi
+
+          # Instagram laedt das Bild selbst von dieser URL. Vor dem Post muss
+          # GitHub Pages es ausliefern, sonst kommt Fehler 9004.
+          for B in $BILDER; do
+            URL="$MEDIA_BASE_URL/$B"
+            echo "Prüfe $URL"
+            ERREICHBAR=0
+            for i in $(seq 1 20); do
+              CODE=$(curl -sL -o /dev/null -w "%{http_code}" "$URL")
+              if [ "$CODE" = "200" ]; then
+                echo "Erreichbar nach $((i*10))s"
+                ERREICHBAR=1
+                break
+              fi
+              echo "  Versuch $i: HTTP $CODE"
+              sleep 10
+            done
+            if [ "$ERREICHBAR" != "1" ]; then
+              echo "::error::Bild ist nicht öffentlich erreichbar: $URL"
+              exit 1
+            fi
+          done
 
       - name: Veröffentlichen
         env:
