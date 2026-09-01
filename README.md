@@ -161,6 +161,45 @@ docs/           Markenanalyse und Einrichtungsanleitung
 | `python src/main.py fotos-verarbeiten` | Eingang sichten, ausrichten, in den Pool legen |
 | `python src/main.py vorschlagen` | Kandidat rendern, zur Freigabe an Telegram schicken |
 | `python src/main.py telegram-abfragen` | Telegram-Antworten auswerten (freigeben/ablehnen/merken/mehr/ignorieren) |
+| `python src/main.py reel-einpflegen` | fertige Reels aus `reelwerk/fertig/` auflisten |
+| `python src/main.py reel-einpflegen <Datei>` | Reel in einen Projektordner legen, samt Titelbild und `info.json` |
+| `python src/main.py kennzahlen` | Stand je Beitrag 72 Stunden nach dem Posten festschreiben |
+| `python src/main.py lernen` | Lernprotokoll anzeigen, Versuche anlegen und abschließen |
+| `python src/main.py pruefen` | Selbstprüfung der freigegebenen Themen |
+
+---
+
+## Reels aus dem Reel-Werk
+
+`reelwerk/` macht aus Rohclips fertige Reels: 1080 × 1920, Untertitel, Logo,
+Endkarte. Der Ordner `reelwerk/fertig/` ist per `.gitignore` gesperrt, damit
+kein Rohmaterial ins öffentliche Repo rutscht. Ein Befehl holt das fertige
+Reel dort heraus und übergibt es der Automatik:
+
+```bash
+python src/main.py reel-einpflegen                      # was liegt bereit
+python src/main.py reel-einpflegen "Dichtband in jede Ecke.mp4"
+```
+
+Daraus wird ein vollständiger Projektordner:
+
+```
+content/medien/projekte/dichtband-in-jede-ecke/
+    reel.mp4        das Reel, unverändert kopiert
+    cover.jpg       erstes Bild des Videos, mit ffmpeg gezogen
+    info.json       Titel, Gewerk, Ort, Hashtag-Satz
+```
+
+Ab da behandelt der Planer den Ordner wie jedes andere Bauvorhaben und macht
+daraus einen Beitrag vom Typ `reel`. Titel und Gewerk lassen sich mit
+`--titel`, `--gewerk`, `--ort` und `--hashtags` gleich mitgeben, ein eigenes
+Titelbild mit `--titelbild`. `--trocken` zeigt vorher, was passieren würde.
+
+**Grenze bei 20 MB.** `content/medien/projekte/` liegt im Repo, `fertig/`
+nicht. Ein Reel aus dem Reel-Werk wiegt rund 8 MB; alles darüber lehnt der
+Befehl ab, statt eine unbearbeitete Handydatei ins Repo zu ziehen.
+
+Details zum Filmen und zur Stimme: [`reelwerk/LIESMICH.md`](reelwerk/LIESMICH.md)
 
 ---
 
@@ -204,6 +243,25 @@ klar, statt zu raten.
 
 Aussagekräftig wird die Auswertung erst ab etwa 20 Beiträgen je Säule –
 das steht auch so im Bericht.
+
+### Wochenlauf
+
+`.github/workflows/woechentlich.yml` läuft jeden Montag um 08:00 Uhr, ruft
+`kennzahlen` und `auswerten` auf und meldet das Ergebnis per Telegram.
+Der Lauf veröffentlicht nichts. Beide Befehle fragen die Graph API nur lesend
+ab und schreiben höchstens `content/kennzahlen.json`.
+
+`kennzahlen` schreibt je Beitrag **einmal nach 72 Stunden** einen festen
+Stand weg. Vorher läuft die Erstausspielung noch, die Zahlen wandern. Erst
+dieser feste Stand macht zwei Beiträge vergleichbar:
+
+```bash
+python src/main.py kennzahlen --trockenlauf   # was wäre fällig
+python src/main.py kennzahlen --vergleich     # erfasste Beiträge gegeneinander
+```
+
+Solange noch nichts veröffentlicht ist, meldet der Lauf genau das und bleibt
+grün.
 
 ---
 
