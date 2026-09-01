@@ -19,8 +19,12 @@ on:
 permissions:
   contents: write
 
+# Gleiche Gruppe wie freigeben/vorschlagen/telegram-abfragen/taeglich-posten:
+# alle pushen auf denselben Branch. In einer eigenen Gruppe lief dieser
+# Workflow parallel dazu und die Push-Schleife unten musste sich gegen
+# fremde Commits durchrebasen.
 concurrency:
-  group: vorrat
+  group: instagram-post
   cancel-in-progress: false
 
 jobs:
@@ -37,17 +41,6 @@ jobs:
         run: |
           pip install -r requirements.txt
           python -m playwright install --with-deps chromium
-      - name: Frisch hochgeladene Fotos verarbeiten
-        run: python src/main.py fotos-verarbeiten
-
-      - name: Verarbeitete Fotos sichern
-        run: |
-          git config user.name  "berisabau-bot"
-          git config user.email "actions@github.com"
-          git add content/medien
-          git commit -m "Fotos aus dem Eingang verarbeitet" || echo "nichts zu committen"
-          git pull --rebase --autostash -q && git push -q || true
-
       - name: Kandidaten rendern
         env:
           MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
