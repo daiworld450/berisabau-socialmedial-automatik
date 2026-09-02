@@ -12,23 +12,54 @@ daraus es umsetzt.
 
 ---
 
-## Der einfachste Weg: doppelklicken
+## Warum über den Ton und nicht über den Chat
+
+Der Chat wäre das stärkere Signal — er zeigt die Ausschläge unmittelbar.
+Automatisch abrufen lässt er sich aber nicht mehr: Twitch verlangt für
+Chatabrufe einen signierten Nachweis aus einem angemeldeten Browser. Ohne
+den kommt
+
+    Twitch lehnt die Abfrage ab: failed integrity check
+
+und zwar unabhängig vom Werkzeug. Das ist eine bewusste Schutzmaßnahme, und
+sie wird hier nicht umgangen.
+
+Betroffen ist ausschließlich der Chat. Videodaten und Ton sind anonym
+abrufbar — am GitHub-Runner mehrfach nachgemessen. Deshalb läuft alles über
+die Spracherkennung, und das ist kein Behelf: mit Transkript entstehen
+Untertitel, Zitate als Hook, saubere Satzgrenzen beim Zuschnitt und das
+Herausschneiden von Stille. Der Chat-Modus im Code bleibt erhalten für den
+Fall, dass jemand eine `chat.json` von Hand beisteuert — angemeldet im
+eigenen Browser darf das jeder für seinen eigenen Kanal tun.
+
+Der Preis ist Rechenzeit: Spracherkennung über zweieinhalb Stunden dauert
+ein bis drei Stunden.
+
+---
+
+## Der einfachste Weg: auf GitHub klicken
+
+Unter **Actions → „Clip-Werk – Stream auswerten" → „Run workflow"** die
+Adresse des VODs eintragen und starten. Der Lauf holt den Ton, erkennt den
+Text, wertet aus und legt den Bericht als Datei ins Repo unter
+`docs/clips/<vod>/bericht.md` — dort direkt lesbar, zusätzlich als Download
+am Lauf.
+
+Kein Terminal, kein eingerichteter Rechner. Rechne mit ein bis drei Stunden
+Laufzeit.
+
+---
+
+## Der Weg über den eigenen Rechner: doppelklicken
 
 `clip-holen.command` im Hauptordner macht alles allein — Werkzeuge
-nachinstallieren, Chat laden, auswerten, Ergebnisordner öffnen. Gebraucht
-wird nur die Adresse des VODs (die Seite mit `/videos/` darin, nicht die
-Kanalseite).
+nachinstallieren, Ton laden, Text erkennen, auswerten, Ergebnisordner
+öffnen. Gebraucht wird nur die Adresse des VODs (die Seite mit `/videos/`
+darin, nicht die Kanalseite).
 
-Es läuft in zwei Durchgängen, weil sie sehr unterschiedlich lange dauern:
-
-| Durchgang | Dauer | Ergebnis |
-|---|---|---|
-| Chat | Minuten | Momente, Scores, Hooks, Titel, Captions, Hashtags |
-| Voll | Stunden | zusätzlich Untertitel und fertige MP4s |
-
-Der erste läuft immer, der zweite nur auf Nachfrage. Ein einmal geladener
-Chat wird nicht noch einmal geholt — die Datei lässt sich also jederzeit
-erneut starten.
+Am Ende fragt es, ob auch das Video geladen und die Clips gerendert werden
+sollen. Ton und Transkript werden zwischengespeichert: ein abgebrochener
+Lauf fängt beim nächsten Start nicht wieder von vorn an.
 
 ---
 
@@ -236,12 +267,13 @@ sich auf den Schnittrechner mitnehmen.
 | Datei | wofür |
 |---|---|
 | `clip-holen.command` | Doppelklick: holt einen Stream und wertet ihn aus |
+| `.github/workflows/clip-auswerten.yml` | dasselbe auf GitHubs Servern, per Klick |
 | `content/CLIP-PROMPT.md` | der Maßstab, dem der Code folgt |
 | `content/clip_lexikon.json` | Emotes und Redewendungen je Signalart |
 | `content/clip_hashtags.json` | Hashtag-Sätze je Kategorie, Trend-Liste |
 | `content/clip_verlauf.json` | Clip-Datenbank gegen Doppelungen (Abschnitt 13) |
 | `src/clipwerk/` | das Paket, ein Modul je Abschnitt |
-| `tests/test_clipwerk.py` | 66 Tests, ohne Netz und ohne ffmpeg |
+| `tests/test_clipwerk.py` | 73 Tests, ohne Netz und ohne ffmpeg |
 
 Lexikon und Hashtags liegen bewusst als Datei vor: Emotes und Sprüche
 wechseln schneller als Software.

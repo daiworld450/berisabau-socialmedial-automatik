@@ -27,14 +27,15 @@ import unittest
 from datetime import date
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 
 WURZEL = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(WURZEL / "src"))
 
 from clipwerk import (ausgabe, bewertung, kandidaten, kategorien,   # noqa: E402
                       lernkurve, motor, plan, quellen, render,
-                      schnitt, signale, texte, untertitel, verlauf,
-                      wachstum)
+                      schnitt, signale, texte, transkript, untertitel,
+                      verlauf, wachstum)
 
 LEXIKON = signale.lade_lexikon(WURZEL / "content" / "clip_lexikon.json")
 HASHTAGS = kategorien.lade_hashtags(WURZEL / "content" / "clip_hashtags.json")
@@ -694,6 +695,74 @@ class NurChat(unittest.TestCase):
         darf nicht über der normalen liegen."""
         self.assertLess(bewertung.SCHWELLE_OHNE_TRANSKRIPT,
                         bewertung.SCHWELLE_VERWERFEN)
+
+
+class Transkript(unittest.TestCase):
+    """Die Umwandlung von faster-whisper in unser Format.
+
+    Das Modell selbst wird hier nicht geladen - das dauert Minuten und
+    braucht Netz. Geprüft wird die Naht: was faster-whisper liefert, muss
+    `quellen.lade_transkript` unverändert wieder einlesen können. Genau an
+    dieser Naht wären Wortzeiten still verlorengegangen, und ohne sie sitzen
+    die Untertitel auf dem Satz statt auf dem Wort.
+    """
+    def _roh(self, start, ende, text, woerter=None):
+        return SimpleNamespace(
+            start=start, ende=ende, end=ende, text=text,
+            words=[SimpleNamespace(word=w, start=a, end=b)
+                   for w, a, b in (woerter or [])] or None)
+
+    def test_text_wird_entrandet(self):
+        s = transkript._segment(
+            self._roh(1.0, 2.0, "   Das ist es!   "), True)
+        self.assertEqual(s["text"], "Das ist es!")
+
+    def test_wortzeiten_kommen_durch(self):
+        s = transkript._segment(self._roh(
+            12.0, 15.5, "Das ist nicht dein Ernst!",
+            [(" Das", 12.0, 12.3), (" ist", 12.3, 12.6),
+             ("  ", 12.6, 12.7), (" nicht", 12.7, 13.0)]), True)
+        # Das leere Wort faellt weg, die uebrigen behalten ihre Zeiten.
+        self.assertEqual([w["word"] for w in s["words"]],
+                         ["Das", "ist", "nicht"])
+        self.assertEqual(s["words"][0]["start"], 12.0)
+
+    def test_ohne_wortzeiten_kein_leeres_feld(self):
+        s = transkript._segment(self._roh(1.0, 2.0, "hm"), True)
+        self.assertNotIn("words", s)
+
+    def test_ergebnis_ist_wieder_einlesbar(self):
+        s = transkript._segment(self._roh(
+            12.0, 15.5, "Das ist nicht dein Ernst!",
+            [("Das", 12.0, 12.3), ("ist", 12.3, 12.6)]), True)
+        ohne = transkript._segment(self._roh(1.0, 2.0, "hm"), True)
+        with TemporaryDirectory() as ordner:
+            ziel = Path(ordner) / "t.json"
+            transkript.schreibe([s, ohne], ziel)
+            segmente = quellen.lade_transkript(ziel)
+
+        # lade_transkript sortiert nach Startzeit.
+        frueh, spaet = segmente
+        self.assertEqual(spaet.text, "Das ist nicht dein Ernst!")
+        self.assertEqual(spaet.woerter[0].text, "Das")
+        # Ohne echte Wortzeiten muessen sie geschaetzt werden, sonst haetten
+        # die Untertitel dort keinen Takt.
+        self.assertFalse(frueh.woerter)
+        self.assertTrue(frueh.wortliste())
+
+    def test_unbekanntes_modell_wird_abgelehnt(self):
+        with TemporaryDirectory() as ordner:
+            ton = Path(ordner) / "ton.m4a"
+            ton.write_bytes(b"x")
+            with self.assertRaises(transkript.TranskriptFehler):
+                transkript.erkenne(ton, Path(ordner) / "t.json",
+                                   modell="gibtsnicht")
+
+    def test_fehlende_tondatei_wird_gemeldet(self):
+        with TemporaryDirectory() as ordner:
+            with self.assertRaises(transkript.TranskriptFehler):
+                transkript.erkenne(Path(ordner) / "weg.m4a",
+                                   Path(ordner) / "t.json")
 
 
 class Gesamtlauf(unittest.TestCase):

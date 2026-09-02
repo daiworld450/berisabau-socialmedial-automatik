@@ -1,17 +1,19 @@
 name: Clip-Werk – Stream auswerten
 
-# Holt den Chat eines Twitch-VODs und macht daraus Clip-Vorschläge.
+# Holt einen Twitch-VOD, erkennt den Text und macht daraus Clip-Vorschläge.
+# Ein Klick auf "Run workflow" genügt - weder Terminal noch eingerichteter
+# Rechner nötig, weil die GitHub-Server den Netzzugang mitbringen.
 #
-# Der Grund für diesen Workflow ist ein praktischer: die GitHub-Server haben
-# freien Netzzugang und kommen an Twitch heran. Wer den Stream auswerten
-# will, braucht damit weder ein Terminal noch einen eingerichteten Rechner -
-# ein Klick auf "Run workflow" hier auf der Weboberfläche genügt.
+# Warum über den Ton und nicht über den Chat: Twitch verlangt für Chatabrufe
+# einen signierten Nachweis aus einem angemeldeten Browser. Am Runner endet
+# das mit "failed integrity check". Das ist eine bewusste Schutzmaßnahme und
+# wird hier nicht umgangen. Ton und Video sind davon nicht betroffen - beides
+# wurde am Runner mehrfach anstandslos abgerufen.
 #
-# Bewusst nur der Chat, keine Spracherkennung: Whisper über einen langen
-# Stream sprengt die Laufzeit eines Actions-Jobs. Der Chat findet dieselben
-# Momente (siehe docs/05-CLIPWERK.md), nur ohne Untertitel und mit gröberem
-# Zuschnitt. Wer den vollen Durchlauf will, nimmt clip-holen.command auf dem
-# eigenen Rechner.
+# Das ist kein Verlust: mit Transkript liefert das Clip-Werk mehr als mit
+# Chat - Untertitel, Zitate als Hook, Satzgrenzen und das Herausschneiden von
+# Stille. Wer den Chat trotzdem einspeisen will, holt ihn angemeldet auf dem
+# eigenen Rechner und übergibt die Datei mit --chat.
 
 on:
   workflow_dispatch:
@@ -28,12 +30,17 @@ on:
         description: "Kategorie des Streams"
         type: string
         default: "Just Chatting"
+      modell:
+        description: "Spracherkennung: small ist der gute Kompromiss"
+        type: choice
+        options: ["tiny", "base", "small", "medium"]
+        default: "small"
       schwelle:
-        description: "Mindestpunktzahl, leer = automatisch (58 ohne Transkript)"
+        description: "Mindestpunktzahl, leer = 65"
         type: string
         default: ""
       diagnose:
-        description: "Nur pruefen, warum der Chat-Abruf scheitert (nichts auswerten)"
+        description: "Nur pruefen, ob der Ton erreichbar ist (nichts auswerten)"
         type: boolean
         default: false
 
@@ -49,7 +56,10 @@ concurrency:
 jobs:
   auswerten:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Spracherkennung über einen langen Stream braucht Zeit. Großzügig
+    # bemessen: lieber ein Lauf, der durchläuft, als einer, der kurz vor dem
+    # Ziel abgeschnitten wird.
+    timeout-minutes: 300
 
     steps:
       - uses: actions/checkout@v4
@@ -58,6 +68,9 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+
+      - name: Werkzeuge installieren
+        run: pip install --quiet yt-dlp faster-whisper
 
       - name: Videonummer aus der Adresse lesen
         id: vod
@@ -73,54 +86,30 @@ jobs:
           echo "nummer=$NUMMER" >> "$GITHUB_OUTPUT"
           echo "Video $NUMMER"
 
-      # Der erste Lauf scheiterte mit "'data' (KeyError)" - Twitch antwortete
-      # also etwas, das die Bibliothek nicht erwartet. Dieser Schritt zeigt,
-      # *was* Twitch tatsaechlich sagt, statt es zu raten. Er laeuft nur auf
-      # Anforderung und wertet nichts aus.
-      - name: Diagnose - was antwortet Twitch?
-        if: inputs.diagnose
-        continue-on-error: true
-        run: |
-          NUMMER="${{ steps.vod.outputs.nummer }}"
-          # Die Kennung unten ist die oeffentliche Web-Client-ID von Twitch,
-          # kein Geheimnis - jedes Twitch-Werkzeug nutzt sie.
-          echo "=== 1. Rohe Anfrage an die Twitch-API ==="
-          CODE=$(curl -sS -o antwort.txt -w '%{http_code}' \
-            -X POST https://gql.twitch.tv/gql \
-            -H 'Client-ID: kimne78kx3ncx6brgo4mv6wki5h1ko' \
-            -H 'Content-Type: application/json' \
-            -d "{\"query\":\"{ video(id: \\\"$NUMMER\\\") { id lengthSeconds } }\"}" \
-            || echo "000")
-          echo "HTTP $CODE"
-          echo "Antwort (erste 800 Zeichen):"
-          head -c 800 antwort.txt; echo; echo
-
-          echo "=== 2. Eigener Abruf, erste Seite ==="
-          python src/clipwerk/twitch.py "${{ inputs.vod }}" \
-            --ziel probe.json 2>&1 | tail -20 || true
-          echo
-
-          echo "=== 3. Erreicht yt-dlp das Video? ==="
-          pip install --quiet yt-dlp
-          yt-dlp -J --skip-download "${{ inputs.vod }}" 2>&1 \
-            | head -c 400 || true
-          echo
-          echo "(Ein JSON-Anfang hier heisst: Twitch ist erreichbar und"
-          echo " liefert anonym Daten - dann liegt es an der Chat-Abfrage.)"
-
-      - name: Chat laden
-        id: chat
-        if: ${{ !inputs.diagnose }}
+      - name: Ton laden
         run: |
           mkdir -p arbeit
-          # Ausgabe zusaetzlich mitschreiben: die Protokoll-Schnittstelle
-          # liefert nur das Ende eines Laufs, und eine Fehlermeldung aus der
-          # Mitte waere sonst nicht zu sehen. Der letzte Schritt gibt die
-          # Datei noch einmal aus.
+          # Ausgabe mitschreiben: die Protokoll-Schnittstelle gibt nur das
+          # Ende eines Laufs heraus, und eine Meldung aus der Mitte wäre
+          # sonst nicht zu sehen. Der letzte Schritt gibt die Datei aus.
           set -o pipefail
-          python src/clipwerk/twitch.py "${{ inputs.vod }}" \
-            --ziel arbeit/chat.json 2>&1 | tee arbeit/abruf.log
-          ls -lh arbeit/chat.json
+          yt-dlp -f bestaudio --extract-audio --audio-format m4a \
+            -o arbeit/ton.m4a "${{ inputs.vod }}" 2>&1 | tee -a arbeit/lauf.log
+          ls -lh arbeit/ton.m4a | tee -a arbeit/lauf.log
+
+      - name: Nur Diagnose - hier ist Schluss
+        if: inputs.diagnose
+        run: |
+          echo "Diagnosemodus: der Ton ist da, ausgewertet wird nichts." \
+            | tee -a arbeit/lauf.log
+
+      - name: Text erkennen
+        if: ${{ !inputs.diagnose }}
+        run: |
+          set -o pipefail
+          python src/clipwerk/transkript.py arbeit/ton.m4a \
+            --ziel arbeit/transkript.json \
+            --modell "${{ inputs.modell }}" 2>&1 | tee -a arbeit/lauf.log
 
       - name: Auswerten
         if: ${{ !inputs.diagnose }}
@@ -130,15 +119,16 @@ jobs:
           else
             SCHWELLE=""
           fi
+          set -o pipefail
           # shellcheck disable=SC2086
           python src/main.py clip analyse \
-            --chat arbeit/chat.json \
+            --transkript arbeit/transkript.json \
             --stream-id "${{ steps.vod.outputs.nummer }}" \
             --streamer "${{ inputs.streamer }}" \
             --spiel "${{ inputs.spiel }}" \
             --ziel "docs/clips/${{ steps.vod.outputs.nummer }}" \
             --aufnehmen \
-            $SCHWELLE
+            $SCHWELLE 2>&1 | tee -a arbeit/lauf.log
 
       - name: Veröffentlichungsplan anhängen
         if: ${{ !inputs.diagnose }}
@@ -161,9 +151,6 @@ jobs:
         if: ${{ !inputs.diagnose }}
         run: |
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
-          # Der rohe Chat bleibt draussen: er enthaelt tausende Nutzernamen
-          # und hat in einem oeffentlichen Repo nichts verloren. Er liegt
-          # unten als Artefakt, falls jemand ihn braucht.
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$ORDNER" content/clip_verlauf.json
@@ -174,32 +161,26 @@ jobs:
             git push
           fi
 
-      - name: Bericht auch als Artefakt
+      - name: Bericht und Transkript als Download
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: clips-${{ steps.vod.outputs.nummer }}
           path: |
             docs/clips/${{ steps.vod.outputs.nummer }}/
+            arbeit/transkript.json
           retention-days: 30
-
-      - name: Rohen Chat als Artefakt
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chat-${{ steps.vod.outputs.nummer }}
-          path: arbeit/chat.json
-          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Zusammenfassung
         if: always()
         run: |
-          # Zuerst das Abrufprotokoll, damit es am Ende des Laufs steht und
-          # ohne Herunterladen des ganzen Protokolls lesbar ist.
-          if [ -s arbeit/abruf.log ]; then
-            echo "----- Chat-Abruf -----"
-            cat arbeit/abruf.log
-            echo "----------------------"
+          # Zuerst das Laufprotokoll, damit es am Ende steht und ohne
+          # Herunterladen des ganzen Protokolls lesbar ist.
+          if [ -s arbeit/lauf.log ]; then
+            echo "----- Lauf -----"
+            tail -n 25 arbeit/lauf.log
+            echo "----------------"
           fi
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
           {
