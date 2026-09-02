@@ -30,6 +30,25 @@ from pathlib import Path
 MODELLE = ("tiny", "base", "small", "medium", "large-v3")
 VORGABE = "small"
 
+# Ein Satz in der Schreibweise, die herauskommen soll. Whisper übernimmt den
+# Stil des Vorlaufs - ohne ihn kann ein Lauf in Kleinschreibung ohne
+# Satzzeichen kippen und bleibt dann dort, weil jedes Segment auf dem
+# vorigen aufsetzt.
+#
+# Genau das ist am 02.09.2026 an Stream 2862735566 passiert. Das Transkript
+# war durchgehend richtig, aber durchgehend klein und ohne Punkt:
+#
+#     "nam also das ist jetzt hier keine verarsche oder so das ist
+#      wirklich ein mrt bild von mir und wie ihr sehen könnt"
+#
+# Das ist nicht nur hässlich, es macht mehrere Messungen blind. Ohne
+# Satzzeichen findet `texte.kernzitat` keine Satzgrenze und schneidet den
+# Hook mitten im Satz ab; ohne Großschrift und Ausrufezeichen ist die Reihe
+# `sprache_ruf` immer null, und die Frage in `_note_kommentar` auch. Über
+# 1549 Segmente hinweg hat keine dieser drei je angeschlagen.
+VORLAUF = ("Guten Abend zusammen, schön dass ihr da seid. Was ist denn hier "
+           "gerade passiert? Das gibt es doch nicht!")
+
 
 class TranskriptFehler(RuntimeError):
     pass
@@ -88,7 +107,14 @@ def erkenne(ton: Path, ziel: Path, modell: str = VORGABE,
 
     melden(f"Erkenne {ton.name} …")
     strom, info = maschine.transcribe(
-        str(ton), language=sprache, word_timestamps=True, vad_filter=True)
+        str(ton), language=sprache, word_timestamps=True, vad_filter=True,
+        initial_prompt=VORLAUF,
+        # Ohne diese Abschaltung setzt jedes Segment auf dem Text des
+        # vorigen auf. Das hilft der Erkennung, vererbt aber auch jeden
+        # Fehler - eine einmal verlorene Großschreibung kommt über
+        # zweieinhalb Stunden nicht zurück, und bei langen Aufnahmen
+        # entstehen so die bekannten Wiederholschleifen.
+        condition_on_previous_text=False)
 
     gesamt = float(getattr(info, "duration", 0) or 0)
     segmente: list[dict] = []

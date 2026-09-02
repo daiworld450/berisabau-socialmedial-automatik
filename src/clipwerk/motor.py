@@ -112,6 +112,7 @@ class Ergebnis:
     verworfen: list[tuple[float, int, str]] = field(default_factory=list)
     kurve: sig.Signalkurve | None = None
     geprueft: int = 0
+    schwelle: int = bew.SCHWELLE_VERWERFEN
 
 
 def analysiere(stream: Stream, *, schwelle: int = bew.SCHWELLE_VERWERFEN,
@@ -148,7 +149,7 @@ def analysiere(stream: Stream, *, schwelle: int = bew.SCHWELLE_VERWERFEN,
         rohe.append(kandidat)
     rohe = kand.entdoppeln(rohe)
 
-    ergebnis = Ergebnis(kurve=kurve, geprueft=len(rohe))
+    ergebnis = Ergebnis(kurve=kurve, geprueft=len(rohe), schwelle=int(schwelle))
     bewertet: list[tuple[bew.Bewertung, kand.Kandidat]] = []
     for kandidat in rohe:
         note = bew.bewerte(kandidat, kurve, faktoren)
