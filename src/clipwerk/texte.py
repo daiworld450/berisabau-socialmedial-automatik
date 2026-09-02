@@ -59,13 +59,34 @@ def _traegt(satz: str) -> bool:
     return len(inhalt) >= 2
 
 
+def _satzanfang(text: str) -> bool:
+    """Fängt dieser Text am Satzanfang an - soweit man das sehen kann?
+
+    Vorsichtig formuliert, weil nicht jedes Transkript Großschreibung
+    kennt: ein durchgehend kleingeschriebener Text sagt nichts über
+    Satzgrenzen aus, dort wird nicht bestraft. Steht dagegen anderswo im
+    Satz ein Großbuchstabe und am Anfang ein kleiner, ist der Anfang
+    abgeschnitten.
+    """
+    text = text.strip()
+    if not text:
+        return False
+    if text[:1].isupper():
+        return True
+    return not any(z.isupper() for z in text)
+
+
 def kernzitat(kandidat: Kandidat, hoechstens: int = 12) -> str:
     """Der Satz, der dem Höhepunkt am nächsten liegt und für sich steht.
 
     Nur daraus dürfen Titel gebaut werden. Alles andere wäre eine Behauptung
     über den Clip statt eines Auszugs aus ihm.
     """
-    beste, bester_abstand = "", 1e9
+    # Zwei Durchgänge, und der erste gewinnt: ein Zitat, das am Satzanfang
+    # beginnt, schlägt jedes, das mitten im Satz einsetzt - auch wenn das
+    # näher am Höhepunkt liegt. „das mein rechter Fuß" ist kein Zitat,
+    # sondern ein Stück von einem.
+    ganz, bruch = ("", 1e9), ("", 1e9)
     for segment in kandidat.segmente:
         for satz in re.split(r"(?<=[.!?])\s+", segment.text.strip()):
             satz = _FUELLER.sub("", satz).strip(" ,.:;–-")
@@ -75,10 +96,15 @@ def kernzitat(kandidat: Kandidat, hoechstens: int = 12) -> str:
             if not _traegt(satz):
                 continue
             abstand = abs(segment.start - kandidat.hoehepunkt)
-            if abstand < bester_abstand:
-                beste, bester_abstand = satz, abstand
-    if beste:
-        return beste
+            ziel = "ganz" if _satzanfang(satz) else "bruch"
+            if ziel == "ganz" and abstand < ganz[1]:
+                ganz = (satz, abstand)
+            elif ziel == "bruch" and abstand < bruch[1]:
+                bruch = (satz, abstand)
+    if ganz[0]:
+        return ganz[0]
+    if bruch[0]:
+        return bruch[0]
     # Notfall: die ersten Wörter des Clips, gekürzt.
     woerter = kandidat.text.split()[:hoechstens]
     return " ".join(woerter).strip(" ,.–-")

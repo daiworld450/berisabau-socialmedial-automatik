@@ -776,6 +776,29 @@ class Betriebsarten(unittest.TestCase):
         self.assertGreater(ergebnis.geprueft, 0)
         self.assertTrue(ergebnis.clips)
 
+    def test_satzanfang_wird_vorsichtig_erkannt(self):
+        """Grossschreibung verraet den Satzanfang - aber nur, wenn es
+        ueberhaupt welche gibt."""
+        self.assertTrue(texte._satzanfang("Wer kennt das von euch?"))
+        self.assertFalse(texte._satzanfang("das mein rechter Fuß"))
+        # Ein durchgehend kleingeschriebenes Transkript sagt ueber
+        # Satzgrenzen nichts aus. Dort wird nicht bestraft.
+        self.assertTrue(texte._satzanfang("das mein rechter fuß"))
+        self.assertFalse(texte._satzanfang(""))
+
+    def test_zitat_beginnt_lieber_am_satzanfang(self):
+        """Ein ganzer Satz schlaegt ein Bruchstueck, auch wenn das
+        Bruchstueck naeher am Hoehepunkt liegt."""
+        segmente = [
+            quellen.Segment(0.0, 4.0, "keine Ahnung haben Leute. "
+                                      "Wer kennt das von euch?"),
+            quellen.Segment(4.0, 8.0, "gewisses Alter war bestimmt drüber"),
+        ]
+        kandidat = kandidaten.Kandidat(
+            start=0.0, ende=8.0, hoehepunkt=7.0, staerke=2.0, anteile={},
+            segmente=segmente)
+        self.assertEqual(texte.kernzitat(kandidat), "Wer kennt das von euch?")
+
     def test_nicht_messbares_zaehlt_nicht_als_null(self):
         """Ein fehlender Sensor senkt die Note nicht, er fällt heraus."""
         # Zwei gleich gute Bestandteile, einer davon nicht messbar:
