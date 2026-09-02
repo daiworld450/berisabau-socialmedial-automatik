@@ -32,6 +32,10 @@ on:
         description: "Mindestpunktzahl, leer = automatisch (58 ohne Transkript)"
         type: string
         default: ""
+      diagnose:
+        description: "Nur pruefen, warum der Chat-Abruf scheitert (nichts auswerten)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -72,13 +76,50 @@ jobs:
           echo "nummer=$NUMMER" >> "$GITHUB_OUTPUT"
           echo "Video $NUMMER"
 
+      # Der erste Lauf scheiterte mit "'data' (KeyError)" - Twitch antwortete
+      # also etwas, das die Bibliothek nicht erwartet. Dieser Schritt zeigt,
+      # *was* Twitch tatsaechlich sagt, statt es zu raten. Er laeuft nur auf
+      # Anforderung und wertet nichts aus.
+      - name: Diagnose - was antwortet Twitch?
+        if: inputs.diagnose
+        continue-on-error: true
+        run: |
+          NUMMER="${{ steps.vod.outputs.nummer }}"
+          # Die Kennung unten ist die oeffentliche Web-Client-ID von Twitch,
+          # kein Geheimnis - jedes Twitch-Werkzeug nutzt sie.
+          echo "=== 1. Rohe Anfrage an die Twitch-API ==="
+          CODE=$(curl -sS -o antwort.txt -w '%{http_code}' \
+            -X POST https://gql.twitch.tv/gql \
+            -H 'Client-ID: kimne78kx3ncx6brgo4mv6wki5h1ko' \
+            -H 'Content-Type: application/json' \
+            -d "{\"query\":\"{ video(id: \\\"$NUMMER\\\") { id lengthSeconds } }\"}" \
+            || echo "000")
+          echo "HTTP $CODE"
+          echo "Antwort (erste 800 Zeichen):"
+          head -c 800 antwort.txt; echo; echo
+
+          echo "=== 2. chat_downloader mit ausfuehrlichem Protokoll ==="
+          chat_downloader "${{ inputs.vod }}" --logging debug --max_messages 5 \
+            2>&1 | tail -40 || true
+          echo
+
+          echo "=== 3. Erreicht yt-dlp das Video? ==="
+          pip install --quiet yt-dlp
+          yt-dlp -J --skip-download "${{ inputs.vod }}" 2>&1 \
+            | head -c 400 || true
+          echo
+          echo "(Ein JSON-Anfang hier heisst: Twitch ist erreichbar und"
+          echo " liefert anonym Daten - dann liegt es an der Chat-Abfrage.)"
+
       - name: Chat laden
+        if: ${{ !inputs.diagnose }}
         run: |
           mkdir -p arbeit
           chat_downloader "${{ inputs.vod }}" --output arbeit/chat.json
           ls -lh arbeit/chat.json
 
       - name: Auswerten
+        if: ${{ !inputs.diagnose }}
         run: |
           if [ -n "${{ inputs.schwelle }}" ]; then
             SCHWELLE="--schwelle ${{ inputs.schwelle }}"
@@ -96,6 +137,7 @@ jobs:
             $SCHWELLE
 
       - name: Veröffentlichungsplan anhängen
+        if: ${{ !inputs.diagnose }}
         run: |
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
           if [ -s "$ORDNER/clips.json" ]; then
@@ -112,6 +154,7 @@ jobs:
           fi
 
       - name: Bericht ins Repo legen
+        if: ${{ !inputs.diagnose }}
         run: |
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
           # Der rohe Chat bleibt draussen: er enthaelt tausende Nutzernamen
