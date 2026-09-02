@@ -12,21 +12,21 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:00.98,Clip,,0,0,0,,unterschiede macht nur
-Dialogue: 0,0:00:00.98,0:00:02.02,Clip,,0,0,0,,zwischen gute menschen
-Dialogue: 0,0:00:02.02,0:00:03.28,Clip,,0,0,0,,oder böse menschen {\c&H0022DDFF&}alles{\c&H00FFFFFF&}
-Dialogue: 0,0:00:03.28,0:00:05.44,Clip,,0,0,0,,andere spielt keine rolle
-Dialogue: 0,0:00:05.44,0:00:06.64,Clip,,0,0,0,,wer sich trotzdem daran
-Dialogue: 0,0:00:06.64,0:00:08.10,Clip,,0,0,0,,bedient bedient sich an
-Dialogue: 0,0:00:08.10,0:00:09.24,Clip,,0,0,0,,dem spiel des teufels
-Dialogue: 0,0:00:09.24,0:00:11.26,Clip,,0,0,0,,und jetzt erkenne dich
-Dialogue: 0,0:00:11.26,0:00:12.32,Clip,,0,0,0,,selbst es
-Dialogue: 0,0:00:17.63,0:00:18.51,Clip,,0,0,0,,ist doch nicht schwer zu
-Dialogue: 0,0:00:18.51,0:00:20.39,Clip,,0,0,0,,begreifen alter {\c&H0022DDFF&}wirklich{\c&H00FFFFFF&}
-Dialogue: 0,0:00:20.39,0:00:21.35,Clip,,0,0,0,,das ist doch nicht schwer
-Dialogue: 0,0:00:21.35,0:00:22.75,Clip,,0,0,0,,zu begreifen meine gute
-Dialogue: 0,0:00:23.15,0:00:25.03,Clip,,0,0,0,,wow ja das ding das ging
-Dialogue: 0,0:00:25.03,0:00:26.99,Clip,,0,0,0,,zwar nur 16 minuten aber
-Dialogue: 0,0:00:26.99,0:00:28.03,Clip,,0,0,0,,es hat es echt in sich
-Dialogue: 0,0:00:28.03,0:00:29.51,Clip,,0,0,0,,leute
-Dialogue: 0,0:00:29.51,0:00:31.13,Clip,,0,0,0,,deswegen ich sag
+Dialogue: 0,0:00:00.00,0:00:01.20,Clip,,0,0,0,,Möge -Enfriedenruhen hat
+Dialogue: 0,0:00:01.20,0:00:02.16,Clip,,0,0,0,,{\c&H0022DDFF&}immer{\c&H00FFFFFF&} zu mir gesagt, mein
+Dialogue: 0,0:00:02.16,0:00:03.78,Clip,,0,0,0,,Sohn, das Gefährlichste
+Dialogue: 0,0:00:03.78,0:00:04.48,Clip,,0,0,0,,auf unserer Welt
+Dialogue: 0,0:00:04.48,0:00:06.40,Clip,,0,0,0,,sind
+Dialogue: 0,0:00:06.40,0:00:08.26,Clip,,0,0,0,,dumme Menschen mit sehr
+Dialogue: 0,0:00:08.26,0:00:08.80,Clip,,0,0,0,,viel Macht.
+Dialogue: 0,0:00:10.00,0:00:11.32,Clip,,0,0,0,,Und ladies and gentlemen,
+Dialogue: 0,0:00:11.60,0:00:12.88,Clip,,0,0,0,,genau dieses Problem haben
+Dialogue: 0,0:00:12.88,0:00:14.52,Clip,,0,0,0,,wir {\c&H0022DDFF&}alle.{\c&H00FFFFFF&} Guck mal, egal
+Dialogue: 0,0:00:14.52,0:00:16.00,Clip,,0,0,0,,ob man mich mag oder nicht
+Dialogue: 0,0:00:16.00,0:00:17.84,Clip,,0,0,0,,mag, ich spiele gar keine
+Dialogue: 0,0:00:17.84,0:00:18.29,Clip,,0,0,0,,Rolle.
+Dialogue: 0,0:00:18.82,0:00:19.90,Clip,,0,0,0,,Es geht gar nicht um mich,
+Dialogue: 0,0:00:20.08,0:00:20.84,Clip,,0,0,0,,ich will mich auch nicht
+Dialogue: 0,0:00:20.84,0:00:22.26,Clip,,0,0,0,,mit so etwas profilieren,
+Dialogue: 0,0:00:22.30,0:00:23.00,Clip,,0,0,0,,das ist ja krank.
+Dialogue: 0,0:00:23.76,0:00:24.48,Clip,,0,0,0,,Es geht auch nicht

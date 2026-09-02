@@ -12,23 +12,16 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:00.72,Clip,,0,0,0,,interessieren in
-Dialogue: 0,0:00:00.72,0:00:01.82,Clip,,0,0,0,,frankreich befindet sich
-Dialogue: 0,0:00:01.82,0:00:03.18,Clip,,0,0,0,,die {\c&H0022DDFF&}größte{\c&H00FFFFFF&} ansammung von
-Dialogue: 0,0:00:03.18,0:00:05.56,Clip,,0,0,0,,manhirn der welt als 3000
-Dialogue: 0,0:00:05.56,0:00:07.76,Clip,,0,0,0,,monolithen die zwischen 50
-Dialogue: 0,0:00:07.76,0:00:10.12,Clip,,0,0,0,,cm 7 m hoch sind
-Dialogue: 0,0:00:10.12,0:00:11.98,Clip,,0,0,0,,weil leute wenn wir mal
-Dialogue: 0,0:00:11.98,0:00:14.00,Clip,,0,0,0,,{\c&H0022DDFF&}ehrlich{\c&H00FFFFFF&} sind überall auf
-Dialogue: 0,0:00:14.00,0:00:15.16,Clip,,0,0,0,,der welt verteilt in
-Dialogue: 0,0:00:15.16,0:00:16.62,Clip,,0,0,0,,verschiedenen regionen
-Dialogue: 0,0:00:16.62,0:00:18.54,Clip,,0,0,0,,benutzen sie quasi eine
-Dialogue: 0,0:00:18.54,0:00:20.02,Clip,,0,0,0,,ähnliche architektur
-Dialogue: 0,0:00:20.02,0:00:22.30,Clip,,0,0,0,,und ähnliche techniken um
-Dialogue: 0,0:00:22.30,0:00:23.50,Clip,,0,0,0,,nach oben gerichtete
-Dialogue: 0,0:00:23.50,0:00:24.98,Clip,,0,0,0,,bauten irgendwie zu machen
-Dialogue: 0,0:00:24.98,0:00:26.16,Clip,,0,0,0,,das ist doch kein zufall
-Dialogue: 0,0:00:26.16,0:00:27.96,Clip,,0,0,0,,das ist da muss doch
-Dialogue: 0,0:00:27.96,0:00:28.90,Clip,,0,0,0,,irgendwas sein alte
-Dialogue: 0,0:00:28.90,0:00:31.10,Clip,,0,0,0,,interessanterweise war
-Dialogue: 0,0:00:31.10,0:00:32.89,Clip,,0,0,0,,kein nack im alten egypten ein sehr
+Dialogue: 0,0:00:00.00,0:00:01.68,Clip,,0,0,0,,sondern von 10 .000.
+Dialogue: 0,0:00:02.32,0:00:03.76,Clip,,0,0,0,,Doch was verbergen diese
+Dialogue: 0,0:00:03.76,0:00:05.02,Clip,,0,0,0,,Rätselhaften Bauwerke?
+Dialogue: 0,0:00:05.64,0:00:06.38,Clip,,0,0,0,,Was ist das?
+Dialogue: 0,0:00:06.90,0:00:07.88,Clip,,0,0,0,,Sind das die Häuser der
+Dialogue: 0,0:00:07.88,0:00:08.90,Clip,,0,0,0,,Bewohner von dort?
+Dialogue: 0,0:00:09.56,0:00:10.50,Clip,,0,0,0,,Stell dir vor, {\c&H0022DDFF&}jeder{\c&H00FFFFFF&} hat
+Dialogue: 0,0:00:10.50,0:00:11.32,Clip,,0,0,0,,so ein Haus mit so einem
+Dialogue: 0,0:00:11.32,0:00:11.94,Clip,,0,0,0,,Ding da oben drauf.
+Dialogue: 0,0:00:12.02,0:00:12.56,Clip,,0,0,0,,Das ist ja {\c&H0022DDFF&}krass.{\c&H00FFFFFF&}
+Dialogue: 0,0:00:12.96,0:00:13.70,Clip,,0,0,0,,Das wäre heftig.
+Dialogue: 0,0:00:13.96,0:00:15.02,Clip,,0,0,0,,Ey, lieber SkyWitty,
+Dialogue: 0,0:00:15.16,0:00:17.29,Clip,,0,0,0,,erstmal hier auf Holz klopfen.

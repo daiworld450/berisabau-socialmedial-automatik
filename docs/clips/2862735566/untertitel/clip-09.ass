@@ -12,28 +12,21 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.30,Clip,,0,0,0,,wenn ich jetzt hier kia
-Dialogue: 0,0:00:01.30,0:00:03.12,Clip,,0,0,0,,kummer wenn ich kian
-Dialogue: 0,0:00:03.12,0:00:05.26,Clip,,0,0,0,,eingebe kommt kianos vor
-Dialogue: 0,0:00:05.26,0:00:06.92,Clip,,0,0,0,,kianos das
-Dialogue: 0,0:00:06.92,0:00:08.64,Clip,,0,0,0,,ist natürlich mein ego ich
-Dialogue: 0,0:00:08.64,0:00:09.88,Clip,,0,0,0,,mach nur spaß kianos ist
-Dialogue: 0,0:00:09.88,0:00:11.16,Clip,,0,0,0,,natürlich präsent oder was
-Dialogue: 0,0:00:11.16,0:00:12.50,Clip,,0,0,0,,wir zu machen bitcoin
-Dialogue: 0,0:00:12.50,0:00:14.10,Clip,,0,0,0,,präsent so
-Dialogue: 0,0:00:14.10,0:00:15.74,Clip,,0,0,0,,leute was ist hier
-Dialogue: 0,0:00:15.74,0:00:16.78,Clip,,0,0,0,,passiert also
-Dialogue: 0,0:00:16.78,0:00:19.08,Clip,,0,0,0,,wo haben wir das denn
-Dialogue: 0,0:00:19.08,0:00:21.22,Clip,,0,0,0,,alter was ist mit
-Dialogue: 0,0:00:21.22,0:00:22.40,Clip,,0,0,0,,dieser reaction hier
-Dialogue: 0,0:00:22.40,0:00:23.18,Clip,,0,0,0,,passiert ladies and
-Dialogue: 0,0:00:23.18,0:00:23.74,Clip,,0,0,0,,gentlemen können wir bitte
-Dialogue: 0,0:00:23.74,0:00:24.32,Clip,,0,0,0,,darüber reden
-Dialogue: 0,0:00:25.36,0:00:27.36,Clip,,0,0,0,,was zur hölle ja aber im
-Dialogue: 0,0:00:27.36,0:00:28.30,Clip,,0,0,0,,wahrsten sinn des wort ist
-Dialogue: 0,0:00:28.30,0:00:29.16,Clip,,0,0,0,,was zur hölle passiert
-Dialogue: 0,0:00:29.16,0:00:31.16,Clip,,0,0,0,,hier dieser tag dient
-Dialogue: 0,0:00:31.16,0:00:31.94,Clip,,0,0,0,,nicht dazu die welt
-Dialogue: 0,0:00:31.94,0:00:33.96,Clip,,0,0,0,,umzugestattet als ihr
-Dialogue: 0,0:00:33.96,0:00:34.78,Clip,,0,0,0,,gesagt habt bruder guckt
-Dialogue: 0,0:00:34.78,0:00:35.23,Clip,,0,0,0,,ihr das mal
+Dialogue: 0,0:00:00.00,0:00:01.74,Clip,,0,0,0,,könnt ihr euch drauf
+Dialogue: 0,0:00:01.74,0:00:02.19,Clip,,0,0,0,,verlassen.
+Dialogue: 0,0:00:03.92,0:00:04.88,Clip,,0,0,0,,Wie gehts euch denn?
+Dialogue: 0,0:00:09.23,0:00:09.79,Clip,,0,0,0,,Gehts euch gut?
+Dialogue: 0,0:00:10.83,0:00:11.71,Clip,,0,0,0,,Ich hoffe ihr seid {\c&H0022DDFF&}alle{\c&H00FFFFFF&}
+Dialogue: 0,0:00:11.71,0:00:13.39,Clip,,0,0,0,,fit. {\c&H0022DDFF&}Alles{\c&H00FFFFFF&} gut bei euch.
+Dialogue: 0,0:00:13.87,0:00:14.81,Clip,,0,0,0,,Ey danke erst mal, ich
+Dialogue: 0,0:00:14.81,0:00:15.41,Clip,,0,0,0,,muss mich hier kurz
+Dialogue: 0,0:00:15.41,0:00:16.71,Clip,,0,0,0,,bedanken. Warte mal.
+Dialogue: 0,0:00:17.69,0:00:19.37,Clip,,0,0,0,,Erst mal, warte mal, warte
+Dialogue: 0,0:00:19.37,0:00:20.73,Clip,,0,0,0,,mal, warte, warte, warte,
+Dialogue: 0,0:00:20.73,0:00:21.18,Clip,,0,0,0,,warte.
+Dialogue: 0,0:00:22.25,0:00:24.03,Clip,,0,0,0,,Erst mal dank an Karibik
+Dialogue: 0,0:00:24.03,0:00:25.97,Clip,,0,0,0,,Hendrik für dein Abo vor
+Dialogue: 0,0:00:25.97,0:00:27.85,Clip,,0,0,0,,19 Minuten. X -Act mal
+Dialogue: 0,0:00:27.85,0:00:29.13,Clip,,0,0,0,,lieber. Dankeschön vor 19
+Dialogue: 0,0:00:29.13,0:00:29.58,Clip,,0,0,0,,Minuten.
+Dialogue: 0,0:00:30.35,0:00:31.83,Clip,,0,0,0,,Kilominat vor 14 Minuten.

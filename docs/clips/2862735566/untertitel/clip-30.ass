@@ -12,30 +12,22 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:00.90,Clip,,0,0,0,,beziehungsweise wir haben
-Dialogue: 0,0:00:00.90,0:00:02.36,Clip,,0,0,0,,{\c&H0022DDFF&}immer{\c&H00FFFFFF&} gegen wind das es
-Dialogue: 0,0:00:02.36,0:00:03.46,Clip,,0,0,0,,bleibt nicht aus dagegen
-Dialogue: 0,0:00:03.46,0:00:04.32,Clip,,0,0,0,,kannst du {\c&H0022DDFF&}nichts{\c&H00FFFFFF&} machen
-Dialogue: 0,0:00:04.32,0:00:05.58,Clip,,0,0,0,,das ist die natur der
-Dialogue: 0,0:00:05.58,0:00:07.16,Clip,,0,0,0,,dinge es gibt {\c&H0022DDFF&}immer{\c&H00FFFFFF&} wieder
-Dialogue: 0,0:00:07.16,0:00:07.82,Clip,,0,0,0,,menschen auch
-Dialogue: 0,0:00:07.82,0:00:09.90,Clip,,0,0,0,,gruppierungen die es sich
-Dialogue: 0,0:00:09.90,0:00:10.92,Clip,,0,0,0,,zu aufgabe machen
-Dialogue: 0,0:00:10.92,0:00:13.02,Clip,,0,0,0,,menschen die
-Dialogue: 0,0:00:13.02,0:00:14.28,Clip,,0,0,0,,eine gute gesellschaft
-Dialogue: 0,0:00:14.28,0:00:15.40,Clip,,0,0,0,,haben wollen aufzuhalten
-Dialogue: 0,0:00:15.40,0:00:17.24,Clip,,0,0,0,,sie zu bekriegen oder sie
-Dialogue: 0,0:00:17.24,0:00:18.20,Clip,,0,0,0,,klein zu halten ich weiß
-Dialogue: 0,0:00:18.20,0:00:19.22,Clip,,0,0,0,,nicht was in deren körpern
-Dialogue: 0,0:00:19.22,0:00:21.00,Clip,,0,0,0,,abgeht sie vergessen dass
-Dialogue: 0,0:00:21.00,0:00:21.80,Clip,,0,0,0,,wir auch in deren
-Dialogue: 0,0:00:21.80,0:00:22.96,Clip,,0,0,0,,interesse agieren und
-Dialogue: 0,0:00:22.96,0:00:24.24,Clip,,0,0,0,,handeln wollen das
-Dialogue: 0,0:00:24.24,0:00:25.12,Clip,,0,0,0,,vergessen sie sehr sehr
-Dialogue: 0,0:00:25.12,0:00:26.64,Clip,,0,0,0,,schnell und verlieren dann
-Dialogue: 0,0:00:26.64,0:00:27.74,Clip,,0,0,0,,das eigentliche ziel aus
-Dialogue: 0,0:00:27.74,0:00:28.68,Clip,,0,0,0,,den augen und zwar die
-Dialogue: 0,0:00:28.68,0:00:30.00,Clip,,0,0,0,,waren feinde und die
-Dialogue: 0,0:00:30.00,0:00:30.76,Clip,,0,0,0,,feinde sind nicht da
-Dialogue: 0,0:00:30.76,0:00:32.50,Clip,,0,0,0,,draußen sondern im innern
-Dialogue: 0,0:00:32.50,0:00:35.07,Clip,,0,0,0,,das sind die menschen die nicht
+Dialogue: 0,0:00:00.00,0:00:01.16,Clip,,0,0,0,,Wenn ihr Unterschiede
+Dialogue: 0,0:00:01.16,0:00:02.26,Clip,,0,0,0,,macht nur zwischen gute
+Dialogue: 0,0:00:02.26,0:00:03.28,Clip,,0,0,0,,Menschen oder böse
+Dialogue: 0,0:00:03.28,0:00:04.34,Clip,,0,0,0,,Menschen, {\c&H0022DDFF&}alles{\c&H00FFFFFF&} andere
+Dialogue: 0,0:00:04.34,0:00:06.04,Clip,,0,0,0,,spielt keine Rolle.
+Dialogue: 0,0:00:06.30,0:00:07.30,Clip,,0,0,0,,Wer sich trotzdem daran
+Dialogue: 0,0:00:07.30,0:00:08.76,Clip,,0,0,0,,bedient, bedient sich an
+Dialogue: 0,0:00:08.76,0:00:09.90,Clip,,0,0,0,,dem Spiel des Teufels.
+Dialogue: 0,0:00:10.70,0:00:11.92,Clip,,0,0,0,,Und jetzt erkenne dich
+Dialogue: 0,0:00:11.92,0:00:12.37,Clip,,0,0,0,,selbst.
+Dialogue: 0,0:00:18.13,0:00:18.99,Clip,,0,0,0,,Das ist doch nicht schwer
+Dialogue: 0,0:00:18.99,0:00:19.99,Clip,,0,0,0,,zu begreifen, Alter.
+Dialogue: 0,0:00:20.81,0:00:21.61,Clip,,0,0,0,,{\c&H0022DDFF&}Wirklich,{\c&H00FFFFFF&} das ist doch
+Dialogue: 0,0:00:21.61,0:00:22.67,Clip,,0,0,0,,nicht schwer zu begreifen,
+Dialogue: 0,0:00:22.79,0:00:23.51,Clip,,0,0,0,,meine Güte.
+Dialogue: 0,0:00:26.29,0:00:26.81,Clip,,0,0,0,,Wow.
+Dialogue: 0,0:00:27.43,0:00:28.57,Clip,,0,0,0,,Ja, das Ding, das ging
+Dialogue: 0,0:00:28.57,0:00:30.49,Clip,,0,0,0,,zwar nur 16 Minuten, Aber
+Dialogue: 0,0:00:30.49,0:00:32.08,Clip,,0,0,0,,es hat es echt in sich, Leute.

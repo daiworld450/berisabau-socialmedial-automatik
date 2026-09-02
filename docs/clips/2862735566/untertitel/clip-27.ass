@@ -12,34 +12,20 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.32,Clip,,0,0,0,,mal hier gesagt werden das
-Dialogue: 0,0:00:01.32,0:00:02.72,Clip,,0,0,0,,bitte verbreiten das ist
-Dialogue: 0,0:00:02.72,0:00:03.74,Clip,,0,0,0,,die wichtigste Botschaft
-Dialogue: 0,0:00:03.74,0:00:04.82,Clip,,0,0,0,,des tages wenn nicht des
-Dialogue: 0,0:00:04.82,0:00:05.66,Clip,,0,0,0,,jahres wenn nicht des
-Dialogue: 0,0:00:05.66,0:00:07.22,Clip,,0,0,0,,jahrzehnts das müsst ihr
-Dialogue: 0,0:00:07.22,0:00:08.90,Clip,,0,0,0,,machen bitte verbreitet
-Dialogue: 0,0:00:08.90,0:00:10.28,Clip,,0,0,0,,sowas und nicht wie
-Dialogue: 0,0:00:10.28,0:00:12.50,Clip,,0,0,0,,irgendein ich raste hier
-Dialogue: 0,0:00:12.50,0:00:13.66,Clip,,0,0,0,,wieder aus wie irgendein
-Dialogue: 0,0:00:13.66,0:00:15.40,Clip,,0,0,0,,trottel keine ahnung milch
-Dialogue: 0,0:00:15.40,0:00:16.28,Clip,,0,0,0,,trinkt und das aus seiner
-Dialogue: 0,0:00:16.28,0:00:17.54,Clip,,0,0,0,,nase rauskommt und das als
-Dialogue: 0,0:00:17.54,0:00:18.80,Clip,,0,0,0,,meme million klisch
-Dialogue: 0,0:00:18.80,0:00:19.80,Clip,,0,0,0,,scheiss mal auf sowas
-Dialogue: 0,0:00:19.80,0:00:21.18,Clip,,0,0,0,,leute wir brauchen keine
-Dialogue: 0,0:00:21.18,0:00:22.32,Clip,,0,0,0,,fozeln und rübseln in
-Dialogue: 0,0:00:22.32,0:00:23.52,Clip,,0,0,0,,leute sondern wir brauchen
-Dialogue: 0,0:00:23.52,0:00:24.58,Clip,,0,0,0,,richtige message nach
-Dialogue: 0,0:00:24.58,0:00:25.66,Clip,,0,0,0,,außen gebracht denn ihr
-Dialogue: 0,0:00:25.66,0:00:26.80,Clip,,0,0,0,,wollt eine bessere welt
-Dialogue: 0,0:00:26.80,0:00:28.42,Clip,,0,0,0,,dann tut was dafür
-Dialogue: 0,0:00:28.42,0:00:30.40,Clip,,0,0,0,,wenn es ein böse und gutes
-Dialogue: 0,0:00:30.40,0:00:31.92,Clip,,0,0,0,,geht der macht nur einen
-Dialogue: 0,0:00:31.92,0:00:32.86,Clip,,0,0,0,,unterschied zwischen böse
-Dialogue: 0,0:00:32.86,0:00:33.36,Clip,,0,0,0,,und gute
-Dialogue: 0,0:00:34.00,0:00:35.40,Clip,,0,0,0,,dankeschön guck mal
-Dialogue: 0,0:00:35.40,0:00:37.28,Clip,,0,0,0,,oder besser hätte
-Dialogue: 0,0:00:37.28,0:00:39.54,Clip,,0,0,0,,besser besser kann man
-Dialogue: 0,0:00:39.54,0:00:41.66,Clip,,0,0,0,,das nicht sagen macht
-Dialogue: 0,0:00:41.66,0:00:43.14,Clip,,0,0,0,,unterschiede nur zwischen
+Dialogue: 0,0:00:00.00,0:00:01.52,Clip,,0,0,0,,politischer Bühne, auf
+Dialogue: 0,0:00:01.52,0:00:03.80,Clip,,0,0,0,,einer hohen Ebene, wenn
+Dialogue: 0,0:00:03.80,0:00:04.78,Clip,,0,0,0,,man solche Aussagen
+Dialogue: 0,0:00:04.78,0:00:06.70,Clip,,0,0,0,,tätigt, wie ihr müsst
+Dialogue: 0,0:00:06.70,0:00:07.84,Clip,,0,0,0,,jetzt den dritten Tempel
+Dialogue: 0,0:00:07.84,0:00:08.92,Clip,,0,0,0,,bauen und das wird dann
+Dialogue: 0,0:00:08.92,0:00:10.76,Clip,,0,0,0,,von Ministerpräsident zu
+Dialogue: 0,0:00:10.76,0:00:11.70,Clip,,0,0,0,,keine Ahnung wem gesagt
+Dialogue: 0,0:00:11.70,0:00:12.44,Clip,,0,0,0,,und das wird dann
+Dialogue: 0,0:00:12.44,0:00:13.44,Clip,,0,0,0,,öffentlich gespreadert.
+Dialogue: 0,0:00:13.50,0:00:14.10,Clip,,0,0,0,,Wenn ich mir so meine,
+Dialogue: 0,0:00:14.20,0:00:14.68,Clip,,0,0,0,,ist das ernst?
+Dialogue: 0,0:00:15.36,0:00:16.00,Clip,,0,0,0,,Das ist doch voll
+Dialogue: 0,0:00:16.00,0:00:17.64,Clip,,0,0,0,,fanatisch eigentlich. Also
+Dialogue: 0,0:00:17.64,0:00:18.54,Clip,,0,0,0,,wenn man doch den Frieden
+Dialogue: 0,0:00:18.54,0:00:19.46,Clip,,0,0,0,,bewahren möchte, wenn man
+Dialogue: 0,0:00:19.46,0:00:20.66,Clip,,0,0,0,,ja ein seriöser

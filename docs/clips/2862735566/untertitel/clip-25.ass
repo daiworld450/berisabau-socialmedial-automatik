@@ -12,22 +12,27 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.72,Clip,,0,0,0,,beunruhigend ja eben guck
-Dialogue: 0,0:00:01.72,0:00:03.64,Clip,,0,0,0,,mal das meine ich ja ich
-Dialogue: 0,0:00:03.64,0:00:05.12,Clip,,0,0,0,,finde generell wenn so
-Dialogue: 0,0:00:05.12,0:00:07.42,Clip,,0,0,0,,etwas gesagt wird also
-Dialogue: 0,0:00:07.42,0:00:09.16,Clip,,0,0,0,,auf politischer bühne auf
-Dialogue: 0,0:00:09.16,0:00:11.46,Clip,,0,0,0,,einer hohen ebene wenn
-Dialogue: 0,0:00:11.46,0:00:12.84,Clip,,0,0,0,,man solche aussagen tätigt
-Dialogue: 0,0:00:12.84,0:00:14.82,Clip,,0,0,0,,wie ihr müsst jetzt den
-Dialogue: 0,0:00:14.82,0:00:15.96,Clip,,0,0,0,,dritten temple bauen und
-Dialogue: 0,0:00:15.96,0:00:16.78,Clip,,0,0,0,,das wird dann von
-Dialogue: 0,0:00:16.78,0:00:18.62,Clip,,0,0,0,,ministerpräsident zu keine
-Dialogue: 0,0:00:18.62,0:00:19.76,Clip,,0,0,0,,ahnung wem gesagt und das
-Dialogue: 0,0:00:19.76,0:00:20.52,Clip,,0,0,0,,wird dann öffentlich
-Dialogue: 0,0:00:20.52,0:00:21.58,Clip,,0,0,0,,gespreadet wenn ich mir so
-Dialogue: 0,0:00:21.58,0:00:23.26,Clip,,0,0,0,,mein die das ernst das ist
-Dialogue: 0,0:00:23.26,0:00:24.28,Clip,,0,0,0,,doch voll fanatisch
-Dialogue: 0,0:00:24.28,0:00:25.52,Clip,,0,0,0,,eigentlich also wenn man
-Dialogue: 0,0:00:25.52,0:00:26.50,Clip,,0,0,0,,doch den frieden bewahren
-Dialogue: 0,0:00:26.50,0:00:27.36,Clip,,0,0,0,,möchte wenn man ja ein
+Dialogue: 0,0:00:00.00,0:00:00.94,Clip,,0,0,0,,ein gewisses Alter, war
+Dialogue: 0,0:00:00.94,0:00:01.80,Clip,,0,0,0,,bestimmt über 50.
+Dialogue: 0,0:00:02.62,0:00:03.60,Clip,,0,0,0,,Wenn er weiß, ich komm eh
+Dialogue: 0,0:00:03.60,0:00:05.08,Clip,,0,0,0,,nicht mehr raus, dann
+Dialogue: 0,0:00:05.08,0:00:06.32,Clip,,0,0,0,,sicher sagt, was passiert
+Dialogue: 0,0:00:06.32,0:00:06.80,Clip,,0,0,0,,ist, Alter.
+Dialogue: 0,0:00:07.74,0:00:08.70,Clip,,0,0,0,,Kann sein, dass es auch
+Dialogue: 0,0:00:08.70,0:00:09.36,Clip,,0,0,0,,noch dazu kommt.
+Dialogue: 0,0:00:09.76,0:00:10.52,Clip,,0,0,0,,Interessant auf jeden
+Dialogue: 0,0:00:10.52,0:00:11.82,Clip,,0,0,0,,Fall, weil ich habe den
+Dialogue: 0,0:00:11.82,0:00:13.24,Clip,,0,0,0,,Fall damals auch verfolgt,
+Dialogue: 0,0:00:13.46,0:00:14.38,Clip,,0,0,0,,als es passiert ist, war
+Dialogue: 0,0:00:14.38,0:00:15.26,Clip,,0,0,0,,ich noch relativ jung,
+Dialogue: 0,0:00:15.74,0:00:16.50,Clip,,0,0,0,,aber ich habe es natürlich
+Dialogue: 0,0:00:16.50,0:00:18.20,Clip,,0,0,0,,auch mitbekommen und dann
+Dialogue: 0,0:00:18.20,0:00:19.34,Clip,,0,0,0,,hieß es auch sehr, sehr
+Dialogue: 0,0:00:19.34,0:00:20.18,Clip,,0,0,0,,schnell, Didi hat was
+Dialogue: 0,0:00:20.18,0:00:21.32,Clip,,0,0,0,,damit zu tun und Chuck
+Dialogue: 0,0:00:21.32,0:00:23.66,Clip,,0,0,0,,Knight ist da, {\c&H0022DDFF&}krass,{\c&H00FFFFFF&}
+Dialogue: 0,0:00:23.78,0:00:25.04,Clip,,0,0,0,,30 Jahre später,
+Dialogue: 0,0:00:25.66,0:00:26.48,Clip,,0,0,0,,kommen die damit um die
+Dialogue: 0,0:00:26.48,0:00:27.86,Clip,,0,0,0,,Ecke, ist schon, hätte ich
+Dialogue: 0,0:00:27.86,0:00:28.32,Clip,,0,0,0,,auch nicht mehr
+Dialogue: 0,0:00:28.32,0:00:29.83,Clip,,0,0,0,,mitgerechnet, um {\c&H0022DDFF&}ehrlich{\c&H00FFFFFF&} zu

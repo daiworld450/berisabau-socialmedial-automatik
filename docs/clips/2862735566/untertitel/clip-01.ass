@@ -12,14 +12,25 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.02,Clip,,0,0,0,,mis recherchiert
-Dialogue: 0,0:00:02.66,0:00:04.10,Clip,,0,0,0,,okay {\c&H0022DDFF&}krass{\c&H00FFFFFF&}
-Dialogue: 0,0:00:05.41,0:00:06.61,Clip,,0,0,0,,tanner
-Dialogue: 0,0:00:06.61,0:00:08.73,Clip,,0,0,0,,dann kann
-Dialogue: 0,0:00:08.73,0:00:10.91,Clip,,0,0,0,,tanner richtig
-Dialogue: 0,0:00:10.91,0:00:11.85,Clip,,0,0,0,,geschossen auf sein
-Dialogue: 0,0:00:11.85,0:00:13.17,Clip,,0,0,0,,fahrzeug sechs schüsse
-Dialogue: 0,0:00:13.17,0:00:14.93,Clip,,0,0,0,,okay
-Dialogue: 0,0:00:14.93,0:00:16.17,Clip,,0,0,0,,wow
-Dialogue: 0,0:00:19.27,0:00:20.93,Clip,,0,0,0,,was soll ich euch dazu
-Dialogue: 0,0:00:20.93,0:00:33.32,Clip,,0,0,0,,sagen freunde unabend nur
+Dialogue: 0,0:00:00.00,0:00:01.28,Clip,,0,0,0,,Ich habe sogar das {\c&H0022DDFF&}MRT{\c&H00FFFFFF&}
+Dialogue: 0,0:00:01.28,0:00:02.10,Clip,,0,0,0,,hier, wollte mal sehen.
+Dialogue: 0,0:00:02.50,0:00:04.28,Clip,,0,0,0,,Ich bin so fix, ich wollte
+Dialogue: 0,0:00:04.28,0:00:05.22,Clip,,0,0,0,,mir das selber angucken.
+Dialogue: 0,0:00:05.62,0:00:06.84,Clip,,0,0,0,,Bevor irgend ein Arzt
+Dialogue: 0,0:00:06.84,0:00:07.74,Clip,,0,0,0,,drauf geguckt hat, hatte
+Dialogue: 0,0:00:07.74,0:00:08.56,Clip,,0,0,0,,ich das schon hier auf dem
+Dialogue: 0,0:00:08.56,0:00:10.28,Clip,,0,0,0,,Rechner. Da kriegst du am
+Dialogue: 0,0:00:10.28,0:00:11.44,Clip,,0,0,0,,Ende, schickst du so eine
+Dialogue: 0,0:00:11.44,0:00:13.62,Clip,,0,0,0,,CD und da ist dann dein
+Dialogue: 0,0:00:13.62,0:00:15.94,Clip,,0,0,0,,gesamtes
+Dialogue: 0,0:00:15.94,0:00:18.04,Clip,,0,0,0,,{\c&H0022DDFF&}MET{\c&H00FFFFFF&} drauf. Aber {\c&H0022DDFF&}CD,{\c&H00FFFFFF&}
+Dialogue: 0,0:00:18.28,0:00:19.14,Clip,,0,0,0,,Leute, wer hat heutzutage
+Dialogue: 0,0:00:19.14,0:00:19.60,Clip,,0,0,0,,noch {\c&H0022DDFF&}CD?{\c&H00FFFFFF&}
+Dialogue: 0,0:00:21.28,0:00:21.90,Clip,,0,0,0,,Dann habe ich mir so
+Dialogue: 0,0:00:21.90,0:00:23.28,Clip,,0,0,0,,externen CD
+Dialogue: 0,0:00:23.28,0:00:25.22,Clip,,0,0,0,,-Lesegerät geholt,
+Dialogue: 0,0:00:25.38,0:00:25.98,Clip,,0,0,0,,angeschlossen
+Dialogue: 0,0:00:25.98,0:00:28.34,Clip,,0,0,0,,und
+Dialogue: 0,0:00:28.34,0:00:29.00,Clip,,0,0,0,,ja,
+Dialogue: 0,0:00:29.68,0:00:30.46,Clip,,0,0,0,,was soll ich euch sagen?
+Dialogue: 0,0:00:33.83,0:00:34.81,Clip,,0,0,0,,Ja, ich mach's mal auf.

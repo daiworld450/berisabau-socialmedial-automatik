@@ -12,20 +12,24 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.92,Clip,,0,0,0,,jackup rochild mit anderen
-Dialogue: 0,0:00:01.92,0:00:03.12,Clip,,0,0,0,,worten die die die
-Dialogue: 0,0:00:03.12,0:00:04.00,Clip,,0,0,0,,weltkriege und aro
-Dialogue: 0,0:00:04.00,0:00:04.64,Clip,,0,0,0,,viertelfen jetzt sieht
-Dialogue: 0,0:00:04.64,0:00:06.36,Clip,,0,0,0,,haben sind auch dieselben
-Dialogue: 0,0:00:06.36,0:00:07.52,Clip,,0,0,0,,wie den 80 prozent des
-Dialogue: 0,0:00:07.52,0:00:08.84,Clip,,0,0,0,,landes israeli gehört
-Dialogue: 0,0:00:08.84,0:00:10.54,Clip,,0,0,0,,kranker schalmer
-Dialogue: 0,0:00:11.20,0:00:12.12,Clip,,0,0,0,,islamistische terroristen
-Dialogue: 0,0:00:12.12,0:00:13.36,Clip,,0,0,0,,sind keine wahre muslime
-Dialogue: 0,0:00:13.36,0:00:15.40,Clip,,0,0,0,,radikale christen sind
-Dialogue: 0,0:00:15.40,0:00:16.50,Clip,,0,0,0,,keine wahren christen
-Dialogue: 0,0:00:16.50,0:00:17.96,Clip,,0,0,0,,schulnisten sind keine
-Dialogue: 0,0:00:17.96,0:00:19.92,Clip,,0,0,0,,wahren juden aha guck mal
-Dialogue: 0,0:00:19.92,0:00:20.92,Clip,,0,0,0,,schöner guck mal gebt euch
-Dialogue: 0,0:00:20.92,0:00:22.02,Clip,,0,0,0,,das noch mal an {\c&H0022DDFF&}alle{\c&H00FFFFFF&}
-Dialogue: 0,0:00:22.02,0:00:24.62,Clip,,0,0,0,,spaltenen zungen hier zum
+Dialogue: 0,0:00:00.00,0:00:00.86,Clip,,0,0,0,,{\c&H0022DDFF&}alles{\c&H00FFFFFF&} ein zu ein zu
+Dialogue: 0,0:00:00.86,0:00:01.64,Clip,,0,0,0,,übernehmen sollte oder
+Dialogue: 0,0:00:01.64,0:00:02.72,Clip,,0,0,0,,glauben sollte, davon
+Dialogue: 0,0:00:02.72,0:00:03.40,Clip,,0,0,0,,haben wir den Verstand.
+Dialogue: 0,0:00:03.90,0:00:04.92,Clip,,0,0,0,,Aber wir müssen aufhören,
+Dialogue: 0,0:00:05.04,0:00:05.82,Clip,,0,0,0,,wir müssen das endlich mal
+Dialogue: 0,0:00:05.82,0:00:06.92,Clip,,0,0,0,,durchbrechen. Dieses
+Dialogue: 0,0:00:07.34,0:00:07.79,Clip,,0,0,0,,ängstliche.
+Dialogue: 0,0:00:08.72,0:00:09.94,Clip,,0,0,0,,Ja, es kann doch nicht
+Dialogue: 0,0:00:09.94,0:00:11.10,Clip,,0,0,0,,sein, dass man auf eine
+Dialogue: 0,0:00:11.10,0:00:13.38,Clip,,0,0,0,,Art und Weise nicht
+Dialogue: 0,0:00:13.80,0:00:15.22,Clip,,0,0,0,,etwas sich anschauen darf.
+Dialogue: 0,0:00:15.30,0:00:16.08,Clip,,0,0,0,,Das ist doch nicht normal.
+Dialogue: 0,0:00:17.26,0:00:18.00,Clip,,0,0,0,,Und deswegen bitte ich
+Dialogue: 0,0:00:18.00,0:00:18.45,Clip,,0,0,0,,euch,
+Dialogue: 0,0:00:19.78,0:00:21.36,Clip,,0,0,0,,entspannt euch Leute, wir
+Dialogue: 0,0:00:21.36,0:00:22.16,Clip,,0,0,0,,schauen uns das hier nicht
+Dialogue: 0,0:00:22.16,0:00:23.30,Clip,,0,0,0,,an, um uns zu spalten,
+Dialogue: 0,0:00:23.50,0:00:24.20,Clip,,0,0,0,,sondern wir schauen uns
+Dialogue: 0,0:00:24.20,0:00:26.42,Clip,,0,0,0,,das generell an, um zu
+Dialogue: 0,0:00:26.42,0:00:27.96,Clip,,0,0,0,,verstehen, warum man auf

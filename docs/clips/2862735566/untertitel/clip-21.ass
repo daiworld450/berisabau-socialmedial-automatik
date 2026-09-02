@@ -12,21 +12,30 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.40,Clip,,0,0,0,,in die situation gebracht
-Dialogue: 0,0:00:01.40,0:00:02.54,Clip,,0,0,0,,dass er nach 30 jahren
-Dialogue: 0,0:00:02.54,0:00:03.46,Clip,,0,0,0,,noch mal hier verurteilt
-Dialogue: 0,0:00:03.46,0:00:04.56,Clip,,0,0,0,,wird das glaube ich nicht
-Dialogue: 0,0:00:04.96,0:00:07.24,Clip,,0,0,0,,das ist doch das ist so
-Dialogue: 0,0:00:07.24,0:00:07.69,Clip,,0,0,0,,crazy
-Dialogue: 0,0:00:07.66,0:00:09.86,Clip,,0,0,0,,aber
-Dialogue: 0,0:00:09.86,0:00:12.04,Clip,,0,0,0,,meine frage noch mal warum
-Dialogue: 0,0:00:12.04,0:00:13.86,Clip,,0,0,0,,kommt man 20 oder 30 jahre
-Dialogue: 0,0:00:13.86,0:00:14.98,Clip,,0,0,0,,später erst damit um die
-Dialogue: 0,0:00:14.98,0:00:16.92,Clip,,0,0,0,,ecke ich meine das ist
-Dialogue: 0,0:00:16.92,0:00:19.02,Clip,,0,0,0,,natürlich crazy aber
-Dialogue: 0,0:00:19.02,0:00:21.00,Clip,,0,0,0,,was zum teufel wie geht
-Dialogue: 0,0:00:21.00,0:00:21.60,Clip,,0,0,0,,das überhaupt
-Dialogue: 0,0:00:21.60,0:00:23.82,Clip,,0,0,0,,der
-Dialogue: 0,0:00:23.82,0:00:25.52,Clip,,0,0,0,,eigenen worte reichen als
-Dialogue: 0,0:00:25.52,0:00:27.26,Clip,,0,0,0,,beweis später behauptete
-Dialogue: 0,0:00:27.26,0:00:29.23,Clip,,0,0,0,,seine verteidigung dass viele
+Dialogue: 0,0:00:00.00,0:00:01.04,Clip,,0,0,0,,Wer nimmt das auf sich?
+Dialogue: 0,0:00:01.22,0:00:02.10,Clip,,0,0,0,,Klar, es sieht ästhetisch
+Dialogue: 0,0:00:02.10,0:00:03.22,Clip,,0,0,0,,aus, es sieht majestätisch
+Dialogue: 0,0:00:03.22,0:00:04.30,Clip,,0,0,0,,aus, es sieht {\c&H0022DDFF&}krass{\c&H00FFFFFF&} aus.
+Dialogue: 0,0:00:04.30,0:00:05.54,Clip,,0,0,0,,aber ich kann mir nicht
+Dialogue: 0,0:00:05.54,0:00:06.92,Clip,,0,0,0,,vorstellen oder gehe auch
+Dialogue: 0,0:00:06.92,0:00:07.80,Clip,,0,0,0,,nicht davon aus, dass sie
+Dialogue: 0,0:00:07.80,0:00:08.86,Clip,,0,0,0,,das nur deswegen so auch
+Dialogue: 0,0:00:08.86,0:00:10.56,Clip,,0,0,0,,gebaut haben, sondern da
+Dialogue: 0,0:00:10.56,0:00:11.38,Clip,,0,0,0,,steckt glaube ich was
+Dialogue: 0,0:00:11.38,0:00:13.10,Clip,,0,0,0,,hinter und deswegen bin
+Dialogue: 0,0:00:13.10,0:00:15.30,Clip,,0,0,0,,ich für mich,
+Dialogue: 0,0:00:15.60,0:00:16.48,Clip,,0,0,0,,das kann {\c&H0022DDFF&}jeder{\c&H00FFFFFF&} sehen wie
+Dialogue: 0,0:00:16.48,0:00:16.93,Clip,,0,0,0,,er will,
+Dialogue: 0,0:00:17.70,0:00:19.64,Clip,,0,0,0,,fest davon überzeugt, dass
+Dialogue: 0,0:00:19.64,0:00:21.26,Clip,,0,0,0,,Energien eine Riesenrolle
+Dialogue: 0,0:00:21.26,0:00:22.62,Clip,,0,0,0,,spielen und nehmen wir
+Dialogue: 0,0:00:22.62,0:00:23.64,Clip,,0,0,0,,einfach keine Ahnung haben
+Dialogue: 0,0:00:23.64,0:00:24.09,Clip,,0,0,0,,Leute.
+Dialogue: 0,0:00:25.08,0:00:26.72,Clip,,0,0,0,,Energie ist nicht gleich
+Dialogue: 0,0:00:26.72,0:00:27.17,Clip,,0,0,0,,nur
+Dialogue: 0,0:00:27.06,0:00:29.94,Clip,,0,0,0,,Benzin,
+Dialogue: 0,0:00:30.18,0:00:31.66,Clip,,0,0,0,,Diesel, Batterie, Energie,
+Dialogue: 0,0:00:31.90,0:00:33.04,Clip,,0,0,0,,Elektrizität, sondern es
+Dialogue: 0,0:00:33.04,0:00:33.88,Clip,,0,0,0,,gibt auch andere Formen
+Dialogue: 0,0:00:33.88,0:00:34.33,Clip,,0,0,0,,von Energie.
+Dialogue: 0,0:00:38.92,0:00:40.26,Clip,,0,0,0,,Aber schreibt ihr mir mal

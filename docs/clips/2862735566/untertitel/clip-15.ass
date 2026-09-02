@@ -12,23 +12,14 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.10,Clip,,0,0,0,,spekulieren
-Dialogue: 0,0:00:01.10,0:00:03.14,Clip,,0,0,0,,in der wissenschaft
-Dialogue: 0,0:00:03.14,0:00:04.38,Clip,,0,0,0,,ist es so dass man
-Dialogue: 0,0:00:04.38,0:00:06.02,Clip,,0,0,0,,selbstverständlich
-Dialogue: 0,0:00:06.02,0:00:07.46,Clip,,0,0,0,,tesen aufstellt
-Dialogue: 0,0:00:07.46,0:00:09.64,Clip,,0,0,0,,diese dann versucht zu
-Dialogue: 0,0:00:09.64,0:00:11.80,Clip,,0,0,0,,widerlegen oder zu belegen
-Dialogue: 0,0:00:11.80,0:00:14.16,Clip,,0,0,0,,aber es wird
-Dialogue: 0,0:00:14.16,0:00:15.52,Clip,,0,0,0,,nicht einfach irgendetwas
-Dialogue: 0,0:00:15.52,0:00:17.38,Clip,,0,0,0,,behauptet was nicht
-Dialogue: 0,0:00:17.38,0:00:19.50,Clip,,0,0,0,,irgendwie belegbar ist das
-Dialogue: 0,0:00:19.50,0:00:20.56,Clip,,0,0,0,,ist dann nicht seriöse
-Dialogue: 0,0:00:20.56,0:00:21.01,Clip,,0,0,0,,wissenschaft
-Dialogue: 0,0:00:20.98,0:00:23.34,Clip,,0,0,0,,warte
-Dialogue: 0,0:00:23.34,0:00:25.48,Clip,,0,0,0,,mal warte mal seriöse
-Dialogue: 0,0:00:25.89,0:00:28.06,Clip,,0,0,0,,ich will nur
-Dialogue: 0,0:00:28.06,0:00:30.02,Clip,,0,0,0,,eine sache sagen die
-Dialogue: 0,0:00:30.02,0:00:32.04,Clip,,0,0,0,,großen errungenschaften
-Dialogue: 0,0:00:32.04,0:00:32.49,Clip,,0,0,0,,bzw.
-Dialogue: 0,0:00:33.14,0:00:35.24,Clip,,0,0,0,,die erkenntnisse die wir erlangt
+Dialogue: 0,0:00:00.00,0:00:01.12,Clip,,0,0,0,,Das ist dann nicht seriöse
+Dialogue: 0,0:00:01.12,0:00:02.80,Clip,,0,0,0,,Wissenschaft. Warte mal,
+Dialogue: 0,0:00:02.88,0:00:04.70,Clip,,0,0,0,,warte mal, seriöse
+Dialogue: 0,0:00:04.70,0:00:05.74,Clip,,0,0,0,,Wissenschaft. Guck mal,
+Dialogue: 0,0:00:06.76,0:00:07.68,Clip,,0,0,0,,ich will dir nur eine
+Dialogue: 0,0:00:07.68,0:00:08.26,Clip,,0,0,0,,Sache sagen.
+Dialogue: 0,0:00:09.14,0:00:09.64,Clip,,0,0,0,,Die großen
+Dialogue: 0,0:00:09.64,0:00:11.54,Clip,,0,0,0,,Errungenschaften bzw.
+Dialogue: 0,0:00:12.36,0:00:13.74,Clip,,0,0,0,,die Erkenntnisse, die wir
+Dialogue: 0,0:00:13.74,0:00:15.10,Clip,,0,0,0,,erlangt haben als
+Dialogue: 0,0:00:15.10,0:00:16.30,Clip,,0,0,0,,Menschheit, sag ich mal,

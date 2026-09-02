@@ -12,18 +12,21 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:00.45,Clip,,0,0,0,,richtig
-Dialogue: 0,0:00:00.40,0:00:02.42,Clip,,0,0,0,,ja
-Dialogue: 0,0:00:02.42,0:00:04.54,Clip,,0,0,0,,ja aber irgendwas
-Dialogue: 0,0:00:04.54,0:00:06.04,Clip,,0,0,0,,ist ja da das
-Dialogue: 0,0:00:06.04,0:00:07.76,Clip,,0,0,0,,ist ja nicht zufällig so
-Dialogue: 0,0:00:07.76,0:00:09.90,Clip,,0,0,0,,naja also
-Dialogue: 0,0:00:09.90,0:00:11.46,Clip,,0,0,0,,diese zahlen existieren
-Dialogue: 0,0:00:11.46,0:00:12.74,Clip,,0,0,0,,natürlich gibt es warte
-Dialogue: 0,0:00:12.74,0:00:13.88,Clip,,0,0,0,,mal warte mal warte mal
-Dialogue: 0,0:00:13.88,0:00:15.32,Clip,,0,0,0,,gibt es in der mathematik
-Dialogue: 0,0:00:15.32,0:00:16.78,Clip,,0,0,0,,zufälle gute
-Dialogue: 0,0:00:19.31,0:00:20.63,Clip,,0,0,0,,frage lass mich mal
-Dialogue: 0,0:00:20.63,0:00:21.57,Clip,,0,0,0,,schauen in der rein
-Dialogue: 0,0:00:21.57,0:00:22.89,Clip,,0,0,0,,mathematik gibt es streng
-Dialogue: 0,0:00:22.89,0:00:25.04,Clip,,0,0,0,,genommen keine zufälle ok ok
+Dialogue: 0,0:00:00.00,0:00:01.62,Clip,,0,0,0,,3 mal 2, 3 mal 3,
+Dialogue: 0,0:00:02.92,0:00:03.78,Clip,,0,0,0,,dann kommt am Ende {\c&H0022DDFF&}immer{\c&H00FFFFFF&}
+Dialogue: 0,0:00:03.78,0:00:04.78,Clip,,0,0,0,,3, 6, 9 raus.
+Dialogue: 0,0:00:06.04,0:00:07.12,Clip,,0,0,0,,Genau, du kommst {\c&H0022DDFF&}immer{\c&H00FFFFFF&}
+Dialogue: 0,0:00:07.12,0:00:09.48,Clip,,0,0,0,,wieder auf 369 raus, das
+Dialogue: 0,0:00:09.48,0:00:10.04,Clip,,0,0,0,,ist richtig.
+Dialogue: 0,0:00:11.88,0:00:12.33,Clip,,0,0,0,,Ja,
+Dialogue: 0,0:00:13.40,0:00:14.86,Clip,,0,0,0,,aber irgendwas ist ja da.
+Dialogue: 0,0:00:15.68,0:00:17.30,Clip,,0,0,0,,Das ist ja nicht zufällig
+Dialogue: 0,0:00:17.30,0:00:17.82,Clip,,0,0,0,,so. Naja,
+Dialogue: 0,0:00:19.42,0:00:20.56,Clip,,0,0,0,,also diese Zahlen
+Dialogue: 0,0:00:20.56,0:00:21.86,Clip,,0,0,0,,existieren natürlich...
+Dialogue: 0,0:00:21.86,0:00:22.86,Clip,,0,0,0,,Gibt es, warte mal, warte
+Dialogue: 0,0:00:22.86,0:00:23.44,Clip,,0,0,0,,mal, warte mal.
+Dialogue: 0,0:00:23.68,0:00:25.06,Clip,,0,0,0,,Gibt es in der Mathematik
+Dialogue: 0,0:00:25.06,0:00:25.52,Clip,,0,0,0,,zufälle?
+Dialogue: 0,0:00:28.75,0:00:30.35,Clip,,0,0,0,,Gute Frage. Lass mich mal
+Dialogue: 0,0:00:30.35,0:00:31.13,Clip,,0,0,0,,schauen. In der

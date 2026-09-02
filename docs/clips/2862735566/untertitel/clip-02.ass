@@ -12,16 +12,21 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.48,Clip,,0,0,0,,nam also das ist jetzt
-Dialogue: 0,0:00:01.48,0:00:02.56,Clip,,0,0,0,,hier keine verarsche oder
-Dialogue: 0,0:00:02.56,0:00:03.86,Clip,,0,0,0,,so das ist {\c&H0022DDFF&}wirklich{\c&H00FFFFFF&} ein
-Dialogue: 0,0:00:03.86,0:00:06.00,Clip,,0,0,0,,mrt bild von mir und wie
-Dialogue: 0,0:00:06.00,0:00:07.32,Clip,,0,0,0,,ihr sehen könnt ich gehe
-Dialogue: 0,0:00:07.32,0:00:08.36,Clip,,0,0,0,,mal direkt mit euch durch
-Dialogue: 0,0:00:08.36,0:00:09.46,Clip,,0,0,0,,warte mal gehe ich von
-Dialogue: 0,0:00:09.46,0:00:11.04,Clip,,0,0,0,,oben ja von hier können
-Dialogue: 0,0:00:11.04,0:00:12.82,Clip,,0,0,0,,wir mal beginnen es
-Dialogue: 0,0:00:16.59,0:00:18.35,Clip,,0,0,0,,ging nämlich um mein c
-Dialogue: 0,0:00:18.35,0:00:20.75,Clip,,0,0,0,,um mein dicken onkel
-Dialogue: 0,0:00:20.75,0:00:21.20,Clip,,0,0,0,,hier
-Dialogue: 0,0:00:21.03,0:00:32.56,Clip,,0,0,0,,weil wir
+Dialogue: 0,0:00:00.00,0:00:00.84,Clip,,0,0,0,,den hier in der Vollbild?
+Dialogue: 0,0:00:00.98,0:00:01.46,Clip,,0,0,0,,Kriege ich hier nicht
+Dialogue: 0,0:00:01.46,0:00:02.18,Clip,,0,0,0,,rein? Ist nicht schlimm.
+Dialogue: 0,0:00:03.64,0:00:04.84,Clip,,0,0,0,,Auf jeden Fall ist das
+Dialogue: 0,0:00:04.84,0:00:05.74,Clip,,0,0,0,,mein rechter Fuß.
+Dialogue: 0,0:00:08.23,0:00:10.25,Clip,,0,0,0,,Und hier seht ihr auch
+Dialogue: 0,0:00:10.25,0:00:11.79,Clip,,0,0,0,,meinen Namen. Also das ist
+Dialogue: 0,0:00:11.79,0:00:12.77,Clip,,0,0,0,,jetzt hier keine verarsche
+Dialogue: 0,0:00:12.77,0:00:13.75,Clip,,0,0,0,,oder so das ist {\c&H0022DDFF&}wirklich{\c&H00FFFFFF&}
+Dialogue: 0,0:00:13.75,0:00:15.31,Clip,,0,0,0,,ein mrt bild von mir
+Dialogue: 0,0:00:19.34,0:00:21.54,Clip,,0,0,0,,und wie ihr sehen könnt
+Dialogue: 0,0:00:21.54,0:00:22.60,Clip,,0,0,0,,ich gehe mal direkt mit
+Dialogue: 0,0:00:22.60,0:00:23.90,Clip,,0,0,0,,euch durch warte mal gehe
+Dialogue: 0,0:00:23.90,0:00:25.58,Clip,,0,0,0,,ich von oben ja von hier
+Dialogue: 0,0:00:25.58,0:00:27.54,Clip,,0,0,0,,können wir mal beginnen es
+Dialogue: 0,0:00:31.31,0:00:33.05,Clip,,0,0,0,,ging nämlich um mein c
+Dialogue: 0,0:00:33.05,0:00:35.09,Clip,,0,0,0,,um mein dicken
+Dialogue: 0,0:00:35.09,0:00:36.79,Clip,,0,0,0,,onkel hier weil wir

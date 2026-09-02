@@ -1,87 +1,75 @@
 1
-00:00:00,000 --> 00:00:01,680
-argumenten dagegen als
+00:00:00,000 --> 00:00:01,720
+Als logischen Zwang kann
 
 2
-00:00:01,680 --> 00:00:03,340
-logischen zwang kann man
+00:00:01,720 --> 00:00:02,420
+man es nicht nennen.
 
 3
-00:00:03,340 --> 00:00:04,240
-es nicht nennen ich meine
+00:00:02,520 --> 00:00:03,420
+Ich meine als logische
 
 4
-00:00:04,240 --> 00:00:04,900
-als logische
+00:00:03,420 --> 00:00:04,960
+Schlussfolgerung. Eine
 
 5
-00:00:04,900 --> 00:00:05,820
-schlussfolgerung
+00:00:04,960 --> 00:00:06,420
+schlüssige Erklärung kann
 
 6
-00:00:09,530 --> 00:00:11,550
-eine schlüssige erklärung
+00:00:06,420 --> 00:00:08,060
+es nur in Bezug auf
 
 7
-00:00:11,550 --> 00:00:13,510
-kann es nur in bezug auf
+00:00:08,060 --> 00:00:10,440
+bestimmte Voraussetzungen.
 
 8
-00:00:13,510 --> 00:00:15,770
-bestimmte voraussetzung
+00:00:10,900 --> 00:00:11,760
+Wenn du bestimmte
 
 9
-00:00:15,770 --> 00:00:17,210
-wenn du bestimmte
+00:00:11,760 --> 00:00:12,760
+Voraussetzungen
 
 10
-00:00:17,210 --> 00:00:18,290
-voraussetzungen
+00:00:14,070 --> 00:00:16,330
+annimmst, dann ist es
 
 11
-00:00:19,600 --> 00:00:21,760
-annimmt dann ist es
-
-12
-00:00:21,760 --> 00:00:22,640
+00:00:16,330 --> 00:00:17,190
 als logische
 
+12
+00:00:17,190 --> 00:00:18,510
+Schlussfolgerung möglich.
+
 13
-00:00:22,640 --> 00:00:23,940
-schlussfolgerung möglich
+00:00:18,830 --> 00:00:20,250
+Aber es ist eben keine
 
 14
-00:00:23,940 --> 00:00:25,720
-aber es ist eben keine
+00:00:20,250 --> 00:00:22,530
+zwingende Schlussfolgerung.
 
 15
-00:00:25,720 --> 00:00:27,220
-zwingende ok warte
+00:00:22,530 --> 00:00:23,630
+Warte mal, warte mal, ich
 
 16
-00:00:27,220 --> 00:00:29,060
-warte mal warte mal ich
+00:00:23,630 --> 00:00:24,290
+frage mal so,
 
 17
-00:00:29,060 --> 00:00:31,380
-frage mal so was ist nahe
+00:00:24,890 --> 00:00:26,390
+was ist naheliegend da,
 
 18
-00:00:31,380 --> 00:00:32,920
-liegen da dass es einen
+00:00:26,990 --> 00:00:28,010
+dass es einen Schöpfer
 
 19
-00:00:32,920 --> 00:00:34,280
-schöpfer gibt oder dass es
-
-20
-00:00:34,280 --> 00:00:35,720
-keinen gibt das
-
-21
-00:00:39,470 --> 00:00:40,970
-kann ich nicht beantworten
-
-22
-00:00:40,970 --> 00:00:41,610
-weil es eine
+00:00:28,010 --> 00:00:29,540
+gibt oder dass es keinen gibt?
