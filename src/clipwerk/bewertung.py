@@ -37,20 +37,54 @@ HOECHSTPUNKTE = {
 SCHWELLE_VERWERFEN = 65
 SCHWELLE_PRIORITAET = 80
 
-# Ohne Transkript sind zwei der sechs Teilnoten unbekannt und stehen auf
-# einem neutralen Wert. Dadurch ist die erreichbare Höchstpunktzahl
-# gedeckelt: dieselben Momente liegen im Chat-Modus messbar tiefer, ohne
-# schlechter zu sein. An einem Vergleichslauf über dieselben sieben
-# Momente betrug der Abstand im Mittel 7,3 Punkte (Einzelwerte 2 bis 12).
-# Die Schwelle wandert deshalb mit, sonst bedeutet "65" hier faktisch 72.
+# Die Schwelle wandert mit der Betriebsart, weil die Punktzahl es tut.
 #
-# Der Wert stammt aus einem synthetischen Stream und ist eine erste
-# Eichung, keine Konstante - an echten Streams gehört er nachgemessen.
-SCHWELLE_OHNE_TRANSKRIPT = 58
+# `_mittel` lässt Bestandteile, die in einem Stream gar nicht messbar sind,
+# herausfallen statt sie als Null zu werten. Das ist richtig - eine fehlende
+# Messung ist kein schlechter Wert - hat aber eine Folge: was übrig bleibt,
+# trägt volles Gewicht. Im Chatbetrieb sind das vor allem die
+# Kategorieneigungen und der Chatausschlag, und beide sind großzügig. Ohne
+# Gegengewicht bekäme derselbe Moment ohne Transkript *mehr* Punkte als mit.
+#
+# Nachgemessen an fünf synthetischen Streams mit unterschiedlich lebhaftem
+# Chat (Reaktionswelle 6 bis 30 Nachrichten, Grundlast 0,8 bis 3 s je
+# Nachricht), jeweils derselbe Stream in allen drei Betriebsarten, Abstand
+# über die gemeinsam gefundenen Momente:
+#
+#   nur Chat        +5 bis +11 Punkte über dem Vollbetrieb  (Mittel  +8,8)
+#   nur Transkript  -11 bis +0,5 Punkte darunter            (Mittel  -4,1)
+#
+# Die Streuung ist groß, weil sie davon abhängt, wie laut der Chat ist -
+# also von etwas, das sich von Stream zu Stream ändert. Die Zahlen sind
+# eine erste Eichung an erfundenem Material, keine Konstanten. An echten
+# Streams gehören sie nachgemessen; `tests/test_clipwerk.py` hält den
+# Vergleich als Test fest, damit eine Verschiebung auffällt.
+#
+# Vorgeschichte: bis zum 02.09.2026 stand hier eine einzelne abgesenkte
+# Schwelle von 58 für den Chatbetrieb. Sie war gegen eine Fassung gemessen,
+# die fehlende Messungen als Null wertete. Seit `_mittel` das nicht mehr
+# tut, hätte sie die Korrektur doppelt gezählt - in die falsche Richtung.
+SCHWELLE_NUR_CHAT = 73
+SCHWELLE_NUR_TRANSKRIPT = 61
+
+
+def schwelle_fuer(stream) -> int:
+    """Die Punktschwelle, die für diesen Stream gilt."""
+    if not stream.segmente:
+        return SCHWELLE_NUR_CHAT
+    if not stream.chat:
+        return SCHWELLE_NUR_TRANSKRIPT
+    return SCHWELLE_VERWERFEN
 
 # Ausschlag, ab dem ein Moment als "so stark wie es wird" gilt. Über den
 # eigenen Streamschnitt hinaus ist das Sechsfache der robusten Streuung ein
 # sehr seltener Ausschlag - alles darüber bringt keine Zusatzpunkte mehr.
+#
+# Der Wert gilt für einen Stream mit vollem Sensorsatz. `kandidat.staerke`
+# ist eine Summe über die Signalreihen: fehlt der Chat, fehlt gut die
+# Hälfte des Gewichts, und derselbe Moment landet bei der halben Zahl. Der
+# Deckel wandert deshalb mit `Signalkurve.bezug` mit - sonst misst die
+# Unterhaltungsnote nicht den Moment, sondern die Anzahl der Sensoren.
 STAERKE_DECKEL = 6.0
 
 _GEFUEHL = ("chat_lachen", "chat_schock", "chat_wut", "chat_peinlich",
@@ -119,11 +153,50 @@ def _note_hook(kandidat: Kandidat, kurve: Signalkurve) -> float:
     return max(0.0, min(1.0, guete * 0.40 + sofort * 0.25 + takt * 0.35))
 
 
-def _note_unterhaltung(kandidat: Kandidat) -> float:
-    staerke = min(1.0, kandidat.staerke / STAERKE_DECKEL)
-    gefuehl = sum(kandidat.anteile.get(reihe, 0.0) for reihe in _GEFUEHL)
-    gefuehl = min(1.0, gefuehl / 4.0)
-    return max(0.0, min(1.0, staerke * 0.6 + gefuehl * 0.4))
+def _mittel(teile: list[tuple[float, float, bool]]) -> float:
+    """Gewichteter Mittelwert über die Bestandteile, die messbar sind.
+
+    Ein Bestandteil, den es in diesem Stream gar nicht gibt - der Clipruf
+    ohne Chat, die Wortdichte ohne Transkript - zählt nicht als Null,
+    sondern fällt heraus; sein Gewicht verteilt sich auf den Rest.
+
+    Der Unterschied ist der zwischen „gemessen und schlecht" und „nicht
+    gemessen". Als Null gewertet, verlor jeder Clip aus einem Stream ohne
+    Chat rund zehn Punkte für etwas, das nicht am Clip lag.
+    """
+    gewicht = sum(g for _, g, messbar in teile if messbar)
+    if gewicht <= 0:
+        return 0.0
+    summe = sum(wert * g for wert, g, messbar in teile if messbar)
+    return max(0.0, min(1.0, summe / gewicht))
+
+
+def _anteil(kandidat: Kandidat, kurve: Signalkurve, reihen: tuple[str, ...],
+            je_reihe: float) -> float:
+    """Signalanteile über die messbaren Reihen, auf 0..1 gebracht.
+
+    `je_reihe` ist der Ausschlag, ab dem eine einzelne Reihe als voll
+    ausgeschlagen gilt. Der Teiler wächst mit der Zahl der Reihen, die es
+    in diesem Stream gibt - sonst wäre der Höchstwert ohne Chat gar nicht
+    erreichbar.
+    """
+    messbar = [r for r in reihen if kurve.hat(r)]
+    if not messbar:
+        return 0.0
+    summe = sum(kandidat.anteile.get(r, 0.0) for r in messbar)
+    return min(1.0, summe / (je_reihe * len(messbar)))
+
+
+def _note_unterhaltung(kandidat: Kandidat, kurve: Signalkurve) -> float:
+    # Zwei Bezugspunkte, der kleinere gilt: die feste Obergrenze aus der
+    # Betriebsanweisung, mit dem Sensorsatz mitskaliert - und das Niveau,
+    # das dieser Stream selbst überhaupt erreicht. Ohne den zweiten misst
+    # die Note bei fehlendem Chat weiter die Datenlage; ohne den ersten
+    # würde ein sehr starker Stream sich selbst kleinrechnen.
+    deckel = max(0.5, min(STAERKE_DECKEL * kurve.bezug, kurve.spitzenniveau))
+    staerke = min(1.0, kandidat.staerke / deckel)
+    gefuehl = _anteil(kandidat, kurve, _GEFUEHL, 4.0 / len(_GEFUEHL))
+    return _mittel([(staerke, 0.6, True), (gefuehl, 0.4, True)])
 
 
 def _note_watchtime(kandidat: Kandidat) -> float:
@@ -136,44 +209,59 @@ def _note_watchtime(kandidat: Kandidat) -> float:
         laenge = max(0.35, 1.0 - (dauer - ZIEL_MAX) / 30.0)
 
     woerter = len(kandidat.text.split())
-    if kandidat.segmente:
-        dichte = min(1.0, (woerter / dauer) / 3.0) if dauer > 0 else 0.0
-    else:
-        dichte = 0.5        # ohne Transkript unbekannt, siehe _note_hook
+    dichte = (min(1.0, (woerter / dauer) / 3.0)
+              if kandidat.segmente and dauer > 0 else 0.0)
 
     # Rest-Stille nach den Auslassungen: was übrig bleibt, kostet.
     weg = sum(bis - von for von, bis in kandidat.auslassungen)
     sauber = 1.0 if kandidat.roh_dauer <= 0 else max(
         0.4, 1.0 - max(0.0, (weg / kandidat.roh_dauer) - 0.25))
 
-    return max(0.0, min(1.0, laenge * 0.45 + dichte * 0.30 + sauber * 0.25))
+    return _mittel([
+        (laenge, 0.45, True),
+        (dichte, 0.30, bool(kandidat.segmente)),
+        (sauber, 0.25, True),
+    ])
 
 
-def _note_share(kandidat: Kandidat, kategorie: str) -> float:
+def _note_share(kandidat: Kandidat, kategorie: str, kurve: Signalkurve) -> float:
     neigung = kat.KATEGORIEN[kategorie].share
-    ueberraschung = min(1.0, (kandidat.anteile.get("sprache_ueberraschung", 0.0)
-                              + kandidat.anteile.get("chat_schock", 0.0)) / 2.5)
-    clipruf = min(1.0, kandidat.anteile.get("chat_clipruf", 0.0) / 2.0)
+    ueberraschung = _anteil(kandidat, kurve,
+                            ("sprache_ueberraschung", "chat_schock"), 1.25)
+    clipruf = _anteil(kandidat, kurve, ("chat_clipruf",), 2.0)
     zitierbar = min(1.0, len(_ZITIERBAR.findall(kandidat.text)) / 3.0)
-    return max(0.0, min(1.0, neigung * 0.55 + ueberraschung * 0.20
-                        + clipruf * 0.15 + zitierbar * 0.10))
+    return _mittel([
+        (neigung, 0.55, True),
+        (ueberraschung, 0.20, kurve.hat_sprache or kurve.hat_chat),
+        (clipruf, 0.15, kurve.hat_chat),
+        (zitierbar, 0.10, bool(kandidat.segmente)),
+    ])
 
 
-def _note_kommentar(kandidat: Kandidat, kategorie: str) -> float:
+def _note_kommentar(kandidat: Kandidat, kategorie: str,
+                    kurve: Signalkurve) -> float:
     neigung = kat.KATEGORIEN[kategorie].kommentar
-    streit = min(1.0, (kandidat.anteile.get("chat_streit", 0.0)
-                       + kandidat.anteile.get("sprache_meinung", 0.0)) / 2.0)
+    streit = _anteil(kandidat, kurve, ("chat_streit", "sprache_meinung"), 1.0)
     frage = 1.0 if "?" in kandidat.text else 0.0
-    return max(0.0, min(1.0, neigung * 0.6 + streit * 0.3 + frage * 0.1))
+    return _mittel([
+        (neigung, 0.6, True),
+        (streit, 0.3, True),
+        (frage, 0.1, bool(kandidat.segmente)),
+    ])
 
 
-def _note_follower(kandidat: Kandidat, kategorie: str, sicherheit: float) -> float:
+def _note_follower(kandidat: Kandidat, kategorie: str, sicherheit: float,
+                   kurve: Signalkurve) -> float:
     neigung = kat.KATEGORIEN[kategorie].follower
-    person = min(1.0, (kandidat.anteile.get("sprache_story", 0.0)
-                       + kandidat.anteile.get("sprache_chatbezug", 0.0)) / 2.0)
+    person = _anteil(kandidat, kurve,
+                     ("sprache_story", "sprache_chatbezug"), 1.0)
     # Ein Clip, dessen Kategorie eindeutig ist, passt in ein Serienformat -
     # und Serienformate sind das, wofür Menschen folgen.
-    return max(0.0, min(1.0, neigung * 0.55 + person * 0.25 + sicherheit * 0.20))
+    return _mittel([
+        (neigung, 0.55, True),
+        (person, 0.25, kurve.hat_sprache),
+        (sicherheit, 0.20, True),
+    ])
 
 
 # --------------------------------------------------------------------------- #
@@ -243,11 +331,11 @@ def bewerte(kandidat: Kandidat, kurve: Signalkurve,
 
     roh = {
         "hook": _note_hook(kandidat, kurve),
-        "unterhaltung": _note_unterhaltung(kandidat),
+        "unterhaltung": _note_unterhaltung(kandidat, kurve),
         "watchtime": _note_watchtime(kandidat),
-        "share": _note_share(kandidat, kategorie),
-        "kommentar": _note_kommentar(kandidat, kategorie),
-        "follower": _note_follower(kandidat, kategorie, sicherheit),
+        "share": _note_share(kandidat, kategorie, kurve),
+        "kommentar": _note_kommentar(kandidat, kategorie, kurve),
+        "follower": _note_follower(kandidat, kategorie, sicherheit, kurve),
     }
     punkte = {}
     for name, wert in roh.items():

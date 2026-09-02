@@ -39,6 +39,10 @@ on:
         description: "Mindestpunktzahl, leer = 65"
         type: string
         default: ""
+      aus_lauf:
+        description: "Transkript aus einem frueheren Lauf uebernehmen (Lauf-Nummer, leer = neu erkennen)"
+        type: string
+        default: ""
       diagnose:
         description: "Nur pruefen, ob der Ton erreichbar ist (nichts auswerten)"
         type: boolean
@@ -46,6 +50,8 @@ on:
 
 permissions:
   contents: write
+  # Fuer das Nachladen des Transkripts aus einem frueheren Lauf.
+  actions: read
 
 # Zwei Läufe gleichzeitig würden sich beim Schreiben der Clip-Datenbank in
 # die Quere kommen.
@@ -69,7 +75,11 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      # Nur fuer den Weg ueber den Ton. Wird ein Transkript uebernommen,
+      # braucht der Lauf weder ffmpeg noch ein Spracherkennungsmodell -
+      # und ist in einer Minute durch statt in vierzig.
       - name: Werkzeuge installieren
+        if: ${{ inputs.aus_lauf == '' }}
         run: |
           # ffmpeg ist auf den Runnern NICHT vorinstalliert. Ohne es laedt
           # yt-dlp den Ton zwar vollstaendig herunter und wirft ihn dann bei
@@ -94,7 +104,42 @@ jobs:
           echo "nummer=$NUMMER" >> "$GITHUB_OUTPUT"
           echo "Video $NUMMER"
 
+      # Die Spracherkennung ist der teure Teil: 33 Minuten fuer zweieinhalb
+      # Stunden Stream. An der Eichung der Auswertung aendert sich haeufiger
+      # etwas als am Transkript - deshalb laesst sich das Ergebnis eines
+      # frueheren Laufs uebernehmen, statt denselben Ton noch einmal durch
+      # dasselbe Modell zu schicken. Ein Nachlauf kostet so eine Minute.
+      #
+      # Absichtlich ueber den Anhang und nicht ueber das Repository: das
+      # Transkript ist die woertliche Mitschrift eines fremden Streams und
+      # gehoert nicht in ein oeffentliches Repo.
+      - name: Transkript aus einem frueheren Lauf holen
+        if: ${{ inputs.aus_lauf != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: clips-${{ steps.vod.outputs.nummer }}
+          run-id: ${{ inputs.aus_lauf }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: uebernommen
+
+      - name: Uebernommenes Transkript pruefen
+        if: ${{ inputs.aus_lauf != '' }}
+        run: |
+          mkdir -p arbeit
+          if [ ! -s uebernommen/arbeit/transkript.json ]; then
+            echo "::error::Im Lauf ${{ inputs.aus_lauf }} liegt kein"
+            echo "Transkript fuer Video ${{ steps.vod.outputs.nummer }}."
+            echo "Entweder ist die Lauf-Nummer falsch, oder der Anhang ist"
+            echo "nach 30 Tagen abgelaufen. Dann ohne aus_lauf starten."
+            exit 1
+          fi
+          cp uebernommen/arbeit/transkript.json arbeit/transkript.json
+          python -c "import json,sys; d=json.load(open('arbeit/transkript.json')); \
+            print(len(d['segments']), 'Segmente uebernommen')" \
+            | tee -a arbeit/lauf.log
+
       - name: Ton laden
+        if: ${{ inputs.aus_lauf == '' }}
         run: |
           mkdir -p arbeit
           # Gegenprobe vor dem langen Download - lieber hier abbrechen als
@@ -119,12 +164,26 @@ jobs:
             | tee -a arbeit/lauf.log
 
       - name: Text erkennen
-        if: ${{ !inputs.diagnose }}
+        if: ${{ !inputs.diagnose && inputs.aus_lauf == '' }}
         run: |
           set -o pipefail
           python src/clipwerk/transkript.py arbeit/ton.m4a \
             --ziel arbeit/transkript.json \
             --modell "${{ inputs.modell }}" 2>&1 | tee -a arbeit/lauf.log
+
+      # Erst die nackten Zahlen, dann die Clips. Ein Bericht, der nur sagt
+      # "kein Moment hat die Schwelle erreicht", unterscheidet einen
+      # langweiligen Stream nicht von einer falsch geeichten Kurve - genau
+      # daran war Lauf #6 nicht zu erkennen.
+      - name: Zahlen der Kurve
+        if: ${{ !inputs.diagnose }}
+        run: |
+          set -o pipefail
+          python src/main.py clip diagnose \
+            --transkript arbeit/transkript.json \
+            --stream-id "${{ steps.vod.outputs.nummer }}" \
+            --streamer "${{ inputs.streamer }}" \
+            --spiel "${{ inputs.spiel }}" 2>&1 | tee arbeit/diagnose.log
 
       - name: Auswerten
         if: ${{ !inputs.diagnose }}
@@ -184,6 +243,7 @@ jobs:
           path: |
             docs/clips/${{ steps.vod.outputs.nummer }}/
             arbeit/transkript.json
+            arbeit/diagnose.log
           retention-days: 30
           if-no-files-found: ignore
 
@@ -196,6 +256,11 @@ jobs:
             echo "----- Lauf -----"
             tail -n 25 arbeit/lauf.log
             echo "----------------"
+          fi
+          if [ -s arbeit/diagnose.log ]; then
+            echo "----- Zahlen der Kurve -----"
+            cat arbeit/diagnose.log
+            echo "----------------------------"
           fi
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
           {

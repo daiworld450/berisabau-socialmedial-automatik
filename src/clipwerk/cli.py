@@ -42,15 +42,18 @@ def cmd_analyse(args) -> int:
         return 2
     stream = _stream_aus_argumenten(args)
 
-    # Die Schwelle wandert mit dem Modus, wenn sie nicht vorgegeben wurde -
-    # siehe bewertung.SCHWELLE_OHNE_TRANSKRIPT.
+    # Die Schwelle wandert mit der Betriebsart, wenn sie nicht vorgegeben
+    # wurde - siehe bewertung.schwelle_fuer.
     if args.schwelle is None:
-        args.schwelle = (bewertung.SCHWELLE_OHNE_TRANSKRIPT if stream.nur_chat
-                         else bewertung.SCHWELLE_VERWERFEN)
+        args.schwelle = bewertung.schwelle_fuer(stream)
     if stream.nur_chat:
         print(f"Ohne Transkript: Momente kommen allein aus dem Chat. Keine "
               f"Untertitel, gröberer Zuschnitt, Schwelle {args.schwelle} "
               f"statt {bewertung.SCHWELLE_VERWERFEN} – Näheres im Bericht.")
+    elif not stream.chat:
+        print(f"Ohne Chat: Momente kommen allein aus der Sprache. Das "
+              f"stärkste Signal fehlt, Schwelle {args.schwelle} statt "
+              f"{bewertung.SCHWELLE_VERWERFEN} – Näheres im Bericht.")
     faktoren = {} if args.ohne_lernen else lernkurve.faktoren(Path(args.datenbank))
     if faktoren:
         print(f"Gelernte Gewichtung aktiv für: {', '.join(sorted(faktoren))}")
@@ -91,6 +94,97 @@ def cmd_analyse(args) -> int:
             print(f"  = {neu} liegt schon als {alt} vor")
         if args.trocken:
             print("  (Trockenlauf – nichts geschrieben)")
+    return 0
+
+
+def cmd_diagnose(args) -> int:
+    """Die nackten Zahlen hinter einer Auswertung - ohne Clips, ohne Texte.
+
+    Gebaut, weil ein Lauf über Stream 2862735566 aus 1549 Sprachsegmenten
+    null Clips ergab und der Bericht dazu nur sagen konnte "kein Moment hat
+    die Schwelle erreicht". Das ist wahr und nutzlos: es unterscheidet
+    einen langweiligen Stream nicht von einer falsch geeichten Kurve.
+
+    Ausgegeben wird deshalb, woran sich das unterscheiden lässt: welche
+    Signalreihen überhaupt tragen, wie hoch die Kurve tatsächlich liegt,
+    wo die Spitzenschwelle steht - und wie sich die Punkte der gefundenen
+    Momente verteilen. Bewusst keine Zitate: die Ausgabe soll in ein
+    öffentliches Protokoll dürfen.
+    """
+    from . import kandidaten as kand
+    from . import kategorien as kat
+    from . import signale as sig
+
+    stream = _stream_aus_argumenten(args)
+    lexikon = sig.lade_lexikon(Path(args.lexikon))
+    kurve = sig.kurve(stream, lexikon)
+
+    def quantil(werte: list[float], anteil: float) -> float:
+        if not werte:
+            return 0.0
+        sortiert = sorted(werte)
+        return sortiert[min(len(sortiert) - 1, int(anteil * len(sortiert)))]
+
+    print(f"Stream {stream.stream_id} · {quellen.stempel(stream.laenge, True)} "
+          f"· {len(stream.segmente)} Sprachsegmente · {len(stream.chat)} Chat")
+    print(f"Sensorbezug: {kurve.bezug}  "
+          f"(1,0 = voller Sensorsatz; ohne Chat rund 0,53)")
+
+    print("\nReihe                 belegt    Median>0     Höchstwert   Gewicht")
+    for name in sig.GEWICHTE:
+        reihe = kurve.reihen.get(name) or []
+        aktiv = [w for w in reihe if w > 0]
+        if not aktiv:
+            continue
+        import statistics as st
+        print(f"  {name:<20} {len(aktiv)/len(reihe)*100:5.1f} %  "
+              f"{st.median(aktiv):9.3f}  {max(aktiv):12.3f}  "
+              f"{sig.GEWICHTE[name]:7.2f}")
+    leer = [n for n in sig.GEWICHTE if not any(kurve.reihen.get(n) or [])]
+    if leer:
+        print(f"  ohne Daten: {', '.join(leer)}")
+
+    print("\nKurve (gewichtete Summe über alle Reihen):")
+    for anteil in (0.50, 0.90, 0.99, 0.999):
+        print(f"  {anteil*100:6.1f} %   {quantil(kurve.gesamt, anteil):.3f}")
+    print(f"  Höchstwert  {max(kurve.gesamt) if kurve.gesamt else 0:.3f}")
+
+    schwelle_kurve = sig.SPITZENSCHWELLE * kurve.bezug
+    ueber = sum(1 for w in kurve.gesamt if w >= schwelle_kurve)
+    print(f"\nSpitzenschwelle {schwelle_kurve:.3f} "
+          f"({sig.SPITZENSCHWELLE} × {kurve.bezug}) – "
+          f"{ueber} von {len(kurve.gesamt)} Sekunden darüber.")
+
+    spitzen = sig.spitzen(kurve, hoechstens=args.hoechstens * 3)
+    print(f"{len(spitzen)} Spitzen mit Mindestabstand.")
+
+    fuellwoerter = {w.lower() for w in lexikon.get("fuellwoerter", [])}
+    rohe = []
+    for spitze in spitzen:
+        kandidat = kand.baue(stream, kurve, spitze, "", fuellwoerter)
+        if kandidat:
+            rohe.append(kandidat)
+    rohe = kand.entdoppeln(rohe)
+    print(f"{len(rohe)} Momente daraus gebaut.")
+    if not rohe:
+        return 0
+
+    noten = [(bewertung.bewerte(k, kurve), k) for k in rohe]
+    punkte = sorted(n.punkte for n, _ in noten)
+    print(f"Punkte: tiefster {punkte[0]}, Median {punkte[len(punkte)//2]}, "
+          f"höchster {punkte[-1]}; "
+          f"{sum(1 for p in punkte if p >= 65)} ab 65, "
+          f"{sum(1 for p in punkte if p >= 80)} ab 80.")
+
+    noten.sort(key=lambda paar: -paar[0].punkte)
+    print("\n  Punkte  Kategorie        Dauer  Zeit       "
+          "Hook Unt Wat Sha Kom Fol   Stärke")
+    for note, kandidat in noten[:args.zeigen]:
+        print(f"  {note.punkte:6d}  {note.kategorie:<15} "
+              f"{kandidat.dauer:4.0f}s  {quellen.stempel(kandidat.start, True):>9}  "
+              f"{note.hook:4.0f}{note.unterhaltung:4.0f}{note.watchtime:4.0f}"
+              f"{note.share:4.0f}{note.kommentar:4.0f}{note.follower:4.0f}   "
+              f"{kandidat.staerke:6.2f}")
     return 0
 
 
@@ -284,6 +378,21 @@ def baue_parser() -> argparse.ArgumentParser:
     a.add_argument("--hashtags", default=str(HASHTAG_DATEI))
     a.add_argument("--datenbank", default=str(VERLAUF_DATEI))
     a.set_defaults(func=cmd_analyse)
+
+    d = unter.add_parser("diagnose",
+                         help="Zahlen hinter einer Auswertung, ohne Clips")
+    d.add_argument("--transkript")
+    d.add_argument("--chat")
+    d.add_argument("--stream-id", required=True)
+    d.add_argument("--datum")
+    d.add_argument("--streamer", default="")
+    d.add_argument("--spiel", default="")
+    d.add_argument("--video")
+    d.add_argument("--lexikon", default=str(LEXIKON_DATEI))
+    d.add_argument("--hoechstens", type=int, default=30)
+    d.add_argument("--zeigen", type=int, default=15,
+                   help="wie viele Momente einzeln aufgelistet werden")
+    d.set_defaults(func=cmd_diagnose)
 
     pl = unter.add_parser("plan", help="Veröffentlichungsplan bauen")
     pl.add_argument("--clips", help="clips.json aus der Analyse")

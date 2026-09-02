@@ -24,6 +24,7 @@ from __future__ import annotations
 import json
 import sys
 import unittest
+from dataclasses import replace
 from datetime import date
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -690,11 +691,100 @@ class NurChat(unittest.TestCase):
             ausgabe.schreibe_paket(ergebnis, stream, Path(ordner))
             self.assertFalse((Path(ordner) / "untertitel").exists())
 
-    def test_niedrigere_schwelle_ist_belegt(self):
-        """Die abgesenkte Schwelle bildet einen gemessenen Abstand ab und
-        darf nicht über der normalen liegen."""
-        self.assertLess(bewertung.SCHWELLE_OHNE_TRANSKRIPT,
+    def test_schwelle_haengt_an_der_betriebsart(self):
+        """Jede Betriebsart hat ihre eigene Schwelle, und sie wird an der
+        vorhandenen Quelle festgemacht - nicht am Inhalt."""
+        voll = _beispielstream()
+        self.assertEqual(bewertung.schwelle_fuer(voll),
+                         bewertung.SCHWELLE_VERWERFEN)
+
+        ohne_chat = replace(voll, chat=[])
+        self.assertEqual(bewertung.schwelle_fuer(ohne_chat),
+                         bewertung.SCHWELLE_NUR_TRANSKRIPT)
+
+        ohne_text = replace(voll, segmente=[])
+        self.assertEqual(bewertung.schwelle_fuer(ohne_text),
+                         bewertung.SCHWELLE_NUR_CHAT)
+
+        # Ohne Transkript fallen Einstieg und Wortdichte aus der Rechnung
+        # heraus, statt als Null zu zählen. Was bleibt, trägt volles
+        # Gewicht - und das sind die großzügigen Teile. Deshalb liegt die
+        # Schwelle dort *höher*, nicht tiefer.
+        self.assertGreater(bewertung.SCHWELLE_NUR_CHAT,
+                           bewertung.SCHWELLE_VERWERFEN)
+        self.assertLess(bewertung.SCHWELLE_NUR_TRANSKRIPT,
                         bewertung.SCHWELLE_VERWERFEN)
+
+
+class Betriebsarten(unittest.TestCase):
+    """Was passiert, wenn eine der beiden Quellen fehlt.
+
+    Am 02.09.2026 lieferte ein Lauf über einen echten Stream mit 1549
+    erkannten Sprachsegmenten **null** Clips, und der Bericht sagte dazu
+    nur „kein Moment hat die Schwelle erreicht". Das war nicht der Stream,
+    das waren drei Fehler, die alle in dieselbe Richtung zeigten:
+
+    1. `_normiere` löschte jede Signalreihe, in der jeder Treffer einzeln
+       auftrat - und das sind ohne Chat fast alle.
+    2. Sprachsignale saßen nur auf der Anfangssekunde ihres Segments; die
+       Glättung zog sie danach auf ein Fünftel herunter.
+    3. Die Spitzenschwelle war eine feste Zahl, gemessen an einer Kurve mit
+       vollem Sensorsatz. Ohne Chat liegt dieselbe Kurve halb so hoch.
+
+    Jeder einzelne davon hätte gereicht. Deshalb wird hier jeder einzeln
+    geprüft, nicht nur das Gesamtergebnis.
+    """
+
+    def test_seltene_reihe_wird_nicht_ausgeloescht(self):
+        """Eine Reihe, in der jeder Treffer einzeln auftritt, trägt Signal.
+
+        Der Median der belegten Sekunden ist dort 1, die mittlere
+        Abweichung 0 - und damit war vorher die ganze Reihe null.
+        """
+        reihe = [0.0] * 200
+        for i in (17, 61, 92, 140, 171):
+            reihe[i] = 1.0
+        reihe[92] = 3.0
+        norm = signale._normiere(reihe)
+        self.assertGreater(max(norm), 0.0)
+        self.assertGreater(norm[92], norm[17])
+        self.assertEqual(norm[0], 0.0)
+
+    def test_sprachsignal_gilt_fuer_das_ganze_segment(self):
+        """Ein Satz ist eine Strecke, kein Punkt."""
+        stream = _beispielstream(mit_chat=False)
+        kurve = signale.kurve(stream, LEXIKON)
+        lachen = kurve.reihen["sprache_lachen"]
+        # Der Lacher steht in dem Segment von 35 bis 38 Sekunden.
+        self.assertGreater(sum(lachen[35:39]), 0.0)
+        self.assertGreater(len([w for w in lachen[35:39] if w > 0]), 1)
+
+    def test_bezug_haengt_an_der_quelle_nicht_am_inhalt(self):
+        voll = signale.kurve(_beispielstream(), LEXIKON)
+        ohne_chat = signale.kurve(_beispielstream(mit_chat=False), LEXIKON)
+        self.assertEqual(voll.bezug, 1.0)
+        self.assertLess(ohne_chat.bezug, 1.0)
+        self.assertGreater(ohne_chat.bezug, 0.4)
+        # Die Spitzenschwelle wandert mit, sonst findet die Kurve ohne Chat
+        # nie eine Spitze.
+        self.assertTrue(signale.spitzen(ohne_chat))
+
+    def test_ohne_chat_entstehen_trotzdem_momente(self):
+        """Der Regressionstest zum Lauf über Stream 2862735566."""
+        stream = _beispielstream(mit_chat=False)
+        ergebnis = motor.analysiere(stream, schwelle=0)
+        self.assertGreater(ergebnis.geprueft, 0)
+        self.assertTrue(ergebnis.clips)
+
+    def test_nicht_messbares_zaehlt_nicht_als_null(self):
+        """Ein fehlender Sensor senkt die Note nicht, er fällt heraus."""
+        # Zwei gleich gute Bestandteile, einer davon nicht messbar:
+        # das Ergebnis ist der messbare, nicht sein halber Wert.
+        self.assertAlmostEqual(
+            bewertung._mittel([(0.8, 0.5, True), (0.0, 0.5, False)]), 0.8)
+        self.assertAlmostEqual(
+            bewertung._mittel([(0.8, 0.5, True), (0.0, 0.5, True)]), 0.4)
+        self.assertEqual(bewertung._mittel([(0.8, 0.5, False)]), 0.0)
 
 
 class Transkript(unittest.TestCase):
