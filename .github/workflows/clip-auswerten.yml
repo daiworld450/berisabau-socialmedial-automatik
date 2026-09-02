@@ -70,7 +70,15 @@ jobs:
           cache: pip
 
       - name: Werkzeuge installieren
-        run: pip install --quiet yt-dlp faster-whisper
+        run: |
+          # ffmpeg ist auf den Runnern NICHT vorinstalliert. Ohne es laedt
+          # yt-dlp den Ton zwar vollstaendig herunter und wirft ihn dann bei
+          # der Umwandlung weg - acht Minuten Download fuer nichts. Genau so
+          # ist Lauf #5 gescheitert.
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -n 1
+          pip install --quiet yt-dlp faster-whisper
 
       - name: Videonummer aus der Adresse lesen
         id: vod
@@ -89,6 +97,13 @@ jobs:
       - name: Ton laden
         run: |
           mkdir -p arbeit
+          # Gegenprobe vor dem langen Download - lieber hier abbrechen als
+          # nach 200 Megabyte.
+          command -v ffmpeg >/dev/null || {
+            echo "::error::ffmpeg fehlt - die Umwandlung wuerde nach dem"
+            echo "Download scheitern. Siehe Schritt 'Werkzeuge installieren'."
+            exit 1
+          }
           # Ausgabe mitschreiben: die Protokoll-Schnittstelle gibt nur das
           # Ende eines Laufs heraus, und eine Meldung aus der Mitte wäre
           # sonst nicht zu sehen. Der letzte Schritt gibt die Datei aus.
