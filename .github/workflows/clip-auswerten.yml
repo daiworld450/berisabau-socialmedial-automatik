@@ -230,10 +230,28 @@ jobs:
           git add "$ORDNER" content/clip_verlauf.json
           if git diff --staged --quiet; then
             echo "Nichts Neues - der Stream wurde schon einmal ausgewertet."
-          else
-            git commit -m "Clip-Vorschlaege fuer Stream ${{ steps.vod.outputs.nummer }}"
-            git push
+            exit 0
           fi
+          git commit -m "Clip-Vorschlaege fuer Stream ${{ steps.vod.outputs.nummer }}"
+          # Ein Lauf dauert vierzig Minuten. In der Zeit kann der Zweig
+          # weitergewandert sein - dann weist GitHub den Push ab, und die
+          # Auswertung waere umsonst gewesen, obwohl sie fertig ist.
+          # Also: neu aufsetzen und noch einmal versuchen.
+          for VERSUCH in 1 2 3 4; do
+            if git push; then
+              echo "Bericht abgelegt (Versuch $VERSUCH)."
+              exit 0
+            fi
+            echo "Push abgewiesen - hole den Zweig nach und setze neu auf."
+            git pull --rebase origin "$GITHUB_REF_NAME" || {
+              echo "::warning::Der Zweig laesst sich nicht sauber nachziehen."
+              break
+            }
+            sleep $((VERSUCH * VERSUCH * 2))
+          done
+          echo "::warning::Der Bericht konnte nicht ins Repo geschrieben"
+          echo "werden. Er liegt vollstaendig als Anhang an diesem Lauf -"
+          echo "verloren ist nichts, nur nicht im Repo."
 
       - name: Bericht und Transkript als Download
         if: always()
