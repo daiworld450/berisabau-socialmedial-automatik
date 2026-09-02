@@ -12,10 +12,18 @@ Zwei Dateien, mit Absicht getrennt:
                                     .gitignore gesperrt.
 
     content/medien/freigabe.json    Nur Dateinamen. Keine Personendaten.
-                                    Darf ins oeffentliche Repo, damit der
-                                    GitHub-Actions-Lauf pruefen kann.
+                                    Wird hier weiter geschrieben, aber seit
+                                    dem 01.09.2026 von KEINEM Code mehr
+                                    gelesen: planer.py filtert nicht mehr
+                                    danach.
 
 Wer diese Trennung aufhebt, veroeffentlicht Kundendaten.
+
+Stand 01.09.2026: Die Codesperre in planer.py wurde auf Wunsch des Inhabers
+entfernt (Commit f068b5a). Dieses Werkzeug fuehrt seitdem nur noch Buch,
+damit nachvollziehbar bleibt, wer wofuer sein Einverstaendnis gegeben hat.
+Es haelt kein Foto mehr zurueck. Die Pruefung liegt beim Menschen, vor dem
+Druck auf Freigeben in Telegram.
 """
 from __future__ import annotations
 
