@@ -59,9 +59,6 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Chat-Werkzeug installieren
-        run: pip install chat-downloader
-
       - name: Videonummer aus der Adresse lesen
         id: vod
         run: |
@@ -98,9 +95,9 @@ jobs:
           echo "Antwort (erste 800 Zeichen):"
           head -c 800 antwort.txt; echo; echo
 
-          echo "=== 2. chat_downloader mit ausfuehrlichem Protokoll ==="
-          chat_downloader "${{ inputs.vod }}" --logging debug --max_messages 5 \
-            2>&1 | tail -40 || true
+          echo "=== 2. Eigener Abruf, erste Seite ==="
+          python src/clipwerk/twitch.py "${{ inputs.vod }}" \
+            --ziel probe.json 2>&1 | tail -20 || true
           echo
 
           echo "=== 3. Erreicht yt-dlp das Video? ==="
@@ -115,7 +112,8 @@ jobs:
         if: ${{ !inputs.diagnose }}
         run: |
           mkdir -p arbeit
-          chat_downloader "${{ inputs.vod }}" --output arbeit/chat.json
+          python src/clipwerk/twitch.py "${{ inputs.vod }}" \
+            --ziel arbeit/chat.json
           ls -lh arbeit/chat.json
 
       - name: Auswerten
