@@ -240,6 +240,7 @@ ffmpeg-Skript, das 1080 × 1920 mit eingebrannten Untertiteln rendert.
 | Befehl | Zweck |
 |---|---|
 | `clip analyse` | Stream auswerten, Clips erzeugen |
+| `clip diagnose` | Zahlen hinter einer Auswertung: welche Signale tragen, wo die Kurve liegt |
 | `clip plan` | Veröffentlichungsrhythmus, bester Score zuerst |
 | `clip verlauf` | Clip-Datenbank ansehen, Veröffentlichung eintragen |
 | `clip kennzahlen` | Views, Completion, Shares … nachtragen |

@@ -45,8 +45,21 @@ Text, wertet aus und legt den Bericht als Datei ins Repo unter
 `docs/clips/<vod>/bericht.md` — dort direkt lesbar, zusätzlich als Download
 am Lauf.
 
-Kein Terminal, kein eingerichteter Rechner. Rechne mit ein bis drei Stunden
-Laufzeit.
+Kein Terminal, kein eingerichteter Rechner. Gemessen an zweieinhalb Stunden
+Stream: acht Minuten Ton laden, 33 Minuten Spracherkennung, der Rest in
+Sekunden — zusammen gut vierzig Minuten.
+
+**Einen Stream ein zweites Mal auswerten:** in das Feld `aus_lauf` die
+Nummer eines früheren Laufs eintragen (steht in der Adresse des Laufs unter
+Actions). Dann wird dessen Transkript übernommen statt derselbe Ton noch
+einmal durch dasselbe Modell geschickt — ein Nachlauf kostet damit eine
+Minute statt vierzig. Nützlich, wenn sich an der Auswertung etwas geändert
+hat und nicht am Stream. Die Anhänge laufen nach 30 Tagen ab; danach geht
+nur noch der volle Weg.
+
+Das Transkript liegt bewusst nur am Lauf und nicht im Repository: es ist
+die wörtliche Mitschrift eines fremden Streams und gehört nicht in ein
+öffentliches Repo. Im Repo landen die Clip-Vorschläge.
 
 ---
 
@@ -103,14 +116,34 @@ wofür man den Wortlaut braucht: Untertitel, Zitate als Hook, Satzgrenzen
 beim Zuschnitt und das Herausschneiden von Stille. Die Zeitstempel sind
 dann Anhaltspunkte, kein fertiger Schnitt.
 
-Der Chat-Modus rechnet außerdem mit einer eigenen Schwelle: 58 statt 65.
-Das ist keine Nachsicht, sondern eine Korrektur. Zwei der sechs Teilnoten
-sind ohne Wortlaut unbekannt und stehen auf einem neutralen Wert — dadurch
-ist die erreichbare Höchstpunktzahl gedeckelt. Über dieselben sieben
-Momente gemessen lagen die Werte im Mittel 7,3 Punkte tiefer (einzeln 2 bis
-12), ohne dass die Clips schlechter gewesen wären. Ohne die Korrektur
-bedeutete „65" im Chat-Modus faktisch 72. Der Wert stammt aus einem
-synthetischen Vergleichslauf und gehört an echten Streams nachgemessen.
+### Jede Betriebsart hat ihre eigene Schwelle
+
+| Vorhanden | Schwelle |
+|---|---|
+| Transkript **und** Chat | 65 |
+| nur Transkript | 61 |
+| nur Chat | 73 |
+
+Das ist keine Nachsicht und keine Strenge, sondern eine Korrektur an der
+Punktzahl selbst. Ein Bestandteil, den es in einem Stream gar nicht gibt —
+der Clipruf ohne Chat, die Wortdichte ohne Transkript — zählt nicht als
+Null; eine fehlende Messung ist kein schlechter Wert. Er fällt heraus, und
+sein Gewicht verteilt sich auf den Rest. Was übrig bleibt, trägt dadurch
+volles Gewicht, und im Chatbetrieb sind das vor allem die großzügigen Teile:
+Kategorieneigung und Chatausschlag. Ohne Gegengewicht bekäme derselbe Moment
+ohne Transkript *mehr* Punkte als mit.
+
+Nachgemessen an fünf synthetischen Streams mit unterschiedlich lebhaftem
+Chat, jeweils derselbe Stream in allen drei Betriebsarten: der Chatbetrieb
+lag 5 bis 11 Punkte über dem Vollbetrieb, der Betrieb ohne Chat 0 bis 11
+darunter. Die Streuung ist groß, weil sie daran hängt, wie laut der Chat
+ist. Erfundenes Material, erste Eichung — an echten Streams gehört das
+nachgemessen. `tests/test_clipwerk.py` hält den Vergleich als Test fest.
+
+> Bis zum 02.09.2026 stand hier eine einzelne abgesenkte Schwelle von 58
+> für den Chatbetrieb. Sie war gegen eine Fassung gemessen, die fehlende
+> Werte als Null zählte, und hätte die Korrektur seither doppelt gezählt —
+> in die falsche Richtung.
 
 ```bash
 # Beispiel: Ton aus dem VOD ziehen und transkribieren
@@ -143,14 +176,39 @@ rendert jedes Layout als Vollbild, statt einen leeren Kasten einzubauen.
    hat. Stille über 1,2 Sekunden wird als Auslassung markiert und zählt
    nicht zur Länge.
 3. **Bewertung.** Hook 25, Unterhaltung 20, Watchtime 20, Share 15,
-   Kommentar 10, Follower 10. Unter 65 Punkten wird verworfen, ab 80 gilt
-   höchste Priorität. Die Teilnoten stehen im Bericht – man sieht also,
-   warum ein Clip 71 und nicht 84 hat.
+   Kommentar 10, Follower 10. Unter der Schwelle der jeweiligen Betriebsart
+   wird verworfen (65 im Vollbetrieb), ab 80 gilt höchste Priorität. Die
+   Teilnoten stehen im Bericht – man sieht also, warum ein Clip 71 und
+   nicht 84 hat.
 4. **Entdoppelung.** Fenster, die sich zu mehr als 40 Prozent überlappen,
    sind derselbe Clip; das schwächere fällt weg.
 
 Kommt kein Clip über die Schwelle, sagt der Bericht genau das. Das ist ein
 gültiges Ergebnis (Abschnitt 15) und kein Fehler.
+
+**Kein geprüfter Moment ist etwas anderes.** „Geprüft und zu schwach" ist
+ein Urteil über den Stream. „Gar nichts geprüft" heißt, die Signalkurve hat
+nirgends ausgeschlagen — und das ist bei einem Stream mit Sprache oder Chat
+fast immer eine Eichung, die nicht zur Datenlage passt, kein langweiliger
+Stream. Der Bericht sagt beides getrennt.
+
+```bash
+python src/main.py clip diagnose \
+  --transkript transkript.json --stream-id 2401234567
+```
+
+`clip diagnose` zeigt die Zahlen dahinter, ohne Clips und ohne Zitate:
+welche Signalreihen überhaupt tragen und wie oft sie feuern, wie hoch die
+Kurve liegt (Perzentile), wo die Spitzenschwelle steht und wie sich die
+Punkte der gefundenen Momente verteilen. Damit lässt sich in einem Blick
+unterscheiden, ob ein Stream nichts hergab oder ob die Kurve schiefsteht.
+
+Der erste Lauf über einen echten Stream endete genau hier: 1549 erkannte
+Sprachsegmente, **null** geprüfte Momente. Ursache waren nicht die Inhalte,
+sondern drei Annahmen, die alle aus dem Chatbetrieb stammten — eine
+Grundlast, die seltene Reihen auslöschte; Sprachsignale, die nur auf der
+Anfangssekunde ihres Satzes saßen; und feste Schwellen, gemessen an einer
+Kurve mit doppelt so vielen Sensoren.
 
 ## Was herauskommt
 
