@@ -8,10 +8,20 @@ name: Tests
 # Der Lauf braucht keine Zugangsdaten, kein Netz und kein ffmpeg: kein Test
 # ruft eine API auf, keiner rendert. Deshalb kann er auf jedem Zweig laufen.
 
+# Reine Ergebnis-Commits sind ausgenommen: der Clip-Workflow legt seinen
+# Bericht selbst im Repo ab, und daran haengt kein Code. Sonst steht nach
+# jeder Auswertung ein Testlauf auf dem Zweig, der auf Freigabe wartet -
+# ein rotes Kaestchen ohne Aussage.
 on:
   push:
     branches: ["**"]
+    paths-ignore:
+      - "docs/clips/**"
+      - "content/clip_verlauf.json"
   pull_request:
+    paths-ignore:
+      - "docs/clips/**"
+      - "content/clip_verlauf.json"
   workflow_dispatch:
 
 permissions:
