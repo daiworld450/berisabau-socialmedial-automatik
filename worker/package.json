@@ -1,0 +1,12 @@
+{
+  "name": "berisabau-social-bot",
+  "private": true,
+  "scripts": {
+    "veroeffentlichen": "npx wrangler deploy",
+    "protokoll": "npx wrangler tail",
+    "test": "node --test test/*.test.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
