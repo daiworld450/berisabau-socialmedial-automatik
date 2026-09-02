@@ -45,7 +45,7 @@ def clipblock(clip: Clip) -> str:
         f"HOOK IM VIDEO:\n\n{t.hook}",
         f"SCHNITT:\n\nBildaufteilung: {clip.plan.layout} – "
         f"{rnd_layout_text(clip.plan.layout)}\n\n{clip.plan.als_text()}",
-        f"UNTERTITEL:\n\n{unt.als_text(clip.zeilen) or '(kein Sprachanteil)'}",
+        f"UNTERTITEL:\n\n{unt.als_text(clip.zeilen) or _kein_untertitel(clip)}",
         f"TIKTOK TITEL:\n\n{t.tiktok_titel}",
         f"TIKTOK CAPTION:\n\n{t.tiktok_caption}",
         f"HASHTAGS:\n\n{' '.join(t.hashtags)}",
@@ -53,6 +53,13 @@ def clipblock(clip: Clip) -> str:
         f"YOUTUBE SHORTS TITEL:\n\n{t.youtube_titel}   ({len(t.youtube_titel)} Zeichen)",
     ]
     return TRENNER.join(teile)
+
+
+def _kein_untertitel(clip: Clip) -> str:
+    if clip.kandidat.segmente:
+        return "(kein Sprachanteil in diesem Ausschnitt)"
+    return ("(kein Transkript – Untertitel müssen nachträglich erzeugt "
+            "werden, z. B. mit Whisper über den fertigen Clip)")
 
 
 def rnd_layout_text(layout: str) -> str:
@@ -82,6 +89,14 @@ def bericht(ergebnis: Ergebnis, stream: Stream) -> str:
         kopf += ["> Ohne Chat-Datei fehlt das stärkste Signal. Die Auswahl "
                  "stützt sich allein auf die Sprache und ist entsprechend "
                  "unsicherer.", ""]
+    if stream.nur_chat:
+        kopf += ["> **Ohne Transkript gelaufen.** Die Momente stammen allein "
+                 "aus dem Chat – das findet die Ausschläge zuverlässig, aber "
+                 "es fehlen: Untertitel, Zitate als Hook, Satzgrenzen beim "
+                 "Zuschnitt und das Herausschneiden von Stille. Die "
+                 "Zeitstempel sind Anhaltspunkte, kein fertiger Schnitt. "
+                 "Mit Transkript wird aus denselben Momenten deutlich mehr.",
+                 ""]
     if not ergebnis.clips:
         kopf += ["Kein Moment hat die Schwelle erreicht. Das ist ein "
                  "gültiges Ergebnis: nicht jeder Stream trägt einen Clip "

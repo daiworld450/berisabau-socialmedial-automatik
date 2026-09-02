@@ -613,6 +613,80 @@ class Wachstum(unittest.TestCase):
         self.assertIn("nichts abzuleiten", auswertung.hinweis)
 
 
+class NurChat(unittest.TestCase):
+    """Der Chat-Modus: kein Transkript, trotzdem brauchbare Momente.
+
+    Er ist der Weg, der in Minuten statt in Stunden ein Ergebnis liefert -
+    Whisper über ein Sechs-Stunden-VOD läuft auf einem normalen Rechner
+    halbe Nächte. Wichtig ist, dass die Einbußen *ehrlich* sind: gröberer
+    Zuschnitt und keine Untertitel, aber keine erfundenen Inhalte.
+    """
+    def _stream(self) -> quellen.Stream:
+        voll = _beispielstream()
+        return quellen.Stream("s-chat", "2026-09-01", "K1ANUSH",
+                              "Just Chatting", [], voll.chat)
+
+    def test_ohne_beide_quellen_bricht_es_ab(self):
+        with self.assertRaises(quellen.QuellenFehler):
+            quellen.lade_stream("s", "2026-09-01", "K", None, None)
+
+    def test_nur_chat_wird_erkannt(self):
+        self.assertTrue(self._stream().nur_chat)
+        self.assertFalse(_beispielstream().nur_chat)
+
+    def test_findet_momente_ohne_transkript(self):
+        ergebnis = motor.analysiere(self._stream(), schwelle=0)
+        self.assertTrue(ergebnis.clips, "im Chat-Modus kein Moment gefunden")
+
+    def test_erfindet_keine_untertitel_und_keine_zitate(self):
+        ergebnis = motor.analysiere(self._stream(), schwelle=0)
+        for clip in ergebnis.clips:
+            self.assertEqual(clip.zeilen, [])
+            self.assertEqual(clip.texte.kernzitat, "")
+            # Ein Hook in Anführungszeichen wäre ein Zitat - ohne Transkript
+            # gibt es aber nichts zu zitieren.
+            self.assertFalse(clip.texte.hook.startswith("„"),
+                             f"Zitat-Hook ohne Transkript: {clip.texte.hook}")
+
+    def test_pointe_liegt_vor_dem_chat_ausschlag(self):
+        """Der Chat antwortet, er handelt nicht - der Moment liegt davor."""
+        stream = self._stream()
+        kurve = signale.kurve(stream, LEXIKON)
+        spitze = max(signale.spitzen(kurve, schwelle=0.5),
+                     key=lambda s: s.staerke)
+        kandidat = kandidaten.baue(stream, kurve, spitze)
+        self.assertIsNotNone(kandidat)
+        self.assertLess(kandidat.hoehepunkt, spitze.sekunde)
+        self.assertGreaterEqual(kandidat.hoehepunkt, kandidat.start)
+
+    def test_keine_auslassungen_ohne_sprache(self):
+        """Stille lässt sich ohne Transkript nicht erkennen – also wird auch
+        keine behauptet."""
+        ergebnis = motor.analysiere(self._stream(), schwelle=0)
+        for clip in ergebnis.clips:
+            self.assertEqual(clip.kandidat.auslassungen, [])
+            self.assertEqual(clip.kandidat.dauer, clip.kandidat.roh_dauer)
+
+    def test_laengenregeln_gelten_weiter(self):
+        ergebnis = motor.analysiere(self._stream(), schwelle=0)
+        for clip in ergebnis.clips:
+            self.assertGreaterEqual(clip.kandidat.dauer, kandidaten.MIN_KURZ)
+            self.assertLessEqual(clip.kandidat.dauer, kandidaten.HART_MAX)
+
+    def test_bericht_nennt_die_einschraenkung(self):
+        stream = self._stream()
+        ergebnis = motor.analysiere(stream, schwelle=0)
+        text = ausgabe.bericht(ergebnis, stream)
+        self.assertIn("Ohne Transkript", text)
+        self.assertIn("kein Transkript", text)
+
+    def test_niedrigere_schwelle_ist_belegt(self):
+        """Die abgesenkte Schwelle bildet einen gemessenen Abstand ab und
+        darf nicht über der normalen liegen."""
+        self.assertLess(bewertung.SCHWELLE_OHNE_TRANSKRIPT,
+                        bewertung.SCHWELLE_VERWERFEN)
+
+
 class Gesamtlauf(unittest.TestCase):
     def test_analyse_bis_paket(self):
         stream = _beispielstream()

@@ -87,6 +87,11 @@ class Stream:
     video: Path | None = None
 
     @property
+    def nur_chat(self) -> bool:
+        """Kein Transkript vorhanden – die Auswahl stützt sich allein auf den Chat."""
+        return not self.segmente
+
+    @property
     def laenge(self) -> float:
         enden = [s.ende for s in self.segmente] + [c.sekunde for c in self.chat]
         return max(enden) if enden else 0.0
@@ -307,14 +312,24 @@ def lade_chat(pfad: Path) -> list[ChatNachricht]:
 # Stream zusammensetzen
 # --------------------------------------------------------------------------- #
 def lade_stream(stream_id: str, datum: str, streamer: str,
-                transkript: Path, chat: Path | None = None,
+                transkript: Path | None = None, chat: Path | None = None,
                 spiel: str = "", video: Path | None = None) -> Stream:
+    """Mindestens eine Quelle muss da sein - Transkript oder Chat.
+
+    Nur Chat ist ein gültiger Fall: die guten Momente findet der Chat auch
+    ohne Transkript. Was dann fehlt, sind Untertitel und Zitate - siehe
+    `Stream.nur_chat`.
+    """
+    if transkript is None and chat is None:
+        raise QuellenFehler("Weder Transkript noch Chat angegeben – ohne "
+                            "mindestens eine der beiden Quellen gibt es "
+                            "nichts zu analysieren.")
     return Stream(
         stream_id=stream_id,
         datum=datum,
         streamer=streamer,
         spiel=spiel,
-        segmente=lade_transkript(transkript),
+        segmente=lade_transkript(transkript) if transkript else [],
         chat=lade_chat(chat) if chat else [],
         video=video,
     )

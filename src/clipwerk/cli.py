@@ -18,7 +18,8 @@ from datetime import date
 from pathlib import Path
 
 from . import AUSGABE, HASHTAG_DATEI, LEXIKON_DATEI, VERLAUF_DATEI
-from . import ausgabe, lernkurve, motor, plan, quellen, render, verlauf
+from . import (ausgabe, bewertung, lernkurve, motor, plan, quellen,
+               render, verlauf)
 
 
 def _stream_aus_argumenten(args) -> quellen.Stream:
@@ -26,7 +27,7 @@ def _stream_aus_argumenten(args) -> quellen.Stream:
         stream_id=args.stream_id,
         datum=args.datum or date.today().isoformat(),
         streamer=args.streamer,
-        transkript=Path(args.transkript),
+        transkript=Path(args.transkript) if args.transkript else None,
         chat=Path(args.chat) if args.chat else None,
         spiel=args.spiel or "",
         video=Path(args.video) if args.video else None,
@@ -35,7 +36,21 @@ def _stream_aus_argumenten(args) -> quellen.Stream:
 
 # --------------------------------------------------------------------------- #
 def cmd_analyse(args) -> int:
+    if not args.transkript and not args.chat:
+        print("Weder --transkript noch --chat angegeben. Mindestens eine "
+              "der beiden Quellen wird gebraucht.", file=sys.stderr)
+        return 2
     stream = _stream_aus_argumenten(args)
+
+    # Die Schwelle wandert mit dem Modus, wenn sie nicht vorgegeben wurde -
+    # siehe bewertung.SCHWELLE_OHNE_TRANSKRIPT.
+    if args.schwelle is None:
+        args.schwelle = (bewertung.SCHWELLE_OHNE_TRANSKRIPT if stream.nur_chat
+                         else bewertung.SCHWELLE_VERWERFEN)
+    if stream.nur_chat:
+        print(f"Ohne Transkript: Momente kommen allein aus dem Chat. Keine "
+              f"Untertitel, gröberer Zuschnitt, Schwelle {args.schwelle} "
+              f"statt {bewertung.SCHWELLE_VERWERFEN} – Näheres im Bericht.")
     faktoren = {} if args.ohne_lernen else lernkurve.faktoren(Path(args.datenbank))
     if faktoren:
         print(f"Gelernte Gewichtung aktiv für: {', '.join(sorted(faktoren))}")
@@ -242,8 +257,9 @@ def baue_parser() -> argparse.ArgumentParser:
     unter = p.add_subparsers(dest="befehl", required=True)
 
     a = unter.add_parser("analyse", help="Stream analysieren und Clips erzeugen")
-    a.add_argument("--transkript", required=True,
-                   help="SRT, VTT oder Whisper-JSON")
+    a.add_argument("--transkript",
+                   help="SRT, VTT oder Whisper-JSON; ohne das läuft der "
+                        "Chat-Modus (schneller, aber ohne Untertitel)")
     a.add_argument("--chat", help="Chat als VOD-Export, JSONL oder IRC-Mitschnitt")
     a.add_argument("--stream-id", required=True, help="z. B. die Twitch-VOD-ID")
     a.add_argument("--datum", help="Streamdatum, Vorgabe: heute")
@@ -254,8 +270,8 @@ def baue_parser() -> argparse.ArgumentParser:
     a.add_argument("--ohne-facecam", action="store_true",
                    help="reines Vollbild, kein geteiltes Layout")
     a.add_argument("--layout", help="Layout erzwingen statt je Kategorie wählen")
-    a.add_argument("--schwelle", type=int, default=65,
-                   help="Mindestpunktzahl (Vorgabe 65)")
+    a.add_argument("--schwelle", type=int,
+                   help="Mindestpunktzahl (Vorgabe 65, im Chat-Modus 58)")
     a.add_argument("--hoechstens", type=int, default=30,
                    help="Höchstzahl Clips (Vorgabe 30)")
     a.add_argument("--ziel", help="Ausgabeordner")

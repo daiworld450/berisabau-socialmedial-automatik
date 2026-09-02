@@ -40,6 +40,12 @@ NACHLAUF_MAX = 25.0
 # Lücke ohne Sprache, ab der geschnitten wird.
 STILLE = 1.2
 
+# Wie lange der Chat braucht, um auf etwas zu reagieren - lesen, tippen,
+# absenden. Nur im Chat-Modus gebraucht, wo keine Sprache verrät, wann der
+# Moment wirklich war. Drei bis vier Sekunden decken sich mit dem, was man
+# in Mitschnitten sieht: die erste Welle kommt schnell, die Masse danach.
+CHAT_VERZUG = 3.5
+
 # Kategorien, denen die 60 Sekunden zustehen, weil ohne Aufbau nichts bleibt.
 ERZAEHLEND = {"STORY", "CONTROVERSIAL", "HOT TAKE"}
 
@@ -264,11 +270,55 @@ def _beschneiden(segmente: list[Segment], hoehepunkt: float,
     return segmente
 
 
+def _ohne_sprache(stream: Stream, kurve: Signalkurve, spitze: Spitze,
+                  erzaehlend: bool) -> Kandidat | None:
+    """Fenster allein aus der Chatkurve, wenn kein Transkript vorliegt.
+
+    Der Chat reagiert, er handelt nicht - seine Spitze liegt also nach dem
+    Moment, nicht auf ihm. Deshalb wird hier bewusst weiter vorn angesetzt
+    als bei einem Fenster mit Sprache: der Auslöser liegt vor dem Ausschlag.
+
+    Ohne Sprache gibt es keine Satzgrenzen und keine erkennbare Stille -
+    also auch keine Auslassungen. Der Ausschnitt bleibt am Stück, und der
+    Zuschnitt ist gröber. Das ist der Preis dafür, in Minuten statt in
+    Stunden ein Ergebnis zu haben.
+    """
+    # Der Chat-Ausschlag ist nicht der Moment, sondern die Antwort darauf:
+    # lesen, tippen, absenden. Das Ereignis liegt davor. Wer den Ausschlag
+    # als Pointe einträgt, legt sie ans Clipende - und die Bewertung
+    # bestraft dann eine Verzögerung, die gar nicht im Video steckt.
+    ereignis = max(0.0, spitze.sekunde - CHAT_VERZUG)
+    vorlauf = 14.0 if erzaehlend else 9.0
+    start = max(0.0, ereignis - vorlauf)
+
+    schwelle = spitze.staerke * 0.4
+    ende = spitze.sekunde + 2.0
+    while ende < spitze.sekunde + NACHLAUF_MAX:
+        if kurve.spitzenwert_gesamt(ende, ende + 2.0) < schwelle:
+            break
+        ende += kurve.aufloesung
+
+    grenze = HART_MAX if erzaehlend else ZIEL_MAX
+    ende = min(ende, start + grenze, stream.laenge)
+    if ende - start < MIN_KURZ:
+        ende = min(stream.laenge, start + MIN_KURZ)
+    if ende - start < MIN_KURZ:
+        return None
+
+    kandidat = Kandidat(start=round(start, 2), ende=round(ende, 2),
+                        hoehepunkt=min(ereignis, ende - 0.5),
+                        staerke=spitze.staerke, anteile={})
+    kandidat.anteile = _anteile(kurve, kandidat.start, kandidat.ende)
+    return kandidat
+
+
 def baue(stream: Stream, kurve: Signalkurve, spitze: Spitze,
          kategorie: str = "", fuellwoerter: set[str] | None = None
          ) -> Kandidat | None:
     fuellwoerter = fuellwoerter or _FUELLWOERTER
     erzaehlend = kategorie in ERZAEHLEND
+    if stream.nur_chat:
+        return _ohne_sprache(stream, kurve, spitze, erzaehlend)
     ende = _ende_waehlen(stream, kurve, spitze)
     start = _start_waehlen(stream, kurve, spitze, ende, erzaehlend)
     if ende - start < MIN_KURZ:

@@ -12,7 +12,27 @@ daraus es umsetzt.
 
 ---
 
-## In fünf Minuten ausprobieren
+## Der einfachste Weg: doppelklicken
+
+`clip-holen.command` im Hauptordner macht alles allein — Werkzeuge
+nachinstallieren, Chat laden, auswerten, Ergebnisordner öffnen. Gebraucht
+wird nur die Adresse des VODs (die Seite mit `/videos/` darin, nicht die
+Kanalseite).
+
+Es läuft in zwei Durchgängen, weil sie sehr unterschiedlich lange dauern:
+
+| Durchgang | Dauer | Ergebnis |
+|---|---|---|
+| Chat | Minuten | Momente, Scores, Hooks, Titel, Captions, Hashtags |
+| Voll | Stunden | zusätzlich Untertitel und fertige MP4s |
+
+Der erste läuft immer, der zweite nur auf Nachfrage. Ein einmal geladener
+Chat wird nicht noch einmal geholt — die Datei lässt sich also jederzeit
+erneut starten.
+
+---
+
+## Von Hand: in fünf Minuten ausprobieren
 
 ```bash
 python src/main.py clip analyse \
@@ -42,9 +62,24 @@ PYTHONPATH=src python3 -m clipwerk analyse ...
 
 ## Was hineingeht
 
-**Transkript** (Pflicht) – SRT, WebVTT oder Whisper-JSON. Whisper-JSON ist
-besser, weil es Wortzeiten mitbringt: die Untertitel sitzen dann auf dem
-Wort statt auf dem Satz.
+**Transkript** (freiwillig) – SRT, WebVTT oder Whisper-JSON. Whisper-JSON
+ist besser, weil es Wortzeiten mitbringt: die Untertitel sitzen dann auf
+dem Wort statt auf dem Satz.
+
+Ohne Transkript läuft der **Chat-Modus**. Er findet dieselben Momente, denn
+die Ausschläge stehen im Chat, nicht in der Sprache. Was fehlt, ist alles,
+wofür man den Wortlaut braucht: Untertitel, Zitate als Hook, Satzgrenzen
+beim Zuschnitt und das Herausschneiden von Stille. Die Zeitstempel sind
+dann Anhaltspunkte, kein fertiger Schnitt.
+
+Der Chat-Modus rechnet außerdem mit einer eigenen Schwelle: 58 statt 65.
+Das ist keine Nachsicht, sondern eine Korrektur. Zwei der sechs Teilnoten
+sind ohne Wortlaut unbekannt und stehen auf einem neutralen Wert — dadurch
+ist die erreichbare Höchstpunktzahl gedeckelt. Über dieselben sieben
+Momente gemessen lagen die Werte im Mittel 7,3 Punkte tiefer (einzeln 2 bis
+12), ohne dass die Clips schlechter gewesen wären. Ohne die Korrektur
+bedeutete „65" im Chat-Modus faktisch 72. Der Wert stammt aus einem
+synthetischen Vergleichslauf und gehört an echten Streams nachgemessen.
 
 ```bash
 # Beispiel: Ton aus dem VOD ziehen und transkribieren
@@ -200,12 +235,13 @@ sich auf den Schnittrechner mitnehmen.
 
 | Datei | wofür |
 |---|---|
+| `clip-holen.command` | Doppelklick: holt einen Stream und wertet ihn aus |
 | `content/CLIP-PROMPT.md` | der Maßstab, dem der Code folgt |
 | `content/clip_lexikon.json` | Emotes und Redewendungen je Signalart |
 | `content/clip_hashtags.json` | Hashtag-Sätze je Kategorie, Trend-Liste |
 | `content/clip_verlauf.json` | Clip-Datenbank gegen Doppelungen (Abschnitt 13) |
 | `src/clipwerk/` | das Paket, ein Modul je Abschnitt |
-| `tests/test_clipwerk.py` | 57 Tests, ohne Netz und ohne ffmpeg |
+| `tests/test_clipwerk.py` | 66 Tests, ohne Netz und ohne ffmpeg |
 
 Lexikon und Hashtags liegen bewusst als Datei vor: Emotes und Sprüche
 wechseln schneller als Software.

@@ -216,11 +216,19 @@ Zweck. Er sieht sich einen kompletten Twitch-Stream an, sucht die Momente,
 die als Short tragen, bewertet sie nach einem festen 100-Punkte-Maßstab und
 legt zu jedem Clip alles hin, was zum Veröffentlichen fehlt.
 
+Am einfachsten per Doppelklick auf **`clip-holen.command`**: Adresse
+des VODs einfügen, alles Weitere macht das Skript. Von Hand geht es
+auch:
+
 ```bash
 python src/main.py clip analyse \
   --transkript stream.srt --chat chat.json \
   --stream-id 2401234567 --streamer K1ANUSH --spiel "Counter-Strike 2"
 ```
+
+Ohne `--transkript` läuft der Chat-Modus: in Minuten statt in Stunden
+fertig, findet dieselben Momente, aber ohne Untertitel und mit
+gröberem Zuschnitt.
 
 Heraus kommt ein Ordner unter `out/clips/` mit Bericht, Rohdaten,
 Untertiteln (ASS und SRT) und – wenn `--video` dabei ist – einem

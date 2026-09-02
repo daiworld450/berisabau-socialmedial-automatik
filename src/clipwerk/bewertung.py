@@ -37,6 +37,17 @@ HOECHSTPUNKTE = {
 SCHWELLE_VERWERFEN = 65
 SCHWELLE_PRIORITAET = 80
 
+# Ohne Transkript sind zwei der sechs Teilnoten unbekannt und stehen auf
+# einem neutralen Wert. Dadurch ist die erreichbare Höchstpunktzahl
+# gedeckelt: dieselben Momente liegen im Chat-Modus messbar tiefer, ohne
+# schlechter zu sein. An einem Vergleichslauf über dieselben sieben
+# Momente betrug der Abstand im Mittel 7,3 Punkte (Einzelwerte 2 bis 12).
+# Die Schwelle wandert deshalb mit, sonst bedeutet "65" hier faktisch 72.
+#
+# Der Wert stammt aus einem synthetischen Stream und ist eine erste
+# Eichung, keine Konstante - an echten Streams gehört er nachgemessen.
+SCHWELLE_OHNE_TRANSKRIPT = 58
+
 # Ausschlag, ab dem ein Moment als "so stark wie es wird" gilt. Über den
 # eigenen Streamschnitt hinaus ist das Sechsfache der robusten Streuung ein
 # sehr seltener Ausschlag - alles darüber bringt keine Zusatzpunkte mehr.
@@ -83,7 +94,11 @@ def _note_hook(kandidat: Kandidat, kurve: Signalkurve) -> float:
     from .kandidaten import _einstiegsguete
 
     erstes = kandidat.segmente[0] if kandidat.segmente else None
-    guete = _einstiegsguete(erstes, kurve) if erstes else 0.0
+    # Ohne Transkript lässt sich der Einstiegssatz nicht beurteilen. Dann
+    # steht hier bewusst ein neutraler Wert statt einer Null: der Einstieg
+    # ist unbekannt, nicht schlecht. Eine Null würde jeden Chat-Clip unter
+    # die Schwelle drücken, obwohl über ihn nur weniger bekannt ist.
+    guete = _einstiegsguete(erstes, kurve) if erstes else 0.5
 
     # Was in den ersten zwei Sekunden schon passiert, gemessen am Höhepunkt
     # des Clips selbst. Ein Clip, der bei null anfängt, verliert hier.
@@ -121,7 +136,10 @@ def _note_watchtime(kandidat: Kandidat) -> float:
         laenge = max(0.35, 1.0 - (dauer - ZIEL_MAX) / 30.0)
 
     woerter = len(kandidat.text.split())
-    dichte = min(1.0, (woerter / dauer) / 3.0) if dauer > 0 else 0.0
+    if kandidat.segmente:
+        dichte = min(1.0, (woerter / dauer) / 3.0) if dauer > 0 else 0.0
+    else:
+        dichte = 0.5        # ohne Transkript unbekannt, siehe _note_hook
 
     # Rest-Stille nach den Auslassungen: was übrig bleibt, kostet.
     weg = sum(bis - von for von, bis in kandidat.auslassungen)
@@ -203,7 +221,10 @@ def _begruendung(kandidat: Kandidat, note: Bewertung) -> str:
             f"{kandidat.hoehepunkt - kandidat.start:.0f} s Aufbau.")
     if weg >= 1.5:
         satz += f" {weg:.0f} s Stille fallen raus."
-    if note.hook >= 20:
+    if not kandidat.segmente:
+        satz += (" Ohne Transkript bewertet – Einstieg und Wortdichte sind "
+                 "geschätzt, der Zuschnitt ist grob.")
+    elif note.hook >= 20:
         satz += " Der Einstieg trägt ohne Vorwissen."
     elif note.hook < 14:
         satz += " Der Einstieg ist die Schwachstelle – Text-Hook ist Pflicht."
