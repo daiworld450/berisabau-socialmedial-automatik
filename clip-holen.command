@@ -88,6 +88,15 @@ if [ -z "$VOD" ]; then
   printf "Zum Schliessen Enter druecken. "; read -r _; exit 1
 fi
 
+# Die Kategorie geht in die Hashtags ein (#justchatting, #cs2 ...) und
+# beeinflusst die Bildaufteilung. Bei K1ANUSH ist Just Chatting der
+# Regelfall, deshalb steht sie als Vorgabe da - Enter genuegt.
+if [ -z "$SPIEL" ]; then
+  printf "Kategorie des Streams [Just Chatting]: "
+  read -r SPIEL
+fi
+[ -z "$SPIEL" ] && SPIEL="Just Chatting"
+
 ZIEL="$ARBEIT/$VOD"
 mkdir -p "$ZIEL"
 echo
@@ -148,6 +157,7 @@ python3 src/main.py clip analyse \
   --chat "$CHAT" \
   --stream-id "$VOD" \
   --streamer K1ANUSH \
+  --spiel "$SPIEL" \
   --ziel "$ZIEL/vorschlaege" \
   --aufnehmen
 
@@ -236,6 +246,7 @@ python3 src/main.py clip analyse \
   --chat "$CHAT" \
   --stream-id "$VOD" \
   --streamer K1ANUSH \
+  --spiel "$SPIEL" \
   --ziel "$ZIEL/final" \
   $VIDEOARG
 
