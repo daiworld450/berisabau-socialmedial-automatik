@@ -1,0 +1,33 @@
+{
+  "_hinweis": "Hashtag-Sätze je Kategorie. 'trend' pflegt ein Mensch – Trend-Tags veralten in Wochen, deshalb stehen sie nicht im Code. Leer lassen ist erlaubt: dann füllt der Generator aus den übrigen Töpfen auf.",
+  "streamer": ["#{streamer}", "#{streamer}clips", "#twitchdeutschland"],
+  "allgemein": ["#twitch", "#twitchclips", "#streamer", "#livestream"],
+  "kategorien": {
+    "FUNNY":         ["#funnymoments", "#lachflash", "#humor", "#lustig"],
+    "RAGE":          ["#rage", "#ragequit", "#ausraster", "#tilt"],
+    "REACTION":      ["#reaction", "#reaktion", "#reagiertauf"],
+    "STORY":         ["#storytime", "#geschichte", "#storytimetiktok"],
+    "CONTROVERSIAL": ["#meinung", "#diskussion", "#debatte"],
+    "GAMING":        ["#gaming", "#gamingclips", "#gamer", "#gameplay"],
+    "FAIL":          ["#fail", "#fails", "#epicfail", "#gamingfail"],
+    "WIN":           ["#clutch", "#insane", "#gamingmoments", "#win"],
+    "CHAT MOMENT":   ["#twitchchat", "#chat", "#streamerundchat"],
+    "HOT TAKE":      ["#hottake", "#unpopularopinion", "#klartext"],
+    "UNEXPECTED":    ["#unerwartet", "#plottwist", "#niemalsgedacht"],
+    "CLIP / MEME":   ["#meme", "#memes", "#viral", "#fyp"]
+  },
+  "spiele": {
+    "_hinweis": "Spielname aus --spiel wird kleingeschrieben und entleert; hier stehen Ausnahmen mit gebräuchlicherem Tag.",
+    "counter-strike 2": "#cs2",
+    "counter strike 2": "#cs2",
+    "league of legends": "#leagueoflegends",
+    "grand theft auto v": "#gtarp",
+    "gta v": "#gtarp",
+    "just chatting": "#justchatting",
+    "fortnite": "#fortnite",
+    "valorant": "#valorant",
+    "minecraft": "#minecraft",
+    "elden ring": "#eldenring"
+  },
+  "trend": []
+}
