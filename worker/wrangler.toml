@@ -1,0 +1,38 @@
+# ---------------------------------------------------------------------------
+# Social-Bot-Worker: nimmt Telegram-Nachrichten direkt entgegen.
+#
+# Warum es diesen Worker gibt: GitHub Actions fragt Telegram nur alle zehn
+# Minuten ab. Fuer einen Chat ist das unbrauchbar. Dieser Worker haengt als
+# Webhook direkt an Telegram und antwortet in ein bis zwei Sekunden - er
+# rendert nichts selbst, sondern verschickt fertige Bilder aus dem Vorrat
+# (docs/vorrat/, taeglich vom Workflow "Vorrat rendern" aufgefuellt).
+#
+# Geheimnisse gesondert setzen:
+#   npx wrangler secret put TELEGRAM_TOKEN        (Social-Bot von @BotFather)
+#   npx wrangler secret put WEBHOOK_GEHEIMNIS     (selbst ausgedacht)
+#   npx wrangler secret put GITHUB_TOKEN          (fuer repository_dispatch)
+#
+# Veroeffentlichen:  npx wrangler deploy
+# Laeuft im kostenlosen Plan (100.000 Aufrufe/Tag).
+# ---------------------------------------------------------------------------
+
+name = "berisabau-social-bot"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+[vars]
+VORRAT_URL   = "https://daiworld450.github.io/berisabau-socialmedial-automatik/vorrat/index.json"
+GITHUB_REPO  = "daiworld450/berisabau-socialmedial-automatik"
+# Nur dieser Chat darf den Bot bedienen. Alle anderen werden uebergangen.
+TELEGRAM_CHAT_IDS = "1937922535"
+
+# Merkt sich, welche Kandidaten schon gezeigt wurden.
+[[kv_namespaces]]
+binding = "ZUSTAND"
+id = "f04b797355824b7ab5d8eb6a8f2b2a7f"
+
+# Cloudflare Workers AI, seit 02.09.2026. Schreibt Sprachnachrichten im
+# Worker selbst in Text um (@cf/openai/whisper). Kein zweiter Dienst, kein
+# zweiter Schluessel, und die Audiodatei verlaesst Cloudflare nicht.
+[ai]
+binding = "AI"
