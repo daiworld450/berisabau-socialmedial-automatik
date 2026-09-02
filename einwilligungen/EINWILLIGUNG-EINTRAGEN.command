@@ -2,8 +2,16 @@
 # ---------------------------------------------------------------------------
 # Traegt die Einwilligung eines Kunden ein und schreibt die Freigabeliste neu.
 #
-# Doppelklicken. Ohne Eintrag hier bleibt ein Foto gesperrt und kann nicht
-# in einem Beitrag landen - das ist so gewollt.
+# Doppelklicken.
+#
+# ACHTUNG, geaendert am 01.09.2026: Frueher hat ein fehlender Eintrag hier ein
+# Foto technisch gesperrt. Diese Sperre hat der Inhaber am selben Tag wieder
+# entfernen lassen, Commit f068b5a. Das Werkzeug fuehrt also nur noch Buch.
+# Es haelt kein Foto mehr zurueck.
+#
+# Die Pflicht bleibt: ohne Einverstaendnis des Kunden geht sein Foto nicht
+# raus. Nur prueft das jetzt ein Mensch vor dem Druck auf Freigeben in
+# Telegram, kein Code.
 # ---------------------------------------------------------------------------
 cd "$(dirname "$0")/.."
 export PATH="$HOME/.local/bin:$PATH"
