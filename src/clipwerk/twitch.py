@@ -72,8 +72,8 @@ def _abfrage(query: str, variables: dict | None = None) -> dict:
 def video_info(vod: str) -> dict:
     """Titel, Länge und Kanal - auch als Gegenprobe, ob das VOD erreichbar ist."""
     daten = _abfrage(
-        "query($id: ID!) { video(id: $id) { id title lengthSeconds createdAt "
-        "owner { displayName } game { name } } }", {"id": str(vod)})
+        f"{{ video(id: {json.dumps(str(vod))}) {{ id title lengthSeconds "
+        f"createdAt owner {{ displayName }} game {{ name }} }} }}")
     info = daten.get("video")
     if not info:
         raise TwitchFehler(
@@ -83,22 +83,32 @@ def video_info(vod: str) -> dict:
     return info
 
 
-_KOMMENTARE = """
-query($id: ID!, $cursor: Cursor, $offset: Int) {
-  video(id: $id) {
-    comments(after: $cursor, contentOffsetSeconds: $offset) {
-      edges {
+# Bewusst ohne typisierte Variablen: die Argumente werden direkt in die
+# Abfrage geschrieben. Sonst muesste hier der Typname des Cursors stehen
+# ("Cursor", "String", ...), und den falsch zu raten kostet jedes Mal einen
+# Lauf. Eingesetzt wird ueber json.dumps, damit die Zeichenkette sauber
+# maskiert ist.
+def _kommentar_abfrage(vod: str, cursor: str | None, offset: int) -> str:
+    if cursor:
+        argument = f"after: {json.dumps(cursor)}"
+    else:
+        argument = f"contentOffsetSeconds: {int(offset)}"
+    return f"""
+{{
+  video(id: {json.dumps(str(vod))}) {{
+    comments({argument}) {{
+      edges {{
         cursor
-        node {
+        node {{
           contentOffsetSeconds
-          commenter { displayName }
-          message { fragments { text } }
-        }
-      }
-      pageInfo { hasNextPage }
-    }
-  }
-}
+          commenter {{ displayName }}
+          message {{ fragments {{ text }} }}
+        }}
+      }}
+      pageInfo {{ hasNextPage }}
+    }}
+  }}
+}}
 """
 
 
@@ -133,9 +143,7 @@ def hole_chat(vod: str, ziel: Path, melden=print) -> int:
     seiten = 0
 
     while True:
-        variablen = {"id": str(vod), "cursor": cursor,
-                     "offset": None if cursor else offset}
-        daten = _abfrage(_KOMMENTARE, variablen)
+        daten = _abfrage(_kommentar_abfrage(vod, cursor, offset or 0))
         block = ((daten.get("video") or {}).get("comments") or {})
         kanten = block.get("edges") or []
         if not kanten:

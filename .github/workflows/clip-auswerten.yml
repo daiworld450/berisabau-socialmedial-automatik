@@ -109,11 +109,17 @@ jobs:
           echo " liefert anonym Daten - dann liegt es an der Chat-Abfrage.)"
 
       - name: Chat laden
+        id: chat
         if: ${{ !inputs.diagnose }}
         run: |
           mkdir -p arbeit
+          # Ausgabe zusaetzlich mitschreiben: die Protokoll-Schnittstelle
+          # liefert nur das Ende eines Laufs, und eine Fehlermeldung aus der
+          # Mitte waere sonst nicht zu sehen. Der letzte Schritt gibt die
+          # Datei noch einmal aus.
+          set -o pipefail
           python src/clipwerk/twitch.py "${{ inputs.vod }}" \
-            --ziel arbeit/chat.json
+            --ziel arbeit/chat.json 2>&1 | tee arbeit/abruf.log
           ls -lh arbeit/chat.json
 
       - name: Auswerten
@@ -188,6 +194,13 @@ jobs:
       - name: Zusammenfassung
         if: always()
         run: |
+          # Zuerst das Abrufprotokoll, damit es am Ende des Laufs steht und
+          # ohne Herunterladen des ganzen Protokolls lesbar ist.
+          if [ -s arbeit/abruf.log ]; then
+            echo "----- Chat-Abruf -----"
+            cat arbeit/abruf.log
+            echo "----------------------"
+          fi
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
           {
             echo "# Clip-Werk: Stream ${{ steps.vod.outputs.nummer }}"
