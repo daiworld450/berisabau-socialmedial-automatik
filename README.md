@@ -127,7 +127,10 @@ content/
   hashtags.json     Hashtag-Sets und CTA-Varianten
   medien/           Ihre Fotos
   verlauf.json      Was wann gepostet wurde (wird automatisch gefüllt)
+  CLIP-PROMPT.md    Maßstab des Clip-Werks (Twitch → Shorts)
+  clip_*.json       Lexikon, Hashtag-Sätze und Clip-Datenbank dazu
 src/            Planer, Texter, Renderer, Publisher
+src/clipwerk/   Clip-Werk: Twitch-Stream zu TikTok/Reels/Shorts
 out/            Erzeugte Bilder und Texte
 docs/           Markenanalyse und Einrichtungsanleitung
 .github/        Zeitsteuerung
@@ -136,6 +139,9 @@ docs/           Markenanalyse und Einrichtungsanleitung
 ---
 
 ## Befehle
+
+Alle Clip-Werk-Befehle liegen unter `clip` – siehe eigenen Abschnitt weiter
+unten.
 
 | Befehl | Zweck |
 |---|---|
@@ -200,6 +206,54 @@ nicht. Ein Reel aus dem Reel-Werk wiegt rund 8 MB; alles darüber lehnt der
 Befehl ab, statt eine unbearbeitete Handydatei ins Repo zu ziehen.
 
 Details zum Filmen und zur Stimme: [`reelwerk/LIESMICH.md`](reelwerk/LIESMICH.md)
+
+---
+
+## Clip-Werk: Twitch-Stream zu TikTok, Reels und Shorts
+
+Ein zweiter, eigenständiger Zweig dieses Repos – gleiche Bauart, anderer
+Zweck. Er sieht sich einen kompletten Twitch-Stream an, sucht die Momente,
+die als Short tragen, bewertet sie nach einem festen 100-Punkte-Maßstab und
+legt zu jedem Clip alles hin, was zum Veröffentlichen fehlt.
+
+Am einfachsten per Doppelklick auf **`clip-holen.command`**: Adresse
+des VODs einfügen, alles Weitere macht das Skript. Von Hand geht es
+auch:
+
+```bash
+python src/main.py clip analyse \
+  --transkript stream.srt --chat chat.json \
+  --stream-id 2401234567 --streamer K1ANUSH --spiel "Counter-Strike 2"
+```
+
+Ohne `--transkript` läuft der Chat-Modus: in Minuten statt in Stunden
+fertig, findet dieselben Momente, aber ohne Untertitel und mit
+gröberem Zuschnitt.
+
+Heraus kommt ein Ordner unter `out/clips/` mit Bericht, Rohdaten,
+Untertiteln (ASS und SRT) und – wenn `--video` dabei ist – einem
+ffmpeg-Skript, das 1080 × 1920 mit eingebrannten Untertiteln rendert.
+
+| Befehl | Zweck |
+|---|---|
+| `clip analyse` | Stream auswerten, Clips erzeugen |
+| `clip plan` | Veröffentlichungsrhythmus, bester Score zuerst |
+| `clip verlauf` | Clip-Datenbank ansehen, Veröffentlichung eintragen |
+| `clip kennzahlen` | Views, Completion, Shares … nachtragen |
+| `clip lernen` | was das System aus den Zahlen gelernt hat |
+| `clip rendern` | ffmpeg-Skript aus einer vorhandenen `clips.json` |
+
+Wie beim Rest gilt: der Maßstab steht in einer Textdatei
+([`content/CLIP-PROMPT.md`](content/CLIP-PROMPT.md)), nicht im Code, und
+jedes Modul nennt in seinem Kopf, welchen Abschnitt daraus es umsetzt. Die
+Auswahl stützt sich auf Gemessenes – Chatgeschwindigkeit, Emote-Art,
+Sprachsignale –, nicht auf Vermutungen, und ein Hook, für den das Signal
+fehlt, wird durch ein Zitat ersetzt statt behauptet.
+
+Das Paket läuft auch ohne den Rest des Repos:
+`PYTHONPATH=src python3 -m clipwerk analyse …`
+
+Vollständige Anleitung: [`docs/05-CLIPWERK.md`](docs/05-CLIPWERK.md)
 
 ---
 

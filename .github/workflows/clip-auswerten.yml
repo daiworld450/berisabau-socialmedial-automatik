@@ -1,0 +1,162 @@
+name: Clip-Werk – Stream auswerten
+
+# Holt den Chat eines Twitch-VODs und macht daraus Clip-Vorschläge.
+#
+# Der Grund für diesen Workflow ist ein praktischer: die GitHub-Server haben
+# freien Netzzugang und kommen an Twitch heran. Wer den Stream auswerten
+# will, braucht damit weder ein Terminal noch einen eingerichteten Rechner -
+# ein Klick auf "Run workflow" hier auf der Weboberfläche genügt.
+#
+# Bewusst nur der Chat, keine Spracherkennung: Whisper über einen langen
+# Stream sprengt die Laufzeit eines Actions-Jobs. Der Chat findet dieselben
+# Momente (siehe docs/05-CLIPWERK.md), nur ohne Untertitel und mit gröberem
+# Zuschnitt. Wer den vollen Durchlauf will, nimmt clip-holen.command auf dem
+# eigenen Rechner.
+
+on:
+  workflow_dispatch:
+    inputs:
+      vod:
+        description: "Adresse des VODs, z. B. https://www.twitch.tv/videos/2862735566"
+        type: string
+        required: true
+      streamer:
+        description: "Name des Streamers (für Hashtags)"
+        type: string
+        default: "K1ANUSH"
+      spiel:
+        description: "Kategorie des Streams"
+        type: string
+        default: "Just Chatting"
+      schwelle:
+        description: "Mindestpunktzahl, leer = automatisch (58 ohne Transkript)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+# Zwei Läufe gleichzeitig würden sich beim Schreiben der Clip-Datenbank in
+# die Quere kommen.
+concurrency:
+  group: clip-auswerten
+  cancel-in-progress: false
+
+jobs:
+  auswerten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Chat-Werkzeug installieren
+        run: pip install chat-downloader
+
+      - name: Videonummer aus der Adresse lesen
+        id: vod
+        run: |
+          NUMMER=$(printf '%s' "${{ inputs.vod }}" \
+            | sed -n 's#.*/videos/\([0-9][0-9]*\).*#\1#p')
+          if [ -z "$NUMMER" ]; then
+            echo "::error::Keine Videonummer in der Adresse gefunden."
+            echo "Gebraucht wird eine Adresse mit /videos/ darin, also etwa"
+            echo "https://www.twitch.tv/videos/2862735566 - nicht die Kanalseite."
+            exit 1
+          fi
+          echo "nummer=$NUMMER" >> "$GITHUB_OUTPUT"
+          echo "Video $NUMMER"
+
+      - name: Chat laden
+        run: |
+          mkdir -p arbeit
+          chat_downloader "${{ inputs.vod }}" --output arbeit/chat.json
+          ls -lh arbeit/chat.json
+
+      - name: Auswerten
+        run: |
+          if [ -n "${{ inputs.schwelle }}" ]; then
+            SCHWELLE="--schwelle ${{ inputs.schwelle }}"
+          else
+            SCHWELLE=""
+          fi
+          # shellcheck disable=SC2086
+          python src/main.py clip analyse \
+            --chat arbeit/chat.json \
+            --stream-id "${{ steps.vod.outputs.nummer }}" \
+            --streamer "${{ inputs.streamer }}" \
+            --spiel "${{ inputs.spiel }}" \
+            --ziel "docs/clips/${{ steps.vod.outputs.nummer }}" \
+            --aufnehmen \
+            $SCHWELLE
+
+      - name: Veröffentlichungsplan anhängen
+        run: |
+          ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
+          if [ -s "$ORDNER/clips.json" ]; then
+            {
+              echo
+              echo "---"
+              echo
+              echo '## Veröffentlichungsplan'
+              echo
+              echo '```'
+              python src/main.py clip plan --clips "$ORDNER/clips.json" || true
+              echo '```'
+            } >> "$ORDNER/bericht.md"
+          fi
+
+      - name: Bericht ins Repo legen
+        run: |
+          ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
+          # Der rohe Chat bleibt draussen: er enthaelt tausende Nutzernamen
+          # und hat in einem oeffentlichen Repo nichts verloren. Er liegt
+          # unten als Artefakt, falls jemand ihn braucht.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$ORDNER" content/clip_verlauf.json
+          if git diff --staged --quiet; then
+            echo "Nichts Neues - der Stream wurde schon einmal ausgewertet."
+          else
+            git commit -m "Clip-Vorschlaege fuer Stream ${{ steps.vod.outputs.nummer }}"
+            git push
+          fi
+
+      - name: Bericht auch als Artefakt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clips-${{ steps.vod.outputs.nummer }}
+          path: |
+            docs/clips/${{ steps.vod.outputs.nummer }}/
+          retention-days: 30
+
+      - name: Rohen Chat als Artefakt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chat-${{ steps.vod.outputs.nummer }}
+          path: arbeit/chat.json
+          retention-days: 7
+
+      - name: Zusammenfassung
+        if: always()
+        run: |
+          ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
+          {
+            echo "# Clip-Werk: Stream ${{ steps.vod.outputs.nummer }}"
+            echo
+            if [ -s "$ORDNER/bericht.md" ]; then
+              echo "Der vollstaendige Bericht liegt im Repo unter"
+              echo "\`$ORDNER/bericht.md\` und unten als Download."
+              echo
+              sed -n '1,60p' "$ORDNER/bericht.md"
+            else
+              echo "Es wurde kein Bericht erzeugt - siehe Protokoll oben."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

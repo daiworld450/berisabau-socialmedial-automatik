@@ -1578,6 +1578,23 @@ def cmd_plan_json(args) -> int:
 
 
 # --------------------------------------------------------------------------- #
+# --------------------------------------------------------------------------- #
+# Clip-Werk (Twitch -> TikTok/Reels/Shorts)
+# --------------------------------------------------------------------------- #
+def cmd_clip(args) -> int:
+    """Reicht alles hinter `clip` an die eigene Befehlszeile des Pakets weiter.
+
+    Zwei Parser für dieselben Befehle wären zwei Stellen, an denen ein Schalter
+    fehlen kann. Deshalb hat das Clip-Werk genau einen - hier wird nur
+    durchgereicht.
+    """
+    from clipwerk.cli import main as clip_main
+    if not args.rest:
+        clip_main(["--help"])
+        return 0
+    return clip_main(args.rest)
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description="Berisa Bau – Instagram-Automatik")
     unter = p.add_subparsers(dest="befehl", required=True)
@@ -1729,6 +1746,12 @@ def main() -> int:
     fg = unter.add_parser("freigeben", help="Themen für die Automatik freigeben")
     fg.add_argument("ids", nargs="+", help="Themen-IDs, z. B. t-grossformat")
     fg.set_defaults(func=cmd_freigeben)
+
+    cl = unter.add_parser("clip",
+                          help="Clip-Werk: Twitch-Stream zu TikTok/Reels/Shorts")
+    cl.add_argument("rest", nargs=argparse.REMAINDER,
+                    help="Unterbefehl des Clip-Werks, z. B. `analyse --help`")
+    cl.set_defaults(func=cmd_clip)
 
     pr = unter.add_parser("protokoll", help="letzte Post-Versuche anzeigen")
     pr.add_argument("--anzahl", type=int, default=15)
