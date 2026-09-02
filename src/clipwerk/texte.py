@@ -121,28 +121,87 @@ def _kuerze(text: str, grenze: int) -> str:
 # --------------------------------------------------------------------------- #
 # Hook
 # --------------------------------------------------------------------------- #
-# (Bedingung, Hook). Die Bedingung prüft das gemessene Signal, nicht die
-# Kategorie allein - sonst stünde über jedem RAGE-Clip derselbe Satz.
-_HOOKS: list[tuple[str, float, str]] = [
-    ("chat_clipruf", 0.8, "Der Chat wollte genau das als Clip 💀"),
-    ("chat_lachen", 2.0, "Er hat sich nicht mehr eingekriegt 😂"),
-    ("chat_wut", 1.5, "Chat ist komplett eskaliert 💀"),
-    ("chat_streit", 1.5, "Der Chat war danach gespalten."),
-    ("chat_schock", 1.5, "Damit hat wirklich niemand gerechnet 💀"),
-    ("sprache_wut", 1.5, "Er wusste sofort, dass er einen Fehler gemacht hat."),
-    ("sprache_ueberraschung", 1.2, "Seine Reaktion sagt alles 😂"),
-    ("sprache_fail", 1.2, "Eine Sekunde später war alles vorbei 💀"),
-    ("sprache_meinung", 1.2, "Das hätte er besser nicht gesagt…"),
-    ("sprache_story", 1.0, "Warte bis zum Ende 😂"),
-    ("sprache_chatbezug", 1.0, "Er hätte den Chat nicht lesen sollen."),
+# (Bedingung, Schwelle, Fassungen). Die Bedingung prüft das gemessene
+# Signal, nicht die Kategorie allein - sonst stünde über jedem RAGE-Clip
+# derselbe Satz.
+#
+# Mehrere Fassungen je Signal, weil ein Stream nicht einen solchen Moment
+# hat, sondern zwanzig. Am echten Stream 2862735566 trug ein Signal allein
+# 18 von 30 Clips - mit einem einzigen Satz je Signal stand über fünf
+# davon wortgleich „Seine Reaktion sagt alles 😂". Fünf Beiträge mit
+# demselben Aufmacher lesen sich als Fließband, und genau das ist das
+# Gegenteil von dem, wofür jemand folgt.
+_HOOKS: list[tuple[str, float, list[str]]] = [
+    ("chat_clipruf", 0.8, [
+        "Der Chat wollte genau das als Clip 💀",
+        "Der Chat hat selbst nach dem Clip gerufen.",
+        "Das wollte der Chat sofort gespeichert haben 💀"]),
+    ("chat_lachen", 2.0, [
+        "Er hat sich nicht mehr eingekriegt 😂",
+        "Danach ging eine Minute lang nichts mehr 😂",
+        "Der Lacher kam aus dem Nichts 😂"]),
+    ("chat_wut", 1.5, [
+        "Chat ist komplett eskaliert 💀",
+        "Der Chat ist danach durchgedreht 💀",
+        "Zwei Sekunden später stand der Chat still 💀"]),
+    ("chat_streit", 1.5, [
+        "Der Chat war danach gespalten.",
+        "Halber Chat dafür, halber dagegen.",
+        "Darüber hat der Chat sich zerlegt."]),
+    ("chat_schock", 1.5, [
+        "Damit hat wirklich niemand gerechnet 💀",
+        "Der Chat war für einen Moment still 💀",
+        "Das kam für alle aus dem Nichts 💀"]),
+    ("sprache_wut", 1.5, [
+        "Er wusste sofort, dass er einen Fehler gemacht hat.",
+        "Da ist ihm der Kragen geplatzt.",
+        "Man hört genau, wann es kippt."]),
+    ("sprache_ueberraschung", 1.2, [
+        "Seine Reaktion sagt alles 😂",
+        "Er hat zweimal hinsehen müssen.",
+        "Damit hatte er nicht gerechnet.",
+        "Guck auf die Sekunde, in der es klickt.",
+        "Er braucht kurz, bis er es glaubt."]),
+    ("sprache_fail", 1.2, [
+        "Eine Sekunde später war alles vorbei 💀",
+        "Es ging genau so schief, wie es klingt 💀",
+        "Das hätte er sich sparen können 💀"]),
+    ("sprache_meinung", 1.2, [
+        "Das hätte er besser nicht gesagt…",
+        "Er sagt es, wie er es sieht.",
+        "Da legt er sich fest."]),
+    ("sprache_story", 1.0, [
+        "Warte bis zum Ende 😂",
+        "Die Geschichte geht anders aus, als du denkst.",
+        "Er erzählt es, als wäre es gestern gewesen."]),
+    ("sprache_chatbezug", 1.0, [
+        "Er hätte den Chat nicht lesen sollen.",
+        "Er antwortet dem Chat direkt.",
+        "Die Frage aus dem Chat hat gesessen."]),
 ]
 
 
-def hook(kandidat: Kandidat, note: Bewertung) -> str:
-    for reihe, schwelle, satz in _HOOKS:
-        if kandidat.anteile.get(reihe, 0.0) >= schwelle:
-            return satz
+def hook(kandidat: Kandidat, note: Bewertung,
+         benutzt: set[str] | None = None) -> str:
+    """Der Aufmacher über dem Video.
+
+    `benutzt` sammelt, was in diesem Lauf schon dranstand. Ist jede
+    Fassung eines Signals vergeben, wird nach der Startzeit gewählt - das
+    ist zwar eine Wiederholung, aber eine berechenbare: derselbe Stream
+    ergibt zweimal denselben Bericht.
+    """
+    for reihe, schwelle, fassungen in _HOOKS:
+        if kandidat.anteile.get(reihe, 0.0) < schwelle:
+            continue
+        frei = [s for s in fassungen if not benutzt or s not in benutzt]
+        satz = (frei[0] if frei
+                else fassungen[int(kandidat.start) % len(fassungen)])
+        if benutzt is not None:
+            benutzt.add(satz)
+        return satz
     # Kein Signal stark genug für eine Behauptung: dann zitieren wir.
+    # Ein Zitat kann nie falsch sein, und es wiederholt sich von selbst
+    # nicht - deshalb steht es hier nicht unter der Wiederholungssperre.
     zitat = kernzitat(kandidat, hoechstens=8)
     if zitat:
         return f"„{_kuerze(zitat, 52)}“"
@@ -179,9 +238,10 @@ _FRAGE_JE_KATEGORIE = {
 
 
 def baue(kandidat: Kandidat, note: Bewertung, streamer: str, spiel: str,
-         hashtag_saetze: dict, hashtag_anzahl: int = 7) -> Texte:
+         hashtag_saetze: dict, hashtag_anzahl: int = 7,
+         benutzte_hooks: set[str] | None = None) -> Texte:
     zitat = kernzitat(kandidat)
-    text_hook = hook(kandidat, note)
+    text_hook = hook(kandidat, note, benutzte_hooks)
 
     titel_kern = _kuerze(zitat, TIKTOK_TITEL_MAX - 2) if zitat else text_hook
     tiktok_titel = _kuerze(f"„{titel_kern}“" if zitat else titel_kern,

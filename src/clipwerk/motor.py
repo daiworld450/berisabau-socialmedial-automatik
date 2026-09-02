@@ -164,10 +164,13 @@ def analysiere(stream: Stream, *, schwelle: int = bew.SCHWELLE_VERWERFEN,
     bewertet = bewertet[:hoechstens]
     bewertet.sort(key=lambda p: p[1].start)
 
+    # Über alle Clips eines Streams hinweg gemerkt: kein Aufmacher soll
+    # zweimal dastehen, solange es noch eine ungenutzte Fassung gibt.
+    benutzte_hooks: set[str] = set()
     for nummer, (note, kandidat) in enumerate(bewertet, start=1):
         plan = schn.plane(kandidat, note, kurve, stream, layout, hat_facecam)
         texte = txt.baue(kandidat, note, stream.streamer, stream.spiel,
-                         hashtag_saetze)
+                         hashtag_saetze, benutzte_hooks=benutzte_hooks)
         zeilen = unt.zeilen(kandidat, lexikon)
         ergebnis.clips.append(Clip(
             nummer=nummer, kandidat=kandidat, note=note, plan=plan,

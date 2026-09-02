@@ -369,6 +369,28 @@ class Texte(unittest.TestCase):
         self.assertTrue(satz.startswith("„"),
                         f"unbelegte Behauptung als Hook: {satz}")
 
+    def test_hook_wiederholt_sich_nicht_im_selben_lauf(self):
+        """Ein Stream tragt zwanzig Momente desselben Signals. Steht ueber
+        allen derselbe Satz, liest sich der Kanal als Fliessband."""
+        note = bewertung.Bewertung(10, 10, 10, 5, 5, 5, "UNEXPECTED", 0.5)
+        benutzt: set[str] = set()
+        saetze = []
+        for i in range(4):
+            kandidat = kandidaten.Kandidat(
+                float(i * 100), float(i * 100 + 20), float(i * 100 + 10), 2.0,
+                {"sprache_ueberraschung": 2.0})
+            saetze.append(texte.hook(kandidat, note, benutzt))
+        self.assertEqual(len(set(saetze)), len(saetze),
+                         f"Hook doppelt im selben Lauf: {saetze}")
+
+        # Sind alle Fassungen vergeben, wiederholt sich etwas - aber
+        # berechenbar: derselbe Stream ergibt zweimal denselben Bericht.
+        kandidat = kandidaten.Kandidat(500.0, 520.0, 510.0, 2.0,
+                                       {"sprache_ueberraschung": 2.0})
+        erneut = set(benutzt)
+        self.assertEqual(texte.hook(kandidat, note, set(benutzt)),
+                         texte.hook(kandidat, note, erneut))
+
     def test_crossposting_variiert_den_hook(self):
         t = texte.Texte("Chat ist eskaliert 💀", "a", "b", "c", "d")
         self.assertNotEqual(texte.variante(t, "tiktok"),
