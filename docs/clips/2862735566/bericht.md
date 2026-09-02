@@ -612,7 +612,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und er baut Spannung auf bei 53:5
 ⸻
 HOOK IM VIDEO:
 
-Seine Reaktion sagt alles 😂
+Er hat zweimal hinsehen müssen.
 ⸻
 SCHNITT:
 
@@ -661,7 +661,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerl
 ⸻
 HOOK IM VIDEO:
 
-Seine Reaktion sagt alles 😂
+Damit hatte er nicht gerechnet.
 ⸻
 SCHNITT:
 
@@ -712,7 +712,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerl
 ⸻
 HOOK IM VIDEO:
 
-Seine Reaktion sagt alles 😂
+Guck auf die Sekunde, in der es klickt.
 ⸻
 SCHNITT:
 
@@ -1055,7 +1055,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und er bezieht klar Stellung bei 
 ⸻
 HOOK IM VIDEO:
 
-Seine Reaktion sagt alles 😂
+Er braucht kurz, bis er es glaubt.
 ⸻
 SCHNITT:
 
@@ -1396,7 +1396,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerl
 ⸻
 HOOK IM VIDEO:
 
-Seine Reaktion sagt alles 😂
+Damit hatte er nicht gerechnet.
 ⸻
 SCHNITT:
 
@@ -1445,7 +1445,7 @@ Warum dieser Clip: Er rastet aus und er ist sichtbar überrascht bei 2:23:13. Di
 ⸻
 HOOK IM VIDEO:
 
-Er wusste sofort, dass er einen Fehler gemacht hat.
+Da ist ihm der Kragen geplatzt.
 ⸻
 SCHNITT:
 
@@ -1532,40 +1532,40 @@ Momente, die aufgefallen sind, aber unter der Schwelle blieben. Bewusst aufgefü
 ```
 2026-09-02
   17:00  tiktok     2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles 😂
-  20:30  tiktok     2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles 😂
+  20:30  tiktok     2862735566-003434   77  UNEXPECTED     Damit hatte er nicht gerechnet.
 
 2026-09-03
-  17:00  tiktok     2862735566-003215   76  UNEXPECTED     Seine Reaktion sagt alles 😂
+  17:00  tiktok     2862735566-003215   76  UNEXPECTED     Er hat zweimal hinsehen müssen.
   19:00  instagram  2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles 😂
   20:30  tiktok     2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
 
 2026-09-04
-  17:00  tiktok     2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles 😂
+  17:00  tiktok     2862735566-005467   75  UNEXPECTED     Er braucht kurz, bis er es glaubt.
   18:00  youtube    2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles
-  19:00  instagram  2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles 😂
+  19:00  instagram  2862735566-003434   77  UNEXPECTED     Damit hatte er nicht gerechnet.
   20:30  tiktok     2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
 
 2026-09-05
   17:00  tiktok     2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
-  18:00  youtube    2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles
-  19:00  instagram  2862735566-003215   76  UNEXPECTED     Seine Reaktion sagt alles 😂
+  18:00  youtube    2862735566-003434   77  UNEXPECTED     Damit hatte er nicht gerechnet.
+  19:00  instagram  2862735566-003215   76  UNEXPECTED     Er hat zweimal hinsehen müssen.
   20:30  tiktok     2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
 
 2026-09-06
-  17:00  tiktok     2862735566-008574   72  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
-  18:00  youtube    2862735566-003215   76  UNEXPECTED     Seine Reaktion sagt alles
+  17:00  tiktok     2862735566-008574   72  RAGE           Da ist ihm der Kragen geplatzt.
+  18:00  youtube    2862735566-003215   76  UNEXPECTED     Er hat zweimal hinsehen müssen.
   19:00  instagram  2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
   20:30  tiktok     2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
 
 2026-09-07
-  17:00  tiktok     2862735566-003691   71  UNEXPECTED     Seine Reaktion sagt alles 😂
+  17:00  tiktok     2862735566-003691   71  UNEXPECTED     Guck auf die Sekunde, in der es klickt.
   18:00  youtube    2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
-  19:00  instagram  2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles 😂
+  19:00  instagram  2862735566-005467   75  UNEXPECTED     Er braucht kurz, bis er es glaubt.
   20:30  tiktok     2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
 
 2026-09-08
-  17:00  tiktok     2862735566-008423   71  UNEXPECTED     Seine Reaktion sagt alles 😂
-  18:00  youtube    2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles
+  17:00  tiktok     2862735566-008423   71  UNEXPECTED     Damit hatte er nicht gerechnet.
+  18:00  youtube    2862735566-005467   75  UNEXPECTED     Er braucht kurz, bis er es glaubt.
   19:00  instagram  2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
   20:30  tiktok     2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
 
@@ -1584,36 +1584,36 @@ Momente, die aufgefallen sind, aber unter der Schwelle blieben. Bewusst aufgefü
 2026-09-11
   17:00  tiktok     2862735566-001710   68  UNEXPECTED     „Ich muss erstmal das richtige Fenster wieder…“
   18:00  youtube    2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
-  19:00  instagram  2862735566-008574   72  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
+  19:00  instagram  2862735566-008574   72  RAGE           Da ist ihm der Kragen geplatzt.
   20:30  tiktok     2862735566-001040   67  UNEXPECTED     „mehr so krass belasten“
 
 2026-09-12
   17:00  tiktok     2862735566-001208   67  STORY          „diese Zeit gehabt“
-  18:00  youtube    2862735566-008574   72  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
+  18:00  youtube    2862735566-008574   72  RAGE           Da ist ihm der Kragen geplatzt.
   19:00  instagram  2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
   20:30  tiktok     2862735566-005496   67  UNEXPECTED     „Vielleicht war das so lange her oder so?“
 
 2026-09-13
   17:00  tiktok     2862735566-005975   67  UNEXPECTED     „der weiß mehr als wir alle“
   18:00  youtube    2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
-  19:00  instagram  2862735566-003691   71  UNEXPECTED     Seine Reaktion sagt alles 😂
+  19:00  instagram  2862735566-003691   71  UNEXPECTED     Guck auf die Sekunde, in der es klickt.
   20:30  tiktok     2862735566-007345   67  RAGE           „wird dann öffentlich gespreadert“
 
 2026-09-14
   17:00  tiktok     2862735566-008004   67  UNEXPECTED     „Guck mal, egal ob man mich mag oder“
-  18:00  youtube    2862735566-003691   71  UNEXPECTED     Seine Reaktion sagt alles
+  18:00  youtube    2862735566-003691   71  UNEXPECTED     Guck auf die Sekunde, in der es klickt.
   19:00  instagram  2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
   20:30  tiktok     2862735566-004338   66  STORY          „Das wäre heftig“
 
 2026-09-15
   17:00  tiktok     2862735566-004986   66  RAGE           „Das muss doch irgendwas sein, Alter“
   18:00  youtube    2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
-  19:00  instagram  2862735566-008423   71  UNEXPECTED     Seine Reaktion sagt alles 😂
+  19:00  instagram  2862735566-008423   71  UNEXPECTED     Damit hatte er nicht gerechnet.
   20:30  tiktok     2862735566-006015   66  STORY          „Interessant auf jeden Fall, weil ich habe den“
 
 2026-09-16
   17:00  tiktok     2862735566-006416   66  RAGE           „etwas sich anschauen darf“
-  18:00  youtube    2862735566-008423   71  UNEXPECTED     Seine Reaktion sagt alles
+  18:00  youtube    2862735566-008423   71  UNEXPECTED     Damit hatte er nicht gerechnet.
   19:00  instagram  2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
   20:30  tiktok     2862735566-000631   65  UNEXPECTED     „Hier ist mein Fuß, wie ihr sehen könnt“
 
