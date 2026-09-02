@@ -1,0 +1,35 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.08,Clip,,0,0,0,,noch zumachen wollen hier
+Dialogue: 0,0:00:01.08,0:00:01.92,Clip,,0,0,0,,habt ihr den hier habt ihr
+Dialogue: 0,0:00:01.92,0:00:03.54,Clip,,0,0,0,,einschuldigen lasst uns in
+Dialogue: 0,0:00:03.54,0:00:05.24,Clip,,0,0,0,,roh damit oder so warum
+Dialogue: 0,0:00:05.24,0:00:06.38,Clip,,0,0,0,,rollt man generell diesen
+Dialogue: 0,0:00:06.38,0:00:07.44,Clip,,0,0,0,,fall jetzt noch mal aus
+Dialogue: 0,0:00:07.44,0:00:09.66,Clip,,0,0,0,,weiß ich nicht eine
+Dialogue: 0,0:00:09.66,0:00:10.90,Clip,,0,0,0,,sehr merkwürdige
+Dialogue: 0,0:00:10.90,0:00:12.72,Clip,,0,0,0,,angelegenheit auch wie
+Dialogue: 0,0:00:12.72,0:00:13.64,Clip,,0,0,0,,damals schon als das
+Dialogue: 0,0:00:13.64,0:00:14.54,Clip,,0,0,0,,passiert ist wurde auch
+Dialogue: 0,0:00:14.54,0:00:15.88,Clip,,0,0,0,,ganz ganz ganz ganz stimmt
+Dialogue: 0,0:00:15.88,0:00:17.88,Clip,,0,0,0,,barhaft ermittelt dann
+Dialogue: 0,0:00:17.88,0:00:18.50,Clip,,0,0,0,,haben die auf einmal
+Dialogue: 0,0:00:18.50,0:00:19.70,Clip,,0,0,0,,gesagt also die polizisten
+Dialogue: 0,0:00:19.70,0:00:20.44,Clip,,0,0,0,,haben gesagt wir sind dann
+Dialogue: 0,0:00:20.44,0:00:21.36,Clip,,0,0,0,,nicht mehr zuständig dann
+Dialogue: 0,0:00:21.36,0:00:22.08,Clip,,0,0,0,,haben die anderen gesagt
+Dialogue: 0,0:00:22.08,0:00:23.68,Clip,,0,0,0,,ja bis hin reicht unsere
+Dialogue: 0,0:00:23.68,0:00:26.00,Clip,,0,0,0,,zuständigkeit und
+Dialogue: 0,0:00:26.00,0:00:26.84,Clip,,0,0,0,,so weiter ist schon

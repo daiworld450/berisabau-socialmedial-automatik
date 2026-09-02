@@ -1,0 +1,35 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.10,Clip,,0,0,0,,du hast ein knoppel
+Dialogue: 0,0:00:01.10,0:00:01.94,Clip,,0,0,0,,schaden du kannst auch
+Dialogue: 0,0:00:01.94,0:00:02.90,Clip,,0,0,0,,operieren wie du willst
+Dialogue: 0,0:00:02.90,0:00:04.24,Clip,,0,0,0,,der knoppel ist halt
+Dialogue: 0,0:00:04.24,0:00:06.20,Clip,,0,0,0,,beschädigt und in deinem
+Dialogue: 0,0:00:06.20,0:00:07.08,Clip,,0,0,0,,alter möchten wir dir
+Dialogue: 0,0:00:07.08,0:00:08.00,Clip,,0,0,0,,nicht irgendwie
+Dialogue: 0,0:00:08.00,0:00:10.16,Clip,,0,0,0,,künstlichen knoppel oder
+Dialogue: 0,0:00:10.16,0:00:11.16,Clip,,0,0,0,,gelenk einbauen ist ja
+Dialogue: 0,0:00:11.16,0:00:13.06,Clip,,0,0,0,,quatsch alter und
+Dialogue: 0,0:00:13.06,0:00:15.34,Clip,,0,0,0,,ja keine ahnung er
+Dialogue: 0,0:00:15.34,0:00:16.54,Clip,,0,0,0,,sagte das ist es ist
+Dialogue: 0,0:00:16.54,0:00:18.44,Clip,,0,0,0,,aktuell so dass man da
+Dialogue: 0,0:00:18.44,0:00:20.42,Clip,,0,0,0,,nicht viel machen kann und
+Dialogue: 0,0:00:20.42,0:00:21.26,Clip,,0,0,0,,ich soll den einfach nicht
+Dialogue: 0,0:00:21.26,0:00:23.38,Clip,,0,0,0,,mehr so {\c&H0022DDFF&}krass{\c&H00FFFFFF&} belasten er
+Dialogue: 0,0:00:23.38,0:00:24.56,Clip,,0,0,0,,sagte gehen fitness studio
+Dialogue: 0,0:00:24.56,0:00:26.92,Clip,,0,0,0,,leicht joggen geht
+Dialogue: 0,0:00:26.92,0:00:27.88,Clip,,0,0,0,,aber dieses permanent
+Dialogue: 0,0:00:27.88,0:00:29.38,Clip,,0,0,0,,anderen abbremsen hoch
+Dialogue: 0,0:00:29.38,0:00:30.10,Clip,,0,0,0,,springen und so

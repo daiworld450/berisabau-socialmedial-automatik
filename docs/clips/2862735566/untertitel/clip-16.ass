@@ -1,0 +1,36 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.68,Clip,,0,0,0,,argumenten dagegen als
+Dialogue: 0,0:00:01.68,0:00:03.34,Clip,,0,0,0,,logischen zwang kann man
+Dialogue: 0,0:00:03.34,0:00:04.24,Clip,,0,0,0,,es nicht nennen ich meine
+Dialogue: 0,0:00:04.24,0:00:04.90,Clip,,0,0,0,,als logische
+Dialogue: 0,0:00:04.90,0:00:05.82,Clip,,0,0,0,,schlussfolgerung
+Dialogue: 0,0:00:09.53,0:00:11.55,Clip,,0,0,0,,eine schlüssige erklärung
+Dialogue: 0,0:00:11.55,0:00:13.51,Clip,,0,0,0,,kann es nur in bezug auf
+Dialogue: 0,0:00:13.51,0:00:15.77,Clip,,0,0,0,,bestimmte voraussetzung
+Dialogue: 0,0:00:15.77,0:00:17.21,Clip,,0,0,0,,wenn du bestimmte
+Dialogue: 0,0:00:17.21,0:00:18.29,Clip,,0,0,0,,voraussetzungen
+Dialogue: 0,0:00:19.60,0:00:21.76,Clip,,0,0,0,,annimmt dann ist es
+Dialogue: 0,0:00:21.76,0:00:22.64,Clip,,0,0,0,,als logische
+Dialogue: 0,0:00:22.64,0:00:23.94,Clip,,0,0,0,,schlussfolgerung möglich
+Dialogue: 0,0:00:23.94,0:00:25.72,Clip,,0,0,0,,aber es ist eben keine
+Dialogue: 0,0:00:25.72,0:00:27.22,Clip,,0,0,0,,zwingende ok warte
+Dialogue: 0,0:00:27.22,0:00:29.06,Clip,,0,0,0,,warte mal warte mal ich
+Dialogue: 0,0:00:29.06,0:00:31.38,Clip,,0,0,0,,frage mal so was ist nahe
+Dialogue: 0,0:00:31.38,0:00:32.92,Clip,,0,0,0,,liegen da dass es einen
+Dialogue: 0,0:00:32.92,0:00:34.28,Clip,,0,0,0,,schöpfer gibt oder dass es
+Dialogue: 0,0:00:34.28,0:00:35.72,Clip,,0,0,0,,keinen gibt das
+Dialogue: 0,0:00:39.47,0:00:40.97,Clip,,0,0,0,,kann ich nicht beantworten
+Dialogue: 0,0:00:40.97,0:00:41.61,Clip,,0,0,0,,weil es eine

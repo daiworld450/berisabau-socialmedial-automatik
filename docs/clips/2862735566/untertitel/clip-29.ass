@@ -1,0 +1,38 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.28,Clip,,0,0,0,,wie da der esoterische
+Dialogue: 0,0:00:01.28,0:00:02.04,Clip,,0,0,0,,kianosch nein
+Dialogue: 0,0:00:02.62,0:00:03.48,Clip,,0,0,0,,unterbewusstsein ist etwas
+Dialogue: 0,0:00:03.48,0:00:04.38,Clip,,0,0,0,,was {\c&H0022DDFF&}jeder{\c&H00FFFFFF&} von uns hat
+Dialogue: 0,0:00:04.38,0:00:05.14,Clip,,0,0,0,,dagegen kannst du dich
+Dialogue: 0,0:00:05.14,0:00:06.58,Clip,,0,0,0,,nicht wehren dein
+Dialogue: 0,0:00:06.58,0:00:07.66,Clip,,0,0,0,,unterbewusstsein saugt es
+Dialogue: 0,0:00:07.66,0:00:08.82,Clip,,0,0,0,,auf wie ein schwamm das
+Dialogue: 0,0:00:08.82,0:00:09.90,Clip,,0,0,0,,bedeutet wenn du drei
+Dialogue: 0,0:00:09.90,0:00:10.88,Clip,,0,0,0,,stunden im tiktok
+Dialogue: 0,0:00:10.88,0:00:12.12,Clip,,0,0,0,,algorithmus gefangen bist
+Dialogue: 0,0:00:12.12,0:00:14.50,Clip,,0,0,0,,und den ein idiot nach
+Dialogue: 0,0:00:14.50,0:00:15.62,Clip,,0,0,0,,den anderen zuhörst wie
+Dialogue: 0,0:00:15.62,0:00:16.68,Clip,,0,0,0,,viel scheiße erlaberd
+Dialogue: 0,0:00:16.68,0:00:17.52,Clip,,0,0,0,,wovon du am ende {\c&H0022DDFF&}nichts{\c&H00FFFFFF&}
+Dialogue: 0,0:00:17.52,0:00:18.76,Clip,,0,0,0,,hast {\c&H0022DDFF&}wirklich{\c&H00FFFFFF&} gar {\c&H0022DDFF&}nichts{\c&H00FFFFFF&}
+Dialogue: 0,0:00:18.76,0:00:19.68,Clip,,0,0,0,,du hast keinen mehr wert
+Dialogue: 0,0:00:19.68,0:00:20.86,Clip,,0,0,0,,davon du bist wieder
+Dialogue: 0,0:00:20.86,0:00:21.82,Clip,,0,0,0,,schlauer geworden du bist
+Dialogue: 0,0:00:21.82,0:00:22.94,Clip,,0,0,0,,dümmer geworden du hast
+Dialogue: 0,0:00:22.94,0:00:23.80,Clip,,0,0,0,,nicht mehr {\c&H0022DDFF&}geld{\c&H00FFFFFF&} verdient
+Dialogue: 0,0:00:23.80,0:00:24.78,Clip,,0,0,0,,sondern du hast quasi {\c&H0022DDFF&}geld{\c&H00FFFFFF&}
+Dialogue: 0,0:00:24.78,0:00:25.50,Clip,,0,0,0,,{\c&H0022DDFF&}verloren{\c&H00FFFFFF&} weil du deine
+Dialogue: 0,0:00:25.50,0:00:27.90,Clip,,0,0,0,,zeit dafür vergeudet hast das bleibt

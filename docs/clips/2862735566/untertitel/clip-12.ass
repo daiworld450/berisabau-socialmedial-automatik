@@ -1,0 +1,36 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:02.06,Clip,,0,0,0,,ergebnisses eine muster
+Dialogue: 0,0:00:02.06,0:00:04.34,Clip,,0,0,0,,folgt 3 6 9
+Dialogue: 0,0:00:04.34,0:00:06.22,Clip,,0,0,0,,3 6 9
+Dialogue: 0,0:00:06.22,0:00:07.80,Clip,,0,0,0,,und so weiter und {\c&H0022DDFF&}sofort{\c&H00FFFFFF&}
+Dialogue: 0,0:00:07.80,0:00:08.88,Clip,,0,0,0,,3
+Dialogue: 0,0:00:10.16,0:00:12.52,Clip,,0,0,0,,mal 1 gleich 3 3 mal 2
+Dialogue: 0,0:00:12.52,0:00:14.82,Clip,,0,0,0,,gleich 6 3 mal 3 gleich 9
+Dialogue: 0,0:00:14.82,0:00:17.22,Clip,,0,0,0,,3 6 9
+Dialogue: 0,0:00:17.22,0:00:19.50,Clip,,0,0,0,,3 mal 4
+Dialogue: 0,0:00:19.50,0:00:21.52,Clip,,0,0,0,,gleich 12 1 plus
+Dialogue: 0,0:00:21.52,0:00:23.26,Clip,,0,0,0,,2 gleich 3
+Dialogue: 0,0:00:23.26,0:00:25.38,Clip,,0,0,0,,3 mal 5 gleich 15
+Dialogue: 0,0:00:25.38,0:00:27.58,Clip,,0,0,0,,1 plus 5 gleich 6
+Dialogue: 0,0:00:27.58,0:00:29.88,Clip,,0,0,0,,3 mal 6 gleich 18
+Dialogue: 0,0:00:29.88,0:00:32.18,Clip,,0,0,0,,1 plus 8 gleich
+Dialogue: 0,0:00:32.18,0:00:34.20,Clip,,0,0,0,,9 ok
+Dialogue: 0,0:00:34.20,0:00:35.28,Clip,,0,0,0,,ok
+Dialogue: 0,0:00:38.00,0:00:40.30,Clip,,0,0,0,,das ist {\c&H0022DDFF&}krass{\c&H00FFFFFF&} was da kommt
+Dialogue: 0,0:00:40.30,0:00:41.66,Clip,,0,0,0,,{\c&H0022DDFF&}immer{\c&H00FFFFFF&} 3 6 9 raus
+Dialogue: 0,0:00:41.66,0:00:42.72,Clip,,0,0,0,,also
+Dialogue: 0,0:00:44.32,0:00:46.58,Clip,,0,0,0,,3
+Dialogue: 0,0:00:46.58,0:00:47.76,Clip,,0,0,0,,mal 7 ist 21

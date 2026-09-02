@@ -1,0 +1,27 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.48,Clip,,0,0,0,,nam also das ist jetzt
+Dialogue: 0,0:00:01.48,0:00:02.56,Clip,,0,0,0,,hier keine verarsche oder
+Dialogue: 0,0:00:02.56,0:00:03.86,Clip,,0,0,0,,so das ist {\c&H0022DDFF&}wirklich{\c&H00FFFFFF&} ein
+Dialogue: 0,0:00:03.86,0:00:06.00,Clip,,0,0,0,,mrt bild von mir und wie
+Dialogue: 0,0:00:06.00,0:00:07.32,Clip,,0,0,0,,ihr sehen könnt ich gehe
+Dialogue: 0,0:00:07.32,0:00:08.36,Clip,,0,0,0,,mal direkt mit euch durch
+Dialogue: 0,0:00:08.36,0:00:09.46,Clip,,0,0,0,,warte mal gehe ich von
+Dialogue: 0,0:00:09.46,0:00:11.04,Clip,,0,0,0,,oben ja von hier können
+Dialogue: 0,0:00:11.04,0:00:12.82,Clip,,0,0,0,,wir mal beginnen es
+Dialogue: 0,0:00:16.59,0:00:18.35,Clip,,0,0,0,,ging nämlich um mein c
+Dialogue: 0,0:00:18.35,0:00:20.75,Clip,,0,0,0,,um mein dicken onkel
+Dialogue: 0,0:00:20.75,0:00:21.20,Clip,,0,0,0,,hier
+Dialogue: 0,0:00:21.03,0:00:32.56,Clip,,0,0,0,,weil wir

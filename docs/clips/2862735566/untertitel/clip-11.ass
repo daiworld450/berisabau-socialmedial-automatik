@@ -1,0 +1,34 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.18,Clip,,0,0,0,,kommt mit uns mit sagt
+Dialogue: 0,0:00:01.18,0:00:02.20,Clip,,0,0,0,,euren freunden Bescheid
+Dialogue: 0,0:00:02.20,0:00:03.42,Clip,,0,0,0,,holt sie raus aus diesen
+Dialogue: 0,0:00:03.42,0:00:05.14,Clip,,0,0,0,,lächerlichen streams die
+Dialogue: 0,0:00:05.14,0:00:06.38,Clip,,0,0,0,,die im leben nicht weiter
+Dialogue: 0,0:00:06.38,0:00:07.84,Clip,,0,0,0,,bringen lasst uns lieber
+Dialogue: 0,0:00:07.84,0:00:09.20,Clip,,0,0,0,,gemeinsam misrerschieren
+Dialogue: 0,0:00:09.20,0:00:11.12,Clip,,0,0,0,,und auf die dinge schauen
+Dialogue: 0,0:00:11.12,0:00:13.12,Clip,,0,0,0,,und dann kann 1996 ich
+Dialogue: 0,0:00:13.12,0:00:15.24,Clip,,0,0,0,,danke mein bester also
+Dialogue: 0,0:00:15.24,0:00:17.40,Clip,,0,0,0,,eine der themen warte mal
+Dialogue: 0,0:00:17.40,0:00:18.92,Clip,,0,0,0,,dominik hier auch erst mal
+Dialogue: 0,0:00:18.92,0:00:19.92,Clip,,0,0,0,,danke für den prime mein
+Dialogue: 0,0:00:19.92,0:00:20.92,Clip,,0,0,0,,bester danke schön danke
+Dialogue: 0,0:00:20.92,0:00:22.52,Clip,,0,0,0,,schön vielen vielen lieben
+Dialogue: 0,0:00:22.52,0:00:24.44,Clip,,0,0,0,,dank von ganzen
+Dialogue: 0,0:00:24.44,0:00:26.32,Clip,,0,0,0,,herzen auf {\c&H0022DDFF&}alles{\c&H00FFFFFF&} gut bei
+Dialogue: 0,0:00:26.32,0:00:26.77,Clip,,0,0,0,,dir
+Dialogue: 0,0:00:28.62,0:00:30.12,Clip,,0,0,0,,thank you very much
+Dialogue: 0,0:00:32.61,0:00:35.28,Clip,,0,0,0,,also eine der themen die

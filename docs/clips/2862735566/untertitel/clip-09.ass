@@ -1,0 +1,39 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.30,Clip,,0,0,0,,wenn ich jetzt hier kia
+Dialogue: 0,0:00:01.30,0:00:03.12,Clip,,0,0,0,,kummer wenn ich kian
+Dialogue: 0,0:00:03.12,0:00:05.26,Clip,,0,0,0,,eingebe kommt kianos vor
+Dialogue: 0,0:00:05.26,0:00:06.92,Clip,,0,0,0,,kianos das
+Dialogue: 0,0:00:06.92,0:00:08.64,Clip,,0,0,0,,ist natürlich mein ego ich
+Dialogue: 0,0:00:08.64,0:00:09.88,Clip,,0,0,0,,mach nur spaß kianos ist
+Dialogue: 0,0:00:09.88,0:00:11.16,Clip,,0,0,0,,natürlich präsent oder was
+Dialogue: 0,0:00:11.16,0:00:12.50,Clip,,0,0,0,,wir zu machen bitcoin
+Dialogue: 0,0:00:12.50,0:00:14.10,Clip,,0,0,0,,präsent so
+Dialogue: 0,0:00:14.10,0:00:15.74,Clip,,0,0,0,,leute was ist hier
+Dialogue: 0,0:00:15.74,0:00:16.78,Clip,,0,0,0,,passiert also
+Dialogue: 0,0:00:16.78,0:00:19.08,Clip,,0,0,0,,wo haben wir das denn
+Dialogue: 0,0:00:19.08,0:00:21.22,Clip,,0,0,0,,alter was ist mit
+Dialogue: 0,0:00:21.22,0:00:22.40,Clip,,0,0,0,,dieser reaction hier
+Dialogue: 0,0:00:22.40,0:00:23.18,Clip,,0,0,0,,passiert ladies and
+Dialogue: 0,0:00:23.18,0:00:23.74,Clip,,0,0,0,,gentlemen können wir bitte
+Dialogue: 0,0:00:23.74,0:00:24.32,Clip,,0,0,0,,darüber reden
+Dialogue: 0,0:00:25.36,0:00:27.36,Clip,,0,0,0,,was zur hölle ja aber im
+Dialogue: 0,0:00:27.36,0:00:28.30,Clip,,0,0,0,,wahrsten sinn des wort ist
+Dialogue: 0,0:00:28.30,0:00:29.16,Clip,,0,0,0,,was zur hölle passiert
+Dialogue: 0,0:00:29.16,0:00:31.16,Clip,,0,0,0,,hier dieser tag dient
+Dialogue: 0,0:00:31.16,0:00:31.94,Clip,,0,0,0,,nicht dazu die welt
+Dialogue: 0,0:00:31.94,0:00:33.96,Clip,,0,0,0,,umzugestattet als ihr
+Dialogue: 0,0:00:33.96,0:00:34.78,Clip,,0,0,0,,gesagt habt bruder guckt
+Dialogue: 0,0:00:34.78,0:00:35.23,Clip,,0,0,0,,ihr das mal

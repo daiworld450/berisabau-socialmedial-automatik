@@ -1,0 +1,59 @@
+1
+00:00:00,000 --> 00:00:00,450
+richtig
+
+2
+00:00:00,400 --> 00:00:02,420
+ja
+
+3
+00:00:02,420 --> 00:00:04,540
+ja aber irgendwas
+
+4
+00:00:04,540 --> 00:00:06,040
+ist ja da das
+
+5
+00:00:06,040 --> 00:00:07,760
+ist ja nicht zufällig so
+
+6
+00:00:07,760 --> 00:00:09,900
+naja also
+
+7
+00:00:09,900 --> 00:00:11,460
+diese zahlen existieren
+
+8
+00:00:11,460 --> 00:00:12,740
+natürlich gibt es warte
+
+9
+00:00:12,740 --> 00:00:13,880
+mal warte mal warte mal
+
+10
+00:00:13,880 --> 00:00:15,320
+gibt es in der mathematik
+
+11
+00:00:15,320 --> 00:00:16,780
+zufälle gute
+
+12
+00:00:19,310 --> 00:00:20,630
+frage lass mich mal
+
+13
+00:00:20,630 --> 00:00:21,570
+schauen in der rein
+
+14
+00:00:21,570 --> 00:00:22,890
+mathematik gibt es streng
+
+15
+00:00:22,890 --> 00:00:25,040
+genommen keine zufälle ok ok

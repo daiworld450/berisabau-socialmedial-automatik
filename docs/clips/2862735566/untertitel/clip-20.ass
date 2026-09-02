@@ -1,0 +1,30 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.80,Clip,,0,0,0,,das heißt der geht
+Dialogue: 0,0:00:01.80,0:00:03.32,Clip,,0,0,0,,lebenslang rein oder so ne
+Dialogue: 0,0:00:03.32,0:00:05.16,Clip,,0,0,0,,vielleicht war das so
+Dialogue: 0,0:00:05.16,0:00:06.22,Clip,,0,0,0,,lange herst oder so
+Dialogue: 0,0:00:06.94,0:00:08.30,Clip,,0,0,0,,die jury hat nicht mal
+Dialogue: 0,0:00:08.30,0:00:09.98,Clip,,0,0,0,,drei stunden gebraucht um
+Dialogue: 0,0:00:09.98,0:00:11.14,Clip,,0,0,0,,zu diesen urteil zu kommen
+Dialogue: 0,0:00:11.14,0:00:12.54,Clip,,0,0,0,,nun mal so als vergleich
+Dialogue: 0,0:00:12.54,0:00:14.28,Clip,,0,0,0,,aber ey warte mal ich
+Dialogue: 0,0:00:14.28,0:00:15.08,Clip,,0,0,0,,kriege hier paar sachen
+Dialogue: 0,0:00:15.08,0:00:17.06,Clip,,0,0,0,,nicht auf die reihe der
+Dialogue: 0,0:00:17.06,0:00:19.40,Clip,,0,0,0,,ist doch seit 2010 in
+Dialogue: 0,0:00:19.40,0:00:20.76,Clip,,0,0,0,,irgendwelchen podcasts und
+Dialogue: 0,0:00:20.76,0:00:22.62,Clip,,0,0,0,,interviews und prallt
+Dialogue: 0,0:00:22.62,0:00:24.40,Clip,,0,0,0,,damit rum dass er dabei
+Dialogue: 0,0:00:24.40,0:00:25.04,Clip,,0,0,0,,war und sein

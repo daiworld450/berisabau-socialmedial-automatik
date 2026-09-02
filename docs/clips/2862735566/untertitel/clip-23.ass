@@ -1,0 +1,36 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:00.86,Clip,,0,0,0,,nach europa brachten
+Dialogue: 0,0:00:00.86,0:00:02.76,Clip,,0,0,0,,nannten sich von nun an es
+Dialogue: 0,0:00:02.76,0:00:03.80,Clip,,0,0,0,,waren auch schon aus dem
+Dialogue: 0,0:00:03.80,0:00:04.90,Clip,,0,0,0,,film aber die temple
+Dialogue: 0,0:00:04.90,0:00:07.28,Clip,,0,0,0,,ritter gab es {\c&H0022DDFF&}wirklich{\c&H00FFFFFF&} so
+Dialogue: 0,0:00:07.28,0:00:08.54,Clip,,0,0,0,,viel dazu durch ein jahr
+Dialogue: 0,0:00:08.54,0:00:09.10,Clip,,0,0,0,,hundert hindurch
+Dialogue: 0,0:00:09.10,0:00:10.00,Clip,,0,0,0,,schmuggelten sie ihn in
+Dialogue: 0,0:00:10.00,0:00:10.94,Clip,,0,0,0,,neuer welt und gründeten
+Dialogue: 0,0:00:10.94,0:00:12.18,Clip,,0,0,0,,einen neuen bund die
+Dialogue: 0,0:00:12.18,0:00:13.58,Clip,,0,0,0,,freimutter zu ehren der
+Dialogue: 0,0:00:13.58,0:00:14.42,Clip,,0,0,0,,baumeister der großen
+Dialogue: 0,0:00:14.42,0:00:14.96,Clip,,0,0,0,,temmel
+Dialogue: 0,0:00:15.78,0:00:17.64,Clip,,0,0,0,,guck mal hier die
+Dialogue: 0,0:00:17.64,0:00:18.52,Clip,,0,0,0,,freimutter unter den
+Dialogue: 0,0:00:18.52,0:00:20.10,Clip,,0,0,0,,gründervätern haben uns
+Dialogue: 0,0:00:20.10,0:00:20.92,Clip,,0,0,0,,hinweise wie diese
+Dialogue: 0,0:00:20.92,0:00:22.08,Clip,,0,0,0,,hinterlassen die
+Dialogue: 0,0:00:22.08,0:00:23.26,Clip,,0,0,0,,unfallende der pyramide
+Dialogue: 0,0:00:23.26,0:00:24.72,Clip,,0,0,0,,das {\c&H0022DDFF&}alles{\c&H00FFFFFF&} sehen der auge
+Dialogue: 0,0:00:24.72,0:00:26.56,Clip,,0,0,0,,symbol was ist das bitte
+Dialogue: 0,0:00:26.56,0:00:27.06,Clip,,0,0,0,,für ein film

@@ -1,0 +1,32 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.40,Clip,,0,0,0,,in die situation gebracht
+Dialogue: 0,0:00:01.40,0:00:02.54,Clip,,0,0,0,,dass er nach 30 jahren
+Dialogue: 0,0:00:02.54,0:00:03.46,Clip,,0,0,0,,noch mal hier verurteilt
+Dialogue: 0,0:00:03.46,0:00:04.56,Clip,,0,0,0,,wird das glaube ich nicht
+Dialogue: 0,0:00:04.96,0:00:07.24,Clip,,0,0,0,,das ist doch das ist so
+Dialogue: 0,0:00:07.24,0:00:07.69,Clip,,0,0,0,,crazy
+Dialogue: 0,0:00:07.66,0:00:09.86,Clip,,0,0,0,,aber
+Dialogue: 0,0:00:09.86,0:00:12.04,Clip,,0,0,0,,meine frage noch mal warum
+Dialogue: 0,0:00:12.04,0:00:13.86,Clip,,0,0,0,,kommt man 20 oder 30 jahre
+Dialogue: 0,0:00:13.86,0:00:14.98,Clip,,0,0,0,,später erst damit um die
+Dialogue: 0,0:00:14.98,0:00:16.92,Clip,,0,0,0,,ecke ich meine das ist
+Dialogue: 0,0:00:16.92,0:00:19.02,Clip,,0,0,0,,natürlich crazy aber
+Dialogue: 0,0:00:19.02,0:00:21.00,Clip,,0,0,0,,was zum teufel wie geht
+Dialogue: 0,0:00:21.00,0:00:21.60,Clip,,0,0,0,,das überhaupt
+Dialogue: 0,0:00:21.60,0:00:23.82,Clip,,0,0,0,,der
+Dialogue: 0,0:00:23.82,0:00:25.52,Clip,,0,0,0,,eigenen worte reichen als
+Dialogue: 0,0:00:25.52,0:00:27.26,Clip,,0,0,0,,beweis später behauptete
+Dialogue: 0,0:00:27.26,0:00:29.23,Clip,,0,0,0,,seine verteidigung dass viele

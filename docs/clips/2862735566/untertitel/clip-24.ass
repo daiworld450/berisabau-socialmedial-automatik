@@ -1,0 +1,31 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:02.04,Clip,,0,0,0,,weise nicht etwas sich
+Dialogue: 0,0:00:02.04,0:00:02.96,Clip,,0,0,0,,anschauen darf das ist
+Dialogue: 0,0:00:02.96,0:00:04.82,Clip,,0,0,0,,doch nicht normal und
+Dialogue: 0,0:00:04.82,0:00:05.64,Clip,,0,0,0,,deswegen bitt ich euch
+Dialogue: 0,0:00:05.64,0:00:07.96,Clip,,0,0,0,,entspannt euch
+Dialogue: 0,0:00:07.96,0:00:09.28,Clip,,0,0,0,,leute wir schauen uns das
+Dialogue: 0,0:00:09.28,0:00:10.32,Clip,,0,0,0,,hier nicht an um uns zu
+Dialogue: 0,0:00:10.32,0:00:11.24,Clip,,0,0,0,,spalten sondern wir
+Dialogue: 0,0:00:11.24,0:00:12.22,Clip,,0,0,0,,schauen uns das generell
+Dialogue: 0,0:00:12.22,0:00:14.30,Clip,,0,0,0,,an um zu verstehen
+Dialogue: 0,0:00:14.30,0:00:15.70,Clip,,0,0,0,,warum man auf gewisse
+Dialogue: 0,0:00:15.70,0:00:16.58,Clip,,0,0,0,,leute nicht schauen soll
+Dialogue: 0,0:00:16.58,0:00:17.70,Clip,,0,0,0,,oder das hinterfragen soll
+Dialogue: 0,0:00:17.70,0:00:19.66,Clip,,0,0,0,,ich bin voll offen keks
+Dialogue: 0,0:00:19.66,0:00:21.58,Clip,,0,0,0,,deswegen bitt ich euch
+Dialogue: 0,0:00:21.58,0:00:23.28,Clip,,0,0,0,,{\c&H0022DDFF&}immer{\c&H00FFFFFF&} mit respekt
+Dialogue: 0,0:00:23.28,0:00:25.94,Clip,,0,0,0,,und keine hasst schön und {\c&H0022DDFF&}alles{\c&H00FFFFFF&}

@@ -1,0 +1,25 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.02,Clip,,0,0,0,,mis recherchiert
+Dialogue: 0,0:00:02.66,0:00:04.10,Clip,,0,0,0,,okay {\c&H0022DDFF&}krass{\c&H00FFFFFF&}
+Dialogue: 0,0:00:05.41,0:00:06.61,Clip,,0,0,0,,tanner
+Dialogue: 0,0:00:06.61,0:00:08.73,Clip,,0,0,0,,dann kann
+Dialogue: 0,0:00:08.73,0:00:10.91,Clip,,0,0,0,,tanner richtig
+Dialogue: 0,0:00:10.91,0:00:11.85,Clip,,0,0,0,,geschossen auf sein
+Dialogue: 0,0:00:11.85,0:00:13.17,Clip,,0,0,0,,fahrzeug sechs schüsse
+Dialogue: 0,0:00:13.17,0:00:14.93,Clip,,0,0,0,,okay
+Dialogue: 0,0:00:14.93,0:00:16.17,Clip,,0,0,0,,wow
+Dialogue: 0,0:00:19.27,0:00:20.93,Clip,,0,0,0,,was soll ich euch dazu
+Dialogue: 0,0:00:20.93,0:00:33.32,Clip,,0,0,0,,sagen freunde unabend nur

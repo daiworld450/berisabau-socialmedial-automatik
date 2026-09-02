@@ -1,0 +1,31 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.92,Clip,,0,0,0,,jackup rochild mit anderen
+Dialogue: 0,0:00:01.92,0:00:03.12,Clip,,0,0,0,,worten die die die
+Dialogue: 0,0:00:03.12,0:00:04.00,Clip,,0,0,0,,weltkriege und aro
+Dialogue: 0,0:00:04.00,0:00:04.64,Clip,,0,0,0,,viertelfen jetzt sieht
+Dialogue: 0,0:00:04.64,0:00:06.36,Clip,,0,0,0,,haben sind auch dieselben
+Dialogue: 0,0:00:06.36,0:00:07.52,Clip,,0,0,0,,wie den 80 prozent des
+Dialogue: 0,0:00:07.52,0:00:08.84,Clip,,0,0,0,,landes israeli gehört
+Dialogue: 0,0:00:08.84,0:00:10.54,Clip,,0,0,0,,kranker schalmer
+Dialogue: 0,0:00:11.20,0:00:12.12,Clip,,0,0,0,,islamistische terroristen
+Dialogue: 0,0:00:12.12,0:00:13.36,Clip,,0,0,0,,sind keine wahre muslime
+Dialogue: 0,0:00:13.36,0:00:15.40,Clip,,0,0,0,,radikale christen sind
+Dialogue: 0,0:00:15.40,0:00:16.50,Clip,,0,0,0,,keine wahren christen
+Dialogue: 0,0:00:16.50,0:00:17.96,Clip,,0,0,0,,schulnisten sind keine
+Dialogue: 0,0:00:17.96,0:00:19.92,Clip,,0,0,0,,wahren juden aha guck mal
+Dialogue: 0,0:00:19.92,0:00:20.92,Clip,,0,0,0,,schöner guck mal gebt euch
+Dialogue: 0,0:00:20.92,0:00:22.02,Clip,,0,0,0,,das noch mal an {\c&H0022DDFF&}alle{\c&H00FFFFFF&}
+Dialogue: 0,0:00:22.02,0:00:24.62,Clip,,0,0,0,,spaltenen zungen hier zum

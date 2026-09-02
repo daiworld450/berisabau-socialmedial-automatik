@@ -1,0 +1,39 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:02.18,Clip,,0,0,0,,auch {\c&H0022DDFF&}immer{\c&H00FFFFFF&} dann behalt ich
+Dialogue: 0,0:00:02.18,0:00:03.26,Clip,,0,0,0,,das noch mal ein bisschen
+Dialogue: 0,0:00:03.26,0:00:05.00,Clip,,0,0,0,,so meine {\c&H0022DDFF&}letzte{\c&H00FFFFFF&}
+Dialogue: 0,0:00:05.00,0:00:06.92,Clip,,0,0,0,,in diesem leben so die
+Dialogue: 0,0:00:06.92,0:00:07.90,Clip,,0,0,0,,{\c&H0022DDFF&}letzte{\c&H00FFFFFF&} möglichkeit noch
+Dialogue: 0,0:00:07.90,0:00:08.94,Clip,,0,0,0,,mal richtig gas zu geben
+Dialogue: 0,0:00:08.94,0:00:10.52,Clip,,0,0,0,,bewege ich mir einfach auf
+Dialogue: 0,0:00:10.52,0:00:12.24,Clip,,0,0,0,,ja
+Dialogue: 0,0:00:12.24,0:00:14.56,Clip,,0,0,0,,so denke
+Dialogue: 0,0:00:14.56,0:00:15.86,Clip,,0,0,0,,ich mir dann tröstet mich
+Dialogue: 0,0:00:15.86,0:00:16.88,Clip,,0,0,0,,das auch ein wenig
+Dialogue: 0,0:00:16.88,0:00:19.32,Clip,,0,0,0,,ja
+Dialogue: 0,0:00:19.32,0:00:19.90,Clip,,0,0,0,,ich habe mir auch ein
+Dialogue: 0,0:00:19.90,0:00:20.98,Clip,,0,0,0,,lagen geholt so
+Dialogue: 0,0:00:20.98,0:00:22.20,Clip,,0,0,0,,schuheinlagen um das ganze
+Dialogue: 0,0:00:22.20,0:00:23.32,Clip,,0,0,0,,zu entlasten habe ich
+Dialogue: 0,0:00:23.32,0:00:24.18,Clip,,0,0,0,,jetzt ich ziehe jetzt
+Dialogue: 0,0:00:24.18,0:00:25.04,Clip,,0,0,0,,einfach mal an ich guck
+Dialogue: 0,0:00:25.04,0:00:27.16,Clip,,0,0,0,,mal ob das was bringt oder
+Dialogue: 0,0:00:27.16,0:00:27.98,Clip,,0,0,0,,auch nicht mal gucken
+Dialogue: 0,0:00:27.98,0:00:29.04,Clip,,0,0,0,,einfach
+Dialogue: 0,0:00:29.04,0:00:30.90,Clip,,0,0,0,,schonen
+Dialogue: 0,0:00:30.90,0:00:32.26,Clip,,0,0,0,,so
+Dialogue: 0,0:00:35.55,0:00:37.91,Clip,,0,0,0,,erstmal schönen gut
+Dialogue: 0,0:00:37.91,0:00:38.91,Clip,,0,0,0,,nahm dann {\c&H0022DDFF&}alle{\c&H00FFFFFF&} so

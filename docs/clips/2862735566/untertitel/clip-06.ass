@@ -1,0 +1,37 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.18,Clip,,0,0,0,,fürs fußballer herz ja
+Dialogue: 0,0:00:01.18,0:00:03.52,Clip,,0,0,0,,schade richtig öde
+Dialogue: 0,0:00:03.52,0:00:04.98,Clip,,0,0,0,,weil ich denke mir lieber
+Dialogue: 0,0:00:04.98,0:00:06.88,Clip,,0,0,0,,schon ich mein zielgelenk
+Dialogue: 0,0:00:06.88,0:00:08.78,Clip,,0,0,0,,jetzt und sobald mein sohn
+Dialogue: 0,0:00:08.78,0:00:09.74,Clip,,0,0,0,,in ein alter kommt oder
+Dialogue: 0,0:00:09.74,0:00:10.68,Clip,,0,0,0,,richtig fußball spielen
+Dialogue: 0,0:00:10.68,0:00:12.28,Clip,,0,0,0,,will trainieren will dann
+Dialogue: 0,0:00:12.28,0:00:13.38,Clip,,0,0,0,,kann ich noch einmal gas
+Dialogue: 0,0:00:13.38,0:00:14.22,Clip,,0,0,0,,geben und dann kann ich
+Dialogue: 0,0:00:14.22,0:00:15.56,Clip,,0,0,0,,von mir aus mein zee
+Dialogue: 0,0:00:15.56,0:00:16.30,Clip,,0,0,0,,irgendwann zertrümmern
+Dialogue: 0,0:00:16.30,0:00:17.16,Clip,,0,0,0,,aber dann habe ich mit ihm
+Dialogue: 0,0:00:17.16,0:00:18.54,Clip,,0,0,0,,wenigstens noch mal diese
+Dialogue: 0,0:00:18.54,0:00:20.54,Clip,,0,0,0,,zeit gehabt bevor ich die
+Dialogue: 0,0:00:20.54,0:00:22.30,Clip,,0,0,0,,jetzt verbrate weiße dann
+Dialogue: 0,0:00:22.30,0:00:24.40,Clip,,0,0,0,,warte ich lieber sobald
+Dialogue: 0,0:00:24.40,0:00:25.02,Clip,,0,0,0,,mein sohn in einem
+Dialogue: 0,0:00:25.02,0:00:25.80,Clip,,0,0,0,,allteils vor der richtig
+Dialogue: 0,0:00:25.80,0:00:27.24,Clip,,0,0,0,,gas geben will dann möchte
+Dialogue: 0,0:00:27.24,0:00:28.10,Clip,,0,0,0,,ich lieber mit ihm dann
+Dialogue: 0,0:00:28.10,0:00:29.42,Clip,,0,0,0,,nochmal zusammen auf dem
+Dialogue: 0,0:00:29.42,0:00:31.18,Clip,,0,0,0,,feld stehen spielen trainieren was

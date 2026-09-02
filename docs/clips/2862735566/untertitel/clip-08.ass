@@ -1,0 +1,33 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:00.94,Clip,,0,0,0,,da sind wir uns {\c&H0022DDFF&}alle{\c&H00FFFFFF&} einig
+Dialogue: 0,0:00:00.94,0:00:02.54,Clip,,0,0,0,,aber drüber hinaus was
+Dialogue: 0,0:00:02.54,0:00:03.22,Clip,,0,0,0,,soll ich jetzt über ihn
+Dialogue: 0,0:00:03.22,0:00:04.54,Clip,,0,0,0,,reden oder was also ich
+Dialogue: 0,0:00:04.54,0:00:05.50,Clip,,0,0,0,,springe bestimmt nicht auf
+Dialogue: 0,0:00:05.50,0:00:07.82,Clip,,0,0,0,,diesen hype zug wo
+Dialogue: 0,0:00:07.82,0:00:08.80,Clip,,0,0,0,,jetzt {\c&H0022DDFF&}alle{\c&H00FFFFFF&} youtuber und
+Dialogue: 0,0:00:08.80,0:00:10.40,Clip,,0,0,0,,streamer drauf springen
+Dialogue: 0,0:00:10.40,0:00:11.18,Clip,,0,0,0,,weil sie wissen das
+Dialogue: 0,0:00:11.18,0:00:12.06,Clip,,0,0,0,,generiert klicks weil
+Dialogue: 0,0:00:12.06,0:00:13.00,Clip,,0,0,0,,{\c&H0022DDFF&}jeder{\c&H00FFFFFF&} gerade guckt wie die
+Dialogue: 0,0:00:13.00,0:00:13.96,Clip,,0,0,0,,meinung des anderen ist
+Dialogue: 0,0:00:13.96,0:00:15.74,Clip,,0,0,0,,aber ich habe eine ganz
+Dialogue: 0,0:00:15.74,0:00:16.86,Clip,,0,0,0,,klare meinung und meine
+Dialogue: 0,0:00:16.86,0:00:17.98,Clip,,0,0,0,,meinung ist das geht mich
+Dialogue: 0,0:00:17.98,0:00:20.08,Clip,,0,0,0,,feuchten dreck an was er
+Dialogue: 0,0:00:20.08,0:00:21.24,Clip,,0,0,0,,mit seiner frau da hat ob
+Dialogue: 0,0:00:21.24,0:00:22.08,Clip,,0,0,0,,die sich scheiden lassen
+Dialogue: 0,0:00:22.08,0:00:23.34,Clip,,0,0,0,,ob die zusammenbleiben
