@@ -12,22 +12,15 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:00.78,Clip,,0,0,0,,Sind das selber einfach
-Dialogue: 0,0:00:00.78,0:00:02.42,Clip,,0,0,0,,nicht in der Öliste?
-Dialogue: 0,0:00:02.94,0:00:03.68,Clip,,0,0,0,,Hier kommt mal wenn ich
-Dialogue: 0,0:00:03.68,0:00:04.14,Clip,,0,0,0,,jetzt hier,
-Dialogue: 0,0:00:04.82,0:00:05.48,Clip,,0,0,0,,weil ich Ich nehme euch
-Dialogue: 0,0:00:05.48,0:00:06.16,Clip,,0,0,0,,mal kurz mit.
-Dialogue: 0,0:00:07.00,0:00:07.70,Clip,,0,0,0,,Ich muss erstmal das
-Dialogue: 0,0:00:07.70,0:00:08.58,Clip,,0,0,0,,richtige Fenster wieder
-Dialogue: 0,0:00:08.58,0:00:10.06,Clip,,0,0,0,,einfahren. Da sind wir
-Dialogue: 0,0:00:10.06,0:00:10.74,Clip,,0,0,0,,doch wieder, Leute.
-Dialogue: 0,0:00:11.62,0:00:12.28,Clip,,0,0,0,,Wenn ich jetzt hier
-Dialogue: 0,0:00:12.28,0:00:14.36,Clip,,0,0,0,,Kian... Guck mal, wenn ich
-Dialogue: 0,0:00:14.36,0:00:15.30,Clip,,0,0,0,,Kian eingebe, kommt
-Dialogue: 0,0:00:15.30,0:00:17.40,Clip,,0,0,0,,Kianosch. Vor Kianosch.
-Dialogue: 0,0:00:17.58,0:00:18.03,Clip,,0,0,0,,Nein.
-Dialogue: 0,0:00:18.68,0:00:19.62,Clip,,0,0,0,,Das ist natürlich mein
-Dialogue: 0,0:00:19.62,0:00:20.52,Clip,,0,0,0,,Algo, ich mache nur Spaß.
-Dialogue: 0,0:00:20.74,0:00:21.62,Clip,,0,0,0,,Kianosch ist natürlich
-Dialogue: 0,0:00:21.62,0:00:23.25,Clip,,0,0,0,,Präsident, oder was wir zu machen.
+Dialogue: 0,0:00:00.00,0:00:01.28,Clip,,0,0,0,,ich mir dann tröstet mich
+Dialogue: 0,0:00:01.28,0:00:02.30,Clip,,0,0,0,,das auch ein wenig
+Dialogue: 0,0:00:02.30,0:00:04.74,Clip,,0,0,0,,ja
+Dialogue: 0,0:00:04.74,0:00:05.34,Clip,,0,0,0,,ich habe mir auch ein
+Dialogue: 0,0:00:05.34,0:00:06.40,Clip,,0,0,0,,lagen geholt so
+Dialogue: 0,0:00:06.40,0:00:07.62,Clip,,0,0,0,,schuheinlagen um das ganze
+Dialogue: 0,0:00:07.62,0:00:08.74,Clip,,0,0,0,,zu entlasten habe ich
+Dialogue: 0,0:00:08.74,0:00:09.64,Clip,,0,0,0,,jetzt ich ziehe dir jetzt
+Dialogue: 0,0:00:09.64,0:00:10.46,Clip,,0,0,0,,einfach mal an ich guck
+Dialogue: 0,0:00:10.46,0:00:12.56,Clip,,0,0,0,,mal ob das was bringt oder
+Dialogue: 0,0:00:12.56,0:00:13.42,Clip,,0,0,0,,auch nicht mal gucken
+Dialogue: 0,0:00:13.42,0:00:15.84,Clip,,0,0,0,,einfach schonen

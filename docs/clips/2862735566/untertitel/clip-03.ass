@@ -12,27 +12,21 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:02.38,Clip,,0,0,0,,ist es ist aktuell so dass
-Dialogue: 0,0:00:02.38,0:00:03.16,Clip,,0,0,0,,man da nicht viel machen
-Dialogue: 0,0:00:03.16,0:00:05.08,Clip,,0,0,0,,kann und ich soll denn
-Dialogue: 0,0:00:05.08,0:00:05.76,Clip,,0,0,0,,einfach nicht mehr so
-Dialogue: 0,0:00:05.76,0:00:06.42,Clip,,0,0,0,,{\c&H0022DDFF&}krass{\c&H00FFFFFF&} belasten.
-Dialogue: 0,0:00:07.12,0:00:08.12,Clip,,0,0,0,,Er sagte, geh ins
-Dialogue: 0,0:00:08.12,0:00:08.88,Clip,,0,0,0,,Fitnessstudio,
-Dialogue: 0,0:00:09.74,0:00:11.50,Clip,,0,0,0,,leicht joggen geht, aber
-Dialogue: 0,0:00:11.50,0:00:12.66,Clip,,0,0,0,,dieses permanent anderen
-Dialogue: 0,0:00:12.66,0:00:14.02,Clip,,0,0,0,,Abbremsen hoch springen
-Dialogue: 0,0:00:14.02,0:00:14.47,Clip,,0,0,0,,und so.
-Dialogue: 0,0:00:14.94,0:00:15.92,Clip,,0,0,0,,Das wird {\c&H0022DDFF&}immer{\c&H00FFFFFF&} wieder dann
-Dialogue: 0,0:00:15.92,0:00:16.94,Clip,,0,0,0,,zu diesem Punkt kommen und
-Dialogue: 0,0:00:16.94,0:00:17.68,Clip,,0,0,0,,irgendwann ist dein
-Dialogue: 0,0:00:17.68,0:00:19.02,Clip,,0,0,0,,Knorpel so im Arsch, dass
-Dialogue: 0,0:00:19.02,0:00:20.44,Clip,,0,0,0,,du dann permanent
-Dialogue: 0,0:00:20.44,0:00:21.56,Clip,,0,0,0,,Schmerzen hast. Er sagte,
-Dialogue: 0,0:00:21.74,0:00:22.90,Clip,,0,0,0,,wenn du keine permanenten
-Dialogue: 0,0:00:22.90,0:00:23.86,Clip,,0,0,0,,Schmerzen haben willst,
-Dialogue: 0,0:00:24.34,0:00:25.34,Clip,,0,0,0,,dann hör einfach auf
-Dialogue: 0,0:00:25.34,0:00:26.14,Clip,,0,0,0,,Fußball zu spielen.
-Dialogue: 0,0:00:27.64,0:00:28.74,Clip,,0,0,0,,Ja, das hat mich ein
-Dialogue: 0,0:00:28.74,0:00:29.48,Clip,,0,0,0,,bisschen darum gemacht.
-Dialogue: 0,0:00:29.60,0:00:30.84,Clip,,0,0,0,,Das war sehr öde, weil
+Dialogue: 0,0:00:00.00,0:00:00.84,Clip,,0,0,0,,den hier in der Vollbild?
+Dialogue: 0,0:00:00.98,0:00:01.46,Clip,,0,0,0,,Kriege ich hier nicht
+Dialogue: 0,0:00:01.46,0:00:02.18,Clip,,0,0,0,,rein? Ist nicht schlimm.
+Dialogue: 0,0:00:03.64,0:00:04.84,Clip,,0,0,0,,Auf jeden Fall ist das
+Dialogue: 0,0:00:04.84,0:00:05.74,Clip,,0,0,0,,mein rechter Fuß.
+Dialogue: 0,0:00:08.23,0:00:10.25,Clip,,0,0,0,,Und hier seht ihr auch
+Dialogue: 0,0:00:10.25,0:00:11.79,Clip,,0,0,0,,meinen Namen. Also das ist
+Dialogue: 0,0:00:11.79,0:00:12.77,Clip,,0,0,0,,jetzt hier keine verarsche
+Dialogue: 0,0:00:12.77,0:00:13.75,Clip,,0,0,0,,oder so das ist {\c&H0022DDFF&}wirklich{\c&H00FFFFFF&}
+Dialogue: 0,0:00:13.75,0:00:15.31,Clip,,0,0,0,,ein mrt bild von mir
+Dialogue: 0,0:00:19.34,0:00:21.54,Clip,,0,0,0,,und wie ihr sehen könnt
+Dialogue: 0,0:00:21.54,0:00:22.60,Clip,,0,0,0,,ich gehe mal direkt mit
+Dialogue: 0,0:00:22.60,0:00:23.90,Clip,,0,0,0,,euch durch warte mal gehe
+Dialogue: 0,0:00:23.90,0:00:25.58,Clip,,0,0,0,,ich von oben ja von hier
+Dialogue: 0,0:00:25.58,0:00:27.54,Clip,,0,0,0,,können wir mal beginnen es
+Dialogue: 0,0:00:31.31,0:00:33.05,Clip,,0,0,0,,ging nämlich um mein c
+Dialogue: 0,0:00:33.05,0:00:35.09,Clip,,0,0,0,,um mein dicken
+Dialogue: 0,0:00:35.09,0:00:36.79,Clip,,0,0,0,,onkel hier weil wir

@@ -2,7 +2,7 @@
 
 Stream-ID `2862735566` · Just Chatting · Länge 2:33:17 · 1557 Sprachsegmente · 0 Chatnachrichten
 
-88 Momente geprüft, 30 über 61 Punkten, davon 0 ab 80 Punkten (höchste Priorität). Die Schwelle liegt bei 61 statt 65, weil eine der beiden Quellen fehlt – siehe bewertung.schwelle_fuer.
+89 Momente geprüft, 30 über 61 Punkten, davon 0 ab 80 Punkten (höchste Priorität). Die Schwelle liegt bei 61 statt 65, weil eine der beiden Quellen fehlt – siehe bewertung.schwelle_fuer.
 
 > Ohne Chat-Datei fehlt das stärkste Signal. Die Auswahl stützt sich allein auf die Sprache und ist entsprechend unsicherer.
 
@@ -62,18 +62,68 @@ K1ANUSH: CD, Leute, wer hat heutzutage noch CD?   (47 Zeichen)
 
 ---
 
-CLIP NUMMER: 02   (2862735566-000661)
+CLIP NUMMER: 02   (2862735566-000631)
+Timestamp Start: 0:10:30
+Timestamp Ende: 0:11:05
+Dauer: 32 s  (roh 34 s, 3 s Stille raus)
+Kategorie: UNEXPECTED
+Virality Score /100: 65
+  Hook 17.9/25 · Unterhaltung 7.4/20 · Watchtime 18.0/20 · Share 12.2/15 · Kommentar 4.9/10 · Follower 4.5/10
+Warum dieser Clip: Er ist sichtbar überrascht und er wird laut bei 10:40. Die Pointe liegt bei 27 % der Cliplänge, davor 9 s Aufbau. 3 s Stille fallen raus.
+⸻
+HOOK IM VIDEO:
+
+„Hier ist mein Fuß, wie ihr sehen könnt“
+⸻
+SCHNITT:
+
+Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
+
+0:00–0:02 Gesicht groß, Text-Hook einblenden
+0:02–0:08 Originalausschnitt im Layout „facecam_gross“
+0:08–0:10 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
+0:09–0:09 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck
+0:10–0:31 zurück auf Normalgröße, letzte Zeile ausspielen
+0:21 Jump Cut – 2.5 s Stille raus
+⸻
+UNTERTITEL:
+
+Warte mal, ich mach das mal hier. Moment. Hier, ladies and gentlemen, haben wir tatsächlich meine MRT -Bilder. Hier ist mein Fuß, wie ihr sehen könnt. Das ist mein rechter Fuß. Und ich gehe mal gleich mit euch durch. Ich habe das schon auseinandergenommen. Wie kriege ich den hier in der Vollbild? Kriege ich hier nicht rein? Ist nicht schlimm. Auf jeden
+⸻
+TIKTOK TITEL:
+
+„Hier ist mein Fuß, wie ihr sehen könnt“
+⸻
+TIKTOK CAPTION:
+
+Und dann kam das.
+⸻
+HASHTAGS:
+
+#k1anush #k1anushclips #unerwartet #plottwist #niemalsgedacht #justchatting #twitch
+⸻
+INSTAGRAM REELS CAPTION:
+
+K1ANUSH live auf Twitch. Und dann kam das.
+⸻
+YOUTUBE SHORTS TITEL:
+
+K1ANUSH: Hier ist mein Fuß, wie ihr sehen könnt   (47 Zeichen)
+
+---
+
+CLIP NUMMER: 03   (2862735566-000661)
 Timestamp Start: 0:11:00
 Timestamp Ende: 0:11:37
 Dauer: 37 s
 Kategorie: UNEXPECTED
-Virality Score /100: 71
-  Hook 19.8/25 · Unterhaltung 10.0/20 · Watchtime 18.5/20 · Share 12.8/15 · Kommentar 4.9/10 · Follower 4.7/10
+Virality Score /100: 68
+  Hook 17.3/25 · Unterhaltung 10.0/20 · Watchtime 18.5/20 · Share 12.8/15 · Kommentar 4.9/10 · Follower 4.7/10
 Warum dieser Clip: Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 11:24. Die Pointe liegt bei 63 % der Cliplänge, davor 23 s Aufbau.
 ⸻
 HOOK IM VIDEO:
 
-„das mein rechter Fuß“
+„das ist jetzt hier keine“
 ⸻
 SCHNITT:
 
@@ -91,7 +141,7 @@ den hier in der Vollbild? Kriege ich hier nicht rein? Ist nicht schlimm. Auf jed
 ⸻
 TIKTOK TITEL:
 
-„das mein rechter Fuß“
+„das ist jetzt hier keine“
 ⸻
 TIKTOK CAPTION:
 
@@ -107,11 +157,11 @@ K1ANUSH live auf Twitch. Und dann kam das.
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: das mein rechter Fuß   (29 Zeichen)
+K1ANUSH: das ist jetzt hier keine   (33 Zeichen)
 
 ---
 
-CLIP NUMMER: 03   (2862735566-001040)
+CLIP NUMMER: 04   (2862735566-001040)
 Timestamp Start: 0:17:19
 Timestamp Ende: 0:17:50
 Dauer: 31 s
@@ -122,7 +172,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerl
 ⸻
 HOOK IM VIDEO:
 
-„anderen Abbremsen hoch springen und so“
+„mehr so krass belasten“
 ⸻
 SCHNITT:
 
@@ -140,7 +190,7 @@ ist es ist aktuell so dass man da nicht viel machen kann und ich soll denn einfa
 ⸻
 TIKTOK TITEL:
 
-„anderen Abbremsen hoch springen und so“
+„Das wird immer wieder dann zu diesem Punkt kommen“
 ⸻
 TIKTOK CAPTION:
 
@@ -156,11 +206,58 @@ K1ANUSH live auf Twitch. Und dann kam das.
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: anderen Abbremsen hoch springen und so   (47 Zeichen)
+K1ANUSH: Das wird immer wieder dann zu diesem Punkt kommen   (58 Zeichen)
 
 ---
 
-CLIP NUMMER: 04   (2862735566-001244)
+CLIP NUMMER: 05   (2862735566-001208)
+Timestamp Start: 0:20:08
+Timestamp Ende: 0:20:31
+Dauer: 23 s
+Kategorie: STORY
+Virality Score /100: 67
+  Hook 17.6/25 · Unterhaltung 10.0/20 · Watchtime 20.0/20 · Share 9.4/15 · Kommentar 4.5/10 · Follower 5.3/10
+Warum dieser Clip: Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 20:10. Die Pointe liegt bei 8 % der Cliplänge, davor 2 s Aufbau.
+⸻
+HOOK IM VIDEO:
+
+„diese Zeit gehabt“
+⸻
+SCHNITT:
+
+Bildaufteilung: nur_person – Nur die Facecam, formatfüllend – für reine Wortclips
+
+0:00–0:02 Gesicht groß, Text-Hook einblenden
+0:01–0:03 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
+0:03–0:22 zurück auf Normalgröße, letzte Zeile ausspielen
+⸻
+UNTERTITEL:
+
+Fußball spielen will, trainieren will, dann kann ich noch einmal Gas geben und dann kann ich von mir aus mein Ziel irgendwann zertrümmern, aber dann habe ich mit ihm wenigstens auch mal diese Zeit gehabt. Bevor ich die jetzt verbrate, weißt du, dann warte ich lieber und sobald mein Sohn in einem Allteils vor der richtig Gas geben will, dann möchte ich lieber mit ihm dann nochmal zusammen auf dem Feld stehen, spielen, trainieren, was auch immer. Dann
+⸻
+TIKTOK TITEL:
+
+„diese Zeit gehabt“
+⸻
+TIKTOK CAPTION:
+
+Die Geschichte musste raus.
+⸻
+HASHTAGS:
+
+#k1anush #k1anushclips #storytime #geschichte #storytimetiktok #justchatting #twitch
+⸻
+INSTAGRAM REELS CAPTION:
+
+K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?
+⸻
+YOUTUBE SHORTS TITEL:
+
+K1ANUSH: diese Zeit gehabt   (26 Zeichen)
+
+---
+
+CLIP NUMMER: 06   (2862735566-001244)
 Timestamp Start: 0:20:43
 Timestamp Ende: 0:20:59
 Dauer: 16 s
@@ -209,7 +306,7 @@ K1ANUSH: ich mir dann tröstet mich das auch ein wenig ja ich habe   (65 Zeichen
 
 ---
 
-CLIP NUMMER: 05   (2862735566-001590)
+CLIP NUMMER: 07   (2862735566-001590)
 Timestamp Start: 0:26:30
 Timestamp Ende: 0:27:06
 Dauer: 36 s
@@ -257,7 +354,7 @@ K1ANUSH: Ich habe auch dazu keine Meinung   (41 Zeichen)
 
 ---
 
-CLIP NUMMER: 06   (2862735566-001710)
+CLIP NUMMER: 08   (2862735566-001710)
 Timestamp Start: 0:28:30
 Timestamp Ende: 0:28:54
 Dauer: 23 s  (roh 24 s, 1 s Stille raus)
@@ -307,7 +404,7 @@ K1ANUSH: Ich muss erstmal das richtige Fenster wieder einfahren   (63 Zeichen)
 
 ---
 
-CLIP NUMMER: 07   (2862735566-001741)
+CLIP NUMMER: 09   (2862735566-001741)
 Timestamp Start: 0:29:00
 Timestamp Ende: 0:29:19
 Dauer: 17 s  (roh 19 s, 2 s Stille raus)
@@ -338,7 +435,7 @@ Wo haben wir das denn? Alter. Was ist mit dieser Reaction hier passiert, ladies 
 ⸻
 TIKTOK TITEL:
 
-„aber im wahrsten Sinne des Wortes, was zur Hölle passiert…“
+„Dieser Tag dient nicht dazu, die Welt ohnezugestattet“
 ⸻
 TIKTOK CAPTION:
 
@@ -354,67 +451,18 @@ K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: aber im wahrsten Sinne des Wortes, was zur Hölle passiert…   (67 Zeichen)
+K1ANUSH: Dieser Tag dient nicht dazu, die Welt ohnezugestattet   (62 Zeichen)
 
 ---
 
-CLIP NUMMER: 08   (2862735566-001851)
-Timestamp Start: 0:30:50
-Timestamp Ende: 0:31:15
-Dauer: 25 s
-Kategorie: UNEXPECTED
-Virality Score /100: 66
-  Hook 17.1/25 · Unterhaltung 9.5/20 · Watchtime 17.9/20 · Share 12.8/15 · Kommentar 3.9/10 · Follower 5.0/10
-Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 30:57. Die Pointe liegt bei 25 % der Cliplänge, davor 6 s Aufbau.
-⸻
-HOOK IM VIDEO:
-
-„Das muss man den Herrn wirklich“
-⸻
-SCHNITT:
-
-Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
-
-0:00–0:02 Gesicht groß, Text-Hook einblenden
-0:02–0:05 Originalausschnitt im Layout „facecam_gross“
-0:05–0:07 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
-0:06 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck
-0:07–0:25 zurück auf Normalgröße, letzte Zeile ausspielen
-⸻
-UNTERTITEL:
-
-zu spenden für Gaza auf, also das ist schon echt ein Move. Das muss man den Herrn wirklich lassen. Wow. Und wir werden heute ein ähnliches Thema gehen, allerdings gab es das Video nicht auf YouTube. Kampf der Kulturen, die Agenda, der dritte Tempel. Ja, also wir werden heute
-⸻
-TIKTOK TITEL:
-
-„zu spenden für Gaza auf, also das ist schon echt ein Move“
-⸻
-TIKTOK CAPTION:
-
-Und dann kam das.
-⸻
-HASHTAGS:
-
-#k1anush #k1anushclips #unerwartet #plottwist #niemalsgedacht #justchatting #twitch
-⸻
-INSTAGRAM REELS CAPTION:
-
-K1ANUSH live auf Twitch. Und dann kam das.
-⸻
-YOUTUBE SHORTS TITEL:
-
-K1ANUSH: zu spenden für Gaza auf, also das ist schon echt ein Move   (66 Zeichen)
-
----
-
-CLIP NUMMER: 09   (2862735566-001890)
-Timestamp Start: 0:31:30
+CLIP NUMMER: 10   (2862735566-001910)
+Timestamp Start: 0:31:49
 Timestamp Ende: 0:32:09
-Dauer: 32 s  (roh 39 s, 7 s Stille raus)
+Dauer: 20 s
 Kategorie: UNEXPECTED
-Virality Score /100: 78
-  Hook 15.1/25 · Unterhaltung 20.0/20 · Watchtime 18.2/20 · Share 13.8/15 · Kommentar 4.9/10 · Follower 6.1/10
-Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 31:57. Die Pointe liegt bei 69 % der Cliplänge, davor 27 s Aufbau. 7 s Stille fallen raus.
+Virality Score /100: 79
+  Hook 16.0/25 · Unterhaltung 20.0/20 · Watchtime 19.0/20 · Share 13.8/15 · Kommentar 3.9/10 · Follower 6.1/10
+Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 31:57. Die Pointe liegt bei 38 % der Cliplänge, davor 7 s Aufbau.
 ⸻
 HOOK IM VIDEO:
 
@@ -424,16 +472,16 @@ SCHNITT:
 
 Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
 
-0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf
-0:02–0:19 Originalausschnitt im Layout „facecam_gross“
-0:12 Jump Cut – 6.8 s Stille raus
-0:19–0:21 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
-0:19–0:20 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck
-0:21–0:31 zurück auf Normalgröße, letzte Zeile ausspielen
+0:00–0:02 Gesicht groß, Text-Hook einblenden
+0:02–0:06 Originalausschnitt im Layout „facecam_gross“
+0:07–0:09 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
+0:07 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck
+0:09–0:19 zurück auf Normalgröße, letzte Zeile ausspielen
+Loop: letzte 0,4 s auf den Anfangsframe blenden, Ton hart schneiden – der Clip läuft dann rund
 ⸻
 UNTERTITEL:
 
-könnt ihr euch drauf verlassen. Wie gehts euch denn? Gehts euch gut? Ich hoffe ihr seid alle fit. Alles gut bei euch. Ey danke erst mal, ich muss mich hier kurz bedanken. Warte mal. Erst mal, warte mal, warte mal, warte, warte, warte, warte. Erst mal dank an Karibik Hendrik für dein Abo vor 19 Minuten. X -Act mal lieber. Dankeschön vor 19 Minuten. Kilominat vor 14 Minuten.
+Alles gut bei euch. Ey danke erst mal, ich muss mich hier kurz bedanken. Warte mal. Erst mal, warte mal, warte mal, warte, warte, warte, warte. Erst mal dank an Karibik Hendrik für dein Abo vor 19 Minuten. X -Act mal lieber. Dankeschön vor 19 Minuten. Kilominat vor 14 Minuten.
 ⸻
 TIKTOK TITEL:
 
@@ -457,104 +505,7 @@ K1ANUSH: warte mal, warte mal, warte, warte, warte, warte   (57 Zeichen)
 
 ---
 
-CLIP NUMMER: 10   (2862735566-002040)
-Timestamp Start: 0:34:00
-Timestamp Ende: 0:34:37
-Dauer: 37 s
-Kategorie: UNEXPECTED
-Virality Score /100: 67
-  Hook 15.7/25 · Unterhaltung 9.4/20 · Watchtime 19.5/20 · Share 12.8/15 · Kommentar 3.9/10 · Follower 5.6/10
-Warum dieser Clip: Er ist sichtbar überrascht und er spricht den Chat direkt an bei 34:12. Die Pointe liegt bei 32 % der Cliplänge, davor 12 s Aufbau.
-⸻
-HOOK IM VIDEO:
-
-„eurem Freund Bescheid, holt sie raus aus diesen“
-⸻
-SCHNITT:
-
-Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
-
-0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf
-0:02–0:11 Originalausschnitt im Layout „facecam_gross“
-0:11–0:13 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
-0:12–0:12 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck
-0:13–0:36 zurück auf Normalgröße, letzte Zeile ausspielen
-⸻
-UNTERTITEL:
-
-eurem Freund Bescheid, holt sie raus aus diesen lächerlichen Streams, die die im Leben nicht weiterbringen. Lasst uns lieber gemeinsam misraschieren und auf die Dinge schauen. Und Da kann uns 1996ih danken mein bester also eine der themen warte mal dominik hier auch erst mal danke für den prime mein bester dankeschön dankeschön vielen vielen lieben dank von ganzem herzen auf alles gut bei dir thank you very much also eine der themen die mich auch brennend interessieren und eine der gründe weshalb
-⸻
-TIKTOK TITEL:
-
-„Lasst uns lieber gemeinsam misraschieren und auf die…“
-⸻
-TIKTOK CAPTION:
-
-Und dann kam das.
-⸻
-HASHTAGS:
-
-#k1anush #k1anushclips #unerwartet #plottwist #niemalsgedacht #justchatting #twitch
-⸻
-INSTAGRAM REELS CAPTION:
-
-K1ANUSH live auf Twitch. Und dann kam das.
-⸻
-YOUTUBE SHORTS TITEL:
-
-K1ANUSH: Lasst uns lieber gemeinsam misraschieren und auf die…   (62 Zeichen)
-
----
-
-CLIP NUMMER: 11   (2862735566-002338)
-Timestamp Start: 0:38:57
-Timestamp Ende: 0:39:21
-Dauer: 24 s
-Kategorie: STORY
-Virality Score /100: 66
-  Hook 21.0/25 · Unterhaltung 6.0/20 · Watchtime 20.0/20 · Share 7.5/15 · Kommentar 5.5/10 · Follower 6.4/10
-Warum dieser Clip: Dicht gesprochen, keine Leerlaufzeit und er spricht den Chat direkt an bei 39:07. Die Pointe liegt bei 38 % der Cliplänge, davor 9 s Aufbau. Der Einstieg trägt ohne Vorwissen.
-⸻
-HOOK IM VIDEO:
-
-„Wer kennt das von euch?“
-⸻
-SCHNITT:
-
-Bildaufteilung: nur_person – Nur die Facecam, formatfüllend – für reine Wortclips
-
-0:00–0:02 Gesicht groß, Text-Hook einblenden
-0:02–0:08 Originalausschnitt im Layout „nur_person“
-0:08–0:10 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
-0:10–0:24 zurück auf Normalgröße, letzte Zeile ausspielen
-⸻
-UNTERTITEL:
-
-von euch fühlen können, das sette ich schon als Kind, ich weiß noch nicht, wo das herkommt. Wenn ich über so ein Boden gelaufen bin hier, durfte ich niemals auf die Linien treten. Wer kennt das von euch? Ich muss, kennt ihr das? Das macht mein Sohn heutzutage, der sagt Papa, halt meine Hand, ich darf nicht die Linien berühren. Ich habe das auch immer gemacht, aber warum? das ist irgendwie so falsch wenn ich auf die linie trete und ich habe noch ein
-⸻
-TIKTOK TITEL:
-
-„Wer kennt das von euch?“
-⸻
-TIKTOK CAPTION:
-
-Die Geschichte musste raus.
-⸻
-HASHTAGS:
-
-#k1anush #k1anushclips #storytime #geschichte #storytimetiktok #justchatting #twitch
-⸻
-INSTAGRAM REELS CAPTION:
-
-K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?
-⸻
-YOUTUBE SHORTS TITEL:
-
-K1ANUSH: Wer kennt das von euch?   (32 Zeichen)
-
----
-
-CLIP NUMMER: 12   (2862735566-002526)
+CLIP NUMMER: 11   (2862735566-002526)
 Timestamp Start: 0:42:06
 Timestamp Ende: 0:42:33
 Dauer: 27 s
@@ -601,7 +552,7 @@ K1ANUSH: Da kommt immer 369 raus?   (33 Zeichen)
 
 ---
 
-CLIP NUMMER: 13   (2862735566-003008)
+CLIP NUMMER: 12   (2862735566-003008)
 Timestamp Start: 0:50:08
 Timestamp Ende: 0:50:40
 Dauer: 32 s
@@ -650,14 +601,14 @@ K1ANUSH: als wir alle zusammen   (30 Zeichen)
 
 ---
 
-CLIP NUMMER: 14   (2862735566-003215)
+CLIP NUMMER: 13   (2862735566-003215)
 Timestamp Start: 0:53:34
 Timestamp Ende: 0:54:05
 Dauer: 31 s
 Kategorie: UNEXPECTED
-Virality Score /100: 78
-  Hook 16.2/25 · Unterhaltung 18.7/20 · Watchtime 18.2/20 · Share 14.4/15 · Kommentar 4.9/10 · Follower 5.7/10
-Warum dieser Clip: Er ist sichtbar überrascht und er baut Spannung auf bei 53:56. Die Pointe liegt bei 68 % der Cliplänge, davor 21 s Aufbau.
+Virality Score /100: 76
+  Hook 13.7/25 · Unterhaltung 18.7/20 · Watchtime 18.2/20 · Share 14.4/15 · Kommentar 4.9/10 · Follower 5.7/10
+Warum dieser Clip: Er ist sichtbar überrascht und er baut Spannung auf bei 53:56. Die Pointe liegt bei 68 % der Cliplänge, davor 21 s Aufbau. Der Einstieg ist die Schwachstelle – Text-Hook ist Pflicht.
 ⸻
 HOOK IM VIDEO:
 
@@ -667,7 +618,7 @@ SCHNITT:
 
 Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
 
-0:00–0:02 Gesicht groß, Text-Hook einblenden
+0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf
 0:02–0:20 Originalausschnitt im Layout „facecam_gross“
 0:20–0:22 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
 0:21–0:21 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck
@@ -699,7 +650,7 @@ K1ANUSH: Gibt es in der Mathematik zufälle?   (43 Zeichen)
 
 ---
 
-CLIP NUMMER: 15   (2862735566-003434)
+CLIP NUMMER: 14   (2862735566-003434)
 Timestamp Start: 0:57:13
 Timestamp Ende: 0:57:31
 Dauer: 16 s  (roh 18 s, 1 s Stille raus)
@@ -750,7 +701,7 @@ K1ANUSH: Die großen Errungenschaften bzw   (40 Zeichen)
 
 ---
 
-CLIP NUMMER: 16   (2862735566-003691)
+CLIP NUMMER: 15   (2862735566-003691)
 Timestamp Start: 1:01:30
 Timestamp Ende: 1:02:03
 Dauer: 29 s  (roh 33 s, 4 s Stille raus)
@@ -781,7 +732,7 @@ Als logischen Zwang kann man es nicht nennen. Ich meine als logische Schlussfolg
 ⸻
 TIKTOK TITEL:
 
-„es ist eben keine zwingende Schlussfolgerung“
+„Wenn du bestimmte Voraussetzungen annimmst, dann ist es…“
 ⸻
 TIKTOK CAPTION:
 
@@ -797,11 +748,11 @@ K1ANUSH live auf Twitch. Und dann kam das.
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: es ist eben keine zwingende Schlussfolgerung   (53 Zeichen)
+K1ANUSH: Wenn du bestimmte Voraussetzungen annimmst, dann ist es…   (65 Zeichen)
 
 ---
 
-CLIP NUMMER: 17   (2862735566-003984)
+CLIP NUMMER: 16   (2862735566-003984)
 Timestamp Start: 1:06:24
 Timestamp Ende: 1:06:36
 Dauer: 12 s
@@ -850,14 +801,14 @@ K1ANUSH: Ich möchte eine flüssige, reibungslose Konversation mit…   (65 Zeic
 
 ---
 
-CLIP NUMMER: 18   (2862735566-004343)
-Timestamp Start: 1:12:23
+CLIP NUMMER: 17   (2862735566-004338)
+Timestamp Start: 1:12:18
 Timestamp Ende: 1:12:41
-Dauer: 17 s
+Dauer: 23 s
 Kategorie: STORY
-Virality Score /100: 68
-  Hook 16.1/25 · Unterhaltung 12.1/20 · Watchtime 19.8/20 · Share 8.9/15 · Kommentar 5.5/10 · Follower 5.3/10
-Warum dieser Clip: Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 1:12:34. Die Pointe liegt bei 58 % der Cliplänge, davor 11 s Aufbau.
+Virality Score /100: 66
+  Hook 14.4/25 · Unterhaltung 12.1/20 · Watchtime 19.8/20 · Share 8.9/15 · Kommentar 5.5/10 · Follower 5.3/10
+Warum dieser Clip: Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 1:12:34. Die Pointe liegt bei 68 % der Cliplänge, davor 16 s Aufbau.
 ⸻
 HOOK IM VIDEO:
 
@@ -867,15 +818,15 @@ SCHNITT:
 
 Bildaufteilung: nur_person – Nur die Facecam, formatfüllend – für reine Wortclips
 
-0:00–0:02 Gesicht groß, Text-Hook einblenden
-0:02–0:09 Originalausschnitt im Layout „nur_person“
-0:10–0:12 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
-0:12–0:17 zurück auf Normalgröße, letzte Zeile ausspielen
-0:12 Jump Cut – 0.9 s Stille raus
+0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf
+0:02–0:15 Originalausschnitt im Layout „nur_person“
+0:15–0:17 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
+0:17–0:22 zurück auf Normalgröße, letzte Zeile ausspielen
+0:18 Jump Cut – 0.9 s Stille raus
 ⸻
 UNTERTITEL:
 
-sondern von 10 .000. Doch was verbergen diese Rätselhaften Bauwerke? Was ist das? Sind das die Häuser der Bewohner von dort? Stell dir vor, jeder hat so ein Haus mit so einem Ding da oben drauf. Das ist ja krass. Das wäre heftig. Ey, lieber SkyWitty, erstmal hier auf Holz klopfen.
+Es ist das Land mit den meisten Pargoden der Welt. Wir sprechen hier nicht von Tausenden, sondern von 10 .000. Doch was verbergen diese Rätselhaften Bauwerke? Was ist das? Sind das die Häuser der Bewohner von dort? Stell dir vor, jeder hat so ein Haus mit so einem Ding da oben drauf. Das ist ja krass. Das wäre heftig. Ey, lieber SkyWitty, erstmal hier auf Holz klopfen.
 ⸻
 TIKTOK TITEL:
 
@@ -899,7 +850,7 @@ K1ANUSH: Das wäre heftig   (24 Zeichen)
 
 ---
 
-CLIP NUMMER: 19   (2862735566-004918)
+CLIP NUMMER: 18   (2862735566-004918)
 Timestamp Start: 1:21:57
 Timestamp Ende: 1:22:16
 Dauer: 19 s
@@ -944,6 +895,54 @@ K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet
 YOUTUBE SHORTS TITEL:
 
 K1ANUSH: kann man das nicht irgendwie messen?   (45 Zeichen)
+
+---
+
+CLIP NUMMER: 19   (2862735566-004986)
+Timestamp Start: 1:23:05
+Timestamp Ende: 1:23:36
+Dauer: 30 s
+Kategorie: RAGE
+Virality Score /100: 66
+  Hook 17.5/25 · Unterhaltung 8.7/20 · Watchtime 18.9/20 · Share 8.8/15 · Kommentar 6.9/10 · Follower 5.1/10
+Warum dieser Clip: Er rastet aus und er bezieht klar Stellung bei 1:23:21. Die Pointe liegt bei 50 % der Cliplänge, davor 15 s Aufbau.
+⸻
+HOOK IM VIDEO:
+
+„Das muss doch irgendwas sein, Alter“
+⸻
+SCHNITT:
+
+Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
+
+0:00–0:02 Gesicht groß, Text-Hook einblenden
+0:02–0:14 Originalausschnitt im Layout „facecam_gross“
+0:14–0:16 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
+0:16–0:30 zurück auf Normalgröße, letzte Zeile ausspielen
+⸻
+UNTERTITEL:
+
+Das wird mich mal echt brennend interessieren. In Frankreich befindet sich die größte Ansammung von Menhirn der Welt, die als 3000 Monolithen, die zwischen 50 Zentimetern und 7 Metern hoch sind. Weil Leute, wenn wir mal ehrlich sind, überall auf der Welt verteilt in verschiedenen Regionen, benutzen sie quasi eine ähnliche Architektur und ähnliche Techniken, um nach oben gerichtete Bauten irgendwie zu machen. Das ist doch kein Zufall. Das muss doch irgendwas sein,
+⸻
+TIKTOK TITEL:
+
+„Das muss doch irgendwas sein, Alter“
+⸻
+TIKTOK CAPTION:
+
+Der Moment, in dem es kippt.
+⸻
+HASHTAGS:
+
+#k1anush #k1anushclips #rage #ragequit #ausraster #justchatting #twitch
+⸻
+INSTAGRAM REELS CAPTION:
+
+K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet?
+⸻
+YOUTUBE SHORTS TITEL:
+
+K1ANUSH: Das muss doch irgendwas sein, Alter   (44 Zeichen)
 
 ---
 
@@ -1008,7 +1007,7 @@ Warum dieser Clip: Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar übe
 ⸻
 HOOK IM VIDEO:
 
-„wir einfach keine Ahnung haben Leute“
+„Energie ist nicht gleich nur Benzin, Diesel…“
 ⸻
 SCHNITT:
 
@@ -1123,7 +1122,7 @@ Weißt du, was das heißt? Der geht lebenslang rein oder so, ne? Vielleicht war 
 ⸻
 TIKTOK TITEL:
 
-„ey, warte mal, ich kriege hier paar Sachen nicht auf die…“
+„Vielleicht war das so lange her oder so?“
 ⸻
 TIKTOK CAPTION:
 
@@ -1139,7 +1138,7 @@ K1ANUSH live auf Twitch. Und dann kam das.
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: ey, warte mal, ich kriege hier paar Sachen nicht auf die…   (66 Zeichen)
+K1ANUSH: Vielleicht war das so lange her oder so?   (49 Zeichen)
 
 ---
 
@@ -1154,7 +1153,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerl
 ⸻
 HOOK IM VIDEO:
 
-„ein gewisses Alter, war bestimmt über 50“
+„der weiß mehr als wir alle“
 ⸻
 SCHNITT:
 
@@ -1174,7 +1173,7 @@ Dafür müsste schon mindestens so ein Pedro Didi aussagen. Oder ein Schockenhei
 ⸻
 TIKTOK TITEL:
 
-„ein gewisses Alter, war bestimmt über 50“
+„Wenn er weiß, ich komm eh nicht mehr raus“
 ⸻
 TIKTOK CAPTION:
 
@@ -1190,41 +1189,38 @@ K1ANUSH live auf Twitch. Und dann kam das.
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: ein gewisses Alter, war bestimmt über 50   (49 Zeichen)
+K1ANUSH: Wenn er weiß, ich komm eh nicht mehr raus   (50 Zeichen)
 
 ---
 
-CLIP NUMMER: 25   (2862735566-005999)
-Timestamp Start: 1:39:59
+CLIP NUMMER: 25   (2862735566-006015)
+Timestamp Start: 1:40:14
 Timestamp Ende: 1:40:34
-Dauer: 30 s  (roh 35 s, 6 s Stille raus)
+Dauer: 20 s
 Kategorie: STORY
-Virality Score /100: 68
-  Hook 17.6/25 · Unterhaltung 9.6/20 · Watchtime 20.0/20 · Share 9.4/15 · Kommentar 4.5/10 · Follower 6.9/10
-Warum dieser Clip: Er ist sichtbar überrascht und er erzählt eine Geschichte bei 1:40:17. Die Pointe liegt bei 51 % der Cliplänge, davor 18 s Aufbau. 6 s Stille fallen raus.
+Virality Score /100: 66
+  Hook 16.0/25 · Unterhaltung 9.6/20 · Watchtime 20.0/20 · Share 9.4/15 · Kommentar 4.5/10 · Follower 6.9/10
+Warum dieser Clip: Er ist sichtbar überrascht und er erzählt eine Geschichte bei 1:40:17. Die Pointe liegt bei 12 % der Cliplänge, davor 2 s Aufbau.
 ⸻
 HOOK IM VIDEO:
 
-„sicher sagt, was passiert ist, Alter“
+„Interessant auf jeden Fall, weil ich habe den“
 ⸻
 SCHNITT:
 
 Bildaufteilung: nur_person – Nur die Facecam, formatfüllend – für reine Wortclips
 
-0:00–0:02 Gesicht groß, Text-Hook einblenden
-0:02–0:11 Originalausschnitt im Layout „nur_person“
-0:04 Jump Cut – 1.8 s Stille raus
-0:09 Jump Cut – 4.0 s Stille raus
-0:11–0:13 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
-0:13–0:29 zurück auf Normalgröße, letzte Zeile ausspielen
+0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf
+0:02–0:04 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
+0:04–0:19 zurück auf Normalgröße, letzte Zeile ausspielen
 ⸻
 UNTERTITEL:
 
-ein gewisses Alter, war bestimmt über 50. Wenn er weiß, ich komm eh nicht mehr raus, dann sicher sagt, was passiert ist, Alter. Kann sein, dass es auch noch dazu kommt. Interessant auf jeden Fall, weil ich habe den Fall damals auch verfolgt, als es passiert ist, war ich noch relativ jung, aber ich habe es natürlich auch mitbekommen und dann hieß es auch sehr, sehr schnell, Didi hat was damit zu tun und Chuck Knight ist da, krass, 30 Jahre später, kommen die damit um die Ecke, ist schon, hätte ich auch nicht mehr mitgerechnet, um ehrlich zu
+Interessant auf jeden Fall, weil ich habe den Fall damals auch verfolgt, als es passiert ist, war ich noch relativ jung, aber ich habe es natürlich auch mitbekommen und dann hieß es auch sehr, sehr schnell, Didi hat was damit zu tun und Chuck Knight ist da, krass, 30 Jahre später, kommen die damit um die Ecke, ist schon, hätte ich auch nicht mehr mitgerechnet, um ehrlich zu
 ⸻
 TIKTOK TITEL:
 
-„sicher sagt, was passiert ist, Alter“
+„Interessant auf jeden Fall, weil ich habe den Fall damals…“
 ⸻
 TIKTOK CAPTION:
 
@@ -1240,7 +1236,7 @@ K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: sicher sagt, was passiert ist, Alter   (45 Zeichen)
+K1ANUSH: Interessant auf jeden Fall, weil ich habe den Fall damals…   (67 Zeichen)
 
 ---
 
@@ -1249,8 +1245,8 @@ Timestamp Start: 1:46:55
 Timestamp Ende: 1:47:23
 Dauer: 28 s
 Kategorie: RAGE
-Virality Score /100: 68
-  Hook 19.1/25 · Unterhaltung 10.1/20 · Watchtime 19.9/20 · Share 8.8/15 · Kommentar 4.8/10 · Follower 5.5/10
+Virality Score /100: 66
+  Hook 16.6/25 · Unterhaltung 10.1/20 · Watchtime 19.9/20 · Share 8.8/15 · Kommentar 4.8/10 · Follower 5.5/10
 Warum dieser Clip: Dicht gesprochen, keine Leerlaufzeit und er rastet aus bei 1:47:11. Die Pointe liegt bei 55 % der Cliplänge, davor 15 s Aufbau.
 ⸻
 HOOK IM VIDEO:
@@ -1292,14 +1288,14 @@ K1ANUSH: etwas sich anschauen darf   (34 Zeichen)
 
 ---
 
-CLIP NUMMER: 27   (2862735566-007357)
-Timestamp Start: 2:02:36
+CLIP NUMMER: 27   (2862735566-007345)
+Timestamp Start: 2:02:25
 Timestamp Ende: 2:02:57
-Dauer: 21 s
+Dauer: 32 s
 Kategorie: RAGE
-Virality Score /100: 68
-  Hook 15.1/25 · Unterhaltung 12.1/20 · Watchtime 20.0/20 · Share 9.8/15 · Kommentar 5.8/10 · Follower 4.8/10
-Warum dieser Clip: Er rastet aus und dicht gesprochen, keine Leerlaufzeit bei 2:02:51. Die Pointe liegt bei 68 % der Cliplänge, davor 14 s Aufbau.
+Virality Score /100: 67
+  Hook 13.3/25 · Unterhaltung 13.4/20 · Watchtime 19.9/20 · Share 10.8/15 · Kommentar 5.8/10 · Follower 4.2/10
+Warum dieser Clip: Er rastet aus und er ist sichtbar überrascht bei 2:02:51. Die Pointe liegt bei 80 % der Cliplänge, davor 26 s Aufbau. Der Einstieg ist die Schwachstelle – Text-Hook ist Pflicht.
 ⸻
 HOOK IM VIDEO:
 
@@ -1310,13 +1306,13 @@ SCHNITT:
 Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
 
 0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf
-0:02–0:13 Originalausschnitt im Layout „facecam_gross“
-0:13–0:15 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
-0:15–0:20 zurück auf Normalgröße, letzte Zeile ausspielen
+0:02–0:25 Originalausschnitt im Layout „facecam_gross“
+0:25–0:27 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
+0:27–0:32 zurück auf Normalgröße, letzte Zeile ausspielen
 ⸻
 UNTERTITEL:
 
-politischer Bühne, auf einer hohen Ebene, wenn man solche Aussagen tätigt, wie ihr müsst jetzt den dritten Tempel bauen und das wird dann von Ministerpräsident zu keine Ahnung wem gesagt und das wird dann öffentlich gespreadert. Wenn ich mir so meine, ist das ernst? Das ist doch voll fanatisch eigentlich. Also wenn man doch den Frieden bewahren möchte, wenn man ja ein seriöser
+Und er sagt, was die mystischen Rabis dort sagen, ist im Moment sehr beunruhigend. Ja eben, guck mal, das meine ich ja. Ich finde generell, wenn so etwas gesagt wird, also auf politischer Bühne, auf einer hohen Ebene, wenn man solche Aussagen tätigt, wie ihr müsst jetzt den dritten Tempel bauen und das wird dann von Ministerpräsident zu keine Ahnung wem gesagt und das wird dann öffentlich gespreadert. Wenn ich mir so meine, ist das ernst? Das ist doch voll fanatisch eigentlich. Also wenn man doch den Frieden bewahren möchte, wenn man ja ein seriöser
 ⸻
 TIKTOK TITEL:
 
@@ -1351,7 +1347,7 @@ Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerl
 ⸻
 HOOK IM VIDEO:
 
-„genau dieses Problem haben wir alle“
+„Guck mal, egal ob man mich mag oder“
 ⸻
 SCHNITT:
 
@@ -1369,7 +1365,7 @@ Möge -Enfriedenruhen hat immer zu mir gesagt, mein Sohn, das Gefährlichste auf
 ⸻
 TIKTOK TITEL:
 
-„genau dieses Problem haben wir alle“
+„Guck mal, egal ob man mich mag oder“
 ⸻
 TIKTOK CAPTION:
 
@@ -1385,7 +1381,7 @@ K1ANUSH live auf Twitch. Und dann kam das.
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: genau dieses Problem haben wir alle   (44 Zeichen)
+K1ANUSH: Guck mal, egal ob man mich mag oder   (44 Zeichen)
 
 ---
 
@@ -1394,8 +1390,8 @@ Timestamp Start: 2:20:22
 Timestamp Ende: 2:20:51
 Dauer: 29 s
 Kategorie: UNEXPECTED
-Virality Score /100: 74
-  Hook 16.8/25 · Unterhaltung 14.3/20 · Watchtime 18.7/20 · Share 13.2/15 · Kommentar 4.9/10 · Follower 6.0/10
+Virality Score /100: 71
+  Hook 14.3/25 · Unterhaltung 14.3/20 · Watchtime 18.7/20 · Share 13.2/15 · Kommentar 4.9/10 · Follower 6.0/10
 Warum dieser Clip: Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 2:20:46. Die Pointe liegt bei 82 % der Cliplänge, davor 23 s Aufbau.
 ⸻
 HOOK IM VIDEO:
@@ -1406,7 +1402,7 @@ SCHNITT:
 
 Bildaufteilung: facecam_gross – Gameplay als Hintergrund, Facecam groß im oberen Drittel
 
-0:00–0:02 Gesicht groß, Text-Hook einblenden
+0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf
 0:02–0:22 Originalausschnitt im Layout „facecam_gross“
 0:23–0:25 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter
 0:23–0:23 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck
@@ -1466,7 +1462,7 @@ Wenn ihr Unterschiede macht nur zwischen gute Menschen oder böse Menschen, alle
 ⸻
 TIKTOK TITEL:
 
-„schwer zu begreifen, meine Güte“
+„erkenne dich selbst“
 ⸻
 TIKTOK CAPTION:
 
@@ -1482,25 +1478,25 @@ K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet
 ⸻
 YOUTUBE SHORTS TITEL:
 
-K1ANUSH: schwer zu begreifen, meine Güte   (40 Zeichen)
+K1ANUSH: erkenne dich selbst   (28 Zeichen)
 
 ---
 
 ## Kanal-Auswertung nach diesem Stream
 
 **Drei Clip-Arten mit dem größten Potenzial**
-1. UNEXPECTED – 19 Clips, Schnitt 71.2, bester 78
-2. RAGE – 5 Clips, Schnitt 70.8, bester 75
-3. STORY – 5 Clips, Schnitt 68.4, bester 70
+1. UNEXPECTED – 18 Clips, Schnitt 71.0, bester 79
+2. RAGE – 6 Clips, Schnitt 69.5, bester 75
+3. STORY – 5 Clips, Schnitt 67.8, bester 70
 
 **Häufiger produzieren**
-- Situationen wie in „UNEXPECTED“ – sie trugen diesen Stream (19 verwertbare Clips).
-- Wiederkehrende Stichworte der starken Clips: warte, kann, oder, keine, mich, haben
+- Situationen wie in „UNEXPECTED“ – sie trugen diesen Stream (18 verwertbare Clips).
+- Wiederkehrende Stichworte der starken Clips: warte, kann, oder, keine, mich, guck
 
 **Erzeugt voraussichtlich Kommentare**
 - CONTROVERSIAL (Teilnote Kommentar 0.91 von 1,00)
-- RAGE (Teilnote Kommentar 0.54 von 1,00)
-- STORY (Teilnote Kommentar 0.53 von 1,00)
+- RAGE (Teilnote Kommentar 0.56 von 1,00)
+- STORY (Teilnote Kommentar 0.51 von 1,00)
 
 **Mögliche Serienformate**
 - „K1ANUSH ohne Kontext“
@@ -1513,21 +1509,21 @@ K1ANUSH: schwer zu begreifen, meine Güte   (40 Zeichen)
 
 Momente, die aufgefallen sind, aber unter der Schwelle blieben. Bewusst aufgeführt: wer sie doch will, sieht hier, wo sie liegen.
 
-- 0:13:41 · 60 Punkte · STORY
+- 0:18:28 · 60 Punkte · STORY
 - 1:34:47 · 60 Punkte · STORY
-- 2:10:34 · 60 Punkte · RAGE
-- 0:05:24 · 59 Punkte · CHAT MOMENT
+- 1:57:10 · 60 Punkte · STORY
+- 2:18:06 · 60 Punkte · STORY
+- 0:13:34 · 59 Punkte · STORY
 - 1:27:42 · 59 Punkte · WIN
-- 1:57:30 · 59 Punkte · STORY
-- 2:00:28 · 59 Punkte · CHAT MOMENT
-- 0:12:37 · 58 Punkte · RAGE
+- 2:15:25 · 59 Punkte · STORY
+- 0:12:43 · 58 Punkte · RAGE
+- 0:15:53 · 58 Punkte · STORY
+- 0:16:16 · 58 Punkte · STORY
+- 1:17:38 · 58 Punkte · UNEXPECTED
 - 1:52:23 · 58 Punkte · STORY
+- 2:20:11 · 58 Punkte · CHAT MOMENT
 - 2:30:13 · 58 Punkte · STORY
 - 0:04:04 · 57 Punkte · STORY
-- 0:46:05 · 57 Punkte · STORY
-- 1:47:40 · 57 Punkte · STORY
-- 0:05:50 · 56 Punkte · STORY
-- 0:42:37 · 56 Punkte · STORY
 
 ---
 
@@ -1535,106 +1531,106 @@ Momente, die aufgefallen sind, aber unter der Schwelle blieben. Bewusst aufgefü
 
 ```
 2026-09-02
-  17:00  tiktok     2862735566-001890   78  UNEXPECTED     Seine Reaktion sagt alles 😂
-  20:30  tiktok     2862735566-003215   78  UNEXPECTED     Seine Reaktion sagt alles 😂
+  17:00  tiktok     2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles 😂
+  20:30  tiktok     2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles 😂
 
 2026-09-03
-  17:00  tiktok     2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles 😂
-  19:00  instagram  2862735566-001890   78  UNEXPECTED     Seine Reaktion sagt alles 😂
+  17:00  tiktok     2862735566-003215   76  UNEXPECTED     Seine Reaktion sagt alles 😂
+  19:00  instagram  2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles 😂
   20:30  tiktok     2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
 
 2026-09-04
   17:00  tiktok     2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles 😂
-  18:00  youtube    2862735566-001890   78  UNEXPECTED     Seine Reaktion sagt alles
-  19:00  instagram  2862735566-003215   78  UNEXPECTED     Seine Reaktion sagt alles 😂
+  18:00  youtube    2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles
+  19:00  instagram  2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles 😂
   20:30  tiktok     2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
 
 2026-09-05
-  17:00  tiktok     2862735566-008423   74  UNEXPECTED     Seine Reaktion sagt alles 😂
-  18:00  youtube    2862735566-003215   78  UNEXPECTED     Seine Reaktion sagt alles
-  19:00  instagram  2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles 😂
-  20:30  tiktok     2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
+  17:00  tiktok     2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
+  18:00  youtube    2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles
+  19:00  instagram  2862735566-003215   76  UNEXPECTED     Seine Reaktion sagt alles 😂
+  20:30  tiktok     2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
 
 2026-09-06
-  17:00  tiktok     2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
-  18:00  youtube    2862735566-003434   77  UNEXPECTED     Seine Reaktion sagt alles
+  17:00  tiktok     2862735566-008574   72  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
+  18:00  youtube    2862735566-003215   76  UNEXPECTED     Seine Reaktion sagt alles
   19:00  instagram  2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
-  20:30  tiktok     2862735566-008574   72  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
-
-2026-09-07
-  17:00  tiktok     2862735566-000661   71  UNEXPECTED     „das mein rechter Fuß“
-  18:00  youtube    2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
-  19:00  instagram  2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles 😂
   20:30  tiktok     2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
 
-2026-09-08
+2026-09-07
   17:00  tiktok     2862735566-003691   71  UNEXPECTED     Seine Reaktion sagt alles 😂
-  18:00  youtube    2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles
-  19:00  instagram  2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
+  18:00  youtube    2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
+  19:00  instagram  2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles 😂
   20:30  tiktok     2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
 
+2026-09-08
+  17:00  tiktok     2862735566-008423   71  UNEXPECTED     Seine Reaktion sagt alles 😂
+  18:00  youtube    2862735566-005467   75  UNEXPECTED     Seine Reaktion sagt alles
+  19:00  instagram  2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
+  20:30  tiktok     2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
+
 2026-09-09
-  17:00  tiktok     2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
+  17:00  tiktok     2862735566-005297   70  UNEXPECTED     „Wer nimmt das auf sich?“
   18:00  youtube    2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
-  19:00  instagram  2862735566-008423   74  UNEXPECTED     Seine Reaktion sagt alles 😂
-  20:30  tiktok     2862735566-005297   70  UNEXPECTED     „Wer nimmt das auf sich?“
+  19:00  instagram  2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
+  20:30  tiktok     2862735566-005314   70  STORY          „Energie ist nicht gleich nur Benzin, Diesel…“
 
 2026-09-10
-  17:00  tiktok     2862735566-005314   70  STORY          „wir einfach keine Ahnung haben Leute“
-  18:00  youtube    2862735566-008423   74  UNEXPECTED     Seine Reaktion sagt alles
-  19:00  instagram  2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
+  17:00  tiktok     2862735566-000661   68  UNEXPECTED     „das ist jetzt hier keine“
+  18:00  youtube    2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
+  19:00  instagram  2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
   20:30  tiktok     2862735566-001590   68  CONTROVERSIAL  „Ich habe auch dazu keine Meinung“
 
 2026-09-11
   17:00  tiktok     2862735566-001710   68  UNEXPECTED     „Ich muss erstmal das richtige Fenster wieder…“
-  18:00  youtube    2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
-  19:00  instagram  2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
-  20:30  tiktok     2862735566-004343   68  STORY          „Das wäre heftig“
-
-2026-09-12
-  17:00  tiktok     2862735566-005999   68  STORY          „sicher sagt, was passiert ist, Alter“
   18:00  youtube    2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
   19:00  instagram  2862735566-008574   72  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
-  20:30  tiktok     2862735566-006416   68  RAGE           „etwas sich anschauen darf“
+  20:30  tiktok     2862735566-001040   67  UNEXPECTED     „mehr so krass belasten“
 
-2026-09-13
-  17:00  tiktok     2862735566-007357   68  RAGE           „wird dann öffentlich gespreadert“
+2026-09-12
+  17:00  tiktok     2862735566-001208   67  STORY          „diese Zeit gehabt“
   18:00  youtube    2862735566-008574   72  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
-  19:00  instagram  2862735566-000661   71  UNEXPECTED     „das mein rechter Fuß“
-  20:30  tiktok     2862735566-001040   67  UNEXPECTED     „anderen Abbremsen hoch springen und so“
-
-2026-09-14
-  17:00  tiktok     2862735566-002040   67  UNEXPECTED     „eurem Freund Bescheid, holt sie raus aus diesen“
-  18:00  youtube    2862735566-000661   71  UNEXPECTED     „das mein rechter Fuß“
   19:00  instagram  2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
   20:30  tiktok     2862735566-005496   67  UNEXPECTED     „Vielleicht war das so lange her oder so?“
 
-2026-09-15
-  17:00  tiktok     2862735566-005975   67  UNEXPECTED     „ein gewisses Alter, war bestimmt über 50“
+2026-09-13
+  17:00  tiktok     2862735566-005975   67  UNEXPECTED     „der weiß mehr als wir alle“
   18:00  youtube    2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
   19:00  instagram  2862735566-003691   71  UNEXPECTED     Seine Reaktion sagt alles 😂
-  20:30  tiktok     2862735566-008004   67  UNEXPECTED     „genau dieses Problem haben wir alle“
+  20:30  tiktok     2862735566-007345   67  RAGE           „wird dann öffentlich gespreadert“
 
-2026-09-16
-  17:00  tiktok     2862735566-001851   66  UNEXPECTED     „Das muss man den Herrn wirklich“
+2026-09-14
+  17:00  tiktok     2862735566-008004   67  UNEXPECTED     „Guck mal, egal ob man mich mag oder“
   18:00  youtube    2862735566-003691   71  UNEXPECTED     Seine Reaktion sagt alles
   19:00  instagram  2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
-  20:30  tiktok     2862735566-002338   66  STORY          „Wer kennt das von euch?“
+  20:30  tiktok     2862735566-004338   66  STORY          „Das wäre heftig“
+
+2026-09-15
+  17:00  tiktok     2862735566-004986   66  RAGE           „Das muss doch irgendwas sein, Alter“
+  18:00  youtube    2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
+  19:00  instagram  2862735566-008423   71  UNEXPECTED     Seine Reaktion sagt alles 😂
+  20:30  tiktok     2862735566-006015   66  STORY          „Interessant auf jeden Fall, weil ich habe den“
+
+2026-09-16
+  17:00  tiktok     2862735566-006416   66  RAGE           „etwas sich anschauen darf“
+  18:00  youtube    2862735566-008423   71  UNEXPECTED     Seine Reaktion sagt alles
+  19:00  instagram  2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
+  20:30  tiktok     2862735566-000631   65  UNEXPECTED     „Hier ist mein Fuß, wie ihr sehen könnt“
 
 2026-09-17
-  18:00  youtube    2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
-  19:00  instagram  2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
-
-2026-09-18
   18:00  youtube    2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
   19:00  instagram  2862735566-005297   70  UNEXPECTED     „Wer nimmt das auf sich?“
 
-2026-09-19
+2026-09-18
   18:00  youtube    2862735566-005297   70  UNEXPECTED     „Wer nimmt das auf sich?“
-  19:00  instagram  2862735566-005314   70  STORY          „wir einfach keine Ahnung haben Leute“
+  19:00  instagram  2862735566-005314   70  STORY          „Energie ist nicht gleich nur Benzin, Diesel…“
+
+2026-09-19
+  18:00  youtube    2862735566-005314   70  STORY          „Energie ist nicht gleich nur Benzin, Diesel…“
+  19:00  instagram  2862735566-000661   68  UNEXPECTED     „das ist jetzt hier keine“
 
 2026-09-20
-  18:00  youtube    2862735566-005314   70  STORY          „wir einfach keine Ahnung haben Leute“
+  18:00  youtube    2862735566-000661   68  UNEXPECTED     „das ist jetzt hier keine“
   19:00  instagram  2862735566-001590   68  CONTROVERSIAL  „Ich habe auch dazu keine Meinung“
 
 2026-09-21
@@ -1643,50 +1639,50 @@ Momente, die aufgefallen sind, aber unter der Schwelle blieben. Bewusst aufgefü
 
 2026-09-22
   18:00  youtube    2862735566-001710   68  UNEXPECTED     „Ich muss erstmal das richtige Fenster wieder…“
-  19:00  instagram  2862735566-004343   68  STORY          „Das wäre heftig“
+  19:00  instagram  2862735566-001040   67  UNEXPECTED     „mehr so krass belasten“
 
 2026-09-23
-  18:00  youtube    2862735566-004343   68  STORY          „Das wäre heftig“
-  19:00  instagram  2862735566-005999   68  STORY          „sicher sagt, was passiert ist, Alter“
+  18:00  youtube    2862735566-001040   67  UNEXPECTED     „mehr so krass belasten“
+  19:00  instagram  2862735566-001208   67  STORY          „diese Zeit gehabt“
 
 2026-09-24
-  18:00  youtube    2862735566-005999   68  STORY          „sicher sagt, was passiert ist, Alter“
-  19:00  instagram  2862735566-006416   68  RAGE           „etwas sich anschauen darf“
-
-2026-09-25
-  18:00  youtube    2862735566-006416   68  RAGE           „etwas sich anschauen darf“
-  19:00  instagram  2862735566-007357   68  RAGE           „wird dann öffentlich gespreadert“
-
-2026-09-26
-  18:00  youtube    2862735566-007357   68  RAGE           „wird dann öffentlich gespreadert“
-  19:00  instagram  2862735566-001040   67  UNEXPECTED     „anderen Abbremsen hoch springen und so“
-
-2026-09-27
-  18:00  youtube    2862735566-001040   67  UNEXPECTED     „anderen Abbremsen hoch springen und so“
-  19:00  instagram  2862735566-002040   67  UNEXPECTED     „eurem Freund Bescheid, holt sie raus aus diesen“
-
-2026-09-28
-  18:00  youtube    2862735566-002040   67  UNEXPECTED     „eurem Freund Bescheid, holt sie raus aus diesen“
+  18:00  youtube    2862735566-001208   67  STORY          „diese Zeit gehabt“
   19:00  instagram  2862735566-005496   67  UNEXPECTED     „Vielleicht war das so lange her oder so?“
 
-2026-09-29
+2026-09-25
   18:00  youtube    2862735566-005496   67  UNEXPECTED     „Vielleicht war das so lange her oder so?“
-  19:00  instagram  2862735566-005975   67  UNEXPECTED     „ein gewisses Alter, war bestimmt über 50“
+  19:00  instagram  2862735566-005975   67  UNEXPECTED     „der weiß mehr als wir alle“
+
+2026-09-26
+  18:00  youtube    2862735566-005975   67  UNEXPECTED     „der weiß mehr als wir alle“
+  19:00  instagram  2862735566-007345   67  RAGE           „wird dann öffentlich gespreadert“
+
+2026-09-27
+  18:00  youtube    2862735566-007345   67  RAGE           „wird dann öffentlich gespreadert“
+  19:00  instagram  2862735566-008004   67  UNEXPECTED     „Guck mal, egal ob man mich mag oder“
+
+2026-09-28
+  18:00  youtube    2862735566-008004   67  UNEXPECTED     „Guck mal, egal ob man mich mag oder“
+  19:00  instagram  2862735566-004338   66  STORY          „Das wäre heftig“
+
+2026-09-29
+  18:00  youtube    2862735566-004338   66  STORY          „Das wäre heftig“
+  19:00  instagram  2862735566-004986   66  RAGE           „Das muss doch irgendwas sein, Alter“
 
 2026-09-30
-  18:00  youtube    2862735566-005975   67  UNEXPECTED     „ein gewisses Alter, war bestimmt über 50“
-  19:00  instagram  2862735566-008004   67  UNEXPECTED     „genau dieses Problem haben wir alle“
+  18:00  youtube    2862735566-004986   66  RAGE           „Das muss doch irgendwas sein, Alter“
+  19:00  instagram  2862735566-006015   66  STORY          „Interessant auf jeden Fall, weil ich habe den“
 
 2026-10-01
-  18:00  youtube    2862735566-008004   67  UNEXPECTED     „genau dieses Problem haben wir alle“
-  19:00  instagram  2862735566-001851   66  UNEXPECTED     „Das muss man den Herrn wirklich“
+  18:00  youtube    2862735566-006015   66  STORY          „Interessant auf jeden Fall, weil ich habe den“
+  19:00  instagram  2862735566-006416   66  RAGE           „etwas sich anschauen darf“
 
 2026-10-02
-  18:00  youtube    2862735566-001851   66  UNEXPECTED     „Das muss man den Herrn wirklich“
-  19:00  instagram  2862735566-002338   66  STORY          „Wer kennt das von euch?“
+  18:00  youtube    2862735566-006416   66  RAGE           „etwas sich anschauen darf“
+  19:00  instagram  2862735566-000631   65  UNEXPECTED     „Hier ist mein Fuß, wie ihr sehen könnt“
 
 2026-10-03
-  18:00  youtube    2862735566-002338   66  STORY          „Wer kennt das von euch?“
+  18:00  youtube    2862735566-000631   65  UNEXPECTED     „Hier ist mein Fuß, wie ihr sehen könnt“
 
 90 Veröffentlichungen, 30 Clips, ab 2026-09-02.
 ```

@@ -12,35 +12,23 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.26,Clip,,0,0,0,,Ich habe auch dazu keine
-Dialogue: 0,0:00:01.26,0:00:01.71,Clip,,0,0,0,,Meinung.
-Dialogue: 0,0:00:02.26,0:00:02.96,Clip,,0,0,0,,Klar kann man sagen,
-Dialogue: 0,0:00:03.22,0:00:03.92,Clip,,0,0,0,,Frauen schlagen geht
-Dialogue: 0,0:00:03.92,0:00:04.82,Clip,,0,0,0,,nicht, okay, da sind wir
-Dialogue: 0,0:00:04.82,0:00:05.50,Clip,,0,0,0,,uns {\c&H0022DDFF&}alle{\c&H00FFFFFF&} einig, aber
-Dialogue: 0,0:00:05.50,0:00:06.16,Clip,,0,0,0,,darüber hinaus,
-Dialogue: 0,0:00:06.80,0:00:07.52,Clip,,0,0,0,,was soll ich jetzt über
-Dialogue: 0,0:00:07.52,0:00:08.32,Clip,,0,0,0,,ihn reden oder was?
-Dialogue: 0,0:00:08.56,0:00:09.50,Clip,,0,0,0,,Also ich springe bestimmt
-Dialogue: 0,0:00:09.50,0:00:11.70,Clip,,0,0,0,,nicht auf diesen Hype
-Dialogue: 0,0:00:11.70,0:00:12.54,Clip,,0,0,0,,-Zug, wo jetzt {\c&H0022DDFF&}alle{\c&H00FFFFFF&}
-Dialogue: 0,0:00:12.54,0:00:13.62,Clip,,0,0,0,,YouTuber und Streamer
-Dialogue: 0,0:00:13.62,0:00:15.18,Clip,,0,0,0,,drauf springen, weil sie
-Dialogue: 0,0:00:15.18,0:00:15.96,Clip,,0,0,0,,wissen, dass es generiert
-Dialogue: 0,0:00:15.96,0:00:16.88,Clip,,0,0,0,,Klicks, weil {\c&H0022DDFF&}jeder{\c&H00FFFFFF&} gerade
-Dialogue: 0,0:00:16.88,0:00:17.84,Clip,,0,0,0,,guckt, wie die Meinung des
-Dialogue: 0,0:00:17.84,0:00:19.82,Clip,,0,0,0,,anderen ist. Aber ich habe
-Dialogue: 0,0:00:19.82,0:00:20.82,Clip,,0,0,0,,eine ganz klare Meinung
-Dialogue: 0,0:00:20.82,0:00:22.04,Clip,,0,0,0,,und meine Meinung ist, das
-Dialogue: 0,0:00:22.04,0:00:23.24,Clip,,0,0,0,,geht mich ein feuchten
-Dialogue: 0,0:00:23.24,0:00:24.62,Clip,,0,0,0,,Dreck an, was er mit
-Dialogue: 0,0:00:24.62,0:00:25.78,Clip,,0,0,0,,seiner Frau da hat, ob die
-Dialogue: 0,0:00:25.78,0:00:26.68,Clip,,0,0,0,,sich scheiden lassen, ob
-Dialogue: 0,0:00:26.68,0:00:28.08,Clip,,0,0,0,,die zusammen bleiben, ob
-Dialogue: 0,0:00:28.08,0:00:29.42,Clip,,0,0,0,,er seine Firmen schließt,
-Dialogue: 0,0:00:29.46,0:00:30.82,Clip,,0,0,0,,umzieht, sonst was macht,
-Dialogue: 0,0:00:30.94,0:00:31.70,Clip,,0,0,0,,aus der Öffentlichkeit
-Dialogue: 0,0:00:31.70,0:00:32.78,Clip,,0,0,0,,verschwindelt und so.
-Dialogue: 0,0:00:33.20,0:00:34.14,Clip,,0,0,0,,Das geht mich überhaupt
-Dialogue: 0,0:00:34.14,0:00:35.14,Clip,,0,0,0,,gar {\c&H0022DDFF&}nichts{\c&H00FFFFFF&} an, ich habe
-Dialogue: 0,0:00:35.14,0:00:36.06,Clip,,0,0,0,,dazu auch {\c&H0022DDFF&}nichts{\c&H00FFFFFF&} zu sagen.
+Dialogue: 0,0:00:00.00,0:00:00.98,Clip,,0,0,0,,Fußball spielen will,
+Dialogue: 0,0:00:01.12,0:00:02.48,Clip,,0,0,0,,trainieren will, dann kann
+Dialogue: 0,0:00:02.48,0:00:03.62,Clip,,0,0,0,,ich noch einmal Gas geben
+Dialogue: 0,0:00:03.62,0:00:04.54,Clip,,0,0,0,,und dann kann ich von mir
+Dialogue: 0,0:00:04.54,0:00:05.76,Clip,,0,0,0,,aus mein Ziel irgendwann
+Dialogue: 0,0:00:05.76,0:00:06.62,Clip,,0,0,0,,zertrümmern, aber dann
+Dialogue: 0,0:00:06.62,0:00:07.14,Clip,,0,0,0,,habe ich mit ihm
+Dialogue: 0,0:00:07.14,0:00:08.52,Clip,,0,0,0,,wenigstens auch mal diese
+Dialogue: 0,0:00:08.52,0:00:09.14,Clip,,0,0,0,,Zeit gehabt.
+Dialogue: 0,0:00:09.96,0:00:10.74,Clip,,0,0,0,,Bevor ich die jetzt
+Dialogue: 0,0:00:10.74,0:00:12.28,Clip,,0,0,0,,verbrate, weißt du, dann
+Dialogue: 0,0:00:12.28,0:00:14.10,Clip,,0,0,0,,warte ich lieber und
+Dialogue: 0,0:00:14.10,0:00:15.00,Clip,,0,0,0,,sobald mein Sohn in einem
+Dialogue: 0,0:00:15.00,0:00:15.80,Clip,,0,0,0,,Allteils vor der richtig
+Dialogue: 0,0:00:15.80,0:00:17.12,Clip,,0,0,0,,Gas geben will, dann
+Dialogue: 0,0:00:17.12,0:00:17.94,Clip,,0,0,0,,möchte ich lieber mit ihm
+Dialogue: 0,0:00:17.94,0:00:19.30,Clip,,0,0,0,,dann nochmal zusammen auf
+Dialogue: 0,0:00:19.30,0:00:20.60,Clip,,0,0,0,,dem Feld stehen, spielen,
+Dialogue: 0,0:00:20.78,0:00:21.34,Clip,,0,0,0,,trainieren, was auch
+Dialogue: 0,0:00:21.34,0:00:23.09,Clip,,0,0,0,,{\c&H0022DDFF&}immer.{\c&H00FFFFFF&} Dann

@@ -12,16 +12,18 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.68,Clip,,0,0,0,,sondern von 10 .000.
-Dialogue: 0,0:00:02.32,0:00:03.76,Clip,,0,0,0,,Doch was verbergen diese
-Dialogue: 0,0:00:03.76,0:00:05.02,Clip,,0,0,0,,Rätselhaften Bauwerke?
-Dialogue: 0,0:00:05.64,0:00:06.38,Clip,,0,0,0,,Was ist das?
-Dialogue: 0,0:00:06.90,0:00:07.88,Clip,,0,0,0,,Sind das die Häuser der
-Dialogue: 0,0:00:07.88,0:00:08.90,Clip,,0,0,0,,Bewohner von dort?
-Dialogue: 0,0:00:09.56,0:00:10.50,Clip,,0,0,0,,Stell dir vor, {\c&H0022DDFF&}jeder{\c&H00FFFFFF&} hat
-Dialogue: 0,0:00:10.50,0:00:11.32,Clip,,0,0,0,,so ein Haus mit so einem
-Dialogue: 0,0:00:11.32,0:00:11.94,Clip,,0,0,0,,Ding da oben drauf.
-Dialogue: 0,0:00:12.02,0:00:12.56,Clip,,0,0,0,,Das ist ja {\c&H0022DDFF&}krass.{\c&H00FFFFFF&}
-Dialogue: 0,0:00:12.96,0:00:13.70,Clip,,0,0,0,,Das wäre heftig.
-Dialogue: 0,0:00:13.96,0:00:15.02,Clip,,0,0,0,,Ey, lieber SkyWitty,
-Dialogue: 0,0:00:15.16,0:00:17.29,Clip,,0,0,0,,erstmal hier auf Holz klopfen.
+Dialogue: 0,0:00:00.00,0:00:01.68,Clip,,0,0,0,,Kann man denn diese Art
+Dialogue: 0,0:00:01.68,0:00:02.96,Clip,,0,0,0,,von Energie, was auch
+Dialogue: 0,0:00:02.96,0:00:03.86,Clip,,0,0,0,,{\c&H0022DDFF&}immer{\c&H00FFFFFF&} das für eine Energie
+Dialogue: 0,0:00:03.86,0:00:05.24,Clip,,0,0,0,,sein soll, kann man das
+Dialogue: 0,0:00:05.24,0:00:06.12,Clip,,0,0,0,,nicht irgendwie messen?
+Dialogue: 0,0:00:06.68,0:00:07.54,Clip,,0,0,0,,Es gibt auch mittlerweile
+Dialogue: 0,0:00:07.54,0:00:09.06,Clip,,0,0,0,,so {\c&H0022DDFF&}krass{\c&H00FFFFFF&} viele Messgeräte,
+Dialogue: 0,0:00:09.08,0:00:10.00,Clip,,0,0,0,,die auch sehr sensibel
+Dialogue: 0,0:00:10.00,0:00:10.45,Clip,,0,0,0,,sind.
+Dialogue: 0,0:00:11.02,0:00:11.94,Clip,,0,0,0,,Man kann doch da
+Dialogue: 0,0:00:11.94,0:00:13.12,Clip,,0,0,0,,irgendwelche Veränderungen,
+Dialogue: 0,0:00:13.20,0:00:13.72,Clip,,0,0,0,,wenn sich da irgendwas
+Dialogue: 0,0:00:13.72,0:00:14.62,Clip,,0,0,0,,verändert, könnte man das
+Dialogue: 0,0:00:14.62,0:00:15.44,Clip,,0,0,0,,auch messen eigentlich.
+Dialogue: 0,0:00:16.10,0:00:18.66,Clip,,0,0,0,,Das ist doch messbar. Müsste eigentlich.

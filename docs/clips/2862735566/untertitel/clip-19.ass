@@ -12,18 +12,24 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.68,Clip,,0,0,0,,Kann man denn diese Art
-Dialogue: 0,0:00:01.68,0:00:02.96,Clip,,0,0,0,,von Energie, was auch
-Dialogue: 0,0:00:02.96,0:00:03.86,Clip,,0,0,0,,{\c&H0022DDFF&}immer{\c&H00FFFFFF&} das für eine Energie
-Dialogue: 0,0:00:03.86,0:00:05.24,Clip,,0,0,0,,sein soll, kann man das
-Dialogue: 0,0:00:05.24,0:00:06.12,Clip,,0,0,0,,nicht irgendwie messen?
-Dialogue: 0,0:00:06.68,0:00:07.54,Clip,,0,0,0,,Es gibt auch mittlerweile
-Dialogue: 0,0:00:07.54,0:00:09.06,Clip,,0,0,0,,so {\c&H0022DDFF&}krass{\c&H00FFFFFF&} viele Messgeräte,
-Dialogue: 0,0:00:09.08,0:00:10.00,Clip,,0,0,0,,die auch sehr sensibel
-Dialogue: 0,0:00:10.00,0:00:10.45,Clip,,0,0,0,,sind.
-Dialogue: 0,0:00:11.02,0:00:11.94,Clip,,0,0,0,,Man kann doch da
-Dialogue: 0,0:00:11.94,0:00:13.12,Clip,,0,0,0,,irgendwelche Veränderungen,
-Dialogue: 0,0:00:13.20,0:00:13.72,Clip,,0,0,0,,wenn sich da irgendwas
-Dialogue: 0,0:00:13.72,0:00:14.62,Clip,,0,0,0,,verändert, könnte man das
-Dialogue: 0,0:00:14.62,0:00:15.44,Clip,,0,0,0,,auch messen eigentlich.
-Dialogue: 0,0:00:16.10,0:00:18.66,Clip,,0,0,0,,Das ist doch messbar. Müsste eigentlich.
+Dialogue: 0,0:00:00.00,0:00:01.14,Clip,,0,0,0,,Das wird mich mal echt
+Dialogue: 0,0:00:01.14,0:00:02.24,Clip,,0,0,0,,brennend interessieren. In
+Dialogue: 0,0:00:02.24,0:00:03.40,Clip,,0,0,0,,Frankreich befindet sich
+Dialogue: 0,0:00:03.40,0:00:04.76,Clip,,0,0,0,,die {\c&H0022DDFF&}größte{\c&H00FFFFFF&} Ansammung von
+Dialogue: 0,0:00:04.76,0:00:06.56,Clip,,0,0,0,,Menhirn der Welt, die als
+Dialogue: 0,0:00:06.56,0:00:08.50,Clip,,0,0,0,,3000 Monolithen, die
+Dialogue: 0,0:00:08.50,0:00:10.14,Clip,,0,0,0,,zwischen 50 Zentimetern
+Dialogue: 0,0:00:10.14,0:00:11.66,Clip,,0,0,0,,und 7 Metern hoch sind.
+Dialogue: 0,0:00:12.74,0:00:13.54,Clip,,0,0,0,,Weil Leute, wenn wir mal
+Dialogue: 0,0:00:13.54,0:00:14.10,Clip,,0,0,0,,{\c&H0022DDFF&}ehrlich{\c&H00FFFFFF&} sind,
+Dialogue: 0,0:00:14.82,0:00:15.96,Clip,,0,0,0,,überall auf der Welt
+Dialogue: 0,0:00:15.96,0:00:17.14,Clip,,0,0,0,,verteilt in verschiedenen
+Dialogue: 0,0:00:17.14,0:00:17.88,Clip,,0,0,0,,Regionen,
+Dialogue: 0,0:00:18.64,0:00:20.12,Clip,,0,0,0,,benutzen sie quasi eine
+Dialogue: 0,0:00:20.12,0:00:22.52,Clip,,0,0,0,,ähnliche Architektur und
+Dialogue: 0,0:00:22.52,0:00:23.88,Clip,,0,0,0,,ähnliche Techniken, um
+Dialogue: 0,0:00:23.88,0:00:25.08,Clip,,0,0,0,,nach oben gerichtete
+Dialogue: 0,0:00:25.08,0:00:26.44,Clip,,0,0,0,,Bauten irgendwie zu
+Dialogue: 0,0:00:26.44,0:00:27.28,Clip,,0,0,0,,machen. Das ist doch kein
+Dialogue: 0,0:00:27.28,0:00:27.73,Clip,,0,0,0,,Zufall.
+Dialogue: 0,0:00:28.54,0:00:30.19,Clip,,0,0,0,,Das muss doch irgendwas sein,

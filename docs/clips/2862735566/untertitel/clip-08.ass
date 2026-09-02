@@ -12,17 +12,22 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.24,Clip,,0,0,0,,zu spenden für Gaza auf,
-Dialogue: 0,0:00:01.34,0:00:02.18,Clip,,0,0,0,,also das ist schon echt
-Dialogue: 0,0:00:02.18,0:00:02.63,Clip,,0,0,0,,ein Move.
-Dialogue: 0,0:00:03.42,0:00:04.14,Clip,,0,0,0,,Das muss man den Herrn
-Dialogue: 0,0:00:04.14,0:00:04.86,Clip,,0,0,0,,{\c&H0022DDFF&}wirklich{\c&H00FFFFFF&} lassen.
-Dialogue: 0,0:00:07.02,0:00:07.47,Clip,,0,0,0,,Wow.
-Dialogue: 0,0:00:09.56,0:00:11.08,Clip,,0,0,0,,Und wir werden heute ein
-Dialogue: 0,0:00:11.08,0:00:12.28,Clip,,0,0,0,,ähnliches Thema gehen,
-Dialogue: 0,0:00:12.38,0:00:13.60,Clip,,0,0,0,,allerdings gab es das
-Dialogue: 0,0:00:13.60,0:00:14.66,Clip,,0,0,0,,Video nicht auf YouTube.
-Dialogue: 0,0:00:16.16,0:00:17.76,Clip,,0,0,0,,Kampf der Kulturen, die
-Dialogue: 0,0:00:17.76,0:00:18.21,Clip,,0,0,0,,Agenda,
-Dialogue: 0,0:00:19.54,0:00:20.86,Clip,,0,0,0,,der dritte Tempel.
-Dialogue: 0,0:00:23.79,0:00:25.03,Clip,,0,0,0,,Ja, also wir werden heute
+Dialogue: 0,0:00:00.00,0:00:00.78,Clip,,0,0,0,,Sind das selber einfach
+Dialogue: 0,0:00:00.78,0:00:02.42,Clip,,0,0,0,,nicht in der Öliste?
+Dialogue: 0,0:00:02.94,0:00:03.68,Clip,,0,0,0,,Hier kommt mal wenn ich
+Dialogue: 0,0:00:03.68,0:00:04.14,Clip,,0,0,0,,jetzt hier,
+Dialogue: 0,0:00:04.82,0:00:05.48,Clip,,0,0,0,,weil ich Ich nehme euch
+Dialogue: 0,0:00:05.48,0:00:06.16,Clip,,0,0,0,,mal kurz mit.
+Dialogue: 0,0:00:07.00,0:00:07.70,Clip,,0,0,0,,Ich muss erstmal das
+Dialogue: 0,0:00:07.70,0:00:08.58,Clip,,0,0,0,,richtige Fenster wieder
+Dialogue: 0,0:00:08.58,0:00:10.06,Clip,,0,0,0,,einfahren. Da sind wir
+Dialogue: 0,0:00:10.06,0:00:10.74,Clip,,0,0,0,,doch wieder, Leute.
+Dialogue: 0,0:00:11.62,0:00:12.28,Clip,,0,0,0,,Wenn ich jetzt hier
+Dialogue: 0,0:00:12.28,0:00:14.36,Clip,,0,0,0,,Kian... Guck mal, wenn ich
+Dialogue: 0,0:00:14.36,0:00:15.30,Clip,,0,0,0,,Kian eingebe, kommt
+Dialogue: 0,0:00:15.30,0:00:17.40,Clip,,0,0,0,,Kianosch. Vor Kianosch.
+Dialogue: 0,0:00:17.58,0:00:18.03,Clip,,0,0,0,,Nein.
+Dialogue: 0,0:00:18.68,0:00:19.62,Clip,,0,0,0,,Das ist natürlich mein
+Dialogue: 0,0:00:19.62,0:00:20.52,Clip,,0,0,0,,Algo, ich mache nur Spaß.
+Dialogue: 0,0:00:20.74,0:00:21.62,Clip,,0,0,0,,Kianosch ist natürlich
+Dialogue: 0,0:00:21.62,0:00:23.25,Clip,,0,0,0,,Präsident, oder was wir zu machen.

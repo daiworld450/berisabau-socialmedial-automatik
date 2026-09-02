@@ -12,22 +12,15 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:00.92,Clip,,0,0,0,,von euch fühlen können,
-Dialogue: 0,0:00:01.32,0:00:01.96,Clip,,0,0,0,,das sette ich schon als
-Dialogue: 0,0:00:01.96,0:00:02.78,Clip,,0,0,0,,Kind, ich weiß noch nicht,
-Dialogue: 0,0:00:02.84,0:00:03.42,Clip,,0,0,0,,wo das herkommt.
-Dialogue: 0,0:00:04.22,0:00:05.36,Clip,,0,0,0,,Wenn ich über so ein Boden
-Dialogue: 0,0:00:05.36,0:00:06.36,Clip,,0,0,0,,gelaufen bin hier,
-Dialogue: 0,0:00:07.14,0:00:08.28,Clip,,0,0,0,,durfte ich {\c&H0022DDFF&}niemals{\c&H00FFFFFF&} auf die
-Dialogue: 0,0:00:08.28,0:00:09.34,Clip,,0,0,0,,Linien treten. Wer kennt
-Dialogue: 0,0:00:09.34,0:00:09.80,Clip,,0,0,0,,das von euch?
-Dialogue: 0,0:00:10.70,0:00:11.78,Clip,,0,0,0,,Ich muss, kennt ihr das?
-Dialogue: 0,0:00:12.14,0:00:12.90,Clip,,0,0,0,,Das macht mein Sohn
-Dialogue: 0,0:00:12.90,0:00:14.46,Clip,,0,0,0,,heutzutage, der sagt Papa,
-Dialogue: 0,0:00:14.94,0:00:16.28,Clip,,0,0,0,,halt meine Hand, ich darf
-Dialogue: 0,0:00:16.28,0:00:17.32,Clip,,0,0,0,,nicht die Linien berühren.
-Dialogue: 0,0:00:17.78,0:00:18.66,Clip,,0,0,0,,Ich habe das auch {\c&H0022DDFF&}immer{\c&H00FFFFFF&}
-Dialogue: 0,0:00:18.66,0:00:19.48,Clip,,0,0,0,,gemacht, aber warum?
-Dialogue: 0,0:00:19.48,0:00:21.00,Clip,,0,0,0,,das ist irgendwie so
-Dialogue: 0,0:00:21.00,0:00:22.28,Clip,,0,0,0,,falsch wenn ich auf die
-Dialogue: 0,0:00:22.28,0:00:24.27,Clip,,0,0,0,,linie trete und ich habe noch ein
+Dialogue: 0,0:00:00.00,0:00:01.72,Clip,,0,0,0,,plus 2, gleich 3.
+Dialogue: 0,0:00:02.48,0:00:04.16,Clip,,0,0,0,,3 mal 5, gleich 15.
+Dialogue: 0,0:00:04.64,0:00:06.24,Clip,,0,0,0,,1 plus 5, gleich 6.
+Dialogue: 0,0:00:06.60,0:00:08.62,Clip,,0,0,0,,3 mal 6, gleich 18.
+Dialogue: 0,0:00:09.10,0:00:11.32,Clip,,0,0,0,,1 plus 8, gleich 9.
+Dialogue: 0,0:00:12.40,0:00:12.96,Clip,,0,0,0,,Okay.
+Dialogue: 0,0:00:16.22,0:00:17.48,Clip,,0,0,0,,Okay, das ist {\c&H0022DDFF&}krass.{\c&H00FFFFFF&}
+Dialogue: 0,0:00:18.24,0:00:20.12,Clip,,0,0,0,,Was? Da kommt {\c&H0022DDFF&}immer{\c&H00FFFFFF&} 369
+Dialogue: 0,0:00:20.12,0:00:20.57,Clip,,0,0,0,,raus?
+Dialogue: 0,0:00:22.80,0:00:23.25,Clip,,0,0,0,,Also
+Dialogue: 0,0:00:23.08,0:00:25.32,Clip,,0,0,0,,3
+Dialogue: 0,0:00:25.32,0:00:26.51,Clip,,0,0,0,,mal 7 ist 21.

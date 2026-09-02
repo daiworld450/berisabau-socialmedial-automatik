@@ -12,20 +12,28 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:01.52,Clip,,0,0,0,,politischer Bühne, auf
-Dialogue: 0,0:00:01.52,0:00:03.80,Clip,,0,0,0,,einer hohen Ebene, wenn
-Dialogue: 0,0:00:03.80,0:00:04.78,Clip,,0,0,0,,man solche Aussagen
-Dialogue: 0,0:00:04.78,0:00:06.70,Clip,,0,0,0,,tätigt, wie ihr müsst
-Dialogue: 0,0:00:06.70,0:00:07.84,Clip,,0,0,0,,jetzt den dritten Tempel
-Dialogue: 0,0:00:07.84,0:00:08.92,Clip,,0,0,0,,bauen und das wird dann
-Dialogue: 0,0:00:08.92,0:00:10.76,Clip,,0,0,0,,von Ministerpräsident zu
-Dialogue: 0,0:00:10.76,0:00:11.70,Clip,,0,0,0,,keine Ahnung wem gesagt
-Dialogue: 0,0:00:11.70,0:00:12.44,Clip,,0,0,0,,und das wird dann
-Dialogue: 0,0:00:12.44,0:00:13.44,Clip,,0,0,0,,öffentlich gespreadert.
-Dialogue: 0,0:00:13.50,0:00:14.10,Clip,,0,0,0,,Wenn ich mir so meine,
-Dialogue: 0,0:00:14.20,0:00:14.68,Clip,,0,0,0,,ist das ernst?
-Dialogue: 0,0:00:15.36,0:00:16.00,Clip,,0,0,0,,Das ist doch voll
-Dialogue: 0,0:00:16.00,0:00:17.64,Clip,,0,0,0,,fanatisch eigentlich. Also
-Dialogue: 0,0:00:17.64,0:00:18.54,Clip,,0,0,0,,wenn man doch den Frieden
-Dialogue: 0,0:00:18.54,0:00:19.46,Clip,,0,0,0,,bewahren möchte, wenn man
-Dialogue: 0,0:00:19.46,0:00:20.66,Clip,,0,0,0,,ja ein seriöser
+Dialogue: 0,0:00:00.00,0:00:01.52,Clip,,0,0,0,,Und er sagt, was die
+Dialogue: 0,0:00:01.52,0:00:02.52,Clip,,0,0,0,,mystischen Rabis dort
+Dialogue: 0,0:00:02.52,0:00:04.00,Clip,,0,0,0,,sagen, ist im Moment sehr
+Dialogue: 0,0:00:04.00,0:00:05.44,Clip,,0,0,0,,beunruhigend. Ja eben,
+Dialogue: 0,0:00:05.58,0:00:06.32,Clip,,0,0,0,,guck mal, das meine ich
+Dialogue: 0,0:00:06.32,0:00:06.77,Clip,,0,0,0,,ja.
+Dialogue: 0,0:00:07.24,0:00:08.46,Clip,,0,0,0,,Ich finde generell, wenn
+Dialogue: 0,0:00:08.46,0:00:10.66,Clip,,0,0,0,,so etwas gesagt wird,
+Dialogue: 0,0:00:11.26,0:00:12.34,Clip,,0,0,0,,also auf politischer
+Dialogue: 0,0:00:12.34,0:00:14.36,Clip,,0,0,0,,Bühne, auf einer hohen
+Dialogue: 0,0:00:14.36,0:00:15.76,Clip,,0,0,0,,Ebene, wenn man solche
+Dialogue: 0,0:00:15.76,0:00:17.12,Clip,,0,0,0,,Aussagen tätigt, wie
+Dialogue: 0,0:00:17.12,0:00:18.84,Clip,,0,0,0,,ihr müsst jetzt den
+Dialogue: 0,0:00:18.84,0:00:19.98,Clip,,0,0,0,,dritten Tempel bauen und
+Dialogue: 0,0:00:19.98,0:00:20.82,Clip,,0,0,0,,das wird dann von
+Dialogue: 0,0:00:20.82,0:00:22.62,Clip,,0,0,0,,Ministerpräsident zu keine
+Dialogue: 0,0:00:22.62,0:00:23.78,Clip,,0,0,0,,Ahnung wem gesagt und das
+Dialogue: 0,0:00:23.78,0:00:24.52,Clip,,0,0,0,,wird dann öffentlich
+Dialogue: 0,0:00:24.52,0:00:25.48,Clip,,0,0,0,,gespreadert. Wenn ich mir
+Dialogue: 0,0:00:25.48,0:00:26.34,Clip,,0,0,0,,so meine, ist das ernst?
+Dialogue: 0,0:00:27.02,0:00:27.66,Clip,,0,0,0,,Das ist doch voll
+Dialogue: 0,0:00:27.66,0:00:29.30,Clip,,0,0,0,,fanatisch eigentlich. Also
+Dialogue: 0,0:00:29.30,0:00:30.20,Clip,,0,0,0,,wenn man doch den Frieden
+Dialogue: 0,0:00:30.20,0:00:31.12,Clip,,0,0,0,,bewahren möchte, wenn man
+Dialogue: 0,0:00:31.12,0:00:32.32,Clip,,0,0,0,,ja ein seriöser

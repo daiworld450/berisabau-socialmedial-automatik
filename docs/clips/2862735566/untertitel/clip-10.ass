@@ -12,25 +12,16 @@ Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,4
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
-Dialogue: 0,0:00:00.00,0:00:00.98,Clip,,0,0,0,,eurem Freund Bescheid,
-Dialogue: 0,0:00:01.30,0:00:02.28,Clip,,0,0,0,,holt sie raus aus diesen
-Dialogue: 0,0:00:02.28,0:00:03.94,Clip,,0,0,0,,lächerlichen Streams, die
-Dialogue: 0,0:00:03.94,0:00:05.00,Clip,,0,0,0,,die im Leben nicht
-Dialogue: 0,0:00:05.00,0:00:05.54,Clip,,0,0,0,,weiterbringen.
-Dialogue: 0,0:00:06.18,0:00:07.20,Clip,,0,0,0,,Lasst uns lieber gemeinsam
-Dialogue: 0,0:00:07.20,0:00:09.38,Clip,,0,0,0,,misraschieren und auf die
-Dialogue: 0,0:00:09.38,0:00:10.80,Clip,,0,0,0,,Dinge schauen. Und Da kann
-Dialogue: 0,0:00:10.80,0:00:12.54,Clip,,0,0,0,,uns 1996ih danken mein
-Dialogue: 0,0:00:12.54,0:00:14.86,Clip,,0,0,0,,bester also eine
-Dialogue: 0,0:00:14.86,0:00:16.22,Clip,,0,0,0,,der themen warte mal
-Dialogue: 0,0:00:16.22,0:00:17.72,Clip,,0,0,0,,dominik hier auch erst mal
-Dialogue: 0,0:00:17.72,0:00:18.74,Clip,,0,0,0,,danke für den prime mein
-Dialogue: 0,0:00:18.74,0:00:19.54,Clip,,0,0,0,,bester dankeschön
-Dialogue: 0,0:00:19.54,0:00:21.10,Clip,,0,0,0,,dankeschön vielen vielen
-Dialogue: 0,0:00:21.10,0:00:21.56,Clip,,0,0,0,,lieben dank
-Dialogue: 0,0:00:22.38,0:00:24.58,Clip,,0,0,0,,von ganzem herzen auf
-Dialogue: 0,0:00:24.58,0:00:26.18,Clip,,0,0,0,,{\c&H0022DDFF&}alles{\c&H00FFFFFF&} gut bei dir thank
-Dialogue: 0,0:00:28.36,0:00:28.94,Clip,,0,0,0,,you very much
-Dialogue: 0,0:00:31.43,0:00:33.61,Clip,,0,0,0,,also eine der themen
-Dialogue: 0,0:00:33.61,0:00:34.73,Clip,,0,0,0,,die mich auch brennend
-Dialogue: 0,0:00:34.73,0:00:36.97,Clip,,0,0,0,,interessieren und eine der gründe weshalb
+Dialogue: 0,0:00:00.00,0:00:01.06,Clip,,0,0,0,,{\c&H0022DDFF&}Alles{\c&H00FFFFFF&} gut bei euch.
+Dialogue: 0,0:00:01.54,0:00:02.48,Clip,,0,0,0,,Ey danke erst mal, ich
+Dialogue: 0,0:00:02.48,0:00:03.08,Clip,,0,0,0,,muss mich hier kurz
+Dialogue: 0,0:00:03.08,0:00:04.38,Clip,,0,0,0,,bedanken. Warte mal.
+Dialogue: 0,0:00:05.36,0:00:07.04,Clip,,0,0,0,,Erst mal, warte mal, warte
+Dialogue: 0,0:00:07.04,0:00:08.40,Clip,,0,0,0,,mal, warte, warte, warte,
+Dialogue: 0,0:00:08.40,0:00:08.85,Clip,,0,0,0,,warte.
+Dialogue: 0,0:00:09.92,0:00:11.70,Clip,,0,0,0,,Erst mal dank an Karibik
+Dialogue: 0,0:00:11.70,0:00:13.64,Clip,,0,0,0,,Hendrik für dein Abo vor
+Dialogue: 0,0:00:13.64,0:00:15.52,Clip,,0,0,0,,19 Minuten. X -Act mal
+Dialogue: 0,0:00:15.52,0:00:16.80,Clip,,0,0,0,,lieber. Dankeschön vor 19
+Dialogue: 0,0:00:16.80,0:00:17.25,Clip,,0,0,0,,Minuten.
+Dialogue: 0,0:00:18.02,0:00:19.50,Clip,,0,0,0,,Kilominat vor 14 Minuten.
