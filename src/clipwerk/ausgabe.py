@@ -149,14 +149,22 @@ def schreibe_paket(ergebnis: Ergebnis, stream: Stream, ziel: Path,
     for clip in ergebnis.clips:
         name = f"clip-{clip.nummer:02d}"
         ass = untertitel_ordner / f"{name}.ass"
-        ass.write_text(unt.als_ass(clip.zeilen), encoding="utf-8")
-        (untertitel_ordner / f"{name}.srt").write_text(
-            unt.als_srt(clip.zeilen), encoding="utf-8")
+        # Ohne Sprachanteil entstuende eine Datei mit Kopfzeile und nichts
+        # dahinter. Die hilft niemandem und sieht im Ordner nach einem
+        # Ergebnis aus, das es nicht gibt.
+        if clip.zeilen:
+            ass.write_text(unt.als_ass(clip.zeilen), encoding="utf-8")
+            (untertitel_ordner / f"{name}.srt").write_text(
+                unt.als_srt(clip.zeilen), encoding="utf-8")
         if stream.video:
             befehle.append(rnd.ffmpeg_befehl(
                 stream.video, clip.kandidat, clip.plan.layout,
-                ziel / f"{name}.mp4", untertitel=ass, facecam=facecam,
+                ziel / f"{name}.mp4",
+                untertitel=ass if clip.zeilen else None, facecam=facecam,
                 punch_fenster=punch_fenster(clip)))
+
+    if not any(untertitel_ordner.iterdir()):
+        untertitel_ordner.rmdir()
 
     skript = None
     if befehle:

@@ -680,6 +680,15 @@ class NurChat(unittest.TestCase):
         self.assertIn("Ohne Transkript", text)
         self.assertIn("kein Transkript", text)
 
+    def test_keine_leeren_untertiteldateien(self):
+        """Eine ASS-Datei mit Kopfzeile und nichts dahinter sieht nach einem
+        Ergebnis aus, das es nicht gibt."""
+        stream = self._stream()
+        ergebnis = motor.analysiere(stream, schwelle=0)
+        with TemporaryDirectory() as ordner:
+            ausgabe.schreibe_paket(ergebnis, stream, Path(ordner))
+            self.assertFalse((Path(ordner) / "untertitel").exists())
+
     def test_niedrigere_schwelle_ist_belegt(self):
         """Die abgesenkte Schwelle bildet einen gemessenen Abstand ab und
         darf nicht über der normalen liegen."""
