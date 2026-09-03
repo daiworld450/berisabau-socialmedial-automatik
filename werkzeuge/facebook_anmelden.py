@@ -259,11 +259,29 @@ def main() -> int:
     sag("heute: der Beitrag geht raus, in einer Stunde ist Schluss.")
     sag("-----------------------------------------------------------")
     webbrowser.open(f"https://developers.facebook.com/apps/{APP_ID}/settings/basic/")
+    # getpass zeigt beim Einfuegen nichts an - kein Punkt, kein Sternchen.
+    # Das sieht aus, als sei nichts angekommen, und genau daran ist der
+    # erste Versuch am 03.09.2026 gescheitert. Deshalb hier eine
+    # Rueckmeldung ueber die Laenge, ohne den Wert zu zeigen.
     try:
         import getpass
-        geheim = getpass.getpass("App-Geheimnis (wird nicht angezeigt): ").strip()
+        sag("")
+        sag("(Beim Einfuegen bleibt die Zeile leer - das ist richtig so.")
+        sag(" Mit Cmd+V einfuegen, dann Eingabetaste.)")
+        geheim = getpass.getpass("App-Geheimnis: ").strip()
     except (EOFError, KeyboardInterrupt):
         geheim = ""
+
+    if geheim:
+        sag(f"  {len(geheim)} Zeichen angekommen.")
+        # Ein App-Geheimnis von Meta besteht aus 32 Hexadezimalzeichen.
+        # Wer versehentlich die App-Nummer kopiert, merkt es sofort statt
+        # erst an einer nichtssagenden Fehlermeldung von Facebook.
+        if len(geheim) != 32 or any(z not in "0123456789abcdefABCDEF" for z in geheim):
+            sag("  Das sieht nicht nach dem App-Geheimnis aus - es besteht")
+            sag("  aus genau 32 Zeichen (Ziffern und die Buchstaben a bis f).")
+            sag("  Vielleicht wurde die App-Nummer erwischt? Der Versuch")
+            sag("  laeuft trotzdem weiter.")
 
     if geheim:
         try:
