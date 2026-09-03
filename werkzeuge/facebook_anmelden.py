@@ -157,6 +157,17 @@ def hole_wert(was: str) -> str:
     return wert
 
 
+def ist_geheimnis(wert: str) -> bool:
+    """Ein App-Geheimnis von Meta: genau 32 Hexadezimalzeichen.
+
+    Ein Zugriffsschluessel ist rund zehnmal so lang. Am 04.09.2026 wurde
+    das Geheimnis dort eingefuegt, wo der Schluessel hingehoerte - Facebook
+    antwortete mit "Cannot parse access token", was den Grund nicht verriet.
+    Seither erkennt das Skript beides und nimmt es in jeder Reihenfolge an.
+    """
+    return len(wert) == 32 and all(z in "0123456789abcdefABCDEF" for z in wert)
+
+
 def hole_schluessel() -> str:
     return hole_wert("Den Schluessel")
 
@@ -183,9 +194,33 @@ def main() -> int:
     anleitung()
     webbrowser.open(SYSTEMNUTZER_SEITE)
 
+    geheim_vorab = ""
     token = hole_schluessel()
+
+    # Reihenfolge egal: kommt zuerst das Geheimnis, wird es gemerkt und
+    # danach der Schluessel geholt.
+    if token and ist_geheimnis(token):
+        geheim_vorab = token
+        sag("")
+        sag("  Das ist das App-Geheimnis, nicht der Zugriffsschluessel.")
+        sag("  Gemerkt - es wird gleich gebraucht.")
+        sag("")
+        sag("  Der Zugriffsschluessel ist etwa zehnmal so lang. Ihn gibt es")
+        sag("  im Zugangs-Tester von Meta, der sich jetzt oeffnet:")
+        sag("  oben rechts die App  Berisa Bau Posting  waehlen,")
+        sag("  auf  Zugriffsschluessel generieren  klicken, die")
+        sag("  Berechtigungen bestaetigen und den langen Wert kopieren.")
+        webbrowser.open(
+            "https://developers.facebook.com/tools/explorer/"
+            f"?method=GET&path=me%2Faccounts&version=v21.0&classic=0")
+        token = hole_wert("Den langen Zugriffsschluessel")
+
     if not token:
         sag("\nNichts eingegeben. Nichts geaendert.\n")
+        return 1
+    if ist_geheimnis(token):
+        sag("\nDas ist wieder das App-Geheimnis. Gebraucht wird der lange")
+        sag("Zugriffsschluessel aus dem Zugangs-Tester. Nichts geaendert.\n")
         return 1
 
     sag("")
@@ -227,7 +262,9 @@ def main() -> int:
         sag("Feld App-Geheimcode, Knopf Anzeigen. Es wird nicht angezeigt")
         sag("und nirgends gespeichert.")
         sag("")
-        geheim = hole_wert("Das App-Geheimnis")
+        geheim = geheim_vorab or hole_wert("Das App-Geheimnis")
+        if geheim_vorab:
+            sag("  Nutze das vorhin eingefuegte App-Geheimnis.")
         if not geheim:
             sag("\nNichts bekommen, nichts geaendert.\n")
             return 1
