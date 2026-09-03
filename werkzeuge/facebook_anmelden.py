@@ -106,17 +106,46 @@ def anleitung() -> None:
     sag("")
 
 
-def hole_schluessel() -> str:
-    sag("Schluessel hier einfuegen. Beim Einfuegen bleibt die Zeile")
-    sag("leer - das ist richtig so. Cmd+V, dann Eingabetaste.")
+def aus_zwischenablage() -> str:
+    """Liest, was zuletzt kopiert wurde.
+
+    Am 04.09.2026 liess sich in die verdeckte Eingabe nichts einfuegen -
+    Terminal.app nimmt dort je nach Einstellung weder Cmd+V noch die Maus
+    an, und getippt wird so ein Schluessel nicht. Ueber die Zwischenablage
+    entfaellt die Eingabe ganz: kopieren, Eingabetaste, fertig.
+    """
     try:
-        import getpass
-        wert = getpass.getpass("Schluessel: ").strip()
+        fertig = subprocess.run(["pbpaste"], capture_output=True, text=True,
+                                timeout=10)
+        return fertig.stdout.strip() if fertig.returncode == 0 else ""
+    except (OSError, subprocess.SubprocessError):
+        return ""
+
+
+def hole_wert(was: str) -> str:
+    """Holt einen Schluessel, ohne dass etwas eingetippt werden muss."""
+    sag("")
+    sag(f"{was} kopieren (Cmd+C), dann hier die Eingabetaste druecken.")
+    sag("Der Wert wird aus der Zwischenablage gelesen und nicht angezeigt.")
+    try:
+        input("Bereit? Eingabetaste: ")
     except (EOFError, KeyboardInterrupt):
         return ""
-    if wert:
-        sag(f"  {len(wert)} Zeichen angekommen.")
+    wert = aus_zwischenablage()
+    if not wert:
+        sag("  Die Zwischenablage ist leer.")
+        return ""
+    if len(wert) > 500 or "\n" in wert or " " in wert:
+        sag("  In der Zwischenablage steht kein Schluessel, sondern")
+        sag(f"  anderer Text ({len(wert)} Zeichen). Erst den Schluessel")
+        sag("  kopieren, dann dieses Skript noch einmal starten.")
+        return ""
+    sag(f"  Gelesen: {len(wert)} Zeichen.")
     return wert
+
+
+def hole_schluessel() -> str:
+    return hole_wert("Den Schluessel")
 
 
 def pruefe(token: str) -> dict:
@@ -181,16 +210,10 @@ def main() -> int:
         sag("Feld App-Geheimcode, Knopf Anzeigen. Es wird nicht angezeigt")
         sag("und nirgends gespeichert.")
         sag("")
-        sag("Eingabetaste ohne Eingabe bricht ab, ohne etwas zu aendern.")
-        try:
-            import getpass
-            geheim = getpass.getpass("App-Geheimnis: ").strip()
-        except (EOFError, KeyboardInterrupt):
-            geheim = ""
+        geheim = hole_wert("Das App-Geheimnis")
         if not geheim:
-            sag("\nNichts eingegeben, nichts geaendert.\n")
+            sag("\nNichts bekommen, nichts geaendert.\n")
             return 1
-        sag(f"  {len(geheim)} Zeichen angekommen.")
         if len(geheim) != 32 or any(z not in "0123456789abcdefABCDEF" for z in geheim):
             sag("  Achtung: ein App-Geheimnis hat genau 32 Zeichen aus")
             sag("  Ziffern und den Buchstaben a bis f. Versuch laeuft weiter.")
