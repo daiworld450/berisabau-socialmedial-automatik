@@ -215,9 +215,81 @@ in `out/*.facebook.txt`.
 | Meldung | Ursache |
 |---|---|
 | Code **190** | Token abgelaufen oder zurückgezogen → bei Weg A Schritt 3 und 4 wiederholen; bei Weg B (System-User) prüfen, ob die Seite noch als Asset zugewiesen ist |
-| Code **200** | Berechtigung fehlt → `pages_manage_posts` prüfen |
+| Code **200** | Berechtigung fehlt → `pages_manage_posts` prüfen. Steht dabei *„not available … need to be approved by App Review“*, liegt es nicht am Token, sondern am App-Modus – siehe unten |
 | Code **803** | Falsche Seiten-Kennung |
 | „(#100) No permission" | Du bist nicht Administrator der Seite |
 
 Der Instagram-Beitrag geht unabhängig davon raus. Ein Facebook-Fehler lässt
 den Tageslauf nicht scheitern – er wird gemeldet und protokolliert.
+
+---
+
+## Stand 03.09.2026: Facebook postet nicht, Instagram schon
+
+Beim Freigabelauf um 19:32 Uhr meldete Facebook:
+
+```
+(#200) The permission(s) pages_manage_posts are not available.
+It could because either they are deprecated or need to be approved
+by App Review.
+```
+
+Die Meldung legt eine fehlende App-Überprüfung nahe. Gemessen wurde etwas
+anderes. `debug_token` gibt für den hinterlegten Seiten-Token aus:
+
+```
+Typ           : PAGE
+Gültig        : ja        (läuft ab am 27.10.2026)
+Berechtigungen: pages_show_list, business_management, instagram_basic,
+                instagram_content_publish, pages_read_engagement,
+                public_profile
+```
+
+Es fehlt genau eine Berechtigung: **`pages_manage_posts`**. Der Token wurde
+ohne sie erzeugt. Deshalb geht Instagram durch — `instagram_content_publish`
+ist vorhanden — und Facebook nicht. Eine App-Überprüfung bei Meta ist dafür
+nicht nötig: einem App-Administrator gibt Meta die Berechtigung auch im
+Entwicklungsmodus, sie muss beim Erzeugen nur angehakt sein.
+
+**Warum der Token sie nicht hatte:** In der Meta-App war
+`pages_manage_posts` dem Anwendungsfall „Seiten verwalten" nie zugeordnet.
+Der Instagram-Anwendungsfall enthielt genau die sechs Berechtigungen oben —
+deshalb passte die Liste exakt. Am 03.09.2026 wurde die Berechtigung
+hinzugefügt; sie steht auf **Bereit zum Testen**, was für einen
+App-Administrator genügt. Ein bereits erzeugter Token bekommt sie nicht
+nachträglich, er muss neu geholt werden.
+
+**Reparatur, ein Doppelklick:** `FACEBOOK-EINSCHALTEN.command` im
+Projektordner. Das Skript öffnet auf dem eigenen Rechner kurz einen kleinen
+Webserver (`127.0.0.1:8765`) und schickt den Browser zum Anmeldedialog.
+Facebook liefert den Schlüssel an genau diesen Server zurück — er wandert
+direkt von Facebook ins Skript, niemand tippt ihn ab, er steht in keiner
+Datei und in keiner Ausgabe. Danach prüft das Skript ihn gegen
+`pages_manage_posts`, holt den Seiten-Schlüssel, hinterlegt ihn, reicht den
+liegengebliebenen Beitrag nach und sagt, ob er wirklich draußen ist.
+
+`http://localhost:8765` ist als Rückweg zulässig — am 03.09.2026 gegen den
+Dialog geprüft, Facebook leitet dorthin um.
+
+Ein Schlüssel aus diesem Dialog gilt nur rund eine Stunde. Für die
+Dauerlösung fragt das Skript einmalig nach dem App-Geheimnis und tauscht ihn
+gegen einen dauerhaften. Überspringen geht: dann steht der Beitrag heute
+auf Facebook, und das Skript muss später noch einmal laufen.
+
+**Einen Beitrag nachreichen**, der schon auf Instagram steht:
+
+```bash
+gh workflow run facebook-nachholen.yml -R daiworld450/berisabau-socialmedial-automatik -f datum=2026-09-03
+```
+
+Instagram wird dabei nicht angefasst. Ein zweiter Freigabelauf würde den
+Beitrag dort ein zweites Mal veröffentlichen — deshalb dieser eigene Weg.
+
+Prüfen, welche Berechtigungen der Token gerade trägt:
+
+```bash
+gh workflow run facebook-pruefen.yml -R daiworld450/berisabau-socialmedial-automatik
+```
+
+Bis zur Reparatur läuft Instagram allein weiter. Der Facebook-Fehler färbt
+keinen Lauf rot, er wird nur gemeldet.

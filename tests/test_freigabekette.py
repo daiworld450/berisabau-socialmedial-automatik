@@ -287,3 +287,284 @@ class FreigabeVorbereitenBrichtAb(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WarteschlangeBleibtBisVeroeffentlicht(unittest.TestCase):
+    """Der Vorschlag darf erst verschwinden, wenn der Beitrag draussen ist.
+
+    Am 03.09.2026 gab der Inhaber 'm-werkzeug' frei. Der Lauf renderte,
+    trug den Vorschlag aus - und brach danach ab, bevor irgendetwas bei
+    Instagram oder Facebook ankam. Damit war der Beitrag weder
+    veroeffentlicht noch ein zweites Mal freigebbar: der Eintrag mit Tag
+    und Ausschlussliste war fort, und ohne ihn verweigert
+    cmd_freigabe_vorbereiten die Arbeit.
+    """
+
+    def setUp(self):
+        self._ordner = TemporaryDirectory()
+        ordner = Path(self._ordner.name)
+        self._sicher = {n: getattr(main, n) for n in (
+            "WARTESCHLANGE_DATEI", "OUT_DIR", "_erzeuge", "_erzeuge_alle",
+            "_schreibe_caption", "_kopiere_video", "_veroeffentliche",
+            "freigaben", "planer")}
+
+        # main faengt beim Import einen ImportError ab und setzt dann
+        # freigaben/planer/texter auf None - auf diesem Rechner fehlt eine
+        # der drei Abhaengigkeiten. Der Planer wird hier echt gebraucht.
+        main.planer = planer
+
+        self.datei = ordner / "telegram_warteschlange.json"
+        self.out = ordner / "out"
+        self.out.mkdir()
+        main.WARTESCHLANGE_DATEI = self.datei
+        main.OUT_DIR = self.out
+
+        self.tag = date(2026, 9, 3)
+        plan = planer.plane(self.tag, ausschluss=set())
+        self.plan_id = plan["id"]
+
+        def erzeuge(*_a, **_k):
+            bild = self.out / f"{self.tag.isoformat()}_{self.plan_id}.jpg"
+            bild.write_bytes(b"jpg")
+            return bild
+
+        main._erzeuge = erzeuge
+        main._erzeuge_alle = lambda *_a, **_k: [erzeuge()]
+        main._schreibe_caption = lambda *_a, **_k: None
+        main._kopiere_video = lambda *_a, **_k: erzeuge()
+        main.freigaben = SimpleNamespace(freigeben=lambda *_a, **_k: None)
+        self.addCleanup(self._aufraeumen)
+
+    def _aufraeumen(self):
+        for name, wert in self._sicher.items():
+            setattr(main, name, wert)
+        self._ordner.cleanup()
+
+    def _schlange_mit_eintrag(self):
+        self.datei.write_text(json.dumps({
+            "letzte_update_id_social": 0, "letzte_update_id_ads": 0,
+            "wartend": {self.tag.isoformat(): {"plan_id": self.plan_id,
+                                               "nachricht_id": 39,
+                                               "abgelehnt": []}}}),
+            encoding="utf-8")
+
+    def _wartend(self):
+        return json.loads(self.datei.read_text(encoding="utf-8"))["wartend"]
+
+    def test_rendern_allein_traegt_den_vorschlag_nicht_aus(self):
+        self._schlange_mit_eintrag()
+
+        code = main.cmd_freigabe_vorbereiten(
+            SimpleNamespace(plan_id=self.plan_id))
+
+        self.assertEqual(code, 0)
+        self.assertIn(self.tag.isoformat(), self._wartend(),
+                      "Vorschlag wurde schon vor der Veroeffentlichung "
+                      "ausgetragen - genau der Fehler vom 03.09.2026")
+
+    def test_nach_erfolgreicher_veroeffentlichung_ist_er_weg(self):
+        self._schlange_mit_eintrag()
+        main.cmd_freigabe_vorbereiten(SimpleNamespace(plan_id=self.plan_id))
+        main._veroeffentliche = lambda *_a, **_k: 0
+
+        code = main.cmd_telegram_veroeffentlichen(SimpleNamespace())
+
+        self.assertEqual(code, 0)
+        self.assertNotIn(self.tag.isoformat(), self._wartend())
+
+    def test_gescheiterte_veroeffentlichung_laesst_ihn_stehen(self):
+        self._schlange_mit_eintrag()
+        main.cmd_freigabe_vorbereiten(SimpleNamespace(plan_id=self.plan_id))
+        main._veroeffentliche = lambda *_a, **_k: 1
+
+        code = main.cmd_telegram_veroeffentlichen(SimpleNamespace())
+
+        self.assertEqual(code, 1)
+        self.assertIn(self.tag.isoformat(), self._wartend(),
+                      "Nach einem Fehlschlag muss der Vorschlag erneut "
+                      "freigebbar bleiben")
+
+
+class FacebookNachholen(unittest.TestCase):
+    """Nachtraeglich auf Facebook stellen, ohne Instagram noch einmal zu posten.
+
+    Am 03.09.2026 ging der Beitrag auf Instagram raus und scheiterte bei
+    Facebook - dem Seiten-Token fehlte pages_manage_posts. Ein zweiter
+    Freigabelauf haette Instagram doppelt bedient.
+    """
+
+    def setUp(self):
+        self._sicher = {n: getattr(main, n) for n in ("planer", "texter")}
+        main.planer = planer
+        main.texter = SimpleNamespace(
+            baue_caption_facebook=lambda plan: f"Text zu {plan['id']}")
+
+        self.gepostet = []
+        self._fb = SimpleNamespace(
+            aktiv=lambda: True,
+            FacebookFehler=type("FacebookFehler", (Exception,),
+                                {"token_problem": False}),
+            veroeffentliche_bild=lambda bild, text, trockenlauf=False: (
+                self.gepostet.append((bild, text)) or
+                SimpleNamespace(id="fb-1", meldung="Veroeffentlicht.",
+                                permalink="https://fb/1")),
+        )
+        sys.modules["facebook"] = self._fb
+        self.addCleanup(self._aufraeumen)
+
+        self.tag = _erster_posttag()
+        plan = planer.plane(self.tag)
+        self.plan_id = plan["id"]
+
+    def _aufraeumen(self):
+        for name, wert in self._sicher.items():
+            setattr(main, name, wert)
+        sys.modules.pop("facebook", None)
+
+    def _verlauf(self, eintraege):
+        self.vermerkt = []
+        main.planer = SimpleNamespace(
+            lade_verlauf=lambda: {"eintraege": eintraege},
+            _zuletzt_verwendet=planer._zuletzt_verwendet,
+            plane=planer.plane,
+            vermerke_facebook=lambda *_a, **_k: self.vermerkt.append(_a))
+
+    def test_unbekanntes_datum_gibt_1(self):
+        self._verlauf([])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum="2026-09-03", abgelehnt=None, trocken=False,
+                            trotzdem=False))
+
+        self.assertEqual(code, 1)
+        self.assertEqual(self.gepostet, [])
+
+    def test_abweichender_kandidat_postet_nichts(self):
+        # Im Verlauf steht ein Thema, das der Planer fuer diesen Tag nicht
+        # waehlen wuerde. Dann ist die Rekonstruktion unsicher - und lieber
+        # gar kein Beitrag als der falsche.
+        self._verlauf([{"datum": self.tag.isoformat(), "id": "gibt-es-nicht",
+                        "bild": "x.jpg"}])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=False))
+
+        self.assertEqual(code, 1)
+        self.assertEqual(self.gepostet, [])
+
+    def test_passender_eintrag_geht_auf_facebook(self):
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg"}])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=False))
+
+        self.assertEqual(code, 0)
+        self.assertEqual(len(self.gepostet), 1)
+        self.assertEqual(self.gepostet[0][0], "bild.jpg")
+
+
+    def test_zweiter_versuch_postet_nicht_noch_einmal(self):
+        # Am 03.09.2026 stand der Beitrag danach zweimal auf der Seite:
+        # der Befehl sah nur nach, ob der Tag im Verlauf steht - und das tat
+        # er wegen Instagram.
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg", "facebook_id": "fb-1"}])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=False))
+
+        self.assertEqual(code, 0)
+        self.assertEqual(self.gepostet, [],
+                         "Der Beitrag wurde ein zweites Mal gepostet")
+
+    def test_mit_trotzdem_geht_es_doch(self):
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg", "facebook_id": "fb-1"}])
+
+        main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=True))
+
+        self.assertEqual(len(self.gepostet), 1)
+
+    def test_erfolg_wird_im_verlauf_vermerkt(self):
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg"}])
+
+        main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=False))
+
+        self.assertEqual(len(self.vermerkt), 1,
+                         "Ohne Vermerk postet der naechste Lauf doppelt")
+
+class FacebookAusfallWirdGemeldet(unittest.TestCase):
+    """Ein stiller Ausfall ist schlimmer als ein lauter.
+
+    Am 03.09.2026 lehnte Facebook einen Beitrag ab. Der Instagram-Beitrag
+    ging raus, der Lauf blieb gruen, und der Fehler stand nur in einem
+    Protokoll. Bemerkt hat es der Inhaber, Stunden spaeter.
+    """
+
+    def setUp(self):
+        self._sicher = {n: getattr(main, n) for n in ("texter", "_erzeuge_alle")}
+        main.texter = SimpleNamespace(baue_caption_facebook=lambda p: "Text")
+        main._erzeuge_alle = lambda *_a, **_k: []
+
+        self.gesendet = []
+        sys.modules["telegram_bot"] = SimpleNamespace(
+            sende_text=lambda text, **_k: self.gesendet.append(text))
+
+        class Fehler(RuntimeError):
+            token_problem = True
+
+        self.Fehler = Fehler
+        sys.modules["facebook"] = SimpleNamespace(
+            aktiv=lambda: True,
+            FacebookFehler=Fehler,
+            veroeffentliche_bild=self._wirft,
+        )
+        self.addCleanup(self._aufraeumen)
+
+    def _wirft(self, *_a, **_k):
+        raise self.Fehler("(#200) pages_manage_posts fehlt")
+
+    def _aufraeumen(self):
+        for name, wert in self._sicher.items():
+            setattr(main, name, wert)
+        for modul in ("facebook", "telegram_bot"):
+            sys.modules.pop(modul, None)
+
+    def _ruf(self):
+        main._auch_facebook({"id": "m-werkzeug", "felder": {}},
+                            Path("bild.jpg"), "einzelbild")
+
+    def test_bei_ablehnung_geht_eine_nachricht_raus(self):
+        self._ruf()
+
+        self.assertEqual(len(self.gesendet), 1)
+        self.assertIn("m-werkzeug", self.gesendet[0])
+
+    def test_die_nachricht_nennt_den_weg_zur_reparatur(self):
+        self._ruf()
+
+        self.assertIn("FACEBOOK-EINSCHALTEN.command", self.gesendet[0])
+
+    def test_ein_trockenlauf_meldet_nichts(self):
+        main._auch_facebook({"id": "m-werkzeug", "felder": {}},
+                            Path("bild.jpg"), "einzelbild", trocken=True)
+
+        self.assertEqual(self.gesendet, [])
+
+    def test_stummes_telegram_reisst_den_lauf_nicht_mit(self):
+        # Der Instagram-Beitrag ist zu diesem Zeitpunkt schon draussen.
+        # Eine misslungene Warnung darf daran nichts kaputt machen.
+        def wirft(*_a, **_k):
+            raise RuntimeError("Telegram nicht erreichbar")
+        sys.modules["telegram_bot"] = SimpleNamespace(sende_text=wirft)
+
+        self._ruf()   # darf keine Ausnahme nach aussen lassen

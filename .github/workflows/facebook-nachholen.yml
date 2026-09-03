@@ -1,0 +1,49 @@
+name: Facebook nachholen
+
+# Stellt einen Beitrag, der schon auf Instagram steht, nachtraeglich auf die
+# Facebook-Seite. Instagram wird dabei nicht angefasst.
+#
+# Gebraucht seit dem 03.09.2026: Der Freigabelauf postete auf Instagram und
+# scheiterte bei Facebook, weil dem Seiten-Token pages_manage_posts fehlt.
+# Ein zweiter Freigabelauf haette Instagram doppelt bedient.
+
+on:
+  workflow_dispatch:
+    inputs:
+      datum:
+        description: "Posttag, z. B. 2026-09-03"
+        type: string
+        required: true
+      trocken:
+        description: "Nur zeigen, nichts posten"
+        type: boolean
+        default: false
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  nachholen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Abhängigkeiten
+        run: pip install -r requirements.txt
+
+      - name: Auf Facebook stellen
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          MEDIA_BASE_URL: ${{ secrets.MEDIA_BASE_URL }}
+        run: |
+          # Das Bild liegt schon oeffentlich unter docs/posts - Facebook laedt
+          # es von dort. Es wird nichts neu gerendert.
+          python src/main.py facebook-nachholen \
+            --datum "${{ inputs.datum }}" \
+            ${{ inputs.trocken && '--trocken' || '' }}
