@@ -215,9 +215,43 @@ in `out/*.facebook.txt`.
 | Meldung | Ursache |
 |---|---|
 | Code **190** | Token abgelaufen oder zurückgezogen → bei Weg A Schritt 3 und 4 wiederholen; bei Weg B (System-User) prüfen, ob die Seite noch als Asset zugewiesen ist |
-| Code **200** | Berechtigung fehlt → `pages_manage_posts` prüfen |
+| Code **200** | Berechtigung fehlt → `pages_manage_posts` prüfen. Steht dabei *„not available … need to be approved by App Review“*, liegt es nicht am Token, sondern am App-Modus – siehe unten |
 | Code **803** | Falsche Seiten-Kennung |
 | „(#100) No permission" | Du bist nicht Administrator der Seite |
 
 Der Instagram-Beitrag geht unabhängig davon raus. Ein Facebook-Fehler lässt
 den Tageslauf nicht scheitern – er wird gemeldet und protokolliert.
+
+---
+
+## Stand 03.09.2026: Facebook postet nicht, Instagram schon
+
+Beim Freigabelauf um 19:32 Uhr meldete Facebook:
+
+```
+(#200) The permission(s) pages_manage_posts are not available.
+It could because either they are deprecated or need to be approved
+by App Review.
+```
+
+Das ist **kein** abgelaufener Token und kein Fehler in der Automatik. Der
+Instagram-Beitrag desselben Laufs ging mit demselben Seiten-Token sauber
+raus. Meta gibt `pages_manage_posts` nur frei, wenn die App den
+Entwicklungsmodus verlassen hat und die Berechtigung geprueft wurde.
+
+**Was der Inhaber dafuer tun muss** (nur er, es geht um Kontoeinstellungen):
+
+1. [developers.facebook.com/apps](https://developers.facebook.com/apps) oeffnen,
+   die App auswaehlen.
+2. Oben der Schalter **Entwicklung / Live**. Steht er auf *Entwicklung*, auf
+   **Live** stellen. Dafuer verlangt Meta eine Datenschutzerklaerung-URL und
+   ein App-Symbol.
+3. Links **App-Ueberpruefung → Berechtigungen und Funktionen**. Bei
+   `pages_manage_posts` und `pages_read_engagement` auf **Erweiterten Zugriff
+   anfordern** klicken. Meta fragt nach einem Screencast, der zeigt, wozu die
+   App die Berechtigung braucht.
+4. Nach der Freigabe: Seiten-Token neu erzeugen (Weg A oder B weiter oben) und
+   als Secret `FB_PAGE_TOKEN` hinterlegen.
+
+Bis dahin laeuft Instagram allein weiter. Der Facebook-Fehler faerbt keinen
+Lauf rot, er wird nur gemeldet.
