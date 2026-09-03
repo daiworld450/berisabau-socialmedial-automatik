@@ -282,6 +282,74 @@ def _auch_facebook(plan: dict, bild, typ: str, trocken: bool = False,
         print(f"Link     : {ergebnis.permalink}")
 
 
+def cmd_facebook_nachholen(args) -> int:
+    """Stellt einen bereits veroeffentlichten Beitrag nachtraeglich auf Facebook.
+
+    Gebraucht, wenn Instagram durchging und Facebook im selben Lauf
+    scheiterte - am 03.09.2026 etwa, weil dem Seiten-Token die Berechtigung
+    pages_manage_posts fehlte. Der Instagram-Beitrag steht dann schon, und
+    ein zweiter Freigabelauf wuerde ihn ein zweites Mal posten. Dieser Befehl
+    fasst Instagram nicht an.
+
+    Das Bild liegt zu diesem Zeitpunkt bereits oeffentlich unter
+    docs/posts - Facebook laedt es von dort, es wird nichts neu gerendert.
+    """
+    tag_iso = args.datum or date.today().isoformat()
+    verlauf = planer.lade_verlauf()
+    eintrag = next((e for e in verlauf["eintraege"] if e["datum"] == tag_iso), None)
+    if eintrag is None:
+        print(f"\nFEHLER: fuer {tag_iso} steht kein Beitrag im Verlauf.\n",
+              file=sys.stderr)
+        return 1
+
+    plan_id = eintrag["id"]
+
+    # plane() ist deterministisch, richtet sich aber nach dem Verlauf. Da
+    # dieser Beitrag inzwischen darin steht, gilt sein Thema als frisch
+    # verbraucht und plane() waehlte ein anderes. Deshalb wird der Verlauf
+    # ohne genau diesen Eintrag uebergeben - dann faellt die Wahl wieder auf
+    # denselben Kandidaten wie am Posttag.
+    ohne = {k: v for k, v in planer._zuletzt_verwendet().items() if k != plan_id}
+    plan = planer.plane(date.fromisoformat(tag_iso), verlauf=ohne,
+                        ausschluss=set(args.abgelehnt or []))
+
+    if plan is None or plan["id"] != plan_id:
+        gefunden = plan["id"] if plan else "nichts"
+        print(f"\nFEHLER: Beitrag laesst sich nicht rekonstruieren.\n"
+              f"Im Verlauf steht '{plan_id}', der Planer liefert '{gefunden}'.\n"
+              "Nichts gepostet.\n", file=sys.stderr)
+        return 1
+
+    import facebook
+    if not facebook.aktiv():
+        print("\nFEHLER: Facebook ist nicht eingerichtet "
+              "(FB_PAGE_ID und FB_PAGE_TOKEN fehlen).\n", file=sys.stderr)
+        return 1
+
+    bild = OUT_DIR / eintrag["bild"]
+    print(f"\nHole Facebook nach: {plan_id} ({tag_iso})")
+    print(f"Bild     : {eintrag['bild']}")
+    if args.trocken:
+        print("Trockenlauf - es wird nichts gepostet.\n")
+
+    try:
+        ergebnis = facebook.veroeffentliche_bild(
+            bild.name, texter.baue_caption_facebook(plan),
+            trockenlauf=args.trocken)
+    except facebook.FacebookFehler as fehler:
+        print(f"Facebook : FEHLER - {fehler}", file=sys.stderr)
+        if fehler.token_problem:
+            print("           Seiten-Token erneuern: "
+                  "FACEBOOK-TOKEN-ERNEUERN.command", file=sys.stderr)
+        return 1
+
+    print(f"Facebook : {ergebnis.meldung}")
+    if ergebnis.permalink:
+        print(f"Link     : {ergebnis.permalink}")
+    print()
+    return 0
+
+
 def cmd_export(args) -> int:
     import export
     import monatsplan
@@ -1661,6 +1729,15 @@ def main() -> int:
                           help="erster Schritt nach einer Worker-Freigabe: vermerken und rendern")
     fv.add_argument("plan_id", help="welcher Beitrag, z. B. w-abdichtung")
     fv.set_defaults(func=cmd_freigabe_vorbereiten)
+
+    fn = unter.add_parser("facebook-nachholen",
+                          help="einen schon veroeffentlichten Beitrag nachtraeglich auf Facebook stellen")
+    fn.add_argument("--datum", help="Posttag im Format 2026-09-03, sonst heute")
+    fn.add_argument("--abgelehnt", nargs="*",
+                    help="Themen-IDs, die am Posttag abgelehnt wurden")
+    fn.add_argument("--trocken", action="store_true",
+                    help="nur zeigen, was passieren wuerde")
+    fn.set_defaults(func=cmd_facebook_nachholen)
 
     tv = unter.add_parser("telegram-veroeffentlichen",
                           help="zweiter Schritt: das per Telegram Freigegebene tatsächlich posten "

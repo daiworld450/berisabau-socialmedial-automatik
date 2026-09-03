@@ -383,3 +383,80 @@ class WarteschlangeBleibtBisVeroeffentlicht(unittest.TestCase):
         self.assertIn(self.tag.isoformat(), self._wartend(),
                       "Nach einem Fehlschlag muss der Vorschlag erneut "
                       "freigebbar bleiben")
+
+
+class FacebookNachholen(unittest.TestCase):
+    """Nachtraeglich auf Facebook stellen, ohne Instagram noch einmal zu posten.
+
+    Am 03.09.2026 ging der Beitrag auf Instagram raus und scheiterte bei
+    Facebook - dem Seiten-Token fehlte pages_manage_posts. Ein zweiter
+    Freigabelauf haette Instagram doppelt bedient.
+    """
+
+    def setUp(self):
+        self._sicher = {n: getattr(main, n) for n in ("planer", "texter")}
+        main.planer = planer
+        main.texter = SimpleNamespace(
+            baue_caption_facebook=lambda plan: f"Text zu {plan['id']}")
+
+        self.gepostet = []
+        self._fb = SimpleNamespace(
+            aktiv=lambda: True,
+            FacebookFehler=type("FacebookFehler", (Exception,),
+                                {"token_problem": False}),
+            veroeffentliche_bild=lambda bild, text, trockenlauf=False: (
+                self.gepostet.append((bild, text)) or
+                SimpleNamespace(meldung="Veroeffentlicht.", permalink="https://fb/1")),
+        )
+        sys.modules["facebook"] = self._fb
+        self.addCleanup(self._aufraeumen)
+
+        self.tag = _erster_posttag()
+        plan = planer.plane(self.tag)
+        self.plan_id = plan["id"]
+
+    def _aufraeumen(self):
+        for name, wert in self._sicher.items():
+            setattr(main, name, wert)
+        sys.modules.pop("facebook", None)
+
+    def _verlauf(self, eintraege):
+        main.planer = SimpleNamespace(
+            lade_verlauf=lambda: {"eintraege": eintraege},
+            _zuletzt_verwendet=planer._zuletzt_verwendet,
+            plane=planer.plane)
+
+    def test_unbekanntes_datum_gibt_1(self):
+        self._verlauf([])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum="2026-09-03", abgelehnt=None, trocken=False))
+
+        self.assertEqual(code, 1)
+        self.assertEqual(self.gepostet, [])
+
+    def test_abweichender_kandidat_postet_nichts(self):
+        # Im Verlauf steht ein Thema, das der Planer fuer diesen Tag nicht
+        # waehlen wuerde. Dann ist die Rekonstruktion unsicher - und lieber
+        # gar kein Beitrag als der falsche.
+        self._verlauf([{"datum": self.tag.isoformat(), "id": "gibt-es-nicht",
+                        "bild": "x.jpg"}])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False))
+
+        self.assertEqual(code, 1)
+        self.assertEqual(self.gepostet, [])
+
+    def test_passender_eintrag_geht_auf_facebook(self):
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg"}])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False))
+
+        self.assertEqual(code, 0)
+        self.assertEqual(len(self.gepostet), 1)
+        self.assertEqual(self.gepostet[0][0], "bild.jpg")

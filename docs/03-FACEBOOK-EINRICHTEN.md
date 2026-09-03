@@ -234,24 +234,44 @@ It could because either they are deprecated or need to be approved
 by App Review.
 ```
 
-Das ist **kein** abgelaufener Token und kein Fehler in der Automatik. Der
-Instagram-Beitrag desselben Laufs ging mit demselben Seiten-Token sauber
-raus. Meta gibt `pages_manage_posts` nur frei, wenn die App den
-Entwicklungsmodus verlassen hat und die Berechtigung geprueft wurde.
+Die Meldung legt eine fehlende App-Überprüfung nahe. Gemessen wurde etwas
+anderes. `debug_token` gibt für den hinterlegten Seiten-Token aus:
 
-**Was der Inhaber dafuer tun muss** (nur er, es geht um Kontoeinstellungen):
+```
+Typ           : PAGE
+Gültig        : ja        (läuft ab am 27.10.2026)
+Berechtigungen: pages_show_list, business_management, instagram_basic,
+                instagram_content_publish, pages_read_engagement,
+                public_profile
+```
 
-1. [developers.facebook.com/apps](https://developers.facebook.com/apps) oeffnen,
-   die App auswaehlen.
-2. Oben der Schalter **Entwicklung / Live**. Steht er auf *Entwicklung*, auf
-   **Live** stellen. Dafuer verlangt Meta eine Datenschutzerklaerung-URL und
-   ein App-Symbol.
-3. Links **App-Ueberpruefung → Berechtigungen und Funktionen**. Bei
-   `pages_manage_posts` und `pages_read_engagement` auf **Erweiterten Zugriff
-   anfordern** klicken. Meta fragt nach einem Screencast, der zeigt, wozu die
-   App die Berechtigung braucht.
-4. Nach der Freigabe: Seiten-Token neu erzeugen (Weg A oder B weiter oben) und
-   als Secret `FB_PAGE_TOKEN` hinterlegen.
+Es fehlt genau eine Berechtigung: **`pages_manage_posts`**. Der Token wurde
+ohne sie erzeugt. Deshalb geht Instagram durch — `instagram_content_publish`
+ist vorhanden — und Facebook nicht. Eine App-Überprüfung bei Meta ist dafür
+nicht nötig: einem App-Administrator gibt Meta die Berechtigung auch im
+Entwicklungsmodus, sie muss beim Erzeugen nur angehakt sein.
 
-Bis dahin laeuft Instagram allein weiter. Der Facebook-Fehler faerbt keinen
-Lauf rot, er wird nur gemeldet.
+**Reparatur, ein Doppelklick:** `FACEBOOK-TOKEN-ERNEUERN.command` im
+Projektordner. Das Skript öffnet den Zugangs-Tester, nimmt den neuen
+Schlüssel verdeckt entgegen, prüft ihn gegen genau diese Berechtigung,
+wandelt einen persönlichen Schlüssel bei Bedarf in den Seiten-Schlüssel um
+und hinterlegt ihn in GitHub. Danach bietet es an, den liegengebliebenen
+Beitrag nachzureichen.
+
+**Einen Beitrag nachreichen**, der schon auf Instagram steht:
+
+```bash
+gh workflow run facebook-nachholen.yml -R daiworld450/berisabau-socialmedial-automatik -f datum=2026-09-03
+```
+
+Instagram wird dabei nicht angefasst. Ein zweiter Freigabelauf würde den
+Beitrag dort ein zweites Mal veröffentlichen — deshalb dieser eigene Weg.
+
+Prüfen, welche Berechtigungen der Token gerade trägt:
+
+```bash
+gh workflow run facebook-pruefen.yml -R daiworld450/berisabau-socialmedial-automatik
+```
+
+Bis zur Reparatur läuft Instagram allein weiter. Der Facebook-Fehler färbt
+keinen Lauf rot, er wird nur gemeldet.
