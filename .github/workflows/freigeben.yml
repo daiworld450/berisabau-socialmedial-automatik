@@ -61,8 +61,17 @@ jobs:
         run: |
           git config user.name  "berisabau-bot"
           git config user.email "actions@github.com"
-          for pfad in content/telegram_warteschlange.json content/freigaben.json; do
-            if [ -e "$pfad" ]; then git add "$pfad"; fi
+          # content/freigaben.json steht bewusst in .gitignore und darf hier
+          # nicht auftauchen: "git add" auf eine ignorierte Datei endet mit
+          # exit 1, und weil GitHub Actions jeden run-Block mit "bash -e"
+          # startet, riss das am 03.09.2026 den kompletten Lauf ab - noch vor
+          # dem Veroeffentlichen. Der Inhaber hatte freigegeben, der Beitrag
+          # kam nie bei Instagram oder Facebook an.
+          # Das "|| echo" faengt denselben Fehler kuenftig fuer jeden Pfad ab.
+          for pfad in content/telegram_warteschlange.json; do
+            if [ -e "$pfad" ]; then
+              git add "$pfad" || echo "uebersprungen (ignoriert): $pfad"
+            fi
           done
           git commit -m "Freigabe vermerkt" || echo "nichts zu committen"
           for versuch in 1 2 3 4 5; do
@@ -150,8 +159,13 @@ jobs:
         run: |
           git config user.name  "berisabau-bot"
           git config user.email "actions@github.com"
+          # Dieser Schritt laeuft, nachdem der Beitrag schon draussen ist.
+          # Ein einzelner ignorierter Pfad darf den Lauf hier nicht mehr
+          # rot faerben - siehe Kommentar bei "Warteschlange sichern".
           for pfad in content/verlauf.json content/telegram_warteschlange.json docs/posts logs; do
-            if [ -e "$pfad" ]; then git add "$pfad"; fi
+            if [ -e "$pfad" ]; then
+              git add "$pfad" || echo "uebersprungen (ignoriert): $pfad"
+            fi
           done
           git commit -m "Beitrag veroeffentlicht" || echo "nichts zu committen"
           for versuch in 1 2 3 4 5; do
