@@ -30,3 +30,6 @@ einwilligungen/nachweise/
 # Zugangsdaten.
 .mcp.json
 .mcp.json.*
+
+# Protokoll des Anmeldeskripts - nur Meldungen, aber lokal genug.
+letzte-anmeldung.log

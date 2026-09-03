@@ -21,6 +21,7 @@ Er steht in keiner Datei und in keiner Ausgabe.
 from __future__ import annotations
 
 import json
+import pathlib
 import ssl
 import subprocess
 import sys
@@ -79,8 +80,20 @@ def graph(pfad: str, **werte) -> dict:
         raise GraphFehler(f"Keine Verbindung zu Facebook ({fehler})") from None
 
 
+# Ein Protokoll neben dem Skript. Am 04.09.2026 brach der Vorgang dreimal
+# ab, und der Grund stand nur im Terminalfenster des Inhabers - niemand
+# konnte nachsehen, woran es lag. Ueber sag() laufen ausschliesslich
+# Meldungen; Schluessel und Geheimnis gehen nie durch diese Funktion.
+PROTOKOLL = pathlib.Path(__file__).resolve().parent.parent / "letzte-anmeldung.log"
+
+
 def sag(text: str = "") -> None:
     print(text, flush=True)
+    try:
+        with PROTOKOLL.open("a", encoding="utf-8") as datei:
+            datei.write(text + "\n")
+    except OSError:
+        pass
 
 
 def anleitung() -> None:
@@ -160,6 +173,10 @@ def pruefe(token: str) -> dict:
 
 
 def main() -> int:
+    try:
+        PROTOKOLL.write_text("", encoding="utf-8")
+    except OSError:
+        pass
     sag("")
     sag("Es geht um einen Schluessel, der nicht mehr ablaeuft.")
     sag("Der bisherige Weg lieferte nur Schluessel fuer eine Stunde.")
