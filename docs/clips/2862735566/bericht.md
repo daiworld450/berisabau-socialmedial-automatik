@@ -1,4 +1,4 @@
-# Clip-Bericht: K1ANUSH – 2026-09-02
+# Clip-Bericht: K1ANUSH – 2026-09-03
 
 Stream-ID `2862735566` · Just Chatting · Länge 2:33:17 · 1557 Sprachsegmente · 0 Chatnachrichten
 
@@ -1530,159 +1530,159 @@ Momente, die aufgefallen sind, aber unter der Schwelle blieben. Bewusst aufgefü
 ## Veröffentlichungsplan
 
 ```
-2026-09-02
+2026-09-03
   17:00  tiktok     2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles 😂
   20:30  tiktok     2862735566-003434   77  UNEXPECTED     Damit hatte er nicht gerechnet.
 
-2026-09-03
+2026-09-04
   17:00  tiktok     2862735566-003215   76  UNEXPECTED     Er hat zweimal hinsehen müssen.
   19:00  instagram  2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles 😂
   20:30  tiktok     2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
 
-2026-09-04
+2026-09-05
   17:00  tiktok     2862735566-005467   75  UNEXPECTED     Er braucht kurz, bis er es glaubt.
   18:00  youtube    2862735566-001910   79  UNEXPECTED     Seine Reaktion sagt alles
   19:00  instagram  2862735566-003434   77  UNEXPECTED     Damit hatte er nicht gerechnet.
   20:30  tiktok     2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
 
-2026-09-05
+2026-09-06
   17:00  tiktok     2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
   18:00  youtube    2862735566-003434   77  UNEXPECTED     Damit hatte er nicht gerechnet.
   19:00  instagram  2862735566-003215   76  UNEXPECTED     Er hat zweimal hinsehen müssen.
   20:30  tiktok     2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
 
-2026-09-06
+2026-09-07
   17:00  tiktok     2862735566-008574   72  RAGE           Da ist ihm der Kragen geplatzt.
   18:00  youtube    2862735566-003215   76  UNEXPECTED     Er hat zweimal hinsehen müssen.
   19:00  instagram  2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
   20:30  tiktok     2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
 
-2026-09-07
+2026-09-08
   17:00  tiktok     2862735566-003691   71  UNEXPECTED     Guck auf die Sekunde, in der es klickt.
   18:00  youtube    2862735566-001741   75  RAGE           Er wusste sofort, dass er einen Fehler gemacht hat.
   19:00  instagram  2862735566-005467   75  UNEXPECTED     Er braucht kurz, bis er es glaubt.
   20:30  tiktok     2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
 
-2026-09-08
+2026-09-09
   17:00  tiktok     2862735566-008423   71  UNEXPECTED     Damit hatte er nicht gerechnet.
   18:00  youtube    2862735566-005467   75  UNEXPECTED     Er braucht kurz, bis er es glaubt.
   19:00  instagram  2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
   20:30  tiktok     2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
 
-2026-09-09
+2026-09-10
   17:00  tiktok     2862735566-005297   70  UNEXPECTED     „Wer nimmt das auf sich?“
   18:00  youtube    2862735566-000546   74  UNEXPECTED     „CD, Leute, wer hat heutzutage noch CD?“
   19:00  instagram  2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
   20:30  tiktok     2862735566-005314   70  STORY          „Energie ist nicht gleich nur Benzin, Diesel…“
 
-2026-09-10
+2026-09-11
   17:00  tiktok     2862735566-000661   68  UNEXPECTED     „das ist jetzt hier keine“
   18:00  youtube    2862735566-003984   73  UNEXPECTED     „Warte mal, stopp!“
   19:00  instagram  2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
   20:30  tiktok     2862735566-001590   68  CONTROVERSIAL  „Ich habe auch dazu keine Meinung“
 
-2026-09-11
+2026-09-12
   17:00  tiktok     2862735566-001710   68  UNEXPECTED     „Ich muss erstmal das richtige Fenster wieder…“
   18:00  youtube    2862735566-003008   72  UNEXPECTED     „als wir alle zusammen“
   19:00  instagram  2862735566-008574   72  RAGE           Da ist ihm der Kragen geplatzt.
   20:30  tiktok     2862735566-001040   67  UNEXPECTED     „mehr so krass belasten“
 
-2026-09-12
+2026-09-13
   17:00  tiktok     2862735566-001208   67  STORY          „diese Zeit gehabt“
   18:00  youtube    2862735566-008574   72  RAGE           Da ist ihm der Kragen geplatzt.
   19:00  instagram  2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
   20:30  tiktok     2862735566-005496   67  UNEXPECTED     „Vielleicht war das so lange her oder so?“
 
-2026-09-13
+2026-09-14
   17:00  tiktok     2862735566-005975   67  UNEXPECTED     „der weiß mehr als wir alle“
   18:00  youtube    2862735566-001244   71  UNEXPECTED     „ich mir dann tröstet mich das auch ein“
   19:00  instagram  2862735566-003691   71  UNEXPECTED     Guck auf die Sekunde, in der es klickt.
   20:30  tiktok     2862735566-007345   67  RAGE           „wird dann öffentlich gespreadert“
 
-2026-09-14
+2026-09-15
   17:00  tiktok     2862735566-008004   67  UNEXPECTED     „Guck mal, egal ob man mich mag oder“
   18:00  youtube    2862735566-003691   71  UNEXPECTED     Guck auf die Sekunde, in der es klickt.
   19:00  instagram  2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
   20:30  tiktok     2862735566-004338   66  STORY          „Das wäre heftig“
 
-2026-09-15
+2026-09-16
   17:00  tiktok     2862735566-004986   66  RAGE           „Das muss doch irgendwas sein, Alter“
   18:00  youtube    2862735566-004918   71  RAGE           „kann man das nicht irgendwie messen?“
   19:00  instagram  2862735566-008423   71  UNEXPECTED     Damit hatte er nicht gerechnet.
   20:30  tiktok     2862735566-006015   66  STORY          „Interessant auf jeden Fall, weil ich habe den“
 
-2026-09-16
+2026-09-17
   17:00  tiktok     2862735566-006416   66  RAGE           „etwas sich anschauen darf“
   18:00  youtube    2862735566-008423   71  UNEXPECTED     Damit hatte er nicht gerechnet.
   19:00  instagram  2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
   20:30  tiktok     2862735566-000631   65  UNEXPECTED     „Hier ist mein Fuß, wie ihr sehen könnt“
 
-2026-09-17
+2026-09-18
   18:00  youtube    2862735566-002526   70  STORY          „Da kommt immer 369 raus?“
   19:00  instagram  2862735566-005297   70  UNEXPECTED     „Wer nimmt das auf sich?“
 
-2026-09-18
+2026-09-19
   18:00  youtube    2862735566-005297   70  UNEXPECTED     „Wer nimmt das auf sich?“
   19:00  instagram  2862735566-005314   70  STORY          „Energie ist nicht gleich nur Benzin, Diesel…“
 
-2026-09-19
+2026-09-20
   18:00  youtube    2862735566-005314   70  STORY          „Energie ist nicht gleich nur Benzin, Diesel…“
   19:00  instagram  2862735566-000661   68  UNEXPECTED     „das ist jetzt hier keine“
 
-2026-09-20
+2026-09-21
   18:00  youtube    2862735566-000661   68  UNEXPECTED     „das ist jetzt hier keine“
   19:00  instagram  2862735566-001590   68  CONTROVERSIAL  „Ich habe auch dazu keine Meinung“
 
-2026-09-21
+2026-09-22
   18:00  youtube    2862735566-001590   68  CONTROVERSIAL  „Ich habe auch dazu keine Meinung“
   19:00  instagram  2862735566-001710   68  UNEXPECTED     „Ich muss erstmal das richtige Fenster wieder…“
 
-2026-09-22
+2026-09-23
   18:00  youtube    2862735566-001710   68  UNEXPECTED     „Ich muss erstmal das richtige Fenster wieder…“
   19:00  instagram  2862735566-001040   67  UNEXPECTED     „mehr so krass belasten“
 
-2026-09-23
+2026-09-24
   18:00  youtube    2862735566-001040   67  UNEXPECTED     „mehr so krass belasten“
   19:00  instagram  2862735566-001208   67  STORY          „diese Zeit gehabt“
 
-2026-09-24
+2026-09-25
   18:00  youtube    2862735566-001208   67  STORY          „diese Zeit gehabt“
   19:00  instagram  2862735566-005496   67  UNEXPECTED     „Vielleicht war das so lange her oder so?“
 
-2026-09-25
+2026-09-26
   18:00  youtube    2862735566-005496   67  UNEXPECTED     „Vielleicht war das so lange her oder so?“
   19:00  instagram  2862735566-005975   67  UNEXPECTED     „der weiß mehr als wir alle“
 
-2026-09-26
+2026-09-27
   18:00  youtube    2862735566-005975   67  UNEXPECTED     „der weiß mehr als wir alle“
   19:00  instagram  2862735566-007345   67  RAGE           „wird dann öffentlich gespreadert“
 
-2026-09-27
+2026-09-28
   18:00  youtube    2862735566-007345   67  RAGE           „wird dann öffentlich gespreadert“
   19:00  instagram  2862735566-008004   67  UNEXPECTED     „Guck mal, egal ob man mich mag oder“
 
-2026-09-28
+2026-09-29
   18:00  youtube    2862735566-008004   67  UNEXPECTED     „Guck mal, egal ob man mich mag oder“
   19:00  instagram  2862735566-004338   66  STORY          „Das wäre heftig“
 
-2026-09-29
+2026-09-30
   18:00  youtube    2862735566-004338   66  STORY          „Das wäre heftig“
   19:00  instagram  2862735566-004986   66  RAGE           „Das muss doch irgendwas sein, Alter“
 
-2026-09-30
+2026-10-01
   18:00  youtube    2862735566-004986   66  RAGE           „Das muss doch irgendwas sein, Alter“
   19:00  instagram  2862735566-006015   66  STORY          „Interessant auf jeden Fall, weil ich habe den“
 
-2026-10-01
+2026-10-02
   18:00  youtube    2862735566-006015   66  STORY          „Interessant auf jeden Fall, weil ich habe den“
   19:00  instagram  2862735566-006416   66  RAGE           „etwas sich anschauen darf“
 
-2026-10-02
+2026-10-03
   18:00  youtube    2862735566-006416   66  RAGE           „etwas sich anschauen darf“
   19:00  instagram  2862735566-000631   65  UNEXPECTED     „Hier ist mein Fuß, wie ihr sehen könnt“
 
-2026-10-03
+2026-10-04
   18:00  youtube    2862735566-000631   65  UNEXPECTED     „Hier ist mein Fuß, wie ihr sehen könnt“
 
-90 Veröffentlichungen, 30 Clips, ab 2026-09-02.
+90 Veröffentlichungen, 30 Clips, ab 2026-09-03.
 ```
