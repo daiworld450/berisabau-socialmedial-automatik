@@ -251,12 +251,30 @@ ist vorhanden — und Facebook nicht. Eine App-Überprüfung bei Meta ist dafür
 nicht nötig: einem App-Administrator gibt Meta die Berechtigung auch im
 Entwicklungsmodus, sie muss beim Erzeugen nur angehakt sein.
 
-**Reparatur, ein Doppelklick:** `FACEBOOK-TOKEN-ERNEUERN.command` im
-Projektordner. Das Skript öffnet den Zugangs-Tester, nimmt den neuen
-Schlüssel verdeckt entgegen, prüft ihn gegen genau diese Berechtigung,
-wandelt einen persönlichen Schlüssel bei Bedarf in den Seiten-Schlüssel um
-und hinterlegt ihn in GitHub. Danach bietet es an, den liegengebliebenen
-Beitrag nachzureichen.
+**Warum der Token sie nicht hatte:** In der Meta-App war
+`pages_manage_posts` dem Anwendungsfall „Seiten verwalten" nie zugeordnet.
+Der Instagram-Anwendungsfall enthielt genau die sechs Berechtigungen oben —
+deshalb passte die Liste exakt. Am 03.09.2026 wurde die Berechtigung
+hinzugefügt; sie steht auf **Bereit zum Testen**, was für einen
+App-Administrator genügt. Ein bereits erzeugter Token bekommt sie nicht
+nachträglich, er muss neu geholt werden.
+
+**Reparatur, ein Doppelklick:** `FACEBOOK-EINSCHALTEN.command` im
+Projektordner. Das Skript öffnet auf dem eigenen Rechner kurz einen kleinen
+Webserver (`127.0.0.1:8765`) und schickt den Browser zum Anmeldedialog.
+Facebook liefert den Schlüssel an genau diesen Server zurück — er wandert
+direkt von Facebook ins Skript, niemand tippt ihn ab, er steht in keiner
+Datei und in keiner Ausgabe. Danach prüft das Skript ihn gegen
+`pages_manage_posts`, holt den Seiten-Schlüssel, hinterlegt ihn, reicht den
+liegengebliebenen Beitrag nach und sagt, ob er wirklich draußen ist.
+
+`http://localhost:8765` ist als Rückweg zulässig — am 03.09.2026 gegen den
+Dialog geprüft, Facebook leitet dorthin um.
+
+Ein Schlüssel aus diesem Dialog gilt nur rund eine Stunde. Für die
+Dauerlösung fragt das Skript einmalig nach dem App-Geheimnis und tauscht ihn
+gegen einen dauerhaften. Überspringen geht: dann steht der Beitrag heute
+auf Facebook, und das Skript muss später noch einmal laufen.
 
 **Einen Beitrag nachreichen**, der schon auf Instagram steht:
 
