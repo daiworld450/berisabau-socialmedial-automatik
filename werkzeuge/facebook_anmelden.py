@@ -200,6 +200,7 @@ def main() -> int:
     webbrowser.open(SYSTEMNUTZER_SEITE)
 
     geheim_vorab = ""
+    notweg = False          # wahr, wenn bewusst ein befristeter Schluessel bleibt
     token = hole_schluessel()
 
     # Reihenfolge egal: kommt zuerst das Geheimnis, wird es gemerkt und
@@ -299,13 +300,27 @@ def main() -> int:
             sag(f"  - Das Geheimnis gehoert zu einer anderen App. Dieser")
             sag(f"    Schluessel gehoert zur App {app}.")
             sag("")
-            sag("Nichts geaendert.")
+            # Ohne Tausch bleibt der Schluessel befristet - aber ein
+            # befristeter ist besser als ein abgelaufener. Stehen Facebook
+            # und Instagram gerade still, zaehlt erst einmal, dass sie
+            # wieder laufen; die Dauerloesung kann danach folgen.
+            sag("Der Schluessel ohne Tausch gilt nur ein bis zwei Stunden.")
+            sag("Stehen Facebook und Instagram gerade still, ist das immer")
+            sag("noch besser als nichts.")
             sag("")
-            return 1
+            try:
+                antwort = input("Trotzdem hinterlegen? [j/n] ").strip().lower()
+            except (EOFError, KeyboardInterrupt):
+                antwort = "n"
+            if antwort not in ("j", "ja"):
+                sag("\nNichts geaendert.\n")
+                return 1
+            sag("  Wird befristet hinterlegt.")
+            notweg = True
         finally:
             del geheim
 
-        if not befund["unbefristet"]:
+        if not notweg and not befund["unbefristet"]:
             # Der getauschte Nutzer-Schluessel gilt 60 Tage. Der Seiten-
             # Schluessel, der gleich daraus entsteht, laeuft dann nicht mehr
             # ab - das wird unten gemessen, nicht angenommen.
@@ -357,10 +372,13 @@ def main() -> int:
         return 1
 
     if not seiten_befund["unbefristet"]:
-        sag("\nDer Seiten-Schluessel hat trotzdem ein Ablaufdatum.")
-        sag("Nichts geaendert - sag Claude Bescheid.\n")
-        return 1
-    sag("  Auch der Seiten-Schluessel laeuft nicht ab.")
+        if not notweg:
+            sag("\nDer Seiten-Schluessel hat trotzdem ein Ablaufdatum.")
+            sag("Nichts geaendert - sag Claude Bescheid.\n")
+            return 1
+        sag("  Der Seiten-Schluessel ist befristet - so gewollt.")
+    else:
+        sag("  Auch der Seiten-Schluessel laeuft nicht ab.")
 
     fehlt2 = [r for r in NOETIG if r not in seiten_befund["rechte"]]
     if fehlt2:
@@ -416,8 +434,14 @@ def main() -> int:
 
     sag("  Erledigt.")
     sag("")
-    sag("  Haltbarkeit: unbefristet. Facebook und Instagram laufen")
-    sag("  ab jetzt beide ueber diesen Schluessel.")
+    if notweg:
+        sag("  Haltbarkeit: nur ein bis zwei Stunden.")
+        sag("  Facebook und Instagram laufen wieder, aber nicht lange.")
+        sag("  Fuer die Dauerloesung dieses Skript noch einmal starten,")
+        sag("  sobald das richtige App-Geheimnis vorliegt.")
+    else:
+        sag("  Haltbarkeit: unbefristet. Facebook und Instagram laufen")
+        sag("  ab jetzt beide ueber diesen Schluessel.")
     return 0
 
 
