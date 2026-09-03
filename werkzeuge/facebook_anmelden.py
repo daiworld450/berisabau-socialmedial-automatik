@@ -180,6 +180,11 @@ def pruefe(token: str) -> dict:
         "unbefristet": (daten.get("expires_at") or 0) == 0,
         "rechte": set(daten.get("scopes") or []),
         "typ": daten.get("type", ""),
+        # Der Tausch braucht das Geheimnis GENAU der App, die den
+        # Schluessel ausgestellt hat. Wer im Zugangs-Tester eine andere App
+        # auswaehlt, bekommt sonst nur "Error validating client secret" -
+        # eine Meldung, die den wahren Grund verschweigt.
+        "app_id": str(daten.get("app_id") or ""),
     }
 
 
@@ -271,10 +276,15 @@ def main() -> int:
         if len(geheim) != 32 or any(z not in "0123456789abcdefABCDEF" for z in geheim):
             sag("  Achtung: ein App-Geheimnis hat genau 32 Zeichen aus")
             sag("  Ziffern und den Buchstaben a bis f. Versuch laeuft weiter.")
+        app = befund.get("app_id") or APP_ID
+        if app != APP_ID:
+            sag(f"  Hinweis: der Schluessel gehoert zur App {app},")
+            sag(f"  nicht zu {APP_ID}. Das Geheimnis muss von dieser App")
+            sag("  stammen, sonst schlaegt der Tausch fehl.")
         try:
             token = graph("oauth/access_token",
                           grant_type="fb_exchange_token",
-                          client_id=APP_ID, client_secret=geheim,
+                          client_id=app, client_secret=geheim,
                           fb_exchange_token=token).get("access_token", "")
             if not token:
                 raise GraphFehler("Facebook lieferte keinen Schluessel zurueck")
@@ -282,7 +292,15 @@ def main() -> int:
             befund = pruefe(token)
         except GraphFehler as fehler:
             sag(f"\nTausch fehlgeschlagen: {fehler}")
-            sag("Nichts geaendert.\n")
+            sag("")
+            sag("Zwei haeufige Gruende:")
+            sag("  - Auf der Seite mit dem App-Geheimcode wurde nicht auf")
+            sag("    Anzeigen geklickt, sondern die Punkte kopiert.")
+            sag(f"  - Das Geheimnis gehoert zu einer anderen App. Dieser")
+            sag(f"    Schluessel gehoert zur App {app}.")
+            sag("")
+            sag("Nichts geaendert.")
+            sag("")
             return 1
         finally:
             del geheim
