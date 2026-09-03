@@ -43,6 +43,10 @@ on:
         description: "Transkript aus einem frueheren Lauf uebernehmen (Lauf-Nummer, leer = neu erkennen)"
         type: string
         default: ""
+      rendern:
+        description: "Auch die fertigen Videos erzeugen (laedt das ganze VOD, dauert deutlich laenger)"
+        type: boolean
+        default: false
       diagnose:
         description: "Nur pruefen, ob der Ton erreichbar ist (nichts auswerten)"
         type: boolean
@@ -75,11 +79,12 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      # Nur fuer den Weg ueber den Ton. Wird ein Transkript uebernommen,
-      # braucht der Lauf weder ffmpeg noch ein Spracherkennungsmodell -
-      # und ist in einer Minute durch statt in vierzig.
+      # ffmpeg und yt-dlp braucht beides: der Weg ueber den Ton und das
+      # Rendern. Das Spracherkennungsmodell dagegen nur der erste - wird ein
+      # Transkript uebernommen, ist der Lauf in einer Minute durch statt in
+      # vierzig.
       - name: Werkzeuge installieren
-        if: ${{ inputs.aus_lauf == '' }}
+        if: ${{ inputs.aus_lauf == '' || inputs.rendern }}
         run: |
           # ffmpeg ist auf den Runnern NICHT vorinstalliert. Ohne es laedt
           # yt-dlp den Ton zwar vollstaendig herunter und wirft ihn dann bei
@@ -88,7 +93,11 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
           ffmpeg -version | head -n 1
-          pip install --quiet yt-dlp faster-whisper
+          pip install --quiet yt-dlp
+
+      - name: Spracherkennung installieren
+        if: ${{ inputs.aus_lauf == '' && !inputs.diagnose }}
+        run: pip install --quiet faster-whisper
 
       - name: Videonummer aus der Adresse lesen
         id: vod
@@ -253,6 +262,45 @@ jobs:
           echo "werden. Er liegt vollstaendig als Anhang an diesem Lauf -"
           echo "verloren ist nichts, nur nicht im Repo."
 
+      # Ab hier die Videos. Bewusst erst nach dem Bericht: das Rendern
+      # dauert laenger als alles davor zusammen, und wenn es schiefgeht,
+      # liegen die Vorschlaege trotzdem schon im Repo.
+      - name: Video laden
+        if: ${{ inputs.rendern && !inputs.diagnose }}
+        run: |
+          set -o pipefail
+          df -h / | tail -n 1
+          # Auf 1080p begrenzt: darueber wird die Datei mehrere Gigabyte
+          # groesser, ohne dass ein 1080x1920-Clip davon etwas hat.
+          yt-dlp -f "bv*[height<=1080]+ba/b[height<=1080]" \
+            -o arbeit/vod.mp4 --merge-output-format mp4 \
+            "${{ inputs.vod }}" 2>&1 | tail -n 20 | tee -a arbeit/lauf.log
+          ls -lh arbeit/vod.mp4 | tee -a arbeit/lauf.log
+          df -h / | tail -n 1
+
+      - name: Clips rendern
+        if: ${{ inputs.rendern && !inputs.diagnose }}
+        run: |
+          set -o pipefail
+          ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
+          python src/main.py clip rendern \
+            --clips "$ORDNER/clips.json" \
+            --video arbeit/vod.mp4 \
+            --ausfuehren 2>&1 | tee -a arbeit/lauf.log
+          # Das Quellvideo ist mehrere Gigabyte gross und hat im Anhang
+          # nichts verloren - nur die fertigen Clips.
+          rm -f arbeit/vod.mp4
+          ls -lh "$ORDNER"/*.mp4 | tee -a arbeit/lauf.log
+
+      - name: Videos als Download
+        if: ${{ inputs.rendern && !inputs.diagnose }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos-${{ steps.vod.outputs.nummer }}
+          path: docs/clips/${{ steps.vod.outputs.nummer }}/*.mp4
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Bericht und Transkript als Download
         if: always()
         uses: actions/upload-artifact@v4
@@ -260,6 +308,7 @@ jobs:
           name: clips-${{ steps.vod.outputs.nummer }}
           path: |
             docs/clips/${{ steps.vod.outputs.nummer }}/
+            !docs/clips/${{ steps.vod.outputs.nummer }}/*.mp4
             arbeit/transkript.json
             arbeit/diagnose.log
           retention-days: 30

@@ -30,3 +30,7 @@ einwilligungen/nachweise/
 # Zugangsdaten.
 .mcp.json
 .mcp.json.*
+
+# Gerenderte Clips. Sie entstehen aus clips.json und dem VOD und lassen sich
+# jederzeit neu erzeugen - im Repo waeren es hunderte Megabyte pro Stream.
+docs/clips/**/*.mp4
