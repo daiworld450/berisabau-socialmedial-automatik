@@ -460,3 +460,71 @@ class FacebookNachholen(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(len(self.gepostet), 1)
         self.assertEqual(self.gepostet[0][0], "bild.jpg")
+
+
+class FacebookAusfallWirdGemeldet(unittest.TestCase):
+    """Ein stiller Ausfall ist schlimmer als ein lauter.
+
+    Am 03.09.2026 lehnte Facebook einen Beitrag ab. Der Instagram-Beitrag
+    ging raus, der Lauf blieb gruen, und der Fehler stand nur in einem
+    Protokoll. Bemerkt hat es der Inhaber, Stunden spaeter.
+    """
+
+    def setUp(self):
+        self._sicher = {n: getattr(main, n) for n in ("texter", "_erzeuge_alle")}
+        main.texter = SimpleNamespace(baue_caption_facebook=lambda p: "Text")
+        main._erzeuge_alle = lambda *_a, **_k: []
+
+        self.gesendet = []
+        sys.modules["telegram_bot"] = SimpleNamespace(
+            sende_text=lambda text, **_k: self.gesendet.append(text))
+
+        class Fehler(RuntimeError):
+            token_problem = True
+
+        self.Fehler = Fehler
+        sys.modules["facebook"] = SimpleNamespace(
+            aktiv=lambda: True,
+            FacebookFehler=Fehler,
+            veroeffentliche_bild=self._wirft,
+        )
+        self.addCleanup(self._aufraeumen)
+
+    def _wirft(self, *_a, **_k):
+        raise self.Fehler("(#200) pages_manage_posts fehlt")
+
+    def _aufraeumen(self):
+        for name, wert in self._sicher.items():
+            setattr(main, name, wert)
+        for modul in ("facebook", "telegram_bot"):
+            sys.modules.pop(modul, None)
+
+    def _ruf(self):
+        main._auch_facebook({"id": "m-werkzeug", "felder": {}},
+                            Path("bild.jpg"), "einzelbild")
+
+    def test_bei_ablehnung_geht_eine_nachricht_raus(self):
+        self._ruf()
+
+        self.assertEqual(len(self.gesendet), 1)
+        self.assertIn("m-werkzeug", self.gesendet[0])
+
+    def test_die_nachricht_nennt_den_weg_zur_reparatur(self):
+        self._ruf()
+
+        self.assertIn("FACEBOOK-EINSCHALTEN.command", self.gesendet[0])
+
+    def test_ein_trockenlauf_meldet_nichts(self):
+        main._auch_facebook({"id": "m-werkzeug", "felder": {}},
+                            Path("bild.jpg"), "einzelbild", trocken=True)
+
+        self.assertEqual(self.gesendet, [])
+
+    def test_stummes_telegram_reisst_den_lauf_nicht_mit(self):
+        # Der Instagram-Beitrag ist zu diesem Zeitpunkt schon draussen.
+        # Eine misslungene Warnung darf daran nichts kaputt machen.
+        def wirft(*_a, **_k):
+            raise RuntimeError("Telegram nicht erreichbar")
+        sys.modules["telegram_bot"] = SimpleNamespace(sende_text=wirft)
+
+        self._ruf()   # darf keine Ausnahme nach aussen lassen

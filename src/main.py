@@ -41,6 +41,11 @@ except ImportError:
     freigaben = planer = texter = None
     kuerze_dateiname = rendere = None
 
+# Ab wie vielen Tagen Restlaufzeit der Facebook-Waechter warnt. Zehn Tage
+# decken mehr als zwei Posttage ab - genug Vorlauf, um in Ruhe zu reagieren,
+# ohne dass wochenlang eine Warnung im Chat steht.
+WARNUNG_AB_TAGEN = 10
+
 
 def _erzeuge(plan: dict, format: str = "feed") -> Path:
     """Rendert den Beitrag. Bei Carousels die erste Slide (die sichtbare Kachel)."""
@@ -243,6 +248,30 @@ def _veroeffentliche(plan: dict, tag: date, bild: Path, caption_datei: Path,
     return 0
 
 
+def _melde_facebook_ausfall(plan: dict, fehler) -> None:
+    """Sagt im Telegram-Chat Bescheid, wenn Facebook einen Beitrag ablehnt.
+
+    Bewusst mit dem Weg zur Reparatur in derselben Nachricht: Wer die
+    Meldung liest, soll nicht erst suchen muessen, was jetzt zu tun ist.
+    Scheitert auch das Senden, bleibt es beim Protokolleintrag - eine
+    fehlgeschlagene Warnung darf den Instagram-Beitrag nicht gefaehrden.
+    """
+    try:
+        import telegram_bot
+        hinweis = ("Seiten-Token erneuern: FACEBOOK-EINSCHALTEN.command "
+                   "im Projektordner doppelklicken."
+                   if getattr(fehler, "token_problem", False)
+                   else "Beitrag nachreichen, sobald die Ursache behoben ist.")
+        telegram_bot.sende_text(
+            f"⚠️ Facebook hat den Beitrag abgelehnt\n\n"
+            f"Beitrag: {plan.get('id')}\n"
+            f"Grund: {fehler}\n\n"
+            f"Auf Instagram steht er. {hinweis}")
+    except Exception as senden:                       # noqa: BLE001
+        print(f"           Telegram-Warnung fehlgeschlagen: {senden}",
+              file=sys.stderr)
+
+
 def _auch_facebook(plan: dict, bild, typ: str, trocken: bool = False,
                    kein_facebook: bool = False) -> None:
     """Denselben Beitrag zusätzlich auf die Facebook-Seite stellen.
@@ -275,6 +304,13 @@ def _auch_facebook(plan: dict, bild, typ: str, trocken: bool = False,
         if fehler.token_problem:
             print("           Seiten-Token erneuern, siehe "
                   "docs/03-FACEBOOK-EINRICHTEN.md", file=sys.stderr)
+        # Bis zum 03.09.2026 endete es hier. Der Instagram-Beitrag ging raus,
+        # der Lauf blieb gruen, und dass Facebook leer blieb, stand nur in
+        # einem Protokoll, das niemand liest - aufgefallen ist es dem Inhaber
+        # erst Stunden spaeter. Ein stiller Ausfall ist schlimmer als ein
+        # lauter, deshalb geht jetzt eine Nachricht raus.
+        if not trocken:
+            _melde_facebook_ausfall(plan, fehler)
         return
 
     print(f"Facebook : {ergebnis.meldung}")
@@ -348,6 +384,50 @@ def cmd_facebook_nachholen(args) -> int:
         print(f"Link     : {ergebnis.permalink}")
     print()
     return 0
+
+
+def cmd_facebook_waechter(args) -> int:
+    """Taeglicher Blick auf den Facebook-Zugang, bevor ein Posttag ausfaellt.
+
+    Am 03.09.2026 lehnte Facebook einen Beitrag ab und niemand bemerkte es:
+    Instagram lief weiter, der Fehler stand in einem Lauf-Protokoll. Erst der
+    Inhaber fiel auf, dass der Beitrag fehlt. Dieser Waechter meldet sich
+    von selbst - und zwar bevor der naechste Beitrag ansteht, nicht danach.
+
+    Still bleibt er, solange alles in Ordnung ist. Eine Meldung pro Tag
+    reicht; laeuft der Token bald ab, wird ab zehn Tagen vorher gewarnt.
+    """
+    import facebook
+
+    if not facebook.aktiv():
+        print("\nFacebook ist nicht eingerichtet - nichts zu pruefen.\n")
+        return 0
+
+    zustand = facebook.token_zustand()
+    print(f"\n{zustand['meldung']}")
+    if zustand["rechte"]:
+        print("Berechtigungen: " + ", ".join(sorted(zustand["rechte"])))
+
+    schlimm = (not zustand["gueltig"] or not zustand["darf_posten"]
+               or (zustand["tage_uebrig"] is not None
+                   and zustand["tage_uebrig"] <= WARNUNG_AB_TAGEN))
+    if not schlimm:
+        print("Alles in Ordnung.\n")
+        return 0
+
+    text = ("⚠️ Facebook meldet sich ab\n\n"
+            f"{zustand['meldung']}\n\n"
+            "Instagram laeuft weiter, Facebook faellt aus.\n"
+            "Reparatur: FACEBOOK-EINSCHALTEN.command im Projektordner "
+            "doppelklicken. Dauert zwei Minuten.")
+    if not args.still:
+        import telegram_bot
+        try:
+            telegram_bot.sende_text(text)
+            print("Warnung an Telegram geschickt.\n")
+        except Exception as fehler:                   # noqa: BLE001
+            print(f"Telegram-Warnung fehlgeschlagen: {fehler}", file=sys.stderr)
+    return 1
 
 
 def cmd_export(args) -> int:
@@ -1729,6 +1809,12 @@ def main() -> int:
                           help="erster Schritt nach einer Worker-Freigabe: vermerken und rendern")
     fv.add_argument("plan_id", help="welcher Beitrag, z. B. w-abdichtung")
     fv.set_defaults(func=cmd_freigabe_vorbereiten)
+
+    fw = unter.add_parser("facebook-waechter",
+                          help="prueft taeglich, ob Facebook noch posten darf")
+    fw.add_argument("--still", action="store_true",
+                    help="nur anzeigen, keine Telegram-Warnung")
+    fw.set_defaults(func=cmd_facebook_waechter)
 
     fn = unter.add_parser("facebook-nachholen",
                           help="einen schon veroeffentlichten Beitrag nachtraeglich auf Facebook stellen")

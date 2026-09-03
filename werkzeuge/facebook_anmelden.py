@@ -26,6 +26,7 @@ import ssl
 import subprocess
 import sys
 import threading
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -240,45 +241,65 @@ def main() -> int:
     # die Automatik nicht heute Abend wieder steht, wird er mit dem
     # App-Geheimnis in einen dauerhaften getauscht. Das Geheimnis wird nur
     # in diesem Moment benutzt und nirgends gespeichert.
-    ablauf = daten.get("expires_at") or 0
-    dauerhaft = ablauf == 0
-    if not dauerhaft:
-        sag("")
-        sag("-----------------------------------------------------------")
-        sag("Dieser Schluessel gilt nur rund eine Stunde.")
-        sag("")
-        sag("Fuer die Dauerloesung braucht es einmal das App-Geheimnis.")
-        sag("Es oeffnet sich gleich die Seite, auf der es steht - dort auf")
-        sag("Anzeigen klicken und den Wert hier einfuegen.")
-        sag("")
-        sag("Ohne geht es auch: einfach Eingabetaste druecken. Dann steht")
-        sag("der Beitrag heute auf Facebook, und dieses Skript muss in")
-        sag("etwa einer Stunde noch einmal laufen.")
-        sag("-----------------------------------------------------------")
-        webbrowser.open(f"https://developers.facebook.com/apps/{APP_ID}/settings/basic/")
+    sag("")
+    sag("-----------------------------------------------------------")
+    sag("  Noch ein Schritt - der wichtigste")
+    sag("-----------------------------------------------------------")
+    sag("")
+    sag("Ein Schluessel aus diesem Dialog gilt nur rund eine Stunde.")
+    sag("Danach steht Facebook wieder still, waehrend Instagram")
+    sag("weiterlaeuft - genau der Zustand vom 03.09.")
+    sag("")
+    sag("Damit das ein fuer alle Mal erledigt ist, braucht es einmal")
+    sag("das App-Geheimnis. Es oeffnet sich gleich die Seite, auf der")
+    sag("es steht - dort auf Anzeigen klicken, kopieren, hier einfuegen.")
+    sag("Es wird nicht angezeigt und nirgends gespeichert.")
+    sag("")
+    sag("Nur Eingabetaste geht auch, ist aber eine Notloesung fuer")
+    sag("heute: der Beitrag geht raus, in einer Stunde ist Schluss.")
+    sag("-----------------------------------------------------------")
+    webbrowser.open(f"https://developers.facebook.com/apps/{APP_ID}/settings/basic/")
+    try:
+        import getpass
+        geheim = getpass.getpass("App-Geheimnis (wird nicht angezeigt): ").strip()
+    except (EOFError, KeyboardInterrupt):
+        geheim = ""
+
+    if geheim:
         try:
-            import getpass
-            geheim = getpass.getpass("App-Geheimnis (wird nicht angezeigt): ").strip()
-        except (EOFError, KeyboardInterrupt):
-            geheim = ""
-        if geheim:
-            try:
-                lang = graph("oauth/access_token",
-                             grant_type="fb_exchange_token",
-                             client_id=APP_ID, client_secret=geheim,
-                             fb_exchange_token=token).get("access_token", "")
-                if lang:
-                    seiten_neu = (graph("me/accounts", access_token=lang).get("data") or [])
-                    treffer = next((s for s in seiten_neu
-                                    if s.get("id") == wahl.get("id")), None)
-                    if treffer and treffer.get("access_token"):
-                        seiten_token = treffer["access_token"]
-                        dauerhaft = True
-                        sag("  Dauerhafter Schluessel erzeugt.")
-                del geheim
-            except Exception as fehler:               # noqa: BLE001
-                sag(f"  Tausch fehlgeschlagen ({fehler}).")
-                sag("  Es wird der kurzlebige Schluessel hinterlegt.")
+            lang = graph("oauth/access_token",
+                         grant_type="fb_exchange_token",
+                         client_id=APP_ID, client_secret=geheim,
+                         fb_exchange_token=token).get("access_token", "")
+            if not lang:
+                raise GraphFehler("Facebook lieferte keinen Schluessel zurueck")
+            seiten_neu = (graph("me/accounts", access_token=lang).get("data") or [])
+            treffer = next((s for s in seiten_neu
+                            if s.get("id") == wahl.get("id")), None)
+            if treffer and treffer.get("access_token"):
+                seiten_token = treffer["access_token"]
+        except GraphFehler as fehler:
+            sag(f"  Tausch fehlgeschlagen: {fehler}")
+            sag("  Steht auf der Seite wirklich das App-Geheimnis und nicht")
+            sag("  die App-Nummer? Es wird der kurzlebige Schluessel")
+            sag("  hinterlegt - der Beitrag geht heute raus.")
+        finally:
+            del geheim
+
+    # Nicht behaupten, sondern messen: Facebook selbst fragen, wie lange
+    # der Schluessel gilt, der gleich hinterlegt wird. "expires_at 0" heisst
+    # unbefristet - alles andere ist eine Notloesung mit Ablaufdatum.
+    dauerhaft = False
+    rest = None
+    try:
+        pruefung = graph("debug_token", input_token=seiten_token,
+                         access_token=seiten_token).get("data", {})
+        ablauf = pruefung.get("expires_at") or 0
+        dauerhaft = ablauf == 0
+        if not dauerhaft:
+            rest = max(0, int((ablauf - time.time()) // 60))
+    except GraphFehler:
+        pass
 
     sag("")
     sag("Hinterlege den Schluessel in GitHub ...")
@@ -290,8 +311,18 @@ def main() -> int:
         return 1
     sag("  Erledigt.")
     sag("")
-    sag("  Haltbarkeit: " + ("dauerhaft" if dauerhaft
-                             else "rund eine Stunde - Skript spaeter erneut starten"))
+    if dauerhaft:
+        sag("  Haltbarkeit: unbefristet. Damit ist Facebook abgeschlossen.")
+        sag("  Ein Waechter sieht jeden Morgen nach und meldet sich ueber")
+        sag("  Telegram, falls doch einmal etwas klemmt.")
+        return 0
+
+    sag("  ACHTUNG - Haltbarkeit: " + (f"noch rund {rest} Minuten."
+                                       if rest is not None else "nur kurz."))
+    sag("")
+    sag("  Der Beitrag geht gleich raus, aber danach faellt Facebook")
+    sag("  wieder aus. Fuer die Dauerloesung dieses Skript noch einmal")
+    sag("  starten und diesmal das App-Geheimnis einfuegen.")
     return 0
 
 
