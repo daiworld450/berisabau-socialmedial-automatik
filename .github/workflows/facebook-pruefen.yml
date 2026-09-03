@@ -1,0 +1,71 @@
+name: Facebook-Token prüfen
+
+# Reine Diagnose, aendert nichts. Beantwortet eine Frage, die man von aussen
+# nicht sehen kann: welche Berechtigungen traegt FB_PAGE_TOKEN wirklich?
+#
+# Hintergrund 03.09.2026: Facebook lehnte einen Beitrag mit
+# "(#200) pages_manage_posts are not available" ab, waehrend Instagram mit
+# demselben Token sauber postete. Zwei Erklaerungen sind moeglich - die App
+# steht im Entwicklungsmodus ohne App Review, oder der Token wurde schlicht
+# ohne diese Berechtigung erzeugt. Nur die zweite laesst sich in Minuten
+# beheben, deshalb wird erst gemessen.
+#
+# Der Token selbst wird nie ausgegeben. GitHub maskiert Secrets zwar
+# automatisch, aber hier werden ohnehin nur Berechtigungsnamen gedruckt.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Berechtigungen abfragen
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+        run: |
+          if [ -z "$FB_PAGE_TOKEN" ]; then
+            echo "::error::FB_PAGE_TOKEN ist leer"; exit 1
+          fi
+
+          echo "=== 1. Wem gehoert der Token, und welche Art ist es? ==="
+          curl -s -G "https://graph.facebook.com/v21.0/debug_token" \
+            --data-urlencode "input_token=$FB_PAGE_TOKEN" \
+            --data-urlencode "access_token=$FB_PAGE_TOKEN" \
+          | python3 -c "
+          import json,sys
+          a = json.load(sys.stdin)
+          d = a.get('data', {})
+          if 'error' in a:
+              print('Abfrage abgelehnt:', a['error'].get('message'))
+          print('Typ          :', d.get('type'))
+          print('App-Nummer   :', d.get('app_id'))
+          print('Gueltig      :', d.get('is_valid'))
+          print('Laeuft ab    :', d.get('expires_at'))
+          s = d.get('scopes')
+          print('Berechtigungen:', ', '.join(s) if s else '(keine gemeldet)')
+          if s is not None:
+              print()
+              print('pages_manage_posts vorhanden:',
+                    'JA' if 'pages_manage_posts' in s else 'NEIN')
+          "
+
+          echo
+          echo "=== 2. Was sagt die Seite selbst ueber ihre Rechte? ==="
+          curl -s -G "https://graph.facebook.com/v21.0/me" \
+            --data-urlencode "fields=id,name,tasks" \
+            --data-urlencode "access_token=$FB_PAGE_TOKEN" \
+          | python3 -c "
+          import json,sys
+          a = json.load(sys.stdin)
+          if 'error' in a:
+              print('Abfrage abgelehnt:', a['error'].get('message')); raise SystemExit
+          print('Seite  :', a.get('name'))
+          t = a.get('tasks')
+          print('Aufgaben:', ', '.join(t) if t else '(keine gemeldet)')
+          if t is not None:
+              print('CREATE_CONTENT (posten) erlaubt:',
+                    'JA' if 'CREATE_CONTENT' in t else 'NEIN')
+          "
