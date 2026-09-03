@@ -77,6 +77,22 @@ def vermerke(thema_id: str, tag: date, pfad: str | None = None,
     speichere_verlauf(verlauf)
 
 
+def vermerke_facebook(tag: date, fb_id: str) -> None:
+    """Haelt fest, dass dieser Tag auch auf Facebook steht.
+
+    Angelegt am 03.09.2026, nachdem der Nachhol-Befehl denselben Beitrag ein
+    zweites Mal auf die Seite gestellt hat: er sah nur nach, ob der Beitrag
+    im Verlauf steht - und das tat er, wegen Instagram. Ob Facebook schon
+    bedient war, stand nirgends.
+    """
+    verlauf = lade_verlauf()
+    for eintrag in verlauf["eintraege"]:
+        if eintrag["datum"] == tag.isoformat():
+            eintrag["facebook_id"] = fb_id
+            speichere_verlauf(verlauf)
+            return
+
+
 def _zuletzt_verwendet() -> dict[str, str]:
     letzte: dict[str, str] = {}
     for e in lade_verlauf()["eintraege"]:

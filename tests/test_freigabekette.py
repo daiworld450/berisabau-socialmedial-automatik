@@ -406,7 +406,8 @@ class FacebookNachholen(unittest.TestCase):
                                 {"token_problem": False}),
             veroeffentliche_bild=lambda bild, text, trockenlauf=False: (
                 self.gepostet.append((bild, text)) or
-                SimpleNamespace(meldung="Veroeffentlicht.", permalink="https://fb/1")),
+                SimpleNamespace(id="fb-1", meldung="Veroeffentlicht.",
+                                permalink="https://fb/1")),
         )
         sys.modules["facebook"] = self._fb
         self.addCleanup(self._aufraeumen)
@@ -421,16 +422,19 @@ class FacebookNachholen(unittest.TestCase):
         sys.modules.pop("facebook", None)
 
     def _verlauf(self, eintraege):
+        self.vermerkt = []
         main.planer = SimpleNamespace(
             lade_verlauf=lambda: {"eintraege": eintraege},
             _zuletzt_verwendet=planer._zuletzt_verwendet,
-            plane=planer.plane)
+            plane=planer.plane,
+            vermerke_facebook=lambda *_a, **_k: self.vermerkt.append(_a))
 
     def test_unbekanntes_datum_gibt_1(self):
         self._verlauf([])
 
         code = main.cmd_facebook_nachholen(
-            SimpleNamespace(datum="2026-09-03", abgelehnt=None, trocken=False))
+            SimpleNamespace(datum="2026-09-03", abgelehnt=None, trocken=False,
+                            trotzdem=False))
 
         self.assertEqual(code, 1)
         self.assertEqual(self.gepostet, [])
@@ -444,7 +448,7 @@ class FacebookNachholen(unittest.TestCase):
 
         code = main.cmd_facebook_nachholen(
             SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
-                            trocken=False))
+                            trocken=False, trotzdem=False))
 
         self.assertEqual(code, 1)
         self.assertEqual(self.gepostet, [])
@@ -455,12 +459,48 @@ class FacebookNachholen(unittest.TestCase):
 
         code = main.cmd_facebook_nachholen(
             SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
-                            trocken=False))
+                            trocken=False, trotzdem=False))
 
         self.assertEqual(code, 0)
         self.assertEqual(len(self.gepostet), 1)
         self.assertEqual(self.gepostet[0][0], "bild.jpg")
 
+
+    def test_zweiter_versuch_postet_nicht_noch_einmal(self):
+        # Am 03.09.2026 stand der Beitrag danach zweimal auf der Seite:
+        # der Befehl sah nur nach, ob der Tag im Verlauf steht - und das tat
+        # er wegen Instagram.
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg", "facebook_id": "fb-1"}])
+
+        code = main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=False))
+
+        self.assertEqual(code, 0)
+        self.assertEqual(self.gepostet, [],
+                         "Der Beitrag wurde ein zweites Mal gepostet")
+
+    def test_mit_trotzdem_geht_es_doch(self):
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg", "facebook_id": "fb-1"}])
+
+        main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=True))
+
+        self.assertEqual(len(self.gepostet), 1)
+
+    def test_erfolg_wird_im_verlauf_vermerkt(self):
+        self._verlauf([{"datum": self.tag.isoformat(), "id": self.plan_id,
+                        "bild": "bild.jpg"}])
+
+        main.cmd_facebook_nachholen(
+            SimpleNamespace(datum=self.tag.isoformat(), abgelehnt=None,
+                            trocken=False, trotzdem=False))
+
+        self.assertEqual(len(self.vermerkt), 1,
+                         "Ohne Vermerk postet der naechste Lauf doppelt")
 
 class FacebookAusfallWirdGemeldet(unittest.TestCase):
     """Ein stiller Ausfall ist schlimmer als ein lauter.

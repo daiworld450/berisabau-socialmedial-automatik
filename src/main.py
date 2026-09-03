@@ -316,6 +316,9 @@ def _auch_facebook(plan: dict, bild, typ: str, trocken: bool = False,
     print(f"Facebook : {ergebnis.meldung}")
     if ergebnis.permalink:
         print(f"Link     : {ergebnis.permalink}")
+    # Damit spaeter niemand denselben Beitrag noch einmal nachreicht.
+    if ergebnis.id and tag and not trocken:
+        planer.vermerke_facebook(tag, ergebnis.id)
 
 
 def cmd_facebook_nachholen(args) -> int:
@@ -356,6 +359,16 @@ def cmd_facebook_nachholen(args) -> int:
               "Nichts gepostet.\n", file=sys.stderr)
         return 1
 
+    # Der Beitrag darf nicht ein zweites Mal auf die Seite. Am 03.09.2026
+    # ist genau das passiert: der Befehl sah nur nach, ob der Tag im Verlauf
+    # steht - und das tat er wegen Instagram. Seither wird eigens vermerkt,
+    # ob Facebook schon bedient wurde.
+    if eintrag.get("facebook_id") and not args.trotzdem:
+        print(f"\n'{plan_id}' steht bereits auf Facebook "
+              f"(Beitrag {eintrag['facebook_id']}).\n"
+              "Nichts gepostet. Wirklich noch einmal: --trotzdem\n")
+        return 0
+
     import facebook
     if not facebook.aktiv():
         print("\nFEHLER: Facebook ist nicht eingerichtet "
@@ -382,6 +395,9 @@ def cmd_facebook_nachholen(args) -> int:
     print(f"Facebook : {ergebnis.meldung}")
     if ergebnis.permalink:
         print(f"Link     : {ergebnis.permalink}")
+    if ergebnis.id and not args.trocken:
+        planer.vermerke_facebook(date.fromisoformat(tag_iso), ergebnis.id)
+        print("Verlauf  : als auf Facebook veroeffentlicht vermerkt")
     print()
     return 0
 
@@ -1823,6 +1839,8 @@ def main() -> int:
                     help="Themen-IDs, die am Posttag abgelehnt wurden")
     fn.add_argument("--trocken", action="store_true",
                     help="nur zeigen, was passieren wuerde")
+    fn.add_argument("--trotzdem", action="store_true",
+                    help="auch posten, wenn der Beitrag dort schon steht")
     fn.set_defaults(func=cmd_facebook_nachholen)
 
     tv = unter.add_parser("telegram-veroeffentlichen",
