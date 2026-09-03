@@ -287,3 +287,99 @@ class FreigabeVorbereitenBrichtAb(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WarteschlangeBleibtBisVeroeffentlicht(unittest.TestCase):
+    """Der Vorschlag darf erst verschwinden, wenn der Beitrag draussen ist.
+
+    Am 03.09.2026 gab der Inhaber 'm-werkzeug' frei. Der Lauf renderte,
+    trug den Vorschlag aus - und brach danach ab, bevor irgendetwas bei
+    Instagram oder Facebook ankam. Damit war der Beitrag weder
+    veroeffentlicht noch ein zweites Mal freigebbar: der Eintrag mit Tag
+    und Ausschlussliste war fort, und ohne ihn verweigert
+    cmd_freigabe_vorbereiten die Arbeit.
+    """
+
+    def setUp(self):
+        self._ordner = TemporaryDirectory()
+        ordner = Path(self._ordner.name)
+        self._sicher = {n: getattr(main, n) for n in (
+            "WARTESCHLANGE_DATEI", "OUT_DIR", "_erzeuge", "_erzeuge_alle",
+            "_schreibe_caption", "_kopiere_video", "_veroeffentliche",
+            "freigaben", "planer")}
+
+        # main faengt beim Import einen ImportError ab und setzt dann
+        # freigaben/planer/texter auf None - auf diesem Rechner fehlt eine
+        # der drei Abhaengigkeiten. Der Planer wird hier echt gebraucht.
+        main.planer = planer
+
+        self.datei = ordner / "telegram_warteschlange.json"
+        self.out = ordner / "out"
+        self.out.mkdir()
+        main.WARTESCHLANGE_DATEI = self.datei
+        main.OUT_DIR = self.out
+
+        self.tag = date(2026, 9, 3)
+        plan = planer.plane(self.tag, ausschluss=set())
+        self.plan_id = plan["id"]
+
+        def erzeuge(*_a, **_k):
+            bild = self.out / f"{self.tag.isoformat()}_{self.plan_id}.jpg"
+            bild.write_bytes(b"jpg")
+            return bild
+
+        main._erzeuge = erzeuge
+        main._erzeuge_alle = lambda *_a, **_k: [erzeuge()]
+        main._schreibe_caption = lambda *_a, **_k: None
+        main._kopiere_video = lambda *_a, **_k: erzeuge()
+        main.freigaben = SimpleNamespace(freigeben=lambda *_a, **_k: None)
+        self.addCleanup(self._aufraeumen)
+
+    def _aufraeumen(self):
+        for name, wert in self._sicher.items():
+            setattr(main, name, wert)
+        self._ordner.cleanup()
+
+    def _schlange_mit_eintrag(self):
+        self.datei.write_text(json.dumps({
+            "letzte_update_id_social": 0, "letzte_update_id_ads": 0,
+            "wartend": {self.tag.isoformat(): {"plan_id": self.plan_id,
+                                               "nachricht_id": 39,
+                                               "abgelehnt": []}}}),
+            encoding="utf-8")
+
+    def _wartend(self):
+        return json.loads(self.datei.read_text(encoding="utf-8"))["wartend"]
+
+    def test_rendern_allein_traegt_den_vorschlag_nicht_aus(self):
+        self._schlange_mit_eintrag()
+
+        code = main.cmd_freigabe_vorbereiten(
+            SimpleNamespace(plan_id=self.plan_id))
+
+        self.assertEqual(code, 0)
+        self.assertIn(self.tag.isoformat(), self._wartend(),
+                      "Vorschlag wurde schon vor der Veroeffentlichung "
+                      "ausgetragen - genau der Fehler vom 03.09.2026")
+
+    def test_nach_erfolgreicher_veroeffentlichung_ist_er_weg(self):
+        self._schlange_mit_eintrag()
+        main.cmd_freigabe_vorbereiten(SimpleNamespace(plan_id=self.plan_id))
+        main._veroeffentliche = lambda *_a, **_k: 0
+
+        code = main.cmd_telegram_veroeffentlichen(SimpleNamespace())
+
+        self.assertEqual(code, 0)
+        self.assertNotIn(self.tag.isoformat(), self._wartend())
+
+    def test_gescheiterte_veroeffentlichung_laesst_ihn_stehen(self):
+        self._schlange_mit_eintrag()
+        main.cmd_freigabe_vorbereiten(SimpleNamespace(plan_id=self.plan_id))
+        main._veroeffentliche = lambda *_a, **_k: 1
+
+        code = main.cmd_telegram_veroeffentlichen(SimpleNamespace())
+
+        self.assertEqual(code, 1)
+        self.assertIn(self.tag.isoformat(), self._wartend(),
+                      "Nach einem Fehlschlag muss der Vorschlag erneut "
+                      "freigebbar bleiben")
