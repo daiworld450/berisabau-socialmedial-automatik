@@ -45,9 +45,14 @@ NOETIG = {
     "pages_show_list": "Seiten sehen",
     "pages_read_engagement": "Seite lesen",
     "pages_manage_posts": "auf der Seite posten",
-    "instagram_basic": "Instagram lesen",
-    "instagram_content_publish": "auf Instagram posten",
 }
+
+# Diese beiden lassen sich nicht immer als Haken vergeben - im
+# Business-Portfolio sind die Instagram-Schalter gesperrt, solange dort
+# keine Instagram-Anmeldung hinterlegt ist. Entscheidend ist ohnehin nicht,
+# was auf der Berechtigungsliste steht, sondern ob der Zugriff wirklich
+# funktioniert. Deshalb wird Instagram unten echt abgefragt statt geprueft.
+INSTAGRAM_RECHTE = ("instagram_basic", "instagram_content_publish")
 
 
 class GraphFehler(Exception):
@@ -86,11 +91,18 @@ def anleitung() -> None:
     sag("  1. Rechts oben auf  Token generieren  klicken.")
     sag("  2. Als App  Berisa Bau Posting  auswaehlen.")
     sag("  3. Ablaufdatum:  Nie  (steht meist schon so).")
-    sag("  4. Diese fuenf Haken setzen:")
+    sag("  4. Diese Haken setzen:")
     for name, zweck in NOETIG.items():
         sag(f"        {name:<28} ({zweck})")
+    sag("     Und diese beiden, falls sie angeboten werden:")
+    for name in INSTAGRAM_RECHTE:
+        sag(f"        {name:<28} (fuer Instagram)")
     sag("  5. Auf  Token generieren  klicken und den langen")
     sag("     Schluessel kopieren.")
+    sag("")
+    sag("Geht das nicht, tut es auch ein Schluessel aus dem")
+    sag("Zugangs-Tester von Meta. Der ist befristet - dann fragt dieses")
+    sag("Skript gleich nach dem App-Geheimnis und macht ihn dauerhaft.")
     sag("")
 
 
@@ -159,16 +171,58 @@ def main() -> int:
 
     if not befund["unbefristet"]:
         sag("")
-        sag("Dieser Schluessel hat ein Ablaufdatum - dann waere in ein paar")
-        sag("Wochen wieder Schluss. Beim Erzeugen bei Ablaufdatum  Nie")
-        sag("auswaehlen. Nichts geaendert.")
+        sag("  Dieser Schluessel hat ein Ablaufdatum.")
         sag("")
-        return 1
-    sag("  Er laeuft nicht ab.")
+        sag("Aus dem Systemnutzer kommt er unbefristet, wenn beim Erzeugen")
+        sag("bei Ablaufdatum  Nie  steht. Aus dem Anmeldedialog kommt er")
+        sag("immer befristet - dann hilft nur das App-Geheimnis.")
+        sag("")
+        sag("Das App-Geheimnis steht unter App-Einstellungen > Allgemeines,")
+        sag("Feld App-Geheimcode, Knopf Anzeigen. Es wird nicht angezeigt")
+        sag("und nirgends gespeichert.")
+        sag("")
+        sag("Eingabetaste ohne Eingabe bricht ab, ohne etwas zu aendern.")
+        try:
+            import getpass
+            geheim = getpass.getpass("App-Geheimnis: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            geheim = ""
+        if not geheim:
+            sag("\nNichts eingegeben, nichts geaendert.\n")
+            return 1
+        sag(f"  {len(geheim)} Zeichen angekommen.")
+        if len(geheim) != 32 or any(z not in "0123456789abcdefABCDEF" for z in geheim):
+            sag("  Achtung: ein App-Geheimnis hat genau 32 Zeichen aus")
+            sag("  Ziffern und den Buchstaben a bis f. Versuch laeuft weiter.")
+        try:
+            token = graph("oauth/access_token",
+                          grant_type="fb_exchange_token",
+                          client_id=APP_ID, client_secret=geheim,
+                          fb_exchange_token=token).get("access_token", "")
+            if not token:
+                raise GraphFehler("Facebook lieferte keinen Schluessel zurueck")
+            sag("  Getauscht.")
+            befund = pruefe(token)
+        except GraphFehler as fehler:
+            sag(f"\nTausch fehlgeschlagen: {fehler}")
+            sag("Nichts geaendert.\n")
+            return 1
+        finally:
+            del geheim
+
+        if not befund["unbefristet"]:
+            # Der getauschte Nutzer-Schluessel gilt 60 Tage. Der Seiten-
+            # Schluessel, der gleich daraus entsteht, laeuft dann nicht mehr
+            # ab - das wird unten gemessen, nicht angenommen.
+            sag("  Der Zugang gilt jetzt 60 Tage.")
+    else:
+        sag("  Er laeuft nicht ab.")
 
     sag("Hole den Schluessel der Seite ...")
     try:
-        seiten = graph("me/accounts", access_token=token).get("data") or []
+        seiten = graph("me/accounts", access_token=token,
+                       fields="id,name,access_token,instagram_business_account"
+                       ).get("data") or []
     except GraphFehler as fehler:
         sag(f"\nFEHLER: {fehler}\nNichts geaendert.\n")
         return 1
@@ -217,6 +271,43 @@ def main() -> int:
     if fehlt2:
         sag("\nDem Seiten-Schluessel fehlen: " + ", ".join(fehlt2))
         sag("Nichts geaendert - sag Claude Bescheid.\n")
+        return 1
+
+    # Der eigentliche Beweis: nicht die Berechtigungsliste lesen, sondern
+    # beide Kanaele wirklich abfragen. Instagram laeuft ueber genau diesen
+    # Seiten-Schluessel (Einstellung IG_UEBER_SEITE=1) - wer ihn austauscht,
+    # ohne Instagram zu pruefen, legt den Kanal lahm, der bisher als
+    # einziger lief.
+    sag("")
+    sag("Probe aufs Exempel - beide Kanaele werden abgefragt:")
+    try:
+        seite = graph(wahl["id"], access_token=seiten_token, fields="name,fan_count")
+        sag(f"  Facebook : {seite.get('name')} erreichbar")
+    except GraphFehler as fehler:
+        sag(f"  Facebook : FEHLER - {fehler}")
+        sag("\nNichts geaendert.\n")
+        return 1
+
+    ig = (wahl.get("instagram_business_account") or {}).get("id")
+    if not ig:
+        sag("  Instagram: kein Konto an dieser Seite gefunden.")
+        sag("")
+        sag("Instagram laeuft ueber denselben Schluessel. Ohne diesen")
+        sag("Nachweis wuerde der Austausch den Kanal lahmlegen, der")
+        sag("bisher als einziger lief. Nichts geaendert.")
+        sag("")
+        return 1
+    try:
+        konto = graph(ig, access_token=seiten_token, fields="username,media_count")
+        sag(f"  Instagram: @{konto.get('username')} erreichbar "
+            f"({konto.get('media_count')} Beitraege)")
+    except GraphFehler as fehler:
+        sag(f"  Instagram: FEHLER - {fehler}")
+        sag("")
+        sag("Der Schluessel kaeme an Instagram nicht heran. Beim Erzeugen")
+        sag("auch instagram_basic und instagram_content_publish anhaken.")
+        sag("Nichts geaendert.")
+        sag("")
         return 1
 
     sag("")
