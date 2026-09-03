@@ -291,11 +291,25 @@ def main() -> int:
                          fb_exchange_token=token).get("access_token", "")
             if not lang:
                 raise GraphFehler("Facebook lieferte keinen Schluessel zurueck")
+            sag("  Langlebiger Zugang erhalten.")
+
             seiten_neu = (graph("me/accounts", access_token=lang).get("data") or [])
             treffer = next((s for s in seiten_neu
                             if s.get("id") == wahl.get("id")), None)
-            if treffer and treffer.get("access_token"):
-                seiten_token = treffer["access_token"]
+            # Diese beiden Faelle liefen bis zum 03.09.2026 still ins Leere:
+            # der Tausch klappte, die Seite fehlte in der zweiten Abfrage,
+            # und das Skript hinterlegte kommentarlos den kurzlebigen
+            # Schluessel weiter. Am Ende stand "gilt nur kurz" ohne Grund.
+            if treffer is None:
+                raise GraphFehler(
+                    f"Die Seite {wahl.get('name')} war in der zweiten "
+                    "Abfrage nicht dabei")
+            if not treffer.get("access_token"):
+                raise GraphFehler(
+                    f"Facebook lieferte fuer {wahl.get('name')} keinen "
+                    "Seiten-Schluessel")
+            seiten_token = treffer["access_token"]
+            sag("  Dauerhafter Seiten-Schluessel erzeugt.")
         except GraphFehler as fehler:
             sag(f"  Tausch fehlgeschlagen: {fehler}")
             sag("  Steht auf der Seite wirklich das App-Geheimnis und nicht")
