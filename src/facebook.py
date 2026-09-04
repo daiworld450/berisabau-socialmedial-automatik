@@ -211,3 +211,55 @@ def seiten_auflisten(nutzer_token: str) -> list[dict]:
     if "error" in antwort:
         raise FacebookFehler(antwort["error"].get("message", "Unbekannter Fehler"))
     return antwort.get("data", [])
+
+
+def token_zustand() -> dict:
+    """Was der hinterlegte Seiten-Token gerade taugt.
+
+    Angelegt am 03.09.2026, nachdem Facebook einen Beitrag abgelehnt hatte
+    und niemand es bemerkte: Instagram lief weiter, der Fehler stand nur in
+    einem Lauf-Protokoll, das keiner liest. Die Meldung von Facebook nannte
+    ausserdem die falsche Ursache - eine angebliche App-Ueberpruefung, waehrend
+    dem Token schlicht die Berechtigung pages_manage_posts fehlte.
+
+    Diese Abfrage liefert den messbaren Zustand statt einer Vermutung:
+    gilt der Token noch, darf er posten, wann laeuft er ab.
+    """
+    if not FB_TOKEN:
+        return {"gueltig": False, "darf_posten": False, "laeuft_ab": None,
+                "tage_uebrig": None, "rechte": [],
+                "meldung": "Es ist gar kein Seiten-Token hinterlegt."}
+
+    antwort = requests.get(f"{HOST}/{FB_API_VERSION}/debug_token",
+                           params={"input_token": FB_TOKEN,
+                                   "access_token": FB_TOKEN},
+                           timeout=TIMEOUT)
+    inhalt = antwort.json()
+    if "error" in inhalt:
+        return {"gueltig": False, "darf_posten": False, "laeuft_ab": None,
+                "tage_uebrig": None, "rechte": [],
+                "meldung": inhalt["error"].get("message", "Facebook lehnte die Abfrage ab.")}
+
+    daten = inhalt.get("data", {})
+    rechte = daten.get("scopes") or []
+    # 0 heisst bei Facebook "laeuft nicht ab" - genau das ist das Ziel.
+    ablauf = daten.get("expires_at") or 0
+    tage = None if ablauf == 0 else int((ablauf - time.time()) // 86400)
+
+    gueltig = bool(daten.get("is_valid"))
+    darf = "pages_manage_posts" in rechte
+
+    if not gueltig:
+        meldung = "Der Seiten-Token gilt nicht mehr."
+    elif not darf:
+        meldung = ("Dem Seiten-Token fehlt pages_manage_posts. "
+                   "Facebook nimmt damit keinen Beitrag an.")
+    elif tage is not None and tage < 0:
+        meldung = "Der Seiten-Token ist abgelaufen."
+    elif tage is not None:
+        meldung = f"Der Seiten-Token laeuft in {tage} Tagen ab."
+    else:
+        meldung = "Der Seiten-Token gilt unbefristet."
+
+    return {"gueltig": gueltig, "darf_posten": darf, "laeuft_ab": ablauf or None,
+            "tage_uebrig": tage, "rechte": rechte, "meldung": meldung}
