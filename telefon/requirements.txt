@@ -1,0 +1,13 @@
+# Telefonagent - getrennt vom Rest, weil er nicht in GitHub Actions läuft,
+# sondern auf einem dauerhaften Server. Installation in einer eigenen
+# virtuellen Umgebung:  python3 -m venv .venv && .venv/bin/pip install -r telefon/requirements.txt
+
+# Pipecat-Importpfade wandern zwischen den Fassungen. Festgenagelt, weil ein
+# stiller Upgrade mitten in einem Anruf niemandem hilft - vor dem Anheben
+# zuerst agent.py gegen die neuen Pfade prüfen.
+pipecat-ai[silero,deepgram,elevenlabs,openai,twilio]==0.0.87
+
+twilio>=9.3
+fastapi>=0.115
+uvicorn[standard]>=0.32
+python-dotenv>=1.0

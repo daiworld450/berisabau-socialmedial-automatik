@@ -1,0 +1,7 @@
+# Anruflisten und Protokolle enthalten Rufnummern - personenbezogene Daten,
+# die weder auf GitHub noch in einen Klon auf einem fremden Rechner gehören.
+# Die Sperrliste ist trotzdem aufbewahrungspflichtig: eigenes Backup einrichten,
+# siehe LIESMICH.md, Abschnitt "Was gesichert werden muss".
+daten/
+*.csv
+!liste-vorlage.csv

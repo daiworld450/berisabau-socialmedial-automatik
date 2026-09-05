@@ -1,0 +1,15 @@
+{
+  "anrufer_name": "Sara",
+  "firma": "Berisa Bau",
+  "ort": "Mülheim an der Ruhr",
+  "leistung": "Webseiten für Handwerksbetriebe",
+  "aufhaenger": "Ich habe gesehen, dass Sie noch keine eigene Webseite haben.",
+  "nutzen": [
+    "gefunden werden, wenn jemand aus der Umgebung nach Ihrem Gewerk sucht",
+    "Anfragen kommen schriftlich rein statt zwischen zwei Baustellen ans Telefon",
+    "Bildergalerie mit den eigenen Arbeiten statt nur ein Eintrag bei Google"
+  ],
+  "ziel": "ein Rückruftermin oder die Erlaubnis, ein Beispiel per E-Mail zu schicken",
+  "rueckfragen_an": "die Kollegen im Büro",
+  "kein_preis": true
+}
