@@ -113,3 +113,26 @@ Ein Lauf von `telegram-abfragen.yml` von Hand (`workflow_dispatch`). Er läuft
 seit dem 01.09.2026 nicht mehr im Takt, also fällt ein Fehler dort sonst
 niemandem auf. Erwartete Ausgabe unverändert: entweder „Keine neuen
 Antworten." oder ein verarbeiteter Tastendruck.
+
+---
+
+## Stand 06.09.2026
+
+**Schritt 1 erledigt.** Die Zeile `TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}`
+ist aus `.github/workflows/telegram-abfragen.yml` entfernt und über die
+GitHub-API live (Commit `800d642`). Der Befund oben wurde vorher neu geprüft:
+`ANTHROPIC_API_KEY` und `TELEGRAM_CHAT_ID_ADS` haben weiterhin keinen Treffer
+in `.github/workflows/`.
+
+**Schritt 2 steht noch aus** — die Secrets sind bewusst nicht gelöscht, bis die
+Ads-Sitzung bestätigt, dass sie den Bot-Token und die Chat-ID nicht mehr aus
+diesem Repo bezieht. Bereichsgrenze vom 02.09.
+
+**Nachtrag zur Prüfung am Ende dieser Datei:** Ein Lauf von
+`telegram-abfragen.yml` von Hand endet seit dem 01.09. **rot**, und das ist
+richtig so. Telegram lässt Webhook und `getUpdates` nicht gleichzeitig zu, und
+den Webhook hält seit dem 30.08. der Cloudflare-Worker. Die Meldung lautet
+`Conflict: can't use getUpdates method while webhook is active`. Bis zum 01.09.
+wurde dieser Fehler verschluckt und der Lauf meldete Erfolg — genau deshalb
+blieb der Konflikt wochenlang unbemerkt. Der Notweg ist nur nach einem
+`deleteWebhook` benutzbar. Ein roter Lauf hier ist kein Defekt.
