@@ -216,9 +216,10 @@ Zweck. Er sieht sich einen kompletten Twitch-Stream an, sucht die Momente,
 die als Short tragen, bewertet sie nach einem festen 100-Punkte-Maßstab und
 legt zu jedem Clip alles hin, was zum Veröffentlichen fehlt.
 
-Am einfachsten per Doppelklick auf **`clip-holen.command`**: Adresse
-des VODs einfügen, alles Weitere macht das Skript. Von Hand geht es
-auch:
+Am einfachsten auf GitHub unter **Actions → „Clip-Werk – Stream
+auswerten" → „Run workflow"**: Adresse des VODs eintragen, fertig. Der
+Bericht landet danach unter `docs/clips/<vod>/`. Auf dem eigenen Rechner
+geht es per Doppelklick auf **`clip-holen.command`**. Von Hand:
 
 ```bash
 python src/main.py clip analyse \
@@ -226,9 +227,11 @@ python src/main.py clip analyse \
   --stream-id 2401234567 --streamer K1ANUSH --spiel "Counter-Strike 2"
 ```
 
-Ohne `--transkript` läuft der Chat-Modus: in Minuten statt in Stunden
-fertig, findet dieselben Momente, aber ohne Untertitel und mit
-gröberem Zuschnitt.
+Der Chat lässt sich nicht mehr automatisch abrufen — Twitch verlangt dafür
+seit Kurzem einen signierten Nachweis aus einem angemeldeten Browser
+(„failed integrity check"). Ton und Video sind frei abrufbar, deshalb läuft
+alles über die Spracherkennung. Wer eine `chat.json` von Hand beisteuert,
+kann sie weiterhin mit `--chat` mitgeben.
 
 Heraus kommt ein Ordner unter `out/clips/` mit Bericht, Rohdaten,
 Untertiteln (ASS und SRT) und – wenn `--video` dabei ist – einem
@@ -237,6 +240,7 @@ ffmpeg-Skript, das 1080 × 1920 mit eingebrannten Untertiteln rendert.
 | Befehl | Zweck |
 |---|---|
 | `clip analyse` | Stream auswerten, Clips erzeugen |
+| `clip diagnose` | Zahlen hinter einer Auswertung: welche Signale tragen, wo die Kurve liegt |
 | `clip plan` | Veröffentlichungsrhythmus, bester Score zuerst |
 | `clip verlauf` | Clip-Datenbank ansehen, Veröffentlichung eintragen |
 | `clip kennzahlen` | Views, Completion, Shares … nachtragen |

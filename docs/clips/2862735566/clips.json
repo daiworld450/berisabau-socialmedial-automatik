@@ -1,0 +1,5000 @@
+{
+  "stream": {
+    "stream_id": "2862735566",
+    "datum": "2026-09-03",
+    "streamer": "K1ANUSH",
+    "spiel": "Just Chatting",
+    "laenge": 9197.8
+  },
+  "clips": [
+    {
+      "nummer": 1,
+      "clip_id": "2862735566-000546",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 546.26,
+      "ende": 590.0,
+      "start_stempel": "9:06",
+      "ende_stempel": "9:50",
+      "dauer": 38.6,
+      "roh_dauer": 43.7,
+      "auslassungen": [
+        [
+          548.56,
+          549.5
+        ],
+        [
+          552.62,
+          554.44
+        ],
+        [
+          558.12,
+          559.67
+        ],
+        [
+          567.67,
+          568.53
+        ]
+      ],
+      "hoehepunkt": 565.0,
+      "kategorie": "UNEXPECTED",
+      "score": 74,
+      "vorrang": false,
+      "punkte": {
+        "hook": 21.59,
+        "unterhaltung": 11.41,
+        "watchtime": 18.46,
+        "share": 12.25,
+        "kommentar": 4.9,
+        "follower": 5.15
+      },
+      "teilnoten": {
+        "hook": 0.864,
+        "unterhaltung": 0.57,
+        "watchtime": 0.923,
+        "share": 0.816,
+        "kommentar": 0.49,
+        "follower": 0.515
+      },
+      "begruendung": "Er ist sichtbar überrascht und er wird laut bei 9:25. Die Pointe liegt bei 43 % der Cliplänge, davor 19 s Aufbau. 5 s Stille fallen raus. Der Einstieg trägt ohne Vorwissen.",
+      "thema": "Ich habe sogar das MRT hier, wollte mal sehen. Ich bin so fix, ich wollte mir das selber angucken. Bevor irgend ein Arzt drauf geguckt hat, hatte ich das schon hier auf dem Rechner. Da kriegst du am Ende, schickst du so eine CD und da ist dann dein gesamtes MET drauf. Aber CD, Leute, wer hat heutzutage noch CD? Dann habe ich mir so externen CD-Lesegerät geholt, angeschlossen und ja, was soll ich euch sagen? Ja, ich mach's mal auf. Warte mal, wie kann ich",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:13 Originalausschnitt im Layout „facecam_gross“",
+        "0:02 Jump Cut – 0.9 s Stille raus",
+        "0:05 Jump Cut – 1.8 s Stille raus",
+        "0:09 Jump Cut – 1.5 s Stille raus",
+        "0:14–0:16 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:14–0:14 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:16–0:38 zurück auf Normalgröße, letzte Zeile ausspielen",
+        "0:17 Jump Cut – 0.9 s Stille raus"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Ich habe sogar das MRT hier, wollte mal sehen. Ich bin so fix, ich wollte mir das selber angucken. Bevor irgend ein Arzt drauf geguckt hat, hatte ich das schon hier auf dem Rechner. Da kriegst du am Ende, schickst du so eine CD und da ist dann dein gesamtes MET drauf. Aber CD, Leute, wer hat heutzutage noch CD? Dann habe ich mir so externen CD -Lesegerät geholt, angeschlossen und ja, was soll ich euch sagen? Ja, ich mach's mal auf.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.28,
+          "text": "Ich habe sogar das MRT"
+        },
+        {
+          "start": 1.28,
+          "ende": 2.1,
+          "text": "hier, wollte mal sehen."
+        },
+        {
+          "start": 2.5,
+          "ende": 4.28,
+          "text": "Ich bin so fix, ich wollte"
+        },
+        {
+          "start": 4.28,
+          "ende": 5.22,
+          "text": "mir das selber angucken."
+        },
+        {
+          "start": 5.62,
+          "ende": 6.84,
+          "text": "Bevor irgend ein Arzt"
+        },
+        {
+          "start": 6.84,
+          "ende": 7.74,
+          "text": "drauf geguckt hat, hatte"
+        },
+        {
+          "start": 7.74,
+          "ende": 8.56,
+          "text": "ich das schon hier auf dem"
+        },
+        {
+          "start": 8.56,
+          "ende": 10.28,
+          "text": "Rechner. Da kriegst du am"
+        },
+        {
+          "start": 10.28,
+          "ende": 11.44,
+          "text": "Ende, schickst du so eine"
+        },
+        {
+          "start": 11.44,
+          "ende": 13.62,
+          "text": "CD und da ist dann dein"
+        },
+        {
+          "start": 13.62,
+          "ende": 15.94,
+          "text": "gesamtes"
+        },
+        {
+          "start": 15.94,
+          "ende": 18.04,
+          "text": "MET drauf. Aber CD,"
+        },
+        {
+          "start": 18.28,
+          "ende": 19.14,
+          "text": "Leute, wer hat heutzutage"
+        },
+        {
+          "start": 19.14,
+          "ende": 19.6,
+          "text": "noch CD?"
+        },
+        {
+          "start": 21.28,
+          "ende": 21.9,
+          "text": "Dann habe ich mir so"
+        },
+        {
+          "start": 21.9,
+          "ende": 23.28,
+          "text": "externen CD"
+        },
+        {
+          "start": 23.28,
+          "ende": 25.22,
+          "text": "-Lesegerät geholt,"
+        },
+        {
+          "start": 25.38,
+          "ende": 25.98,
+          "text": "angeschlossen"
+        },
+        {
+          "start": 25.98,
+          "ende": 28.34,
+          "text": "und"
+        },
+        {
+          "start": 28.34,
+          "ende": 29.0,
+          "text": "ja,"
+        },
+        {
+          "start": 29.68,
+          "ende": 30.46,
+          "text": "was soll ich euch sagen?"
+        },
+        {
+          "start": 33.83,
+          "ende": 34.81,
+          "text": "Ja, ich mach's mal auf."
+        }
+      ],
+      "texte": {
+        "hook": "„CD, Leute, wer hat heutzutage noch CD?“",
+        "kernzitat": "CD, Leute, wer hat heutzutage noch CD?",
+        "tiktok_titel": "„CD, Leute, wer hat heutzutage noch CD?“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: CD, Leute, wer hat heutzutage noch CD?",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„CD, Leute, wer hat heutzutage noch CD?“",
+        "instagram": "„CD, Leute, wer hat heutzutage noch CD?“",
+        "youtube": "„CD, Leute, wer hat heutzutage noch CD?“"
+      }
+    },
+    {
+      "nummer": 2,
+      "clip_id": "2862735566-000631",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 630.69,
+      "ende": 665.0,
+      "start_stempel": "10:30",
+      "ende_stempel": "11:05",
+      "dauer": 31.8,
+      "roh_dauer": 34.3,
+      "auslassungen": [
+        [
+          651.78,
+          654.3
+        ]
+      ],
+      "hoehepunkt": 640.0,
+      "kategorie": "UNEXPECTED",
+      "score": 65,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.93,
+        "unterhaltung": 7.38,
+        "watchtime": 17.96,
+        "share": 12.25,
+        "kommentar": 4.9,
+        "follower": 4.53
+      },
+      "teilnoten": {
+        "hook": 0.717,
+        "unterhaltung": 0.369,
+        "watchtime": 0.898,
+        "share": 0.816,
+        "kommentar": 0.49,
+        "follower": 0.453
+      },
+      "begruendung": "Er ist sichtbar überrascht und er wird laut bei 10:40. Die Pointe liegt bei 27 % der Cliplänge, davor 9 s Aufbau. 3 s Stille fallen raus.",
+      "thema": "Warte mal, ich mach das mal hier. Moment. Hier, ladies and gentlemen, haben wir tatsächlich meine MRT-Bilder. Hier ist mein Fuß, wie ihr sehen könnt. Das ist mein rechter Fuß. Und ich gehe mal gleich mit euch durch. Ich habe das schon auseinandergenommen. Wie kriege ich den hier in der Vollbild? Kriege ich hier nicht rein? Ist nicht schlimm. Auf jeden Fall ist",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:08 Originalausschnitt im Layout „facecam_gross“",
+        "0:08–0:10 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:09–0:09 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:10–0:31 zurück auf Normalgröße, letzte Zeile ausspielen",
+        "0:21 Jump Cut – 2.5 s Stille raus"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Warte mal, ich mach das mal hier. Moment. Hier, ladies and gentlemen, haben wir tatsächlich meine MRT -Bilder. Hier ist mein Fuß, wie ihr sehen könnt. Das ist mein rechter Fuß. Und ich gehe mal gleich mit euch durch. Ich habe das schon auseinandergenommen. Wie kriege ich den hier in der Vollbild? Kriege ich hier nicht rein? Ist nicht schlimm. Auf jeden",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.12,
+          "text": "Warte mal, ich mach das"
+        },
+        {
+          "start": 1.12,
+          "ende": 1.57,
+          "text": "mal hier."
+        },
+        {
+          "start": 2.96,
+          "ende": 3.41,
+          "text": "Moment."
+        },
+        {
+          "start": 8.84,
+          "ende": 9.44,
+          "text": "Hier, ladies and"
+        },
+        {
+          "start": 9.44,
+          "ende": 10.76,
+          "text": "gentlemen, haben wir"
+        },
+        {
+          "start": 10.76,
+          "ende": 11.38,
+          "text": "tatsächlich"
+        },
+        {
+          "start": 12.18,
+          "ende": 13.44,
+          "text": "meine MRT -Bilder."
+        },
+        {
+          "start": 17.39,
+          "ende": 18.41,
+          "text": "Hier ist mein Fuß, wie ihr"
+        },
+        {
+          "start": 18.41,
+          "ende": 18.86,
+          "text": "sehen könnt."
+        },
+        {
+          "start": 19.79,
+          "ende": 20.89,
+          "text": "Das ist mein rechter Fuß."
+        },
+        {
+          "start": 21.29,
+          "ende": 22.89,
+          "text": "Und ich gehe mal gleich"
+        },
+        {
+          "start": 22.89,
+          "ende": 23.49,
+          "text": "mit euch durch."
+        },
+        {
+          "start": 23.79,
+          "ende": 24.99,
+          "text": "Ich habe das schon"
+        },
+        {
+          "start": 24.99,
+          "ende": 26.07,
+          "text": "auseinandergenommen."
+        },
+        {
+          "start": 27.27,
+          "ende": 28.09,
+          "text": "Wie kriege ich den hier in"
+        },
+        {
+          "start": 28.09,
+          "ende": 28.95,
+          "text": "der Vollbild? Kriege ich"
+        },
+        {
+          "start": 28.95,
+          "ende": 29.4,
+          "text": "hier nicht rein?"
+        },
+        {
+          "start": 29.49,
+          "ende": 31.82,
+          "text": "Ist nicht schlimm. Auf jeden"
+        }
+      ],
+      "texte": {
+        "hook": "„Hier ist mein Fuß, wie ihr sehen könnt“",
+        "kernzitat": "Hier ist mein Fuß, wie ihr sehen könnt",
+        "tiktok_titel": "„Hier ist mein Fuß, wie ihr sehen könnt“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Hier ist mein Fuß, wie ihr sehen könnt",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Hier ist mein Fuß, wie ihr sehen könnt“",
+        "instagram": "„Hier ist mein Fuß, wie ihr sehen könnt“",
+        "youtube": "„Hier ist mein Fuß, wie ihr sehen könnt“"
+      }
+    },
+    {
+      "nummer": 3,
+      "clip_id": "2862735566-000661",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 660.94,
+      "ende": 697.73,
+      "start_stempel": "11:00",
+      "ende_stempel": "11:37",
+      "dauer": 36.8,
+      "roh_dauer": 36.8,
+      "auslassungen": [],
+      "hoehepunkt": 684.0,
+      "kategorie": "UNEXPECTED",
+      "score": 68,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.31,
+        "unterhaltung": 10.02,
+        "watchtime": 18.51,
+        "share": 12.84,
+        "kommentar": 4.9,
+        "follower": 4.67
+      },
+      "teilnoten": {
+        "hook": 0.692,
+        "unterhaltung": 0.501,
+        "watchtime": 0.926,
+        "share": 0.856,
+        "kommentar": 0.49,
+        "follower": 0.467
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 11:24. Die Pointe liegt bei 63 % der Cliplänge, davor 23 s Aufbau.",
+      "thema": "den hier in der Vollbild? Kriege ich hier nicht rein? Ist nicht schlimm. Auf jeden Fall ist das mein rechter Fuß. Und hier seht ihr auch meinen Namen. Also das ist jetzt hier keine verarsche oder so das ist wirklich ein mrt bild von mir und wie ihr sehen könnt ich gehe mal direkt mit euch durch warte mal gehe ich von oben ja von hier können wir mal beginnen es ging nämlich um mein c um mein dicken onkel hier weil wir",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:22 Originalausschnitt im Layout „facecam_gross“",
+        "0:22–0:24 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:23–0:23 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:24–0:36 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "den hier in der Vollbild? Kriege ich hier nicht rein? Ist nicht schlimm. Auf jeden Fall ist das mein rechter Fuß. Und hier seht ihr auch meinen Namen. Also das ist jetzt hier keine verarsche oder so das ist wirklich ein mrt bild von mir und wie ihr sehen könnt ich gehe mal direkt mit euch durch warte mal gehe ich von oben ja von hier können wir mal beginnen es ging nämlich um mein c um mein dicken onkel hier weil wir",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.84,
+          "text": "den hier in der Vollbild?"
+        },
+        {
+          "start": 0.98,
+          "ende": 1.46,
+          "text": "Kriege ich hier nicht"
+        },
+        {
+          "start": 1.46,
+          "ende": 2.18,
+          "text": "rein? Ist nicht schlimm."
+        },
+        {
+          "start": 3.64,
+          "ende": 4.84,
+          "text": "Auf jeden Fall ist das"
+        },
+        {
+          "start": 4.84,
+          "ende": 5.74,
+          "text": "mein rechter Fuß."
+        },
+        {
+          "start": 8.23,
+          "ende": 10.25,
+          "text": "Und hier seht ihr auch"
+        },
+        {
+          "start": 10.25,
+          "ende": 11.79,
+          "text": "meinen Namen. Also das ist"
+        },
+        {
+          "start": 11.79,
+          "ende": 12.77,
+          "text": "jetzt hier keine verarsche"
+        },
+        {
+          "start": 12.77,
+          "ende": 13.75,
+          "text": "oder so das ist wirklich"
+        },
+        {
+          "start": 13.75,
+          "ende": 15.31,
+          "text": "ein mrt bild von mir"
+        },
+        {
+          "start": 19.34,
+          "ende": 21.54,
+          "text": "und wie ihr sehen könnt"
+        },
+        {
+          "start": 21.54,
+          "ende": 22.6,
+          "text": "ich gehe mal direkt mit"
+        },
+        {
+          "start": 22.6,
+          "ende": 23.9,
+          "text": "euch durch warte mal gehe"
+        },
+        {
+          "start": 23.9,
+          "ende": 25.58,
+          "text": "ich von oben ja von hier"
+        },
+        {
+          "start": 25.58,
+          "ende": 27.54,
+          "text": "können wir mal beginnen es"
+        },
+        {
+          "start": 31.31,
+          "ende": 33.05,
+          "text": "ging nämlich um mein c"
+        },
+        {
+          "start": 33.05,
+          "ende": 35.09,
+          "text": "um mein dicken"
+        },
+        {
+          "start": 35.09,
+          "ende": 36.79,
+          "text": "onkel hier weil wir"
+        }
+      ],
+      "texte": {
+        "hook": "„das ist jetzt hier keine“",
+        "kernzitat": "das ist jetzt hier keine",
+        "tiktok_titel": "„das ist jetzt hier keine“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: das ist jetzt hier keine",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„das ist jetzt hier keine“",
+        "instagram": "„das ist jetzt hier keine“",
+        "youtube": "„das ist jetzt hier keine“"
+      }
+    },
+    {
+      "nummer": 4,
+      "clip_id": "2862735566-001040",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 1039.64,
+      "ende": 1070.48,
+      "start_stempel": "17:19",
+      "ende_stempel": "17:50",
+      "dauer": 30.8,
+      "roh_dauer": 30.8,
+      "auslassungen": [],
+      "hoehepunkt": 1049.0,
+      "kategorie": "UNEXPECTED",
+      "score": 67,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.09,
+        "unterhaltung": 7.52,
+        "watchtime": 19.9,
+        "share": 12.84,
+        "kommentar": 3.9,
+        "follower": 5.53
+      },
+      "teilnoten": {
+        "hook": 0.684,
+        "unterhaltung": 0.376,
+        "watchtime": 0.995,
+        "share": 0.856,
+        "kommentar": 0.39,
+        "follower": 0.553
+      },
+      "begruendung": "Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 17:29. Die Pointe liegt bei 30 % der Cliplänge, davor 9 s Aufbau.",
+      "thema": "ist es ist aktuell so dass man da nicht viel machen kann und ich soll denn einfach nicht mehr so krass belasten. Er sagte, geh ins Fitnessstudio, leicht joggen geht, aber dieses permanent anderen Abbremsen hoch springen und so. Das wird immer wieder dann zu diesem Punkt kommen und irgendwann ist dein Knorpel so im Arsch, dass du dann permanent Schmerzen hast. Er sagte, wenn du keine permanenten Schmerzen haben willst, dann hör einfach auf Fußball zu spielen. Ja, das hat mich ein bisschen darum gemacht. Das war sehr öde, weil",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:08 Originalausschnitt im Layout „facecam_gross“",
+        "0:08–0:10 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:09–0:09 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:10–0:30 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "ist es ist aktuell so dass man da nicht viel machen kann und ich soll denn einfach nicht mehr so krass belasten. Er sagte, geh ins Fitnessstudio, leicht joggen geht, aber dieses permanent anderen Abbremsen hoch springen und so. Das wird immer wieder dann zu diesem Punkt kommen und irgendwann ist dein Knorpel so im Arsch, dass du dann permanent Schmerzen hast. Er sagte, wenn du keine permanenten Schmerzen haben willst, dann hör einfach auf Fußball zu spielen. Ja, das hat mich ein bisschen darum gemacht. Das war sehr öde, weil",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 2.38,
+          "text": "ist es ist aktuell so dass"
+        },
+        {
+          "start": 2.38,
+          "ende": 3.16,
+          "text": "man da nicht viel machen"
+        },
+        {
+          "start": 3.16,
+          "ende": 5.08,
+          "text": "kann und ich soll denn"
+        },
+        {
+          "start": 5.08,
+          "ende": 5.76,
+          "text": "einfach nicht mehr so"
+        },
+        {
+          "start": 5.76,
+          "ende": 6.42,
+          "text": "krass belasten."
+        },
+        {
+          "start": 7.12,
+          "ende": 8.12,
+          "text": "Er sagte, geh ins"
+        },
+        {
+          "start": 8.12,
+          "ende": 8.88,
+          "text": "Fitnessstudio,"
+        },
+        {
+          "start": 9.74,
+          "ende": 11.5,
+          "text": "leicht joggen geht, aber"
+        },
+        {
+          "start": 11.5,
+          "ende": 12.66,
+          "text": "dieses permanent anderen"
+        },
+        {
+          "start": 12.66,
+          "ende": 14.02,
+          "text": "Abbremsen hoch springen"
+        },
+        {
+          "start": 14.02,
+          "ende": 14.47,
+          "text": "und so."
+        },
+        {
+          "start": 14.94,
+          "ende": 15.92,
+          "text": "Das wird immer wieder dann"
+        },
+        {
+          "start": 15.92,
+          "ende": 16.94,
+          "text": "zu diesem Punkt kommen und"
+        },
+        {
+          "start": 16.94,
+          "ende": 17.68,
+          "text": "irgendwann ist dein"
+        },
+        {
+          "start": 17.68,
+          "ende": 19.02,
+          "text": "Knorpel so im Arsch, dass"
+        },
+        {
+          "start": 19.02,
+          "ende": 20.44,
+          "text": "du dann permanent"
+        },
+        {
+          "start": 20.44,
+          "ende": 21.56,
+          "text": "Schmerzen hast. Er sagte,"
+        },
+        {
+          "start": 21.74,
+          "ende": 22.9,
+          "text": "wenn du keine permanenten"
+        },
+        {
+          "start": 22.9,
+          "ende": 23.86,
+          "text": "Schmerzen haben willst,"
+        },
+        {
+          "start": 24.34,
+          "ende": 25.34,
+          "text": "dann hör einfach auf"
+        },
+        {
+          "start": 25.34,
+          "ende": 26.14,
+          "text": "Fußball zu spielen."
+        },
+        {
+          "start": 27.64,
+          "ende": 28.74,
+          "text": "Ja, das hat mich ein"
+        },
+        {
+          "start": 28.74,
+          "ende": 29.48,
+          "text": "bisschen darum gemacht."
+        },
+        {
+          "start": 29.6,
+          "ende": 30.84,
+          "text": "Das war sehr öde, weil"
+        }
+      ],
+      "texte": {
+        "hook": "„mehr so krass belasten“",
+        "kernzitat": "Das wird immer wieder dann zu diesem Punkt kommen",
+        "tiktok_titel": "„Das wird immer wieder dann zu diesem Punkt kommen“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Das wird immer wieder dann zu diesem Punkt kommen",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„mehr so krass belasten“",
+        "instagram": "„mehr so krass belasten“",
+        "youtube": "„mehr so krass belasten“"
+      }
+    },
+    {
+      "nummer": 5,
+      "clip_id": "2862735566-001208",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 1208.21,
+      "ende": 1231.03,
+      "start_stempel": "20:08",
+      "ende_stempel": "20:31",
+      "dauer": 22.8,
+      "roh_dauer": 22.8,
+      "auslassungen": [],
+      "hoehepunkt": 1210.0,
+      "kategorie": "STORY",
+      "score": 67,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.56,
+        "unterhaltung": 9.96,
+        "watchtime": 20.0,
+        "share": 9.44,
+        "kommentar": 4.5,
+        "follower": 5.35
+      },
+      "teilnoten": {
+        "hook": 0.703,
+        "unterhaltung": 0.498,
+        "watchtime": 1.0,
+        "share": 0.629,
+        "kommentar": 0.45,
+        "follower": 0.535
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 20:10. Die Pointe liegt bei 8 % der Cliplänge, davor 2 s Aufbau.",
+      "thema": "Fußball spielen will, trainieren will, dann kann ich noch einmal Gas geben und dann kann ich von mir aus mein Ziel irgendwann zertrümmern, aber dann habe ich mit ihm wenigstens auch mal diese Zeit gehabt. Bevor ich die jetzt verbrate, weißt du, dann warte ich lieber und sobald mein Sohn in einem Allteils vor der richtig Gas geben will, dann möchte ich lieber mit ihm dann nochmal zusammen auf dem Feld stehen, spielen, trainieren, was auch immer. Dann",
+      "layout": "nur_person",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:01–0:03 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:03–0:22 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Fußball spielen will, trainieren will, dann kann ich noch einmal Gas geben und dann kann ich von mir aus mein Ziel irgendwann zertrümmern, aber dann habe ich mit ihm wenigstens auch mal diese Zeit gehabt. Bevor ich die jetzt verbrate, weißt du, dann warte ich lieber und sobald mein Sohn in einem Allteils vor der richtig Gas geben will, dann möchte ich lieber mit ihm dann nochmal zusammen auf dem Feld stehen, spielen, trainieren, was auch immer. Dann",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.98,
+          "text": "Fußball spielen will,"
+        },
+        {
+          "start": 1.12,
+          "ende": 2.48,
+          "text": "trainieren will, dann kann"
+        },
+        {
+          "start": 2.48,
+          "ende": 3.62,
+          "text": "ich noch einmal Gas geben"
+        },
+        {
+          "start": 3.62,
+          "ende": 4.54,
+          "text": "und dann kann ich von mir"
+        },
+        {
+          "start": 4.54,
+          "ende": 5.76,
+          "text": "aus mein Ziel irgendwann"
+        },
+        {
+          "start": 5.76,
+          "ende": 6.62,
+          "text": "zertrümmern, aber dann"
+        },
+        {
+          "start": 6.62,
+          "ende": 7.14,
+          "text": "habe ich mit ihm"
+        },
+        {
+          "start": 7.14,
+          "ende": 8.52,
+          "text": "wenigstens auch mal diese"
+        },
+        {
+          "start": 8.52,
+          "ende": 9.14,
+          "text": "Zeit gehabt."
+        },
+        {
+          "start": 9.96,
+          "ende": 10.74,
+          "text": "Bevor ich die jetzt"
+        },
+        {
+          "start": 10.74,
+          "ende": 12.28,
+          "text": "verbrate, weißt du, dann"
+        },
+        {
+          "start": 12.28,
+          "ende": 14.1,
+          "text": "warte ich lieber und"
+        },
+        {
+          "start": 14.1,
+          "ende": 15.0,
+          "text": "sobald mein Sohn in einem"
+        },
+        {
+          "start": 15.0,
+          "ende": 15.8,
+          "text": "Allteils vor der richtig"
+        },
+        {
+          "start": 15.8,
+          "ende": 17.12,
+          "text": "Gas geben will, dann"
+        },
+        {
+          "start": 17.12,
+          "ende": 17.94,
+          "text": "möchte ich lieber mit ihm"
+        },
+        {
+          "start": 17.94,
+          "ende": 19.3,
+          "text": "dann nochmal zusammen auf"
+        },
+        {
+          "start": 19.3,
+          "ende": 20.6,
+          "text": "dem Feld stehen, spielen,"
+        },
+        {
+          "start": 20.78,
+          "ende": 21.34,
+          "text": "trainieren, was auch"
+        },
+        {
+          "start": 21.34,
+          "ende": 23.09,
+          "text": "immer. Dann"
+        }
+      ],
+      "texte": {
+        "hook": "„diese Zeit gehabt“",
+        "kernzitat": "diese Zeit gehabt",
+        "tiktok_titel": "„diese Zeit gehabt“",
+        "tiktok_caption": "Die Geschichte musste raus.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?",
+        "youtube_titel": "K1ANUSH: diese Zeit gehabt",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#storytime",
+          "#geschichte",
+          "#storytimetiktok",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„diese Zeit gehabt“",
+        "instagram": "„diese Zeit gehabt“",
+        "youtube": "„diese Zeit gehabt“"
+      }
+    },
+    {
+      "nummer": 6,
+      "clip_id": "2862735566-001244",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 1243.95,
+      "ende": 1259.79,
+      "start_stempel": "20:43",
+      "ende_stempel": "20:59",
+      "dauer": 15.8,
+      "roh_dauer": 15.8,
+      "auslassungen": [],
+      "hoehepunkt": 1252.0,
+      "kategorie": "UNEXPECTED",
+      "score": 71,
+      "vorrang": false,
+      "punkte": {
+        "hook": 19.1,
+        "unterhaltung": 11.17,
+        "watchtime": 20.0,
+        "share": 12.25,
+        "kommentar": 3.9,
+        "follower": 4.57
+      },
+      "teilnoten": {
+        "hook": 0.764,
+        "unterhaltung": 0.559,
+        "watchtime": 1.0,
+        "share": 0.816,
+        "kommentar": 0.39,
+        "follower": 0.457
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 20:52. Die Pointe liegt bei 51 % der Cliplänge, davor 8 s Aufbau.",
+      "thema": "ich mir dann tröstet mich das auch ein wenig ja ich habe mir auch ein lagen geholt so schuheinlagen um das ganze zu entlasten habe ich jetzt ich ziehe dir jetzt einfach mal an ich guck mal ob das was bringt oder auch nicht mal gucken einfach schonen",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:07 Originalausschnitt im Layout „facecam_gross“",
+        "0:07–0:09 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:08–0:08 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:09–0:15 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "ich mir dann tröstet mich das auch ein wenig ja ich habe mir auch ein lagen geholt so schuheinlagen um das ganze zu entlasten habe ich jetzt ich ziehe dir jetzt einfach mal an ich guck mal ob das was bringt oder auch nicht mal gucken einfach schonen",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.28,
+          "text": "ich mir dann tröstet mich"
+        },
+        {
+          "start": 1.28,
+          "ende": 2.3,
+          "text": "das auch ein wenig"
+        },
+        {
+          "start": 2.3,
+          "ende": 4.74,
+          "text": "ja"
+        },
+        {
+          "start": 4.74,
+          "ende": 5.34,
+          "text": "ich habe mir auch ein"
+        },
+        {
+          "start": 5.34,
+          "ende": 6.4,
+          "text": "lagen geholt so"
+        },
+        {
+          "start": 6.4,
+          "ende": 7.62,
+          "text": "schuheinlagen um das ganze"
+        },
+        {
+          "start": 7.62,
+          "ende": 8.74,
+          "text": "zu entlasten habe ich"
+        },
+        {
+          "start": 8.74,
+          "ende": 9.64,
+          "text": "jetzt ich ziehe dir jetzt"
+        },
+        {
+          "start": 9.64,
+          "ende": 10.46,
+          "text": "einfach mal an ich guck"
+        },
+        {
+          "start": 10.46,
+          "ende": 12.56,
+          "text": "mal ob das was bringt oder"
+        },
+        {
+          "start": 12.56,
+          "ende": 13.42,
+          "text": "auch nicht mal gucken"
+        },
+        {
+          "start": 13.42,
+          "ende": 15.84,
+          "text": "einfach schonen"
+        }
+      ],
+      "texte": {
+        "hook": "„ich mir dann tröstet mich das auch ein“",
+        "kernzitat": "ich mir dann tröstet mich das auch ein wenig ja ich habe",
+        "tiktok_titel": "„ich mir dann tröstet mich das auch ein wenig ja ich habe“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: ich mir dann tröstet mich das auch ein wenig ja ich habe",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„ich mir dann tröstet mich das auch ein“",
+        "instagram": "„ich mir dann tröstet mich das auch ein“",
+        "youtube": "„ich mir dann tröstet mich das auch ein“"
+      }
+    },
+    {
+      "nummer": 7,
+      "clip_id": "2862735566-001590",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 1590.18,
+      "ende": 1626.24,
+      "start_stempel": "26:30",
+      "ende_stempel": "27:06",
+      "dauer": 36.1,
+      "roh_dauer": 36.1,
+      "auslassungen": [],
+      "hoehepunkt": 1610.0,
+      "kategorie": "CONTROVERSIAL",
+      "score": 68,
+      "vorrang": false,
+      "punkte": {
+        "hook": 21.0,
+        "unterhaltung": 5.14,
+        "watchtime": 20.0,
+        "share": 9.53,
+        "kommentar": 9.1,
+        "follower": 3.7
+      },
+      "teilnoten": {
+        "hook": 0.84,
+        "unterhaltung": 0.257,
+        "watchtime": 1.0,
+        "share": 0.635,
+        "kommentar": 0.91,
+        "follower": 0.37
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er bezieht klar Stellung bei 26:50. Die Pointe liegt bei 55 % der Cliplänge, davor 20 s Aufbau. Der Einstieg trägt ohne Vorwissen.",
+      "thema": "Ich habe auch dazu keine Meinung. Klar kann man sagen, Frauen schlagen geht nicht, okay, da sind wir uns alle einig, aber darüber hinaus, was soll ich jetzt über ihn reden oder was? Also ich springe bestimmt nicht auf diesen Hype-Zug, wo jetzt alle YouTuber und Streamer drauf springen, weil sie wissen, dass es generiert Klicks, weil jeder gerade guckt, wie die Meinung des anderen ist. Aber ich habe eine ganz klare Meinung und meine Meinung ist, das geht mich ein feuchten Dreck an, was er mit seiner Frau da hat, ob die sich scheiden lassen, ob die zusammen bleiben, ob er seine Firmen schließt, umzieht, sonst was macht, aus der Öffentlichkeit verschwindelt und so. Das geht mich überhaupt gar nichts an, ich habe dazu auch nichts zu sagen.",
+      "layout": "nur_person",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:19 Originalausschnitt im Layout „nur_person“",
+        "0:19–0:21 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:21–0:36 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Ich habe auch dazu keine Meinung. Klar kann man sagen, Frauen schlagen geht nicht, okay, da sind wir uns alle einig, aber darüber hinaus, was soll ich jetzt über ihn reden oder was? Also ich springe bestimmt nicht auf diesen Hype -Zug, wo jetzt alle YouTuber und Streamer drauf springen, weil sie wissen, dass es generiert Klicks, weil jeder gerade guckt, wie die Meinung des anderen ist. Aber ich habe eine ganz klare Meinung und meine Meinung ist, das geht mich ein feuchten Dreck an, was er mit seiner Frau da hat, ob die sich scheiden lassen, ob die zusammen bleiben, ob er seine Firmen schließt, umzieht, sonst was macht, aus der Öffentlichkeit verschwindelt und so. Das geht mich überhaupt gar nichts an, ich habe dazu auch nichts zu sagen.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.26,
+          "text": "Ich habe auch dazu keine"
+        },
+        {
+          "start": 1.26,
+          "ende": 1.71,
+          "text": "Meinung."
+        },
+        {
+          "start": 2.26,
+          "ende": 2.96,
+          "text": "Klar kann man sagen,"
+        },
+        {
+          "start": 3.22,
+          "ende": 3.92,
+          "text": "Frauen schlagen geht"
+        },
+        {
+          "start": 3.92,
+          "ende": 4.82,
+          "text": "nicht, okay, da sind wir"
+        },
+        {
+          "start": 4.82,
+          "ende": 5.5,
+          "text": "uns alle einig, aber"
+        },
+        {
+          "start": 5.5,
+          "ende": 6.16,
+          "text": "darüber hinaus,"
+        },
+        {
+          "start": 6.8,
+          "ende": 7.52,
+          "text": "was soll ich jetzt über"
+        },
+        {
+          "start": 7.52,
+          "ende": 8.32,
+          "text": "ihn reden oder was?"
+        },
+        {
+          "start": 8.56,
+          "ende": 9.5,
+          "text": "Also ich springe bestimmt"
+        },
+        {
+          "start": 9.5,
+          "ende": 11.7,
+          "text": "nicht auf diesen Hype"
+        },
+        {
+          "start": 11.7,
+          "ende": 12.54,
+          "text": "-Zug, wo jetzt alle"
+        },
+        {
+          "start": 12.54,
+          "ende": 13.62,
+          "text": "YouTuber und Streamer"
+        },
+        {
+          "start": 13.62,
+          "ende": 15.18,
+          "text": "drauf springen, weil sie"
+        },
+        {
+          "start": 15.18,
+          "ende": 15.96,
+          "text": "wissen, dass es generiert"
+        },
+        {
+          "start": 15.96,
+          "ende": 16.88,
+          "text": "Klicks, weil jeder gerade"
+        },
+        {
+          "start": 16.88,
+          "ende": 17.84,
+          "text": "guckt, wie die Meinung des"
+        },
+        {
+          "start": 17.84,
+          "ende": 19.82,
+          "text": "anderen ist. Aber ich habe"
+        },
+        {
+          "start": 19.82,
+          "ende": 20.82,
+          "text": "eine ganz klare Meinung"
+        },
+        {
+          "start": 20.82,
+          "ende": 22.04,
+          "text": "und meine Meinung ist, das"
+        },
+        {
+          "start": 22.04,
+          "ende": 23.24,
+          "text": "geht mich ein feuchten"
+        },
+        {
+          "start": 23.24,
+          "ende": 24.62,
+          "text": "Dreck an, was er mit"
+        },
+        {
+          "start": 24.62,
+          "ende": 25.78,
+          "text": "seiner Frau da hat, ob die"
+        },
+        {
+          "start": 25.78,
+          "ende": 26.68,
+          "text": "sich scheiden lassen, ob"
+        },
+        {
+          "start": 26.68,
+          "ende": 28.08,
+          "text": "die zusammen bleiben, ob"
+        },
+        {
+          "start": 28.08,
+          "ende": 29.42,
+          "text": "er seine Firmen schließt,"
+        },
+        {
+          "start": 29.46,
+          "ende": 30.82,
+          "text": "umzieht, sonst was macht,"
+        },
+        {
+          "start": 30.94,
+          "ende": 31.7,
+          "text": "aus der Öffentlichkeit"
+        },
+        {
+          "start": 31.7,
+          "ende": 32.78,
+          "text": "verschwindelt und so."
+        },
+        {
+          "start": 33.2,
+          "ende": 34.14,
+          "text": "Das geht mich überhaupt"
+        },
+        {
+          "start": 34.14,
+          "ende": 35.14,
+          "text": "gar nichts an, ich habe"
+        },
+        {
+          "start": 35.14,
+          "ende": 36.06,
+          "text": "dazu auch nichts zu sagen."
+        }
+      ],
+      "texte": {
+        "hook": "„Ich habe auch dazu keine Meinung“",
+        "kernzitat": "Ich habe auch dazu keine Meinung",
+        "tiktok_titel": "„Ich habe auch dazu keine Meinung“",
+        "tiktok_caption": "Ihr dürft das gern anders sehen.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Ihr dürft das gern anders sehen. Wie seht ihr das?",
+        "youtube_titel": "K1ANUSH: Ich habe auch dazu keine Meinung",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#meinung",
+          "#diskussion",
+          "#debatte",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Ich habe auch dazu keine Meinung“",
+        "instagram": "„Ich habe auch dazu keine Meinung“",
+        "youtube": "„Ich habe auch dazu keine Meinung“"
+      }
+    },
+    {
+      "nummer": 8,
+      "clip_id": "2862735566-001710",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 1710.19,
+      "ende": 1734.17,
+      "start_stempel": "28:30",
+      "ende_stempel": "28:54",
+      "dauer": 23.0,
+      "roh_dauer": 24.0,
+      "auslassungen": [
+        [
+          1726.59,
+          1727.59
+        ]
+      ],
+      "hoehepunkt": 1717.0,
+      "kategorie": "UNEXPECTED",
+      "score": 68,
+      "vorrang": false,
+      "punkte": {
+        "hook": 18.0,
+        "unterhaltung": 8.56,
+        "watchtime": 20.0,
+        "share": 11.74,
+        "kommentar": 4.9,
+        "follower": 4.78
+      },
+      "teilnoten": {
+        "hook": 0.72,
+        "unterhaltung": 0.428,
+        "watchtime": 1.0,
+        "share": 0.783,
+        "kommentar": 0.49,
+        "follower": 0.478
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 28:37. Die Pointe liegt bei 28 % der Cliplänge, davor 7 s Aufbau.",
+      "thema": "Sind das selber einfach nicht in der Öliste? Hier kommt mal wenn ich jetzt hier, weil ich Ich nehme euch mal kurz mit. Ich muss erstmal das richtige Fenster wieder einfahren. Da sind wir doch wieder, Leute. Wenn ich jetzt hier Kian... Guck mal, wenn ich Kian eingebe, kommt Kianosch. Vor Kianosch. Nein. Das ist natürlich mein Algo, ich mache nur Spaß. Kianosch ist natürlich Präsident, oder was wir zu machen.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:06 Originalausschnitt im Layout „facecam_gross“",
+        "0:06–0:08 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:07 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:08–0:22 zurück auf Normalgröße, letzte Zeile ausspielen",
+        "0:16 Jump Cut – 1.0 s Stille raus"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Sind das selber einfach nicht in der Öliste? Hier kommt mal wenn ich jetzt hier, weil ich Ich nehme euch mal kurz mit. Ich muss erstmal das richtige Fenster wieder einfahren. Da sind wir doch wieder, Leute. Wenn ich jetzt hier Kian... Guck mal, wenn ich Kian eingebe, kommt Kianosch. Vor Kianosch. Nein. Das ist natürlich mein Algo, ich mache nur Spaß. Kianosch ist natürlich Präsident, oder was wir zu machen.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.78,
+          "text": "Sind das selber einfach"
+        },
+        {
+          "start": 0.78,
+          "ende": 2.42,
+          "text": "nicht in der Öliste?"
+        },
+        {
+          "start": 2.94,
+          "ende": 3.68,
+          "text": "Hier kommt mal wenn ich"
+        },
+        {
+          "start": 3.68,
+          "ende": 4.14,
+          "text": "jetzt hier,"
+        },
+        {
+          "start": 4.82,
+          "ende": 5.48,
+          "text": "weil ich Ich nehme euch"
+        },
+        {
+          "start": 5.48,
+          "ende": 6.16,
+          "text": "mal kurz mit."
+        },
+        {
+          "start": 7.0,
+          "ende": 7.7,
+          "text": "Ich muss erstmal das"
+        },
+        {
+          "start": 7.7,
+          "ende": 8.58,
+          "text": "richtige Fenster wieder"
+        },
+        {
+          "start": 8.58,
+          "ende": 10.06,
+          "text": "einfahren. Da sind wir"
+        },
+        {
+          "start": 10.06,
+          "ende": 10.74,
+          "text": "doch wieder, Leute."
+        },
+        {
+          "start": 11.62,
+          "ende": 12.28,
+          "text": "Wenn ich jetzt hier"
+        },
+        {
+          "start": 12.28,
+          "ende": 14.36,
+          "text": "Kian... Guck mal, wenn ich"
+        },
+        {
+          "start": 14.36,
+          "ende": 15.3,
+          "text": "Kian eingebe, kommt"
+        },
+        {
+          "start": 15.3,
+          "ende": 17.4,
+          "text": "Kianosch. Vor Kianosch."
+        },
+        {
+          "start": 17.58,
+          "ende": 18.03,
+          "text": "Nein."
+        },
+        {
+          "start": 18.68,
+          "ende": 19.62,
+          "text": "Das ist natürlich mein"
+        },
+        {
+          "start": 19.62,
+          "ende": 20.52,
+          "text": "Algo, ich mache nur Spaß."
+        },
+        {
+          "start": 20.74,
+          "ende": 21.62,
+          "text": "Kianosch ist natürlich"
+        },
+        {
+          "start": 21.62,
+          "ende": 23.25,
+          "text": "Präsident, oder was wir zu machen."
+        }
+      ],
+      "texte": {
+        "hook": "„Ich muss erstmal das richtige Fenster wieder…“",
+        "kernzitat": "Ich muss erstmal das richtige Fenster wieder einfahren",
+        "tiktok_titel": "„Ich muss erstmal das richtige Fenster wieder einfahren“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Ich muss erstmal das richtige Fenster wieder einfahren",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Ich muss erstmal das richtige Fenster wieder…“",
+        "instagram": "„Ich muss erstmal das richtige Fenster wieder…“",
+        "youtube": "„Ich muss erstmal das richtige Fenster wieder…“"
+      }
+    },
+    {
+      "nummer": 9,
+      "clip_id": "2862735566-001741",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 1740.53,
+      "ende": 1759.85,
+      "start_stempel": "29:00",
+      "ende_stempel": "29:19",
+      "dauer": 17.2,
+      "roh_dauer": 19.3,
+      "auslassungen": [
+        [
+          1742.73,
+          1744.01
+        ],
+        [
+          1748.27,
+          1749.13
+        ]
+      ],
+      "hoehepunkt": 1751.0,
+      "kategorie": "RAGE",
+      "score": 75,
+      "vorrang": false,
+      "punkte": {
+        "hook": 19.12,
+        "unterhaltung": 16.57,
+        "watchtime": 20.0,
+        "share": 8.25,
+        "kommentar": 5.8,
+        "follower": 5.58
+      },
+      "teilnoten": {
+        "hook": 0.765,
+        "unterhaltung": 0.828,
+        "watchtime": 1.0,
+        "share": 0.55,
+        "kommentar": 0.58,
+        "follower": 0.558
+      },
+      "begruendung": "Er rastet aus und dicht gesprochen, keine Leerlaufzeit bei 29:11. Die Pointe liegt bei 54 % der Cliplänge, davor 10 s Aufbau. 2 s Stille fallen raus.",
+      "thema": "Wo haben wir das denn? Alter. Was ist mit dieser Reaction hier passiert, ladies and gentlemen? Können wir mal bitte darüber reden? Was zur Hölle? Ja, aber im wahrsten Sinne des Wortes, was zur Hölle passiert hier? Dieser Tag dient nicht dazu, die Welt ohnezugestattet. Wisst ihr noch von Rui Janet? Als ihr gesagt habt, Bruder guckt ihr das mal an, das ist geisteskrank.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:07 Originalausschnitt im Layout „facecam_gross“",
+        "0:02 Jump Cut – 1.3 s Stille raus",
+        "0:06 Jump Cut – 0.9 s Stille raus",
+        "0:07–0:09 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:09–0:17 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": true,
+      "loop_hinweis": "letzte 0,4 s auf den Anfangsframe blenden, Ton hart schneiden – der Clip läuft dann rund",
+      "untertitel": "Wo haben wir das denn? Alter. Was ist mit dieser Reaction hier passiert, ladies and gentlemen? Können wir mal bitte darüber reden? Was zur Hölle? Ja, aber im wahrsten Sinne des Wortes, was zur Hölle passiert hier? Dieser Tag dient nicht dazu, die Welt ohnezugestattet. Wisst ihr noch von Rui Janet? Als ihr gesagt habt, Bruder guckt ihr das mal an, das ist geisteskrank.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.0,
+          "text": "Wo haben wir das denn?"
+        },
+        {
+          "start": 1.66,
+          "ende": 3.6,
+          "text": "Alter. Was ist mit dieser"
+        },
+        {
+          "start": 3.6,
+          "ende": 4.64,
+          "text": "Reaction hier passiert,"
+        },
+        {
+          "start": 4.86,
+          "ende": 5.31,
+          "text": "ladies and gentlemen?"
+        },
+        {
+          "start": 5.34,
+          "ende": 5.79,
+          "text": "Können wir mal bitte"
+        },
+        {
+          "start": 5.72,
+          "ende": 7.24,
+          "text": "darüber reden? Was zur"
+        },
+        {
+          "start": 7.24,
+          "ende": 8.46,
+          "text": "Hölle? Ja, aber im"
+        },
+        {
+          "start": 8.46,
+          "ende": 9.38,
+          "text": "wahrsten Sinne des Wortes,"
+        },
+        {
+          "start": 9.46,
+          "ende": 10.26,
+          "text": "was zur Hölle passiert"
+        },
+        {
+          "start": 10.26,
+          "ende": 10.71,
+          "text": "hier?"
+        },
+        {
+          "start": 11.5,
+          "ende": 12.44,
+          "text": "Dieser Tag dient nicht"
+        },
+        {
+          "start": 12.44,
+          "ende": 13.06,
+          "text": "dazu, die Welt"
+        },
+        {
+          "start": 13.06,
+          "ende": 13.7,
+          "text": "ohnezugestattet. Wisst ihr"
+        },
+        {
+          "start": 13.7,
+          "ende": 14.38,
+          "text": "noch von Rui Janet?"
+        },
+        {
+          "start": 14.74,
+          "ende": 15.44,
+          "text": "Als ihr gesagt habt,"
+        },
+        {
+          "start": 15.46,
+          "ende": 16.28,
+          "text": "Bruder guckt ihr das mal"
+        },
+        {
+          "start": 16.28,
+          "ende": 17.18,
+          "text": "an, das ist geisteskrank."
+        }
+      ],
+      "texte": {
+        "hook": "Er wusste sofort, dass er einen Fehler gemacht hat.",
+        "kernzitat": "Dieser Tag dient nicht dazu, die Welt ohnezugestattet",
+        "tiktok_titel": "„Dieser Tag dient nicht dazu, die Welt ohnezugestattet“",
+        "tiktok_caption": "Der Moment, in dem es kippt.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet?",
+        "youtube_titel": "K1ANUSH: Dieser Tag dient nicht dazu, die Welt ohnezugestattet",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#rage",
+          "#ragequit",
+          "#ausraster",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Er wusste sofort, dass er einen Fehler gemacht hat.",
+        "instagram": "Er wusste sofort, dass er einen Fehler gemacht hat.",
+        "youtube": "Er wusste sofort, dass er einen Fehler gemacht hat."
+      }
+    },
+    {
+      "nummer": 10,
+      "clip_id": "2862735566-001910",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 1909.6,
+      "ende": 1929.1,
+      "start_stempel": "31:49",
+      "ende_stempel": "32:09",
+      "dauer": 19.5,
+      "roh_dauer": 19.5,
+      "auslassungen": [],
+      "hoehepunkt": 1917.0,
+      "kategorie": "UNEXPECTED",
+      "score": 79,
+      "vorrang": false,
+      "punkte": {
+        "hook": 16.02,
+        "unterhaltung": 20.0,
+        "watchtime": 19.03,
+        "share": 13.82,
+        "kommentar": 3.9,
+        "follower": 6.08
+      },
+      "teilnoten": {
+        "hook": 0.641,
+        "unterhaltung": 1.0,
+        "watchtime": 0.951,
+        "share": 0.922,
+        "kommentar": 0.39,
+        "follower": 0.608
+      },
+      "begruendung": "Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 31:57. Die Pointe liegt bei 38 % der Cliplänge, davor 7 s Aufbau.",
+      "thema": "Alles gut bei euch. Ey danke erst mal, ich muss mich hier kurz bedanken. Warte mal. Erst mal, warte mal, warte mal, warte, warte, warte, warte. Erst mal dank an Karibik Hendrik für dein Abo vor 19 Minuten. X-Act mal lieber. Dankeschön vor 19 Minuten. Kilominat vor 14 Minuten.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:06 Originalausschnitt im Layout „facecam_gross“",
+        "0:07–0:09 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:07 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:09–0:19 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": true,
+      "loop_hinweis": "letzte 0,4 s auf den Anfangsframe blenden, Ton hart schneiden – der Clip läuft dann rund",
+      "untertitel": "Alles gut bei euch. Ey danke erst mal, ich muss mich hier kurz bedanken. Warte mal. Erst mal, warte mal, warte mal, warte, warte, warte, warte. Erst mal dank an Karibik Hendrik für dein Abo vor 19 Minuten. X -Act mal lieber. Dankeschön vor 19 Minuten. Kilominat vor 14 Minuten.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.06,
+          "text": "Alles gut bei euch."
+        },
+        {
+          "start": 1.54,
+          "ende": 2.48,
+          "text": "Ey danke erst mal, ich"
+        },
+        {
+          "start": 2.48,
+          "ende": 3.08,
+          "text": "muss mich hier kurz"
+        },
+        {
+          "start": 3.08,
+          "ende": 4.38,
+          "text": "bedanken. Warte mal."
+        },
+        {
+          "start": 5.36,
+          "ende": 7.04,
+          "text": "Erst mal, warte mal, warte"
+        },
+        {
+          "start": 7.04,
+          "ende": 8.4,
+          "text": "mal, warte, warte, warte,"
+        },
+        {
+          "start": 8.4,
+          "ende": 8.85,
+          "text": "warte."
+        },
+        {
+          "start": 9.92,
+          "ende": 11.7,
+          "text": "Erst mal dank an Karibik"
+        },
+        {
+          "start": 11.7,
+          "ende": 13.64,
+          "text": "Hendrik für dein Abo vor"
+        },
+        {
+          "start": 13.64,
+          "ende": 15.52,
+          "text": "19 Minuten. X -Act mal"
+        },
+        {
+          "start": 15.52,
+          "ende": 16.8,
+          "text": "lieber. Dankeschön vor 19"
+        },
+        {
+          "start": 16.8,
+          "ende": 17.25,
+          "text": "Minuten."
+        },
+        {
+          "start": 18.02,
+          "ende": 19.5,
+          "text": "Kilominat vor 14 Minuten."
+        }
+      ],
+      "texte": {
+        "hook": "Seine Reaktion sagt alles 😂",
+        "kernzitat": "warte mal, warte mal, warte, warte, warte, warte",
+        "tiktok_titel": "„warte mal, warte mal, warte, warte, warte, warte“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: warte mal, warte mal, warte, warte, warte, warte",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Seine Reaktion sagt alles 😂",
+        "instagram": "Seine Reaktion sagt alles 😂",
+        "youtube": "Seine Reaktion sagt alles"
+      }
+    },
+    {
+      "nummer": 11,
+      "clip_id": "2862735566-002526",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 2526.49,
+      "ende": 2553.0,
+      "start_stempel": "42:06",
+      "ende_stempel": "42:33",
+      "dauer": 26.5,
+      "roh_dauer": 26.5,
+      "auslassungen": [],
+      "hoehepunkt": 2528.0,
+      "kategorie": "STORY",
+      "score": 70,
+      "vorrang": false,
+      "punkte": {
+        "hook": 16.06,
+        "unterhaltung": 15.24,
+        "watchtime": 17.47,
+        "share": 9.44,
+        "kommentar": 5.5,
+        "follower": 6.33
+      },
+      "teilnoten": {
+        "hook": 0.643,
+        "unterhaltung": 0.762,
+        "watchtime": 0.874,
+        "share": 0.629,
+        "kommentar": 0.55,
+        "follower": 0.633
+      },
+      "begruendung": "Er baut Spannung auf und er ist sichtbar überrascht bei 42:08. Die Pointe liegt bei 6 % der Cliplänge, davor 2 s Aufbau.",
+      "thema": "plus 2, gleich 3. 3 mal 5, gleich 15. 1 plus 5, gleich 6. 3 mal 6, gleich 18. 1 plus 8, gleich 9. Okay. Okay, das ist krass. Was? Da kommt immer 369 raus? Also 3 mal 7 ist 21. 2 plus 1 ist 3.",
+      "layout": "nur_person",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:01–0:03 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:03–0:26 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "plus 2, gleich 3. 3 mal 5, gleich 15. 1 plus 5, gleich 6. 3 mal 6, gleich 18. 1 plus 8, gleich 9. Okay. Okay, das ist krass. Was? Da kommt immer 369 raus? Also 3 mal 7 ist 21.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.72,
+          "text": "plus 2, gleich 3."
+        },
+        {
+          "start": 2.48,
+          "ende": 4.16,
+          "text": "3 mal 5, gleich 15."
+        },
+        {
+          "start": 4.64,
+          "ende": 6.24,
+          "text": "1 plus 5, gleich 6."
+        },
+        {
+          "start": 6.6,
+          "ende": 8.62,
+          "text": "3 mal 6, gleich 18."
+        },
+        {
+          "start": 9.1,
+          "ende": 11.32,
+          "text": "1 plus 8, gleich 9."
+        },
+        {
+          "start": 12.4,
+          "ende": 12.96,
+          "text": "Okay."
+        },
+        {
+          "start": 16.22,
+          "ende": 17.48,
+          "text": "Okay, das ist krass."
+        },
+        {
+          "start": 18.24,
+          "ende": 20.12,
+          "text": "Was? Da kommt immer 369"
+        },
+        {
+          "start": 20.12,
+          "ende": 20.57,
+          "text": "raus?"
+        },
+        {
+          "start": 22.8,
+          "ende": 23.25,
+          "text": "Also"
+        },
+        {
+          "start": 23.08,
+          "ende": 25.32,
+          "text": "3"
+        },
+        {
+          "start": 25.32,
+          "ende": 26.51,
+          "text": "mal 7 ist 21."
+        }
+      ],
+      "texte": {
+        "hook": "„Da kommt immer 369 raus?“",
+        "kernzitat": "Da kommt immer 369 raus?",
+        "tiktok_titel": "„Da kommt immer 369 raus?“",
+        "tiktok_caption": "Die Geschichte musste raus.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?",
+        "youtube_titel": "K1ANUSH: Da kommt immer 369 raus?",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#storytime",
+          "#geschichte",
+          "#storytimetiktok",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Da kommt immer 369 raus?“",
+        "instagram": "„Da kommt immer 369 raus?“",
+        "youtube": "„Da kommt immer 369 raus?“"
+      }
+    },
+    {
+      "nummer": 12,
+      "clip_id": "2862735566-003008",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 3008.17,
+      "ende": 3040.51,
+      "start_stempel": "50:08",
+      "ende_stempel": "50:40",
+      "dauer": 32.3,
+      "roh_dauer": 32.3,
+      "auslassungen": [],
+      "hoehepunkt": 3033.0,
+      "kategorie": "UNEXPECTED",
+      "score": 72,
+      "vorrang": false,
+      "punkte": {
+        "hook": 22.02,
+        "unterhaltung": 9.25,
+        "watchtime": 18.95,
+        "share": 12.84,
+        "kommentar": 4.9,
+        "follower": 4.53
+      },
+      "teilnoten": {
+        "hook": 0.881,
+        "unterhaltung": 0.462,
+        "watchtime": 0.947,
+        "share": 0.856,
+        "kommentar": 0.49,
+        "follower": 0.453
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 50:33. Die Pointe liegt bei 77 % der Cliplänge, davor 25 s Aufbau. Der Einstieg trägt ohne Vorwissen.",
+      "thema": "Nein, ich frag das jetzt wirklich. Was mache ich jetzt? Wie kann ich das anwenden? Wie kann ich das jetzt nutzen, damit wir ankommen oder weiß ich nicht? Was meint ihr? Also was ist jetzt das Ding? Weil er, guck mal, er, Nikola Tesla, hat sich ja damit befasst. Wahrscheinlich intensiver, als wir alle zusammen. Am Ende ist bei ihm rausgekommen, dass er dreimal ums Haus laufen muss, bevor er reingeht und dreimal die Hände wäscht. Ist das quasi die",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:24 Originalausschnitt im Layout „facecam_gross“",
+        "0:24–0:26 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:25–0:25 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:26–0:32 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Nein, ich frag das jetzt wirklich. Was mache ich jetzt? Wie kann ich das anwenden? Wie kann ich das jetzt nutzen, damit wir ankommen oder weiß ich nicht? Was meint ihr? Also was ist jetzt das Ding? Weil er, guck mal, er, Nikola Tesla, hat sich ja damit befasst. Wahrscheinlich intensiver, als wir alle zusammen. Am Ende ist bei ihm rausgekommen, dass er dreimal ums Haus laufen muss, bevor er reingeht und dreimal die Hände wäscht. Ist das quasi die",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.18,
+          "text": "Nein, ich frag das jetzt"
+        },
+        {
+          "start": 1.18,
+          "ende": 2.28,
+          "text": "wirklich. Was mache ich"
+        },
+        {
+          "start": 2.28,
+          "ende": 3.46,
+          "text": "jetzt? Wie kann ich das"
+        },
+        {
+          "start": 3.46,
+          "ende": 4.44,
+          "text": "anwenden? Wie kann ich das"
+        },
+        {
+          "start": 4.44,
+          "ende": 5.7,
+          "text": "jetzt nutzen, damit wir"
+        },
+        {
+          "start": 5.7,
+          "ende": 7.88,
+          "text": "ankommen oder"
+        },
+        {
+          "start": 7.88,
+          "ende": 8.78,
+          "text": "weiß ich nicht?"
+        },
+        {
+          "start": 9.78,
+          "ende": 10.56,
+          "text": "Was meint ihr?"
+        },
+        {
+          "start": 10.88,
+          "ende": 12.54,
+          "text": "Also was ist jetzt das"
+        },
+        {
+          "start": 12.54,
+          "ende": 12.99,
+          "text": "Ding?"
+        },
+        {
+          "start": 17.16,
+          "ende": 18.4,
+          "text": "Weil er, guck mal, er,"
+        },
+        {
+          "start": 19.02,
+          "ende": 20.22,
+          "text": "Nikola Tesla, hat sich ja"
+        },
+        {
+          "start": 20.22,
+          "ende": 20.84,
+          "text": "damit befasst."
+        },
+        {
+          "start": 21.4,
+          "ende": 22.88,
+          "text": "Wahrscheinlich intensiver,"
+        },
+        {
+          "start": 22.88,
+          "ende": 23.66,
+          "text": "als wir alle zusammen."
+        },
+        {
+          "start": 24.62,
+          "ende": 25.56,
+          "text": "Am Ende ist bei ihm"
+        },
+        {
+          "start": 25.56,
+          "ende": 26.36,
+          "text": "rausgekommen, dass er"
+        },
+        {
+          "start": 26.36,
+          "ende": 27.4,
+          "text": "dreimal ums Haus laufen"
+        },
+        {
+          "start": 27.4,
+          "ende": 28.36,
+          "text": "muss, bevor er reingeht"
+        },
+        {
+          "start": 28.36,
+          "ende": 29.18,
+          "text": "und dreimal die Hände"
+        },
+        {
+          "start": 29.18,
+          "ende": 29.63,
+          "text": "wäscht."
+        },
+        {
+          "start": 31.18,
+          "ende": 32.34,
+          "text": "Ist das quasi die"
+        }
+      ],
+      "texte": {
+        "hook": "„als wir alle zusammen“",
+        "kernzitat": "als wir alle zusammen",
+        "tiktok_titel": "„als wir alle zusammen“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: als wir alle zusammen",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„als wir alle zusammen“",
+        "instagram": "„als wir alle zusammen“",
+        "youtube": "„als wir alle zusammen“"
+      }
+    },
+    {
+      "nummer": 13,
+      "clip_id": "2862735566-003215",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 3214.82,
+      "ende": 3245.95,
+      "start_stempel": "53:34",
+      "ende_stempel": "54:05",
+      "dauer": 31.1,
+      "roh_dauer": 31.1,
+      "auslassungen": [],
+      "hoehepunkt": 3236.0,
+      "kategorie": "UNEXPECTED",
+      "score": 76,
+      "vorrang": false,
+      "punkte": {
+        "hook": 13.69,
+        "unterhaltung": 18.68,
+        "watchtime": 18.24,
+        "share": 14.41,
+        "kommentar": 4.9,
+        "follower": 5.68
+      },
+      "teilnoten": {
+        "hook": 0.548,
+        "unterhaltung": 0.934,
+        "watchtime": 0.912,
+        "share": 0.961,
+        "kommentar": 0.49,
+        "follower": 0.568
+      },
+      "begruendung": "Er ist sichtbar überrascht und er baut Spannung auf bei 53:56. Die Pointe liegt bei 68 % der Cliplänge, davor 21 s Aufbau. Der Einstieg ist die Schwachstelle – Text-Hook ist Pflicht.",
+      "thema": "3 mal 2, 3 mal 3, dann kommt am Ende immer 3, 6, 9 raus. Genau, du kommst immer wieder auf 369 raus, das ist richtig. Ja, aber irgendwas ist ja da. Das ist ja nicht zufällig so. Naja, also diese Zahlen existieren natürlich... Gibt es, warte mal, warte mal, warte mal. Gibt es in der Mathematik zufälle? Gute Frage. Lass mich mal schauen. In der",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf",
+        "0:02–0:20 Originalausschnitt im Layout „facecam_gross“",
+        "0:20–0:22 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:21–0:21 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:22–0:31 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "3 mal 2, 3 mal 3, dann kommt am Ende immer 3, 6, 9 raus. Genau, du kommst immer wieder auf 369 raus, das ist richtig. Ja, aber irgendwas ist ja da. Das ist ja nicht zufällig so. Naja, also diese Zahlen existieren natürlich... Gibt es, warte mal, warte mal, warte mal. Gibt es in der Mathematik zufälle? Gute Frage. Lass mich mal schauen. In der",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.62,
+          "text": "3 mal 2, 3 mal 3,"
+        },
+        {
+          "start": 2.92,
+          "ende": 3.78,
+          "text": "dann kommt am Ende immer"
+        },
+        {
+          "start": 3.78,
+          "ende": 4.78,
+          "text": "3, 6, 9 raus."
+        },
+        {
+          "start": 6.04,
+          "ende": 7.12,
+          "text": "Genau, du kommst immer"
+        },
+        {
+          "start": 7.12,
+          "ende": 9.48,
+          "text": "wieder auf 369 raus, das"
+        },
+        {
+          "start": 9.48,
+          "ende": 10.04,
+          "text": "ist richtig."
+        },
+        {
+          "start": 11.88,
+          "ende": 12.33,
+          "text": "Ja,"
+        },
+        {
+          "start": 13.4,
+          "ende": 14.86,
+          "text": "aber irgendwas ist ja da."
+        },
+        {
+          "start": 15.68,
+          "ende": 17.3,
+          "text": "Das ist ja nicht zufällig"
+        },
+        {
+          "start": 17.3,
+          "ende": 17.82,
+          "text": "so. Naja,"
+        },
+        {
+          "start": 19.42,
+          "ende": 20.56,
+          "text": "also diese Zahlen"
+        },
+        {
+          "start": 20.56,
+          "ende": 21.86,
+          "text": "existieren natürlich..."
+        },
+        {
+          "start": 21.86,
+          "ende": 22.86,
+          "text": "Gibt es, warte mal, warte"
+        },
+        {
+          "start": 22.86,
+          "ende": 23.44,
+          "text": "mal, warte mal."
+        },
+        {
+          "start": 23.68,
+          "ende": 25.06,
+          "text": "Gibt es in der Mathematik"
+        },
+        {
+          "start": 25.06,
+          "ende": 25.52,
+          "text": "zufälle?"
+        },
+        {
+          "start": 28.75,
+          "ende": 30.35,
+          "text": "Gute Frage. Lass mich mal"
+        },
+        {
+          "start": 30.35,
+          "ende": 31.13,
+          "text": "schauen. In der"
+        }
+      ],
+      "texte": {
+        "hook": "Er hat zweimal hinsehen müssen.",
+        "kernzitat": "Gibt es in der Mathematik zufälle?",
+        "tiktok_titel": "„Gibt es in der Mathematik zufälle?“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Gibt es in der Mathematik zufälle?",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Er hat zweimal hinsehen müssen.",
+        "instagram": "Er hat zweimal hinsehen müssen.",
+        "youtube": "Er hat zweimal hinsehen müssen."
+      }
+    },
+    {
+      "nummer": 14,
+      "clip_id": "2862735566-003434",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 3433.81,
+      "ende": 3451.47,
+      "start_stempel": "57:13",
+      "ende_stempel": "57:31",
+      "dauer": 16.3,
+      "roh_dauer": 17.7,
+      "auslassungen": [
+        [
+          3435.51,
+          3436.87
+        ]
+      ],
+      "hoehepunkt": 3441.0,
+      "kategorie": "UNEXPECTED",
+      "score": 77,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.37,
+        "unterhaltung": 18.16,
+        "watchtime": 18.42,
+        "share": 13.24,
+        "kommentar": 3.9,
+        "follower": 5.98
+      },
+      "teilnoten": {
+        "hook": 0.695,
+        "unterhaltung": 0.908,
+        "watchtime": 0.921,
+        "share": 0.882,
+        "kommentar": 0.39,
+        "follower": 0.598
+      },
+      "begruendung": "Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 57:21. Die Pointe liegt bei 41 % der Cliplänge, davor 7 s Aufbau.",
+      "thema": "Das ist dann nicht seriöse Wissenschaft. Warte mal, warte mal, seriöse Wissenschaft. Guck mal, ich will dir nur eine Sache sagen. Die großen Errungenschaften bzw. die Erkenntnisse, die wir erlangt haben als Menschheit, sag ich mal,",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:01 Jump Cut – 1.4 s Stille raus",
+        "0:02–0:05 Originalausschnitt im Layout „facecam_gross“",
+        "0:05–0:07 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:06 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:07–0:16 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": true,
+      "loop_hinweis": "letzte 0,4 s auf den Anfangsframe blenden, Ton hart schneiden – der Clip läuft dann rund",
+      "untertitel": "Das ist dann nicht seriöse Wissenschaft. Warte mal, warte mal, seriöse Wissenschaft. Guck mal, ich will dir nur eine Sache sagen. Die großen Errungenschaften bzw. die Erkenntnisse, die wir erlangt haben als Menschheit, sag ich mal,",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.12,
+          "text": "Das ist dann nicht seriöse"
+        },
+        {
+          "start": 1.12,
+          "ende": 2.8,
+          "text": "Wissenschaft. Warte mal,"
+        },
+        {
+          "start": 2.88,
+          "ende": 4.7,
+          "text": "warte mal, seriöse"
+        },
+        {
+          "start": 4.7,
+          "ende": 5.74,
+          "text": "Wissenschaft. Guck mal,"
+        },
+        {
+          "start": 6.76,
+          "ende": 7.68,
+          "text": "ich will dir nur eine"
+        },
+        {
+          "start": 7.68,
+          "ende": 8.26,
+          "text": "Sache sagen."
+        },
+        {
+          "start": 9.14,
+          "ende": 9.64,
+          "text": "Die großen"
+        },
+        {
+          "start": 9.64,
+          "ende": 11.54,
+          "text": "Errungenschaften bzw."
+        },
+        {
+          "start": 12.36,
+          "ende": 13.74,
+          "text": "die Erkenntnisse, die wir"
+        },
+        {
+          "start": 13.74,
+          "ende": 15.1,
+          "text": "erlangt haben als"
+        },
+        {
+          "start": 15.1,
+          "ende": 16.3,
+          "text": "Menschheit, sag ich mal,"
+        }
+      ],
+      "texte": {
+        "hook": "Damit hatte er nicht gerechnet.",
+        "kernzitat": "Die großen Errungenschaften bzw",
+        "tiktok_titel": "„Die großen Errungenschaften bzw“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Die großen Errungenschaften bzw",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Damit hatte er nicht gerechnet.",
+        "instagram": "Damit hatte er nicht gerechnet.",
+        "youtube": "Damit hatte er nicht gerechnet."
+      }
+    },
+    {
+      "nummer": 15,
+      "clip_id": "2862735566-003691",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 3690.56,
+      "ende": 3723.98,
+      "start_stempel": "1:01:30",
+      "ende_stempel": "1:02:03",
+      "dauer": 29.5,
+      "roh_dauer": 33.4,
+      "auslassungen": [
+        [
+          3695.04,
+          3698.99
+        ]
+      ],
+      "hoehepunkt": 3719.0,
+      "kategorie": "UNEXPECTED",
+      "score": 71,
+      "vorrang": false,
+      "punkte": {
+        "hook": 13.95,
+        "unterhaltung": 14.74,
+        "watchtime": 18.41,
+        "share": 13.24,
+        "kommentar": 4.9,
+        "follower": 5.95
+      },
+      "teilnoten": {
+        "hook": 0.558,
+        "unterhaltung": 0.737,
+        "watchtime": 0.921,
+        "share": 0.882,
+        "kommentar": 0.49,
+        "follower": 0.595
+      },
+      "begruendung": "Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 1:01:59. Die Pointe liegt bei 85 % der Cliplänge, davor 28 s Aufbau. 4 s Stille fallen raus. Der Einstieg ist die Schwachstelle – Text-Hook ist Pflicht.",
+      "thema": "Als logischen Zwang kann man es nicht nennen. Ich meine als logische Schlussfolgerung. Eine schlüssige Erklärung kann es nur in Bezug auf bestimmte Voraussetzungen. Wenn du bestimmte Voraussetzungen annimmst, dann ist es als logische Schlussfolgerung möglich. Aber es ist eben keine zwingende Schlussfolgerung. Warte mal, warte mal, ich frage mal so, was ist naheliegend da, dass es einen Schöpfer gibt oder dass es keinen gibt?",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf",
+        "0:02–0:23 Originalausschnitt im Layout „facecam_gross“",
+        "0:04 Jump Cut – 3.9 s Stille raus",
+        "0:24–0:26 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:24–0:24 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:26–0:29 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": true,
+      "loop_hinweis": "letzte Zeile stehen lassen, hart auf Bild 1 zurück – die Frage am Ende schickt den Zuschauer an den Anfang",
+      "untertitel": "Als logischen Zwang kann man es nicht nennen. Ich meine als logische Schlussfolgerung. Eine schlüssige Erklärung kann es nur in Bezug auf bestimmte Voraussetzungen. Wenn du bestimmte Voraussetzungen annimmst, dann ist es als logische Schlussfolgerung möglich. Aber es ist eben keine zwingende Schlussfolgerung. Warte mal, warte mal, ich frage mal so, was ist naheliegend da, dass es einen Schöpfer gibt oder dass es keinen gibt?",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.72,
+          "text": "Als logischen Zwang kann"
+        },
+        {
+          "start": 1.72,
+          "ende": 2.42,
+          "text": "man es nicht nennen."
+        },
+        {
+          "start": 2.52,
+          "ende": 3.42,
+          "text": "Ich meine als logische"
+        },
+        {
+          "start": 3.42,
+          "ende": 4.96,
+          "text": "Schlussfolgerung. Eine"
+        },
+        {
+          "start": 4.96,
+          "ende": 6.42,
+          "text": "schlüssige Erklärung kann"
+        },
+        {
+          "start": 6.42,
+          "ende": 8.06,
+          "text": "es nur in Bezug auf"
+        },
+        {
+          "start": 8.06,
+          "ende": 10.44,
+          "text": "bestimmte Voraussetzungen."
+        },
+        {
+          "start": 10.9,
+          "ende": 11.76,
+          "text": "Wenn du bestimmte"
+        },
+        {
+          "start": 11.76,
+          "ende": 12.76,
+          "text": "Voraussetzungen"
+        },
+        {
+          "start": 14.07,
+          "ende": 16.33,
+          "text": "annimmst, dann ist es"
+        },
+        {
+          "start": 16.33,
+          "ende": 17.19,
+          "text": "als logische"
+        },
+        {
+          "start": 17.19,
+          "ende": 18.51,
+          "text": "Schlussfolgerung möglich."
+        },
+        {
+          "start": 18.83,
+          "ende": 20.25,
+          "text": "Aber es ist eben keine"
+        },
+        {
+          "start": 20.25,
+          "ende": 22.53,
+          "text": "zwingende Schlussfolgerung."
+        },
+        {
+          "start": 22.53,
+          "ende": 23.63,
+          "text": "Warte mal, warte mal, ich"
+        },
+        {
+          "start": 23.63,
+          "ende": 24.29,
+          "text": "frage mal so,"
+        },
+        {
+          "start": 24.89,
+          "ende": 26.39,
+          "text": "was ist naheliegend da,"
+        },
+        {
+          "start": 26.99,
+          "ende": 28.01,
+          "text": "dass es einen Schöpfer"
+        },
+        {
+          "start": 28.01,
+          "ende": 29.54,
+          "text": "gibt oder dass es keinen gibt?"
+        }
+      ],
+      "texte": {
+        "hook": "Guck auf die Sekunde, in der es klickt.",
+        "kernzitat": "Wenn du bestimmte Voraussetzungen annimmst, dann ist es als logische Schlussfolgerung möglich",
+        "tiktok_titel": "„Wenn du bestimmte Voraussetzungen annimmst, dann ist es…“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Wenn du bestimmte Voraussetzungen annimmst, dann ist es…",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Guck auf die Sekunde, in der es klickt.",
+        "instagram": "Guck auf die Sekunde, in der es klickt.",
+        "youtube": "Guck auf die Sekunde, in der es klickt."
+      }
+    },
+    {
+      "nummer": 16,
+      "clip_id": "2862735566-003984",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 3984.17,
+      "ende": 3996.13,
+      "start_stempel": "1:06:24",
+      "ende_stempel": "1:06:36",
+      "dauer": 12.0,
+      "roh_dauer": 12.0,
+      "auslassungen": [],
+      "hoehepunkt": 3989.0,
+      "kategorie": "UNEXPECTED",
+      "score": 73,
+      "vorrang": false,
+      "punkte": {
+        "hook": 24.18,
+        "unterhaltung": 10.2,
+        "watchtime": 16.81,
+        "share": 12.25,
+        "kommentar": 4.9,
+        "follower": 5.06
+      },
+      "teilnoten": {
+        "hook": 0.967,
+        "unterhaltung": 0.51,
+        "watchtime": 0.84,
+        "share": 0.816,
+        "kommentar": 0.49,
+        "follower": 0.506
+      },
+      "begruendung": "Er ist sichtbar überrascht und er wird laut bei 1:06:29. Die Pointe liegt bei 40 % der Cliplänge, davor 5 s Aufbau. Der Einstieg trägt ohne Vorwissen.",
+      "thema": "Warte mal, stopp! Kannst du mal bitte aufhören, so komisch zu leiern und so stotterhaft zu reden? Ich möchte eine flüssige, reibungslose Konversation mit dir führen.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:04 Originalausschnitt im Layout „facecam_gross“",
+        "0:04–0:06 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:05 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:06–0:11 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Warte mal, stopp! Kannst du mal bitte aufhören, so komisch zu leiern und so stotterhaft zu reden? Ich möchte eine flüssige, reibungslose Konversation mit dir führen.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 2.16,
+          "text": "Warte mal, stopp!"
+        },
+        {
+          "start": 2.78,
+          "ende": 3.54,
+          "text": "Kannst du mal bitte"
+        },
+        {
+          "start": 3.54,
+          "ende": 5.0,
+          "text": "aufhören, so komisch zu"
+        },
+        {
+          "start": 5.0,
+          "ende": 6.62,
+          "text": "leiern und so stotterhaft"
+        },
+        {
+          "start": 6.62,
+          "ende": 8.68,
+          "text": "zu reden? Ich möchte eine"
+        },
+        {
+          "start": 8.68,
+          "ende": 10.58,
+          "text": "flüssige, reibungslose"
+        },
+        {
+          "start": 10.58,
+          "ende": 12.11,
+          "text": "Konversation mit dir führen."
+        }
+      ],
+      "texte": {
+        "hook": "„Warte mal, stopp!“",
+        "kernzitat": "Ich möchte eine flüssige, reibungslose Konversation mit dir führen",
+        "tiktok_titel": "„Ich möchte eine flüssige, reibungslose Konversation mit…“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Ich möchte eine flüssige, reibungslose Konversation mit…",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Warte mal, stopp!“",
+        "instagram": "„Warte mal, stopp!“",
+        "youtube": "„Warte mal, stopp!“"
+      }
+    },
+    {
+      "nummer": 17,
+      "clip_id": "2862735566-004338",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 4338.01,
+      "ende": 4361.63,
+      "start_stempel": "1:12:18",
+      "ende_stempel": "1:12:41",
+      "dauer": 22.7,
+      "roh_dauer": 23.6,
+      "auslassungen": [
+        [
+          4356.21,
+          4357.13
+        ]
+      ],
+      "hoehepunkt": 4354.0,
+      "kategorie": "STORY",
+      "score": 66,
+      "vorrang": false,
+      "punkte": {
+        "hook": 14.45,
+        "unterhaltung": 12.13,
+        "watchtime": 19.81,
+        "share": 8.93,
+        "kommentar": 5.5,
+        "follower": 5.35
+      },
+      "teilnoten": {
+        "hook": 0.578,
+        "unterhaltung": 0.607,
+        "watchtime": 0.991,
+        "share": 0.595,
+        "kommentar": 0.55,
+        "follower": 0.535
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 1:12:34. Die Pointe liegt bei 68 % der Cliplänge, davor 16 s Aufbau.",
+      "thema": "Es ist das Land mit den meisten Pargoden der Welt. Wir sprechen hier nicht von Tausenden, sondern von 10.000. Doch was verbergen diese Rätselhaften Bauwerke? Was ist das? Sind das die Häuser der Bewohner von dort? Stell dir vor, jeder hat so ein Haus mit so einem Ding da oben drauf. Das ist ja krass. Das wäre heftig. Ey, lieber SkyWitty, erstmal hier auf Holz klopfen.",
+      "layout": "nur_person",
+      "schnitt": [
+        "0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf",
+        "0:02–0:15 Originalausschnitt im Layout „nur_person“",
+        "0:15–0:17 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:17–0:22 zurück auf Normalgröße, letzte Zeile ausspielen",
+        "0:18 Jump Cut – 0.9 s Stille raus"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Es ist das Land mit den meisten Pargoden der Welt. Wir sprechen hier nicht von Tausenden, sondern von 10 .000. Doch was verbergen diese Rätselhaften Bauwerke? Was ist das? Sind das die Häuser der Bewohner von dort? Stell dir vor, jeder hat so ein Haus mit so einem Ding da oben drauf. Das ist ja krass. Das wäre heftig. Ey, lieber SkyWitty, erstmal hier auf Holz klopfen.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.3,
+          "text": "Es ist das Land mit den"
+        },
+        {
+          "start": 1.3,
+          "ende": 2.78,
+          "text": "meisten Pargoden der Welt."
+        },
+        {
+          "start": 3.44,
+          "ende": 4.62,
+          "text": "Wir sprechen hier nicht"
+        },
+        {
+          "start": 4.62,
+          "ende": 6.24,
+          "text": "von Tausenden, sondern von"
+        },
+        {
+          "start": 6.24,
+          "ende": 7.12,
+          "text": "10 .000."
+        },
+        {
+          "start": 7.76,
+          "ende": 9.2,
+          "text": "Doch was verbergen diese"
+        },
+        {
+          "start": 9.2,
+          "ende": 10.46,
+          "text": "Rätselhaften Bauwerke?"
+        },
+        {
+          "start": 11.08,
+          "ende": 11.82,
+          "text": "Was ist das?"
+        },
+        {
+          "start": 12.34,
+          "ende": 13.32,
+          "text": "Sind das die Häuser der"
+        },
+        {
+          "start": 13.32,
+          "ende": 14.34,
+          "text": "Bewohner von dort?"
+        },
+        {
+          "start": 15.0,
+          "ende": 15.94,
+          "text": "Stell dir vor, jeder hat"
+        },
+        {
+          "start": 15.94,
+          "ende": 16.76,
+          "text": "so ein Haus mit so einem"
+        },
+        {
+          "start": 16.76,
+          "ende": 17.38,
+          "text": "Ding da oben drauf."
+        },
+        {
+          "start": 17.46,
+          "ende": 18.0,
+          "text": "Das ist ja krass."
+        },
+        {
+          "start": 18.4,
+          "ende": 19.14,
+          "text": "Das wäre heftig."
+        },
+        {
+          "start": 19.4,
+          "ende": 20.46,
+          "text": "Ey, lieber SkyWitty,"
+        },
+        {
+          "start": 20.6,
+          "ende": 22.73,
+          "text": "erstmal hier auf Holz klopfen."
+        }
+      ],
+      "texte": {
+        "hook": "„Das wäre heftig“",
+        "kernzitat": "Das wäre heftig",
+        "tiktok_titel": "„Das wäre heftig“",
+        "tiktok_caption": "Die Geschichte musste raus.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?",
+        "youtube_titel": "K1ANUSH: Das wäre heftig",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#storytime",
+          "#geschichte",
+          "#storytimetiktok",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Das wäre heftig“",
+        "instagram": "„Das wäre heftig“",
+        "youtube": "„Das wäre heftig“"
+      }
+    },
+    {
+      "nummer": 18,
+      "clip_id": "2862735566-004918",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 4917.66,
+      "ende": 4936.32,
+      "start_stempel": "1:21:57",
+      "ende_stempel": "1:22:16",
+      "dauer": 18.7,
+      "roh_dauer": 18.7,
+      "auslassungen": [],
+      "hoehepunkt": 4924.0,
+      "kategorie": "RAGE",
+      "score": 71,
+      "vorrang": false,
+      "punkte": {
+        "hook": 16.14,
+        "unterhaltung": 13.83,
+        "watchtime": 20.0,
+        "share": 11.38,
+        "kommentar": 5.8,
+        "follower": 4.25
+      },
+      "teilnoten": {
+        "hook": 0.646,
+        "unterhaltung": 0.692,
+        "watchtime": 1.0,
+        "share": 0.759,
+        "kommentar": 0.58,
+        "follower": 0.425
+      },
+      "begruendung": "Er rastet aus und dicht gesprochen, keine Leerlaufzeit bei 1:22:04. Die Pointe liegt bei 34 % der Cliplänge, davor 6 s Aufbau.",
+      "thema": "Kann man denn diese Art von Energie, was auch immer das für eine Energie sein soll, kann man das nicht irgendwie messen? Es gibt auch mittlerweile so krass viele Messgeräte, die auch sehr sensibel sind. Man kann doch da irgendwelche Veränderungen, wenn sich da irgendwas verändert, könnte man das auch messen eigentlich. Das ist doch messbar. Müsste eigentlich.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:05 Originalausschnitt im Layout „facecam_gross“",
+        "0:05–0:07 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:07–0:18 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Kann man denn diese Art von Energie, was auch immer das für eine Energie sein soll, kann man das nicht irgendwie messen? Es gibt auch mittlerweile so krass viele Messgeräte, die auch sehr sensibel sind. Man kann doch da irgendwelche Veränderungen, wenn sich da irgendwas verändert, könnte man das auch messen eigentlich. Das ist doch messbar. Müsste eigentlich.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.68,
+          "text": "Kann man denn diese Art"
+        },
+        {
+          "start": 1.68,
+          "ende": 2.96,
+          "text": "von Energie, was auch"
+        },
+        {
+          "start": 2.96,
+          "ende": 3.86,
+          "text": "immer das für eine Energie"
+        },
+        {
+          "start": 3.86,
+          "ende": 5.24,
+          "text": "sein soll, kann man das"
+        },
+        {
+          "start": 5.24,
+          "ende": 6.12,
+          "text": "nicht irgendwie messen?"
+        },
+        {
+          "start": 6.68,
+          "ende": 7.54,
+          "text": "Es gibt auch mittlerweile"
+        },
+        {
+          "start": 7.54,
+          "ende": 9.06,
+          "text": "so krass viele Messgeräte,"
+        },
+        {
+          "start": 9.08,
+          "ende": 10.0,
+          "text": "die auch sehr sensibel"
+        },
+        {
+          "start": 10.0,
+          "ende": 10.45,
+          "text": "sind."
+        },
+        {
+          "start": 11.02,
+          "ende": 11.94,
+          "text": "Man kann doch da"
+        },
+        {
+          "start": 11.94,
+          "ende": 13.12,
+          "text": "irgendwelche Veränderungen,"
+        },
+        {
+          "start": 13.2,
+          "ende": 13.72,
+          "text": "wenn sich da irgendwas"
+        },
+        {
+          "start": 13.72,
+          "ende": 14.62,
+          "text": "verändert, könnte man das"
+        },
+        {
+          "start": 14.62,
+          "ende": 15.44,
+          "text": "auch messen eigentlich."
+        },
+        {
+          "start": 16.1,
+          "ende": 18.66,
+          "text": "Das ist doch messbar. Müsste eigentlich."
+        }
+      ],
+      "texte": {
+        "hook": "„kann man das nicht irgendwie messen?“",
+        "kernzitat": "kann man das nicht irgendwie messen?",
+        "tiktok_titel": "„kann man das nicht irgendwie messen?“",
+        "tiktok_caption": "Der Moment, in dem es kippt.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet?",
+        "youtube_titel": "K1ANUSH: kann man das nicht irgendwie messen?",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#rage",
+          "#ragequit",
+          "#ausraster",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„kann man das nicht irgendwie messen?“",
+        "instagram": "„kann man das nicht irgendwie messen?“",
+        "youtube": "„kann man das nicht irgendwie messen?“"
+      }
+    },
+    {
+      "nummer": 19,
+      "clip_id": "2862735566-004986",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 4985.76,
+      "ende": 5016.18,
+      "start_stempel": "1:23:05",
+      "ende_stempel": "1:23:36",
+      "dauer": 30.4,
+      "roh_dauer": 30.4,
+      "auslassungen": [],
+      "hoehepunkt": 5001.0,
+      "kategorie": "RAGE",
+      "score": 66,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.51,
+        "unterhaltung": 8.68,
+        "watchtime": 18.87,
+        "share": 8.84,
+        "kommentar": 6.9,
+        "follower": 5.08
+      },
+      "teilnoten": {
+        "hook": 0.701,
+        "unterhaltung": 0.434,
+        "watchtime": 0.943,
+        "share": 0.589,
+        "kommentar": 0.69,
+        "follower": 0.508
+      },
+      "begruendung": "Er rastet aus und er bezieht klar Stellung bei 1:23:21. Die Pointe liegt bei 50 % der Cliplänge, davor 15 s Aufbau.",
+      "thema": "Das wird mich mal echt brennend interessieren. In Frankreich befindet sich die größte Ansammung von Menhirn der Welt, die als 3000 Monolithen, die zwischen 50 Zentimetern und 7 Metern hoch sind. Weil Leute, wenn wir mal ehrlich sind, überall auf der Welt verteilt in verschiedenen Regionen, benutzen sie quasi eine ähnliche Architektur und ähnliche Techniken, um nach oben gerichtete Bauten irgendwie zu machen. Das ist doch kein Zufall. Das muss doch irgendwas sein, Alter.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:14 Originalausschnitt im Layout „facecam_gross“",
+        "0:14–0:16 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:16–0:30 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Das wird mich mal echt brennend interessieren. In Frankreich befindet sich die größte Ansammung von Menhirn der Welt, die als 3000 Monolithen, die zwischen 50 Zentimetern und 7 Metern hoch sind. Weil Leute, wenn wir mal ehrlich sind, überall auf der Welt verteilt in verschiedenen Regionen, benutzen sie quasi eine ähnliche Architektur und ähnliche Techniken, um nach oben gerichtete Bauten irgendwie zu machen. Das ist doch kein Zufall. Das muss doch irgendwas sein,",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.14,
+          "text": "Das wird mich mal echt"
+        },
+        {
+          "start": 1.14,
+          "ende": 2.24,
+          "text": "brennend interessieren. In"
+        },
+        {
+          "start": 2.24,
+          "ende": 3.4,
+          "text": "Frankreich befindet sich"
+        },
+        {
+          "start": 3.4,
+          "ende": 4.76,
+          "text": "die größte Ansammung von"
+        },
+        {
+          "start": 4.76,
+          "ende": 6.56,
+          "text": "Menhirn der Welt, die als"
+        },
+        {
+          "start": 6.56,
+          "ende": 8.5,
+          "text": "3000 Monolithen, die"
+        },
+        {
+          "start": 8.5,
+          "ende": 10.14,
+          "text": "zwischen 50 Zentimetern"
+        },
+        {
+          "start": 10.14,
+          "ende": 11.66,
+          "text": "und 7 Metern hoch sind."
+        },
+        {
+          "start": 12.74,
+          "ende": 13.54,
+          "text": "Weil Leute, wenn wir mal"
+        },
+        {
+          "start": 13.54,
+          "ende": 14.1,
+          "text": "ehrlich sind,"
+        },
+        {
+          "start": 14.82,
+          "ende": 15.96,
+          "text": "überall auf der Welt"
+        },
+        {
+          "start": 15.96,
+          "ende": 17.14,
+          "text": "verteilt in verschiedenen"
+        },
+        {
+          "start": 17.14,
+          "ende": 17.88,
+          "text": "Regionen,"
+        },
+        {
+          "start": 18.64,
+          "ende": 20.12,
+          "text": "benutzen sie quasi eine"
+        },
+        {
+          "start": 20.12,
+          "ende": 22.52,
+          "text": "ähnliche Architektur und"
+        },
+        {
+          "start": 22.52,
+          "ende": 23.88,
+          "text": "ähnliche Techniken, um"
+        },
+        {
+          "start": 23.88,
+          "ende": 25.08,
+          "text": "nach oben gerichtete"
+        },
+        {
+          "start": 25.08,
+          "ende": 26.44,
+          "text": "Bauten irgendwie zu"
+        },
+        {
+          "start": 26.44,
+          "ende": 27.28,
+          "text": "machen. Das ist doch kein"
+        },
+        {
+          "start": 27.28,
+          "ende": 27.73,
+          "text": "Zufall."
+        },
+        {
+          "start": 28.54,
+          "ende": 30.19,
+          "text": "Das muss doch irgendwas sein,"
+        }
+      ],
+      "texte": {
+        "hook": "„Das muss doch irgendwas sein, Alter“",
+        "kernzitat": "Das muss doch irgendwas sein, Alter",
+        "tiktok_titel": "„Das muss doch irgendwas sein, Alter“",
+        "tiktok_caption": "Der Moment, in dem es kippt.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet?",
+        "youtube_titel": "K1ANUSH: Das muss doch irgendwas sein, Alter",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#rage",
+          "#ragequit",
+          "#ausraster",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Das muss doch irgendwas sein, Alter“",
+        "instagram": "„Das muss doch irgendwas sein, Alter“",
+        "youtube": "„Das muss doch irgendwas sein, Alter“"
+      }
+    },
+    {
+      "nummer": 20,
+      "clip_id": "2862735566-005297",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 5296.62,
+      "ende": 5323.18,
+      "start_stempel": "1:28:16",
+      "ende_stempel": "1:28:43",
+      "dauer": 25.7,
+      "roh_dauer": 26.6,
+      "auslassungen": [
+        [
+          5301.3,
+          5302.12
+        ]
+      ],
+      "hoehepunkt": 5316.0,
+      "kategorie": "UNEXPECTED",
+      "score": 70,
+      "vorrang": false,
+      "punkte": {
+        "hook": 18.53,
+        "unterhaltung": 10.93,
+        "watchtime": 19.59,
+        "share": 11.74,
+        "kommentar": 4.9,
+        "follower": 4.53
+      },
+      "teilnoten": {
+        "hook": 0.741,
+        "unterhaltung": 0.547,
+        "watchtime": 0.98,
+        "share": 0.783,
+        "kommentar": 0.49,
+        "follower": 0.453
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 1:28:36. Die Pointe liegt bei 73 % der Cliplänge, davor 19 s Aufbau.",
+      "thema": "Wir sind ja Empfänger und Sender zugleich. Meiner Meinung nach empfangen wir mehr, als wir senden. Und dass alte Kulturen sowas gebaut haben und die Absicht hatten generell, solche Energiearchitekturen zu erschaffen, machen ja nicht umsonst. Wer nimmt das auf sich? Klar, es sieht ästhetisch aus, es sieht majestätisch aus, es sieht krass aus. aber ich kann mir nicht vorstellen oder gehe auch nicht davon aus, dass sie das nur deswegen so",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:17 Originalausschnitt im Layout „facecam_gross“",
+        "0:04 Jump Cut – 0.8 s Stille raus",
+        "0:18–0:20 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:18–0:19 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:20–0:25 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Wir sind ja Empfänger und Sender zugleich. Meiner Meinung nach empfangen wir mehr, als wir senden. Und dass alte Kulturen sowas gebaut haben und die Absicht hatten generell, solche Energiearchitekturen zu erschaffen, machen ja nicht umsonst. Wer nimmt das auf sich? Klar, es sieht ästhetisch aus, es sieht majestätisch aus, es sieht krass aus. aber ich kann mir nicht vorstellen oder gehe auch nicht davon aus, dass sie das nur deswegen so",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.8,
+          "text": "Wir sind ja Empfänger und"
+        },
+        {
+          "start": 0.8,
+          "ende": 2.36,
+          "text": "Sender zugleich. Meiner"
+        },
+        {
+          "start": 2.36,
+          "ende": 3.52,
+          "text": "Meinung nach empfangen wir"
+        },
+        {
+          "start": 3.52,
+          "ende": 4.48,
+          "text": "mehr, als wir senden."
+        },
+        {
+          "start": 4.88,
+          "ende": 6.58,
+          "text": "Und dass alte Kulturen"
+        },
+        {
+          "start": 6.58,
+          "ende": 8.38,
+          "text": "sowas gebaut haben und die"
+        },
+        {
+          "start": 8.38,
+          "ende": 10.12,
+          "text": "Absicht hatten generell,"
+        },
+        {
+          "start": 10.26,
+          "ende": 10.71,
+          "text": "solche"
+        },
+        {
+          "start": 10.56,
+          "ende": 13.84,
+          "text": "Energiearchitekturen"
+        },
+        {
+          "start": 13.84,
+          "ende": 14.44,
+          "text": "zu erschaffen,"
+        },
+        {
+          "start": 15.22,
+          "ende": 16.96,
+          "text": "machen ja nicht umsonst."
+        },
+        {
+          "start": 17.04,
+          "ende": 18.08,
+          "text": "Wer nimmt das auf sich?"
+        },
+        {
+          "start": 18.26,
+          "ende": 19.14,
+          "text": "Klar, es sieht ästhetisch"
+        },
+        {
+          "start": 19.14,
+          "ende": 20.26,
+          "text": "aus, es sieht majestätisch"
+        },
+        {
+          "start": 20.26,
+          "ende": 21.34,
+          "text": "aus, es sieht krass aus."
+        },
+        {
+          "start": 21.34,
+          "ende": 22.58,
+          "text": "aber ich kann mir nicht"
+        },
+        {
+          "start": 22.58,
+          "ende": 23.96,
+          "text": "vorstellen oder gehe auch"
+        },
+        {
+          "start": 23.96,
+          "ende": 24.84,
+          "text": "nicht davon aus, dass sie"
+        },
+        {
+          "start": 24.84,
+          "ende": 25.74,
+          "text": "das nur deswegen so"
+        }
+      ],
+      "texte": {
+        "hook": "„Wer nimmt das auf sich?“",
+        "kernzitat": "Wer nimmt das auf sich?",
+        "tiktok_titel": "„Wer nimmt das auf sich?“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Wer nimmt das auf sich?",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Wer nimmt das auf sich?“",
+        "instagram": "„Wer nimmt das auf sich?“",
+        "youtube": "„Wer nimmt das auf sich?“"
+      }
+    },
+    {
+      "nummer": 21,
+      "clip_id": "2862735566-005314",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 5314.48,
+      "ende": 5354.74,
+      "start_stempel": "1:28:34",
+      "ende_stempel": "1:29:14",
+      "dauer": 40.3,
+      "roh_dauer": 40.3,
+      "auslassungen": [],
+      "hoehepunkt": 5343.0,
+      "kategorie": "STORY",
+      "score": 70,
+      "vorrang": false,
+      "punkte": {
+        "hook": 22.64,
+        "unterhaltung": 7.32,
+        "watchtime": 18.87,
+        "share": 8.93,
+        "kommentar": 5.5,
+        "follower": 6.25
+      },
+      "teilnoten": {
+        "hook": 0.906,
+        "unterhaltung": 0.366,
+        "watchtime": 0.943,
+        "share": 0.595,
+        "kommentar": 0.55,
+        "follower": 0.625
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 1:29:03. Die Pointe liegt bei 71 % der Cliplänge, davor 29 s Aufbau. Der Einstieg trägt ohne Vorwissen.",
+      "thema": "Wer nimmt das auf sich? Klar, es sieht ästhetisch aus, es sieht majestätisch aus, es sieht krass aus. aber ich kann mir nicht vorstellen oder gehe auch nicht davon aus, dass sie das nur deswegen so auch gebaut haben, sondern da steckt glaube ich was hinter und deswegen bin ich für mich, das kann jeder sehen wie er will, fest davon überzeugt, dass Energien eine Riesenrolle spielen und nehmen wir einfach keine Ahnung haben Leute. Energie ist nicht gleich nur Benzin, Diesel, Batterie, Energie, Elektrizität, sondern es gibt auch andere Formen von Energie. Aber schreibt ihr mir mal",
+      "layout": "nur_person",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:27 Originalausschnitt im Layout „nur_person“",
+        "0:28–0:30 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:30–0:40 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Wer nimmt das auf sich? Klar, es sieht ästhetisch aus, es sieht majestätisch aus, es sieht krass aus. aber ich kann mir nicht vorstellen oder gehe auch nicht davon aus, dass sie das nur deswegen so auch gebaut haben, sondern da steckt glaube ich was hinter und deswegen bin ich für mich, das kann jeder sehen wie er will, fest davon überzeugt, dass Energien eine Riesenrolle spielen und nehmen wir einfach keine Ahnung haben Leute. Energie ist nicht gleich nur Benzin, Diesel, Batterie, Energie, Elektrizität, sondern es gibt auch andere Formen von Energie. Aber schreibt ihr mir mal",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.04,
+          "text": "Wer nimmt das auf sich?"
+        },
+        {
+          "start": 1.22,
+          "ende": 2.1,
+          "text": "Klar, es sieht ästhetisch"
+        },
+        {
+          "start": 2.1,
+          "ende": 3.22,
+          "text": "aus, es sieht majestätisch"
+        },
+        {
+          "start": 3.22,
+          "ende": 4.3,
+          "text": "aus, es sieht krass aus."
+        },
+        {
+          "start": 4.3,
+          "ende": 5.54,
+          "text": "aber ich kann mir nicht"
+        },
+        {
+          "start": 5.54,
+          "ende": 6.92,
+          "text": "vorstellen oder gehe auch"
+        },
+        {
+          "start": 6.92,
+          "ende": 7.8,
+          "text": "nicht davon aus, dass sie"
+        },
+        {
+          "start": 7.8,
+          "ende": 8.86,
+          "text": "das nur deswegen so auch"
+        },
+        {
+          "start": 8.86,
+          "ende": 10.56,
+          "text": "gebaut haben, sondern da"
+        },
+        {
+          "start": 10.56,
+          "ende": 11.38,
+          "text": "steckt glaube ich was"
+        },
+        {
+          "start": 11.38,
+          "ende": 13.1,
+          "text": "hinter und deswegen bin"
+        },
+        {
+          "start": 13.1,
+          "ende": 15.3,
+          "text": "ich für mich,"
+        },
+        {
+          "start": 15.6,
+          "ende": 16.48,
+          "text": "das kann jeder sehen wie"
+        },
+        {
+          "start": 16.48,
+          "ende": 16.93,
+          "text": "er will,"
+        },
+        {
+          "start": 17.7,
+          "ende": 19.64,
+          "text": "fest davon überzeugt, dass"
+        },
+        {
+          "start": 19.64,
+          "ende": 21.26,
+          "text": "Energien eine Riesenrolle"
+        },
+        {
+          "start": 21.26,
+          "ende": 22.62,
+          "text": "spielen und nehmen wir"
+        },
+        {
+          "start": 22.62,
+          "ende": 23.64,
+          "text": "einfach keine Ahnung haben"
+        },
+        {
+          "start": 23.64,
+          "ende": 24.09,
+          "text": "Leute."
+        },
+        {
+          "start": 25.08,
+          "ende": 26.72,
+          "text": "Energie ist nicht gleich"
+        },
+        {
+          "start": 26.72,
+          "ende": 27.17,
+          "text": "nur"
+        },
+        {
+          "start": 27.06,
+          "ende": 29.94,
+          "text": "Benzin,"
+        },
+        {
+          "start": 30.18,
+          "ende": 31.66,
+          "text": "Diesel, Batterie, Energie,"
+        },
+        {
+          "start": 31.9,
+          "ende": 33.04,
+          "text": "Elektrizität, sondern es"
+        },
+        {
+          "start": 33.04,
+          "ende": 33.88,
+          "text": "gibt auch andere Formen"
+        },
+        {
+          "start": 33.88,
+          "ende": 34.33,
+          "text": "von Energie."
+        },
+        {
+          "start": 38.92,
+          "ende": 40.26,
+          "text": "Aber schreibt ihr mir mal"
+        }
+      ],
+      "texte": {
+        "hook": "„Energie ist nicht gleich nur Benzin, Diesel…“",
+        "kernzitat": "Energie, Elektrizität, sondern es gibt auch andere Formen von Energie",
+        "tiktok_titel": "„Energie, Elektrizität, sondern es gibt auch andere Formen…“",
+        "tiktok_caption": "Die Geschichte musste raus.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?",
+        "youtube_titel": "K1ANUSH: Energie, Elektrizität, sondern es gibt auch andere Formen…",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#storytime",
+          "#geschichte",
+          "#storytimetiktok",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Energie ist nicht gleich nur Benzin, Diesel…“",
+        "instagram": "„Energie ist nicht gleich nur Benzin, Diesel…“",
+        "youtube": "„Energie ist nicht gleich nur Benzin, Diesel…“"
+      }
+    },
+    {
+      "nummer": 22,
+      "clip_id": "2862735566-005467",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 5466.53,
+      "ende": 5490.21,
+      "start_stempel": "1:31:06",
+      "ende_stempel": "1:31:30",
+      "dauer": 23.7,
+      "roh_dauer": 23.7,
+      "auslassungen": [],
+      "hoehepunkt": 5486.0,
+      "kategorie": "UNEXPECTED",
+      "score": 75,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.12,
+        "unterhaltung": 13.9,
+        "watchtime": 18.14,
+        "share": 13.82,
+        "kommentar": 7.0,
+        "follower": 5.35
+      },
+      "teilnoten": {
+        "hook": 0.685,
+        "unterhaltung": 0.695,
+        "watchtime": 0.907,
+        "share": 0.922,
+        "kommentar": 0.7,
+        "follower": 0.535
+      },
+      "begruendung": "Er ist sichtbar überrascht und er bezieht klar Stellung bei 1:31:26. Die Pointe liegt bei 82 % der Cliplänge, davor 19 s Aufbau.",
+      "thema": "Doch was heute morgen geschehen ist, damit habe ich ehrlich gesagt überhaupt nicht gerechnet. Was denn? Denn gegen 1.30 Uhr deutscher Zeit, wurde Dwayne Keefi, die Davis, tatsächlich wegen Mordes ersten Grades an Tupac Shakur schuldig gesprochen. Neeeeeee, krass, krass, das ist schon vorbei. Er wurde schon schuldig gesprochen.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:18 Originalausschnitt im Layout „facecam_gross“",
+        "0:19–0:21 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:19–0:19 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:21–0:23 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Doch was heute morgen geschehen ist, damit habe ich ehrlich gesagt überhaupt nicht gerechnet. Was denn? Denn gegen 1 .30 Uhr deutscher Zeit, wurde Dwayne Keefi, die Davis, tatsächlich wegen Mordes ersten Grades an Tupac Shakur schuldig gesprochen. Neeeeeee, krass, krass, das ist schon vorbei. Er wurde schon schuldig gesprochen.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.42,
+          "text": "Doch was heute morgen"
+        },
+        {
+          "start": 1.42,
+          "ende": 3.38,
+          "text": "geschehen ist, damit habe"
+        },
+        {
+          "start": 3.38,
+          "ende": 3.96,
+          "text": "ich ehrlich gesagt"
+        },
+        {
+          "start": 3.96,
+          "ende": 5.12,
+          "text": "überhaupt nicht gerechnet."
+        },
+        {
+          "start": 5.66,
+          "ende": 7.1,
+          "text": "Was denn? Denn gegen 1 .30"
+        },
+        {
+          "start": 7.1,
+          "ende": 8.6,
+          "text": "Uhr deutscher Zeit, wurde"
+        },
+        {
+          "start": 8.6,
+          "ende": 10.16,
+          "text": "Dwayne Keefi, die Davis,"
+        },
+        {
+          "start": 10.58,
+          "ende": 11.96,
+          "text": "tatsächlich wegen Mordes"
+        },
+        {
+          "start": 11.96,
+          "ende": 13.36,
+          "text": "ersten Grades an Tupac"
+        },
+        {
+          "start": 13.36,
+          "ende": 14.26,
+          "text": "Shakur schuldig"
+        },
+        {
+          "start": 14.26,
+          "ende": 14.71,
+          "text": "gesprochen."
+        },
+        {
+          "start": 15.3,
+          "ende": 16.8,
+          "text": "Neeeeeee, krass,"
+        },
+        {
+          "start": 18.68,
+          "ende": 19.4,
+          "text": "krass,"
+        },
+        {
+          "start": 20.5,
+          "ende": 22.08,
+          "text": "das ist schon vorbei."
+        },
+        {
+          "start": 22.32,
+          "ende": 23.68,
+          "text": "Er wurde schon schuldig gesprochen."
+        }
+      ],
+      "texte": {
+        "hook": "Er braucht kurz, bis er es glaubt.",
+        "kernzitat": "Er wurde schon schuldig gesprochen",
+        "tiktok_titel": "„Er wurde schon schuldig gesprochen“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Er wurde schon schuldig gesprochen",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Er braucht kurz, bis er es glaubt.",
+        "instagram": "Er braucht kurz, bis er es glaubt.",
+        "youtube": "Er braucht kurz, bis er es glaubt."
+      }
+    },
+    {
+      "nummer": 23,
+      "clip_id": "2862735566-005496",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 5496.45,
+      "ende": 5519.85,
+      "start_stempel": "1:31:36",
+      "ende_stempel": "1:31:59",
+      "dauer": 23.4,
+      "roh_dauer": 23.4,
+      "auslassungen": [],
+      "hoehepunkt": 5511.0,
+      "kategorie": "UNEXPECTED",
+      "score": 67,
+      "vorrang": false,
+      "punkte": {
+        "hook": 19.63,
+        "unterhaltung": 6.79,
+        "watchtime": 19.56,
+        "share": 11.23,
+        "kommentar": 4.9,
+        "follower": 4.53
+      },
+      "teilnoten": {
+        "hook": 0.785,
+        "unterhaltung": 0.339,
+        "watchtime": 0.978,
+        "share": 0.749,
+        "kommentar": 0.49,
+        "follower": 0.453
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er ist sichtbar überrascht bei 1:31:51. Die Pointe liegt bei 62 % der Cliplänge, davor 15 s Aufbau.",
+      "thema": "Weißt du, was das heißt? Der geht lebenslang rein oder so, ne? Vielleicht war das so lange her oder so? Was? Jury hat nicht mal drei Stunden gebraucht, um zu diesem Urteil zu kommen. Nur mal so als Vergleich. Aber ey, warte mal, ich kriege hier paar Sachen nicht auf die Reihe. Der ist doch seit 2010 in irgendwelchen Podcasts und Interviews und prallt damit",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:13 Originalausschnitt im Layout „facecam_gross“",
+        "0:14–0:16 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:14–0:15 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:16–0:23 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Weißt du, was das heißt? Der geht lebenslang rein oder so, ne? Vielleicht war das so lange her oder so? Was? Jury hat nicht mal drei Stunden gebraucht, um zu diesem Urteil zu kommen. Nur mal so als Vergleich. Aber ey, warte mal, ich kriege hier paar Sachen nicht auf die Reihe. Der ist doch seit 2010 in irgendwelchen Podcasts und Interviews und prallt damit",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.1,
+          "text": "Weißt du, was das heißt?"
+        },
+        {
+          "start": 2.1,
+          "ende": 3.4,
+          "text": "Der geht lebenslang rein"
+        },
+        {
+          "start": 3.4,
+          "ende": 3.94,
+          "text": "oder so, ne?"
+        },
+        {
+          "start": 5.06,
+          "ende": 5.78,
+          "text": "Vielleicht war das so"
+        },
+        {
+          "start": 5.78,
+          "ende": 6.74,
+          "text": "lange her oder so?"
+        },
+        {
+          "start": 7.8,
+          "ende": 8.92,
+          "text": "Was? Jury hat nicht mal"
+        },
+        {
+          "start": 8.92,
+          "ende": 10.6,
+          "text": "drei Stunden gebraucht, um"
+        },
+        {
+          "start": 10.6,
+          "ende": 11.54,
+          "text": "zu diesem Urteil zu"
+        },
+        {
+          "start": 11.54,
+          "ende": 12.78,
+          "text": "kommen. Nur mal so als"
+        },
+        {
+          "start": 12.78,
+          "ende": 14.58,
+          "text": "Vergleich. Aber ey, warte"
+        },
+        {
+          "start": 14.58,
+          "ende": 15.46,
+          "text": "mal, ich kriege hier paar"
+        },
+        {
+          "start": 15.46,
+          "ende": 16.16,
+          "text": "Sachen nicht auf die"
+        },
+        {
+          "start": 16.16,
+          "ende": 16.61,
+          "text": "Reihe."
+        },
+        {
+          "start": 17.46,
+          "ende": 19.62,
+          "text": "Der ist doch seit 2010"
+        },
+        {
+          "start": 19.62,
+          "ende": 21.3,
+          "text": "in irgendwelchen Podcasts"
+        },
+        {
+          "start": 21.3,
+          "ende": 23.69,
+          "text": "und Interviews und prallt damit"
+        }
+      ],
+      "texte": {
+        "hook": "„Vielleicht war das so lange her oder so?“",
+        "kernzitat": "Vielleicht war das so lange her oder so?",
+        "tiktok_titel": "„Vielleicht war das so lange her oder so?“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Vielleicht war das so lange her oder so?",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Vielleicht war das so lange her oder so?“",
+        "instagram": "„Vielleicht war das so lange her oder so?“",
+        "youtube": "„Vielleicht war das so lange her oder so?“"
+      }
+    },
+    {
+      "nummer": 24,
+      "clip_id": "2862735566-005975",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 5974.73,
+      "ende": 6003.33,
+      "start_stempel": "1:39:34",
+      "ende_stempel": "1:40:03",
+      "dauer": 24.6,
+      "roh_dauer": 28.6,
+      "auslassungen": [
+        [
+          5982.35,
+          5983.35
+        ],
+        [
+          5985.23,
+          5988.21
+        ]
+      ],
+      "hoehepunkt": 5992.0,
+      "kategorie": "UNEXPECTED",
+      "score": 67,
+      "vorrang": false,
+      "punkte": {
+        "hook": 17.51,
+        "unterhaltung": 7.91,
+        "watchtime": 19.93,
+        "share": 12.84,
+        "kommentar": 3.9,
+        "follower": 5.07
+      },
+      "teilnoten": {
+        "hook": 0.7,
+        "unterhaltung": 0.396,
+        "watchtime": 0.997,
+        "share": 0.856,
+        "kommentar": 0.39,
+        "follower": 0.507
+      },
+      "begruendung": "Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 1:39:52. Die Pointe liegt bei 60 % der Cliplänge, davor 17 s Aufbau. 4 s Stille fallen raus.",
+      "thema": "Dafür müsste schon mindestens so ein Pedro Didi aussagen. Oder ein Schockenheit müsste da schon was... Schockenheit war ja dabei. Ja, der weiß mehr als wir alle. Und selbst dieser Kifidi könnte genau sagen, was abgelaufen ist, aber hey, guck mal im Endeffekt, wenn dieser Kifidi sowieso lebenslänglich kriegt und nie wieder rauskommt, der hat ja schon ein gewisses Alter, war bestimmt über 50. Wenn er weiß, ich komm eh nicht mehr raus,",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:12 Originalausschnitt im Layout „facecam_gross“",
+        "0:07 Jump Cut – 1.0 s Stille raus",
+        "0:09 Jump Cut – 3.0 s Stille raus",
+        "0:12–0:14 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:13–0:13 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:14–0:24 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Dafür müsste schon mindestens so ein Pedro Didi aussagen. Oder ein Schockenheit müsste da schon was... Schockenheit war ja dabei. Ja, der weiß mehr als wir alle. Und selbst dieser Kifidi könnte genau sagen, was abgelaufen ist, aber hey, guck mal im Endeffekt, wenn dieser Kifidi sowieso lebenslänglich kriegt und nie wieder rauskommt, der hat ja schon ein gewisses Alter, war bestimmt über 50. Wenn er weiß, ich komm eh nicht mehr raus,",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.74,
+          "text": "Dafür müsste schon"
+        },
+        {
+          "start": 0.74,
+          "ende": 1.84,
+          "text": "mindestens so ein Pedro"
+        },
+        {
+          "start": 1.84,
+          "ende": 2.9,
+          "text": "Didi aussagen."
+        },
+        {
+          "start": 4.08,
+          "ende": 4.88,
+          "text": "Oder ein Schockenheit"
+        },
+        {
+          "start": 4.88,
+          "ende": 6.12,
+          "text": "müsste da schon was..."
+        },
+        {
+          "start": 6.12,
+          "ende": 7.42,
+          "text": "Schockenheit war ja dabei."
+        },
+        {
+          "start": 7.82,
+          "ende": 9.08,
+          "text": "Ja, der weiß mehr als wir"
+        },
+        {
+          "start": 9.08,
+          "ende": 10.78,
+          "text": "alle. Und selbst dieser"
+        },
+        {
+          "start": 10.78,
+          "ende": 12.24,
+          "text": "Kifidi könnte genau sagen,"
+        },
+        {
+          "start": 12.32,
+          "ende": 13.4,
+          "text": "was abgelaufen ist, aber"
+        },
+        {
+          "start": 13.4,
+          "ende": 14.88,
+          "text": "hey, guck mal im"
+        },
+        {
+          "start": 14.88,
+          "ende": 15.8,
+          "text": "Endeffekt, wenn dieser"
+        },
+        {
+          "start": 15.8,
+          "ende": 16.82,
+          "text": "Kifidi sowieso"
+        },
+        {
+          "start": 16.82,
+          "ende": 18.24,
+          "text": "lebenslänglich kriegt und"
+        },
+        {
+          "start": 18.24,
+          "ende": 19.44,
+          "text": "nie wieder rauskommt, der"
+        },
+        {
+          "start": 19.44,
+          "ende": 20.72,
+          "text": "hat ja schon ein gewisses"
+        },
+        {
+          "start": 20.72,
+          "ende": 21.72,
+          "text": "Alter, war bestimmt über"
+        },
+        {
+          "start": 21.72,
+          "ende": 22.17,
+          "text": "50."
+        },
+        {
+          "start": 22.96,
+          "ende": 23.94,
+          "text": "Wenn er weiß, ich komm eh"
+        },
+        {
+          "start": 23.94,
+          "ende": 24.62,
+          "text": "nicht mehr raus,"
+        }
+      ],
+      "texte": {
+        "hook": "„der weiß mehr als wir alle“",
+        "kernzitat": "Wenn er weiß, ich komm eh nicht mehr raus",
+        "tiktok_titel": "„Wenn er weiß, ich komm eh nicht mehr raus“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Wenn er weiß, ich komm eh nicht mehr raus",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„der weiß mehr als wir alle“",
+        "instagram": "„der weiß mehr als wir alle“",
+        "youtube": "„der weiß mehr als wir alle“"
+      }
+    },
+    {
+      "nummer": 25,
+      "clip_id": "2862735566-006015",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 6014.6,
+      "ende": 6034.52,
+      "start_stempel": "1:40:14",
+      "ende_stempel": "1:40:34",
+      "dauer": 19.9,
+      "roh_dauer": 19.9,
+      "auslassungen": [],
+      "hoehepunkt": 6017.0,
+      "kategorie": "STORY",
+      "score": 66,
+      "vorrang": false,
+      "punkte": {
+        "hook": 15.97,
+        "unterhaltung": 9.58,
+        "watchtime": 20.0,
+        "share": 9.44,
+        "kommentar": 4.5,
+        "follower": 6.92
+      },
+      "teilnoten": {
+        "hook": 0.639,
+        "unterhaltung": 0.479,
+        "watchtime": 1.0,
+        "share": 0.629,
+        "kommentar": 0.45,
+        "follower": 0.692
+      },
+      "begruendung": "Er ist sichtbar überrascht und er erzählt eine Geschichte bei 1:40:17. Die Pointe liegt bei 12 % der Cliplänge, davor 2 s Aufbau.",
+      "thema": "Interessant auf jeden Fall, weil ich habe den Fall damals auch verfolgt, als es passiert ist, war ich noch relativ jung, aber ich habe es natürlich auch mitbekommen und dann hieß es auch sehr, sehr schnell, Didi hat was damit zu tun und Chuck Knight ist da, krass, 30 Jahre später, kommen die damit um die Ecke, ist schon, hätte ich auch nicht mehr mitgerechnet, um ehrlich zu",
+      "layout": "nur_person",
+      "schnitt": [
+        "0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf",
+        "0:02–0:04 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:04–0:19 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Interessant auf jeden Fall, weil ich habe den Fall damals auch verfolgt, als es passiert ist, war ich noch relativ jung, aber ich habe es natürlich auch mitbekommen und dann hieß es auch sehr, sehr schnell, Didi hat was damit zu tun und Chuck Knight ist da, krass, 30 Jahre später, kommen die damit um die Ecke, ist schon, hätte ich auch nicht mehr mitgerechnet, um ehrlich zu",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.76,
+          "text": "Interessant auf jeden"
+        },
+        {
+          "start": 0.76,
+          "ende": 2.06,
+          "text": "Fall, weil ich habe den"
+        },
+        {
+          "start": 2.06,
+          "ende": 3.48,
+          "text": "Fall damals auch verfolgt,"
+        },
+        {
+          "start": 3.7,
+          "ende": 4.62,
+          "text": "als es passiert ist, war"
+        },
+        {
+          "start": 4.62,
+          "ende": 5.5,
+          "text": "ich noch relativ jung,"
+        },
+        {
+          "start": 5.98,
+          "ende": 6.74,
+          "text": "aber ich habe es natürlich"
+        },
+        {
+          "start": 6.74,
+          "ende": 8.44,
+          "text": "auch mitbekommen und dann"
+        },
+        {
+          "start": 8.44,
+          "ende": 9.58,
+          "text": "hieß es auch sehr, sehr"
+        },
+        {
+          "start": 9.58,
+          "ende": 10.42,
+          "text": "schnell, Didi hat was"
+        },
+        {
+          "start": 10.42,
+          "ende": 11.56,
+          "text": "damit zu tun und Chuck"
+        },
+        {
+          "start": 11.56,
+          "ende": 13.9,
+          "text": "Knight ist da, krass,"
+        },
+        {
+          "start": 14.02,
+          "ende": 15.28,
+          "text": "30 Jahre später,"
+        },
+        {
+          "start": 15.9,
+          "ende": 16.72,
+          "text": "kommen die damit um die"
+        },
+        {
+          "start": 16.72,
+          "ende": 18.1,
+          "text": "Ecke, ist schon, hätte ich"
+        },
+        {
+          "start": 18.1,
+          "ende": 18.56,
+          "text": "auch nicht mehr"
+        },
+        {
+          "start": 18.56,
+          "ende": 20.07,
+          "text": "mitgerechnet, um ehrlich zu"
+        }
+      ],
+      "texte": {
+        "hook": "„Interessant auf jeden Fall, weil ich habe den“",
+        "kernzitat": "Interessant auf jeden Fall, weil ich habe den Fall damals auch verfolgt",
+        "tiktok_titel": "„Interessant auf jeden Fall, weil ich habe den Fall damals…“",
+        "tiktok_caption": "Die Geschichte musste raus.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Die Geschichte musste raus. Sowas schon mal erlebt?",
+        "youtube_titel": "K1ANUSH: Interessant auf jeden Fall, weil ich habe den Fall damals…",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#storytime",
+          "#geschichte",
+          "#storytimetiktok",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Interessant auf jeden Fall, weil ich habe den“",
+        "instagram": "„Interessant auf jeden Fall, weil ich habe den“",
+        "youtube": "„Interessant auf jeden Fall, weil ich habe den“"
+      }
+    },
+    {
+      "nummer": 26,
+      "clip_id": "2862735566-006416",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 6415.69,
+      "ende": 6443.65,
+      "start_stempel": "1:46:55",
+      "ende_stempel": "1:47:23",
+      "dauer": 28.0,
+      "roh_dauer": 28.0,
+      "auslassungen": [],
+      "hoehepunkt": 6431.0,
+      "kategorie": "RAGE",
+      "score": 66,
+      "vorrang": false,
+      "punkte": {
+        "hook": 16.64,
+        "unterhaltung": 10.14,
+        "watchtime": 19.87,
+        "share": 8.84,
+        "kommentar": 4.8,
+        "follower": 5.47
+      },
+      "teilnoten": {
+        "hook": 0.666,
+        "unterhaltung": 0.507,
+        "watchtime": 0.993,
+        "share": 0.589,
+        "kommentar": 0.48,
+        "follower": 0.547
+      },
+      "begruendung": "Dicht gesprochen, keine Leerlaufzeit und er rastet aus bei 1:47:11. Die Pointe liegt bei 55 % der Cliplänge, davor 15 s Aufbau.",
+      "thema": "alles ein zu ein zu übernehmen sollte oder glauben sollte, davon haben wir den Verstand. Aber wir müssen aufhören, wir müssen das endlich mal durchbrechen. Dieses ängstliche. Ja, es kann doch nicht sein, dass man auf eine Art und Weise nicht etwas sich anschauen darf. Das ist doch nicht normal. Und deswegen bitte ich euch, entspannt euch Leute, wir schauen uns das hier nicht an, um uns zu spalten, sondern wir schauen uns das generell an, um zu verstehen, warum man auf",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:14 Originalausschnitt im Layout „facecam_gross“",
+        "0:14–0:16 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:16–0:27 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "alles ein zu ein zu übernehmen sollte oder glauben sollte, davon haben wir den Verstand. Aber wir müssen aufhören, wir müssen das endlich mal durchbrechen. Dieses ängstliche. Ja, es kann doch nicht sein, dass man auf eine Art und Weise nicht etwas sich anschauen darf. Das ist doch nicht normal. Und deswegen bitte ich euch, entspannt euch Leute, wir schauen uns das hier nicht an, um uns zu spalten, sondern wir schauen uns das generell an, um zu verstehen, warum man auf",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.86,
+          "text": "alles ein zu ein zu"
+        },
+        {
+          "start": 0.86,
+          "ende": 1.64,
+          "text": "übernehmen sollte oder"
+        },
+        {
+          "start": 1.64,
+          "ende": 2.72,
+          "text": "glauben sollte, davon"
+        },
+        {
+          "start": 2.72,
+          "ende": 3.4,
+          "text": "haben wir den Verstand."
+        },
+        {
+          "start": 3.9,
+          "ende": 4.92,
+          "text": "Aber wir müssen aufhören,"
+        },
+        {
+          "start": 5.04,
+          "ende": 5.82,
+          "text": "wir müssen das endlich mal"
+        },
+        {
+          "start": 5.82,
+          "ende": 6.92,
+          "text": "durchbrechen. Dieses"
+        },
+        {
+          "start": 7.34,
+          "ende": 7.79,
+          "text": "ängstliche."
+        },
+        {
+          "start": 8.72,
+          "ende": 9.94,
+          "text": "Ja, es kann doch nicht"
+        },
+        {
+          "start": 9.94,
+          "ende": 11.1,
+          "text": "sein, dass man auf eine"
+        },
+        {
+          "start": 11.1,
+          "ende": 13.38,
+          "text": "Art und Weise nicht"
+        },
+        {
+          "start": 13.8,
+          "ende": 15.22,
+          "text": "etwas sich anschauen darf."
+        },
+        {
+          "start": 15.3,
+          "ende": 16.08,
+          "text": "Das ist doch nicht normal."
+        },
+        {
+          "start": 17.26,
+          "ende": 18.0,
+          "text": "Und deswegen bitte ich"
+        },
+        {
+          "start": 18.0,
+          "ende": 18.45,
+          "text": "euch,"
+        },
+        {
+          "start": 19.78,
+          "ende": 21.36,
+          "text": "entspannt euch Leute, wir"
+        },
+        {
+          "start": 21.36,
+          "ende": 22.16,
+          "text": "schauen uns das hier nicht"
+        },
+        {
+          "start": 22.16,
+          "ende": 23.3,
+          "text": "an, um uns zu spalten,"
+        },
+        {
+          "start": 23.5,
+          "ende": 24.2,
+          "text": "sondern wir schauen uns"
+        },
+        {
+          "start": 24.2,
+          "ende": 26.42,
+          "text": "das generell an, um zu"
+        },
+        {
+          "start": 26.42,
+          "ende": 27.96,
+          "text": "verstehen, warum man auf"
+        }
+      ],
+      "texte": {
+        "hook": "„etwas sich anschauen darf“",
+        "kernzitat": "etwas sich anschauen darf",
+        "tiktok_titel": "„etwas sich anschauen darf“",
+        "tiktok_caption": "Der Moment, in dem es kippt.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet?",
+        "youtube_titel": "K1ANUSH: etwas sich anschauen darf",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#rage",
+          "#ragequit",
+          "#ausraster",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„etwas sich anschauen darf“",
+        "instagram": "„etwas sich anschauen darf“",
+        "youtube": "„etwas sich anschauen darf“"
+      }
+    },
+    {
+      "nummer": 27,
+      "clip_id": "2862735566-007345",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 7345.22,
+      "ende": 7377.54,
+      "start_stempel": "2:02:25",
+      "ende_stempel": "2:02:57",
+      "dauer": 32.3,
+      "roh_dauer": 32.3,
+      "auslassungen": [],
+      "hoehepunkt": 7371.0,
+      "kategorie": "RAGE",
+      "score": 67,
+      "vorrang": false,
+      "punkte": {
+        "hook": 13.27,
+        "unterhaltung": 13.43,
+        "watchtime": 19.88,
+        "share": 10.79,
+        "kommentar": 5.8,
+        "follower": 4.25
+      },
+      "teilnoten": {
+        "hook": 0.531,
+        "unterhaltung": 0.672,
+        "watchtime": 0.994,
+        "share": 0.719,
+        "kommentar": 0.58,
+        "follower": 0.425
+      },
+      "begruendung": "Er rastet aus und er ist sichtbar überrascht bei 2:02:51. Die Pointe liegt bei 80 % der Cliplänge, davor 26 s Aufbau. Der Einstieg ist die Schwachstelle – Text-Hook ist Pflicht.",
+      "thema": "Und er sagt, was die mystischen Rabis dort sagen, ist im Moment sehr beunruhigend. Ja eben, guck mal, das meine ich ja. Ich finde generell, wenn so etwas gesagt wird, also auf politischer Bühne, auf einer hohen Ebene, wenn man solche Aussagen tätigt, wie ihr müsst jetzt den dritten Tempel bauen und das wird dann von Ministerpräsident zu keine Ahnung wem gesagt und das wird dann öffentlich gespreadert. Wenn ich mir so meine, ist das ernst? Das ist doch voll fanatisch eigentlich. Also wenn man doch den Frieden bewahren möchte, wenn man ja ein seriöser",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf",
+        "0:02–0:25 Originalausschnitt im Layout „facecam_gross“",
+        "0:25–0:27 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:27–0:32 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Und er sagt, was die mystischen Rabis dort sagen, ist im Moment sehr beunruhigend. Ja eben, guck mal, das meine ich ja. Ich finde generell, wenn so etwas gesagt wird, also auf politischer Bühne, auf einer hohen Ebene, wenn man solche Aussagen tätigt, wie ihr müsst jetzt den dritten Tempel bauen und das wird dann von Ministerpräsident zu keine Ahnung wem gesagt und das wird dann öffentlich gespreadert. Wenn ich mir so meine, ist das ernst? Das ist doch voll fanatisch eigentlich. Also wenn man doch den Frieden bewahren möchte, wenn man ja ein seriöser",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.52,
+          "text": "Und er sagt, was die"
+        },
+        {
+          "start": 1.52,
+          "ende": 2.52,
+          "text": "mystischen Rabis dort"
+        },
+        {
+          "start": 2.52,
+          "ende": 4.0,
+          "text": "sagen, ist im Moment sehr"
+        },
+        {
+          "start": 4.0,
+          "ende": 5.44,
+          "text": "beunruhigend. Ja eben,"
+        },
+        {
+          "start": 5.58,
+          "ende": 6.32,
+          "text": "guck mal, das meine ich"
+        },
+        {
+          "start": 6.32,
+          "ende": 6.77,
+          "text": "ja."
+        },
+        {
+          "start": 7.24,
+          "ende": 8.46,
+          "text": "Ich finde generell, wenn"
+        },
+        {
+          "start": 8.46,
+          "ende": 10.66,
+          "text": "so etwas gesagt wird,"
+        },
+        {
+          "start": 11.26,
+          "ende": 12.34,
+          "text": "also auf politischer"
+        },
+        {
+          "start": 12.34,
+          "ende": 14.36,
+          "text": "Bühne, auf einer hohen"
+        },
+        {
+          "start": 14.36,
+          "ende": 15.76,
+          "text": "Ebene, wenn man solche"
+        },
+        {
+          "start": 15.76,
+          "ende": 17.12,
+          "text": "Aussagen tätigt, wie"
+        },
+        {
+          "start": 17.12,
+          "ende": 18.84,
+          "text": "ihr müsst jetzt den"
+        },
+        {
+          "start": 18.84,
+          "ende": 19.98,
+          "text": "dritten Tempel bauen und"
+        },
+        {
+          "start": 19.98,
+          "ende": 20.82,
+          "text": "das wird dann von"
+        },
+        {
+          "start": 20.82,
+          "ende": 22.62,
+          "text": "Ministerpräsident zu keine"
+        },
+        {
+          "start": 22.62,
+          "ende": 23.78,
+          "text": "Ahnung wem gesagt und das"
+        },
+        {
+          "start": 23.78,
+          "ende": 24.52,
+          "text": "wird dann öffentlich"
+        },
+        {
+          "start": 24.52,
+          "ende": 25.48,
+          "text": "gespreadert. Wenn ich mir"
+        },
+        {
+          "start": 25.48,
+          "ende": 26.34,
+          "text": "so meine, ist das ernst?"
+        },
+        {
+          "start": 27.02,
+          "ende": 27.66,
+          "text": "Das ist doch voll"
+        },
+        {
+          "start": 27.66,
+          "ende": 29.3,
+          "text": "fanatisch eigentlich. Also"
+        },
+        {
+          "start": 29.3,
+          "ende": 30.2,
+          "text": "wenn man doch den Frieden"
+        },
+        {
+          "start": 30.2,
+          "ende": 31.12,
+          "text": "bewahren möchte, wenn man"
+        },
+        {
+          "start": 31.12,
+          "ende": 32.32,
+          "text": "ja ein seriöser"
+        }
+      ],
+      "texte": {
+        "hook": "„wird dann öffentlich gespreadert“",
+        "kernzitat": "wird dann öffentlich gespreadert",
+        "tiktok_titel": "„wird dann öffentlich gespreadert“",
+        "tiktok_caption": "Der Moment, in dem es kippt.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet?",
+        "youtube_titel": "K1ANUSH: wird dann öffentlich gespreadert",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#rage",
+          "#ragequit",
+          "#ausraster",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„wird dann öffentlich gespreadert“",
+        "instagram": "„wird dann öffentlich gespreadert“",
+        "youtube": "„wird dann öffentlich gespreadert“"
+      }
+    },
+    {
+      "nummer": 28,
+      "clip_id": "2862735566-008004",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 8003.9,
+      "ende": 8028.38,
+      "start_stempel": "2:13:23",
+      "ende_stempel": "2:13:48",
+      "dauer": 24.5,
+      "roh_dauer": 24.5,
+      "auslassungen": [],
+      "hoehepunkt": 8017.0,
+      "kategorie": "UNEXPECTED",
+      "score": 67,
+      "vorrang": false,
+      "punkte": {
+        "hook": 16.4,
+        "unterhaltung": 9.32,
+        "watchtime": 19.56,
+        "share": 12.84,
+        "kommentar": 3.9,
+        "follower": 5.35
+      },
+      "teilnoten": {
+        "hook": 0.656,
+        "unterhaltung": 0.466,
+        "watchtime": 0.978,
+        "share": 0.856,
+        "kommentar": 0.39,
+        "follower": 0.535
+      },
+      "begruendung": "Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 2:13:37. Die Pointe liegt bei 54 % der Cliplänge, davor 13 s Aufbau.",
+      "thema": "Möge-Enfriedenruhen hat immer zu mir gesagt, mein Sohn, das Gefährlichste auf unserer Welt sind dumme Menschen mit sehr viel Macht. Und ladies and gentlemen, genau dieses Problem haben wir alle. Guck mal, egal ob man mich mag oder nicht mag, ich spiele gar keine Rolle. Es geht gar nicht um mich, ich will mich auch nicht mit so etwas profilieren, das ist ja krank. Es geht auch nicht",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:02 Gesicht groß, Text-Hook einblenden",
+        "0:02–0:12 Originalausschnitt im Layout „facecam_gross“",
+        "0:12–0:14 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:13–0:13 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:14–0:24 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Möge -Enfriedenruhen hat immer zu mir gesagt, mein Sohn, das Gefährlichste auf unserer Welt sind dumme Menschen mit sehr viel Macht. Und ladies and gentlemen, genau dieses Problem haben wir alle. Guck mal, egal ob man mich mag oder nicht mag, ich spiele gar keine Rolle. Es geht gar nicht um mich, ich will mich auch nicht mit so etwas profilieren, das ist ja krank. Es geht auch nicht",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.2,
+          "text": "Möge -Enfriedenruhen hat"
+        },
+        {
+          "start": 1.2,
+          "ende": 2.16,
+          "text": "immer zu mir gesagt, mein"
+        },
+        {
+          "start": 2.16,
+          "ende": 3.78,
+          "text": "Sohn, das Gefährlichste"
+        },
+        {
+          "start": 3.78,
+          "ende": 4.48,
+          "text": "auf unserer Welt"
+        },
+        {
+          "start": 4.48,
+          "ende": 6.4,
+          "text": "sind"
+        },
+        {
+          "start": 6.4,
+          "ende": 8.26,
+          "text": "dumme Menschen mit sehr"
+        },
+        {
+          "start": 8.26,
+          "ende": 8.8,
+          "text": "viel Macht."
+        },
+        {
+          "start": 10.0,
+          "ende": 11.32,
+          "text": "Und ladies and gentlemen,"
+        },
+        {
+          "start": 11.6,
+          "ende": 12.88,
+          "text": "genau dieses Problem haben"
+        },
+        {
+          "start": 12.88,
+          "ende": 14.52,
+          "text": "wir alle. Guck mal, egal"
+        },
+        {
+          "start": 14.52,
+          "ende": 16.0,
+          "text": "ob man mich mag oder nicht"
+        },
+        {
+          "start": 16.0,
+          "ende": 17.84,
+          "text": "mag, ich spiele gar keine"
+        },
+        {
+          "start": 17.84,
+          "ende": 18.29,
+          "text": "Rolle."
+        },
+        {
+          "start": 18.82,
+          "ende": 19.9,
+          "text": "Es geht gar nicht um mich,"
+        },
+        {
+          "start": 20.08,
+          "ende": 20.84,
+          "text": "ich will mich auch nicht"
+        },
+        {
+          "start": 20.84,
+          "ende": 22.26,
+          "text": "mit so etwas profilieren,"
+        },
+        {
+          "start": 22.3,
+          "ende": 23.0,
+          "text": "das ist ja krank."
+        },
+        {
+          "start": 23.76,
+          "ende": 24.48,
+          "text": "Es geht auch nicht"
+        }
+      ],
+      "texte": {
+        "hook": "„Guck mal, egal ob man mich mag oder“",
+        "kernzitat": "Guck mal, egal ob man mich mag oder",
+        "tiktok_titel": "„Guck mal, egal ob man mich mag oder“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Guck mal, egal ob man mich mag oder",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "„Guck mal, egal ob man mich mag oder“",
+        "instagram": "„Guck mal, egal ob man mich mag oder“",
+        "youtube": "„Guck mal, egal ob man mich mag oder“"
+      }
+    },
+    {
+      "nummer": 29,
+      "clip_id": "2862735566-008423",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 8422.54,
+      "ende": 8451.14,
+      "start_stempel": "2:20:22",
+      "ende_stempel": "2:20:51",
+      "dauer": 28.6,
+      "roh_dauer": 28.6,
+      "auslassungen": [],
+      "hoehepunkt": 8446.0,
+      "kategorie": "UNEXPECTED",
+      "score": 71,
+      "vorrang": false,
+      "punkte": {
+        "hook": 14.26,
+        "unterhaltung": 14.33,
+        "watchtime": 18.69,
+        "share": 13.24,
+        "kommentar": 4.9,
+        "follower": 5.95
+      },
+      "teilnoten": {
+        "hook": 0.57,
+        "unterhaltung": 0.717,
+        "watchtime": 0.934,
+        "share": 0.882,
+        "kommentar": 0.49,
+        "follower": 0.595
+      },
+      "begruendung": "Er ist sichtbar überrascht und dicht gesprochen, keine Leerlaufzeit bei 2:20:46. Die Pointe liegt bei 82 % der Cliplänge, davor 23 s Aufbau.",
+      "thema": "wo sind deine Quellen? Die Quelle ist Jakob Rothschild. Mit anderen Worten, die die die Weltkriege und Ardo Vittlöpen jetzt nicht haben, sind auch dieselben wie 80% des Landes Israelaert. Krank, Scheisse. Islamistische Terroristen sind keine wahre Muslime. Radikale Christen sind keine wahren Christen. Zynisten sind keine wahren Juden. Aha, guck mal schön, guck mal, gebt euch das nochmal. An alle spaltenen Zungen. Hier, zum Mitschreiben bitte.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf",
+        "0:02–0:22 Originalausschnitt im Layout „facecam_gross“",
+        "0:23–0:25 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:23–0:23 kurzer Freeze Frame (0,3 s) auf dem Gesichtsausdruck",
+        "0:25–0:28 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "wo sind deine Quellen? Die Quelle ist Jakob Rothschild. Mit anderen Worten, die die die Weltkriege und Ardo Vittlöpen jetzt nicht haben, sind auch dieselben wie 80 % des Landes Israelaert. Krank, Scheisse. Islamistische Terroristen sind keine wahre Muslime. Radikale Christen sind keine wahren Christen. Zynisten sind keine wahren Juden. Aha, guck mal schön, guck mal, gebt euch das nochmal. An alle spaltenen Zungen. Hier, zum Mitschreiben bitte.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 0.72,
+          "text": "wo sind deine Quellen?"
+        },
+        {
+          "start": 1.76,
+          "ende": 3.72,
+          "text": "Die Quelle ist Jakob"
+        },
+        {
+          "start": 3.72,
+          "ende": 5.28,
+          "text": "Rothschild. Mit anderen"
+        },
+        {
+          "start": 5.28,
+          "ende": 6.46,
+          "text": "Worten, die die die"
+        },
+        {
+          "start": 6.46,
+          "ende": 7.4,
+          "text": "Weltkriege und Ardo"
+        },
+        {
+          "start": 7.4,
+          "ende": 7.98,
+          "text": "Vittlöpen jetzt nicht"
+        },
+        {
+          "start": 7.98,
+          "ende": 9.7,
+          "text": "haben, sind auch dieselben"
+        },
+        {
+          "start": 9.7,
+          "ende": 11.06,
+          "text": "wie 80 % des Landes"
+        },
+        {
+          "start": 11.06,
+          "ende": 12.0,
+          "text": "Israelaert."
+        },
+        {
+          "start": 12.92,
+          "ende": 13.86,
+          "text": "Krank, Scheisse."
+        },
+        {
+          "start": 14.62,
+          "ende": 15.38,
+          "text": "Islamistische Terroristen"
+        },
+        {
+          "start": 15.38,
+          "ende": 16.7,
+          "text": "sind keine wahre Muslime."
+        },
+        {
+          "start": 17.2,
+          "ende": 18.76,
+          "text": "Radikale Christen sind"
+        },
+        {
+          "start": 18.76,
+          "ende": 19.84,
+          "text": "keine wahren Christen."
+        },
+        {
+          "start": 20.04,
+          "ende": 21.58,
+          "text": "Zynisten sind keine wahren"
+        },
+        {
+          "start": 21.58,
+          "ende": 23.28,
+          "text": "Juden. Aha, guck mal"
+        },
+        {
+          "start": 23.28,
+          "ende": 24.28,
+          "text": "schön, guck mal, gebt euch"
+        },
+        {
+          "start": 24.28,
+          "ende": 25.38,
+          "text": "das nochmal. An alle"
+        },
+        {
+          "start": 25.38,
+          "ende": 27.12,
+          "text": "spaltenen Zungen. Hier,"
+        },
+        {
+          "start": 27.8,
+          "ende": 28.6,
+          "text": "zum Mitschreiben bitte."
+        }
+      ],
+      "texte": {
+        "hook": "Damit hatte er nicht gerechnet.",
+        "kernzitat": "Aha, guck mal schön, guck mal, gebt euch das nochmal",
+        "tiktok_titel": "„Aha, guck mal schön, guck mal, gebt euch das nochmal“",
+        "tiktok_caption": "Und dann kam das.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Und dann kam das.",
+        "youtube_titel": "K1ANUSH: Aha, guck mal schön, guck mal, gebt euch das nochmal",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#unerwartet",
+          "#plottwist",
+          "#niemalsgedacht",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Damit hatte er nicht gerechnet.",
+        "instagram": "Damit hatte er nicht gerechnet.",
+        "youtube": "Damit hatte er nicht gerechnet."
+      }
+    },
+    {
+      "nummer": 30,
+      "clip_id": "2862735566-008574",
+      "stream_id": "2862735566",
+      "datum": "2026-09-03",
+      "streamer": "K1ANUSH",
+      "spiel": "Just Chatting",
+      "start": 8574.08,
+      "ende": 8605.97,
+      "start_stempel": "2:22:54",
+      "ende_stempel": "2:23:25",
+      "dauer": 31.9,
+      "roh_dauer": 31.9,
+      "auslassungen": [],
+      "hoehepunkt": 8593.0,
+      "kategorie": "RAGE",
+      "score": 72,
+      "vorrang": false,
+      "punkte": {
+        "hook": 14.93,
+        "unterhaltung": 16.47,
+        "watchtime": 18.33,
+        "share": 11.97,
+        "kommentar": 4.8,
+        "follower": 5.32
+      },
+      "teilnoten": {
+        "hook": 0.597,
+        "unterhaltung": 0.823,
+        "watchtime": 0.916,
+        "share": 0.798,
+        "kommentar": 0.48,
+        "follower": 0.532
+      },
+      "begruendung": "Er rastet aus und er ist sichtbar überrascht bei 2:23:13. Die Pointe liegt bei 59 % der Cliplänge, davor 19 s Aufbau.",
+      "thema": "Wenn ihr Unterschiede macht nur zwischen gute Menschen oder böse Menschen, alles andere spielt keine Rolle. Wer sich trotzdem daran bedient, bedient sich an dem Spiel des Teufels. Und jetzt erkenne dich selbst. Das ist doch nicht schwer zu begreifen, Alter. Wirklich, das ist doch nicht schwer zu begreifen, meine Güte. Wow. Ja, das Ding, das ging zwar nur 16 Minuten, Aber es hat es echt in sich, Leute.",
+      "layout": "facecam_gross",
+      "schnitt": [
+        "0:00–0:01 harter Punch-In auf das Gesicht, Text-Hook ab Bild 1, kein Vorlauf",
+        "0:02–0:18 Originalausschnitt im Layout „facecam_gross“",
+        "0:18–0:20 Reaktions-Punch-In auf das Gesicht, Ton eine Spur lauter",
+        "0:20–0:31 zurück auf Normalgröße, letzte Zeile ausspielen"
+      ],
+      "loop": false,
+      "loop_hinweis": "",
+      "untertitel": "Wenn ihr Unterschiede macht nur zwischen gute Menschen oder böse Menschen, alles andere spielt keine Rolle. Wer sich trotzdem daran bedient, bedient sich an dem Spiel des Teufels. Und jetzt erkenne dich selbst. Das ist doch nicht schwer zu begreifen, Alter. Wirklich, das ist doch nicht schwer zu begreifen, meine Güte. Wow. Ja, das Ding, das ging zwar nur 16 Minuten, Aber es hat es echt in sich, Leute.",
+      "untertitel_zeilen": [
+        {
+          "start": 0.0,
+          "ende": 1.16,
+          "text": "Wenn ihr Unterschiede"
+        },
+        {
+          "start": 1.16,
+          "ende": 2.26,
+          "text": "macht nur zwischen gute"
+        },
+        {
+          "start": 2.26,
+          "ende": 3.28,
+          "text": "Menschen oder böse"
+        },
+        {
+          "start": 3.28,
+          "ende": 4.34,
+          "text": "Menschen, alles andere"
+        },
+        {
+          "start": 4.34,
+          "ende": 6.04,
+          "text": "spielt keine Rolle."
+        },
+        {
+          "start": 6.3,
+          "ende": 7.3,
+          "text": "Wer sich trotzdem daran"
+        },
+        {
+          "start": 7.3,
+          "ende": 8.76,
+          "text": "bedient, bedient sich an"
+        },
+        {
+          "start": 8.76,
+          "ende": 9.9,
+          "text": "dem Spiel des Teufels."
+        },
+        {
+          "start": 10.7,
+          "ende": 11.92,
+          "text": "Und jetzt erkenne dich"
+        },
+        {
+          "start": 11.92,
+          "ende": 12.37,
+          "text": "selbst."
+        },
+        {
+          "start": 18.13,
+          "ende": 18.99,
+          "text": "Das ist doch nicht schwer"
+        },
+        {
+          "start": 18.99,
+          "ende": 19.99,
+          "text": "zu begreifen, Alter."
+        },
+        {
+          "start": 20.81,
+          "ende": 21.61,
+          "text": "Wirklich, das ist doch"
+        },
+        {
+          "start": 21.61,
+          "ende": 22.67,
+          "text": "nicht schwer zu begreifen,"
+        },
+        {
+          "start": 22.79,
+          "ende": 23.51,
+          "text": "meine Güte."
+        },
+        {
+          "start": 26.29,
+          "ende": 26.81,
+          "text": "Wow."
+        },
+        {
+          "start": 27.43,
+          "ende": 28.57,
+          "text": "Ja, das Ding, das ging"
+        },
+        {
+          "start": 28.57,
+          "ende": 30.49,
+          "text": "zwar nur 16 Minuten, Aber"
+        },
+        {
+          "start": 30.49,
+          "ende": 32.08,
+          "text": "es hat es echt in sich, Leute."
+        }
+      ],
+      "texte": {
+        "hook": "Da ist ihm der Kragen geplatzt.",
+        "kernzitat": "erkenne dich selbst",
+        "tiktok_titel": "„erkenne dich selbst“",
+        "tiktok_caption": "Der Moment, in dem es kippt.",
+        "instagram_caption": "K1ANUSH live auf Twitch. Der Moment, in dem es kippt. Wer wäre auch ausgerastet?",
+        "youtube_titel": "K1ANUSH: erkenne dich selbst",
+        "hashtags": [
+          "#k1anush",
+          "#k1anushclips",
+          "#rage",
+          "#ragequit",
+          "#ausraster",
+          "#justchatting",
+          "#twitch"
+        ]
+      },
+      "hook_varianten": {
+        "tiktok": "Da ist ihm der Kragen geplatzt.",
+        "instagram": "Da ist ihm der Kragen geplatzt.",
+        "youtube": "Da ist ihm der Kragen geplatzt."
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.18,Clip,,0,0,0,,Nein, ich frag das jetzt
+Dialogue: 0,0:00:01.18,0:00:02.28,Clip,,0,0,0,,{\c&H0022DDFF&}wirklich.{\c&H00FFFFFF&} Was mache ich
+Dialogue: 0,0:00:02.28,0:00:03.46,Clip,,0,0,0,,jetzt? Wie kann ich das
+Dialogue: 0,0:00:03.46,0:00:04.44,Clip,,0,0,0,,anwenden? Wie kann ich das
+Dialogue: 0,0:00:04.44,0:00:05.70,Clip,,0,0,0,,jetzt nutzen, damit wir
+Dialogue: 0,0:00:05.70,0:00:07.88,Clip,,0,0,0,,ankommen oder
+Dialogue: 0,0:00:07.88,0:00:08.78,Clip,,0,0,0,,weiß ich nicht?
+Dialogue: 0,0:00:09.78,0:00:10.56,Clip,,0,0,0,,Was meint ihr?
+Dialogue: 0,0:00:10.88,0:00:12.54,Clip,,0,0,0,,Also was ist jetzt das
+Dialogue: 0,0:00:12.54,0:00:12.99,Clip,,0,0,0,,Ding?
+Dialogue: 0,0:00:17.16,0:00:18.40,Clip,,0,0,0,,Weil er, guck mal, er,
+Dialogue: 0,0:00:19.02,0:00:20.22,Clip,,0,0,0,,Nikola Tesla, hat sich ja
+Dialogue: 0,0:00:20.22,0:00:20.84,Clip,,0,0,0,,damit befasst.
+Dialogue: 0,0:00:21.40,0:00:22.88,Clip,,0,0,0,,Wahrscheinlich intensiver,
+Dialogue: 0,0:00:22.88,0:00:23.66,Clip,,0,0,0,,als wir {\c&H0022DDFF&}alle{\c&H00FFFFFF&} zusammen.
+Dialogue: 0,0:00:24.62,0:00:25.56,Clip,,0,0,0,,Am Ende ist bei ihm
+Dialogue: 0,0:00:25.56,0:00:26.36,Clip,,0,0,0,,rausgekommen, dass er
+Dialogue: 0,0:00:26.36,0:00:27.40,Clip,,0,0,0,,dreimal ums Haus laufen
+Dialogue: 0,0:00:27.40,0:00:28.36,Clip,,0,0,0,,muss, bevor er reingeht
+Dialogue: 0,0:00:28.36,0:00:29.18,Clip,,0,0,0,,und dreimal die Hände
+Dialogue: 0,0:00:29.18,0:00:29.63,Clip,,0,0,0,,wäscht.
+Dialogue: 0,0:00:31.18,0:00:32.34,Clip,,0,0,0,,Ist das quasi die

@@ -1,0 +1,25 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.12,Clip,,0,0,0,,Das ist dann nicht seriöse
+Dialogue: 0,0:00:01.12,0:00:02.80,Clip,,0,0,0,,Wissenschaft. Warte mal,
+Dialogue: 0,0:00:02.88,0:00:04.70,Clip,,0,0,0,,warte mal, seriöse
+Dialogue: 0,0:00:04.70,0:00:05.74,Clip,,0,0,0,,Wissenschaft. Guck mal,
+Dialogue: 0,0:00:06.76,0:00:07.68,Clip,,0,0,0,,ich will dir nur eine
+Dialogue: 0,0:00:07.68,0:00:08.26,Clip,,0,0,0,,Sache sagen.
+Dialogue: 0,0:00:09.14,0:00:09.64,Clip,,0,0,0,,Die großen
+Dialogue: 0,0:00:09.64,0:00:11.54,Clip,,0,0,0,,Errungenschaften bzw.
+Dialogue: 0,0:00:12.36,0:00:13.74,Clip,,0,0,0,,die Erkenntnisse, die wir
+Dialogue: 0,0:00:13.74,0:00:15.10,Clip,,0,0,0,,erlangt haben als
+Dialogue: 0,0:00:15.10,0:00:16.30,Clip,,0,0,0,,Menschheit, sag ich mal,

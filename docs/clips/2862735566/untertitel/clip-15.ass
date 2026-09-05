@@ -1,0 +1,33 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.72,Clip,,0,0,0,,Als logischen Zwang kann
+Dialogue: 0,0:00:01.72,0:00:02.42,Clip,,0,0,0,,man es nicht nennen.
+Dialogue: 0,0:00:02.52,0:00:03.42,Clip,,0,0,0,,Ich meine als logische
+Dialogue: 0,0:00:03.42,0:00:04.96,Clip,,0,0,0,,Schlussfolgerung. Eine
+Dialogue: 0,0:00:04.96,0:00:06.42,Clip,,0,0,0,,schlüssige Erklärung kann
+Dialogue: 0,0:00:06.42,0:00:08.06,Clip,,0,0,0,,es nur in Bezug auf
+Dialogue: 0,0:00:08.06,0:00:10.44,Clip,,0,0,0,,bestimmte Voraussetzungen.
+Dialogue: 0,0:00:10.90,0:00:11.76,Clip,,0,0,0,,Wenn du bestimmte
+Dialogue: 0,0:00:11.76,0:00:12.76,Clip,,0,0,0,,Voraussetzungen
+Dialogue: 0,0:00:14.07,0:00:16.33,Clip,,0,0,0,,annimmst, dann ist es
+Dialogue: 0,0:00:16.33,0:00:17.19,Clip,,0,0,0,,als logische
+Dialogue: 0,0:00:17.19,0:00:18.51,Clip,,0,0,0,,Schlussfolgerung möglich.
+Dialogue: 0,0:00:18.83,0:00:20.25,Clip,,0,0,0,,Aber es ist eben keine
+Dialogue: 0,0:00:20.25,0:00:22.53,Clip,,0,0,0,,zwingende Schlussfolgerung.
+Dialogue: 0,0:00:22.53,0:00:23.63,Clip,,0,0,0,,Warte mal, warte mal, ich
+Dialogue: 0,0:00:23.63,0:00:24.29,Clip,,0,0,0,,frage mal so,
+Dialogue: 0,0:00:24.89,0:00:26.39,Clip,,0,0,0,,was ist naheliegend da,
+Dialogue: 0,0:00:26.99,0:00:28.01,Clip,,0,0,0,,dass es einen Schöpfer
+Dialogue: 0,0:00:28.01,0:00:29.54,Clip,,0,0,0,,gibt oder dass es keinen gibt?

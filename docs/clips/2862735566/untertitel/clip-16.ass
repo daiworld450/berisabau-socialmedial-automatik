@@ -1,0 +1,21 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:02.16,Clip,,0,0,0,,Warte mal, {\c&H0022DDFF&}stopp!{\c&H00FFFFFF&}
+Dialogue: 0,0:00:02.78,0:00:03.54,Clip,,0,0,0,,Kannst du mal bitte
+Dialogue: 0,0:00:03.54,0:00:05.00,Clip,,0,0,0,,aufhören, so komisch zu
+Dialogue: 0,0:00:05.00,0:00:06.62,Clip,,0,0,0,,leiern und so stotterhaft
+Dialogue: 0,0:00:06.62,0:00:08.68,Clip,,0,0,0,,zu reden? Ich möchte eine
+Dialogue: 0,0:00:08.68,0:00:10.58,Clip,,0,0,0,,flüssige, reibungslose
+Dialogue: 0,0:00:10.58,0:00:12.11,Clip,,0,0,0,,Konversation mit dir führen.

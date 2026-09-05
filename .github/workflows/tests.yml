@@ -1,0 +1,40 @@
+name: Tests
+
+# Zehn Workflows im Repo, und keiner hat je einen Test ausgefuehrt. Die
+# Testreihe lief bisher nur auf dem Rechner, auf dem gerade jemand
+# entwickelt hat - "110 Tests gruen" war damit eine Behauptung im
+# Pull-Request-Text, keine nachpruefbare Tatsache.
+#
+# Der Lauf braucht keine Zugangsdaten, kein Netz und kein ffmpeg: kein Test
+# ruft eine API auf, keiner rendert. Deshalb kann er auf jedem Zweig laufen.
+
+# Reine Ergebnis-Commits sind ausgenommen: der Clip-Workflow legt seinen
+# Bericht selbst im Repo ab, und daran haengt kein Code. Sonst steht nach
+# jeder Auswertung ein Testlauf auf dem Zweig, der auf Freigabe wartet -
+# ein rotes Kaestchen ohne Aussage.
+on:
+  push:
+    branches: ["**"]
+    paths-ignore:
+      - "docs/clips/**"
+      - "content/clip_verlauf.json"
+  pull_request:
+    paths-ignore:
+      - "docs/clips/**"
+      - "content/clip_verlauf.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Testreihe
+        run: python -m unittest discover -s tests -v

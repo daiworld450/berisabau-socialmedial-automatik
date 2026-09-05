@@ -1,0 +1,33 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:00.80,Clip,,0,0,0,,Wir sind ja Empfänger und
+Dialogue: 0,0:00:00.80,0:00:02.36,Clip,,0,0,0,,Sender zugleich. Meiner
+Dialogue: 0,0:00:02.36,0:00:03.52,Clip,,0,0,0,,Meinung nach empfangen wir
+Dialogue: 0,0:00:03.52,0:00:04.48,Clip,,0,0,0,,mehr, als wir senden.
+Dialogue: 0,0:00:04.88,0:00:06.58,Clip,,0,0,0,,Und dass alte Kulturen
+Dialogue: 0,0:00:06.58,0:00:08.38,Clip,,0,0,0,,sowas gebaut haben und die
+Dialogue: 0,0:00:08.38,0:00:10.12,Clip,,0,0,0,,Absicht hatten generell,
+Dialogue: 0,0:00:10.26,0:00:10.71,Clip,,0,0,0,,solche
+Dialogue: 0,0:00:10.56,0:00:13.84,Clip,,0,0,0,,Energiearchitekturen
+Dialogue: 0,0:00:13.84,0:00:14.44,Clip,,0,0,0,,zu erschaffen,
+Dialogue: 0,0:00:15.22,0:00:16.96,Clip,,0,0,0,,machen ja nicht umsonst.
+Dialogue: 0,0:00:17.04,0:00:18.08,Clip,,0,0,0,,Wer nimmt das auf sich?
+Dialogue: 0,0:00:18.26,0:00:19.14,Clip,,0,0,0,,Klar, es sieht ästhetisch
+Dialogue: 0,0:00:19.14,0:00:20.26,Clip,,0,0,0,,aus, es sieht majestätisch
+Dialogue: 0,0:00:20.26,0:00:21.34,Clip,,0,0,0,,aus, es sieht {\c&H0022DDFF&}krass{\c&H00FFFFFF&} aus.
+Dialogue: 0,0:00:21.34,0:00:22.58,Clip,,0,0,0,,aber ich kann mir nicht
+Dialogue: 0,0:00:22.58,0:00:23.96,Clip,,0,0,0,,vorstellen oder gehe auch
+Dialogue: 0,0:00:23.96,0:00:24.84,Clip,,0,0,0,,nicht davon aus, dass sie
+Dialogue: 0,0:00:24.84,0:00:25.74,Clip,,0,0,0,,das nur deswegen so

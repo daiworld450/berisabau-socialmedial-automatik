@@ -1,0 +1,38 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:02.38,Clip,,0,0,0,,ist es ist aktuell so dass
+Dialogue: 0,0:00:02.38,0:00:03.16,Clip,,0,0,0,,man da nicht viel machen
+Dialogue: 0,0:00:03.16,0:00:05.08,Clip,,0,0,0,,kann und ich soll denn
+Dialogue: 0,0:00:05.08,0:00:05.76,Clip,,0,0,0,,einfach nicht mehr so
+Dialogue: 0,0:00:05.76,0:00:06.42,Clip,,0,0,0,,{\c&H0022DDFF&}krass{\c&H00FFFFFF&} belasten.
+Dialogue: 0,0:00:07.12,0:00:08.12,Clip,,0,0,0,,Er sagte, geh ins
+Dialogue: 0,0:00:08.12,0:00:08.88,Clip,,0,0,0,,Fitnessstudio,
+Dialogue: 0,0:00:09.74,0:00:11.50,Clip,,0,0,0,,leicht joggen geht, aber
+Dialogue: 0,0:00:11.50,0:00:12.66,Clip,,0,0,0,,dieses permanent anderen
+Dialogue: 0,0:00:12.66,0:00:14.02,Clip,,0,0,0,,Abbremsen hoch springen
+Dialogue: 0,0:00:14.02,0:00:14.47,Clip,,0,0,0,,und so.
+Dialogue: 0,0:00:14.94,0:00:15.92,Clip,,0,0,0,,Das wird {\c&H0022DDFF&}immer{\c&H00FFFFFF&} wieder dann
+Dialogue: 0,0:00:15.92,0:00:16.94,Clip,,0,0,0,,zu diesem Punkt kommen und
+Dialogue: 0,0:00:16.94,0:00:17.68,Clip,,0,0,0,,irgendwann ist dein
+Dialogue: 0,0:00:17.68,0:00:19.02,Clip,,0,0,0,,Knorpel so im Arsch, dass
+Dialogue: 0,0:00:19.02,0:00:20.44,Clip,,0,0,0,,du dann permanent
+Dialogue: 0,0:00:20.44,0:00:21.56,Clip,,0,0,0,,Schmerzen hast. Er sagte,
+Dialogue: 0,0:00:21.74,0:00:22.90,Clip,,0,0,0,,wenn du keine permanenten
+Dialogue: 0,0:00:22.90,0:00:23.86,Clip,,0,0,0,,Schmerzen haben willst,
+Dialogue: 0,0:00:24.34,0:00:25.34,Clip,,0,0,0,,dann hör einfach auf
+Dialogue: 0,0:00:25.34,0:00:26.14,Clip,,0,0,0,,Fußball zu spielen.
+Dialogue: 0,0:00:27.64,0:00:28.74,Clip,,0,0,0,,Ja, das hat mich ein
+Dialogue: 0,0:00:28.74,0:00:29.48,Clip,,0,0,0,,bisschen darum gemacht.
+Dialogue: 0,0:00:29.60,0:00:30.84,Clip,,0,0,0,,Das war sehr öde, weil

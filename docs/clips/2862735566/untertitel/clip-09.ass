@@ -1,0 +1,31 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.00,Clip,,0,0,0,,Wo haben wir das denn?
+Dialogue: 0,0:00:01.66,0:00:03.60,Clip,,0,0,0,,Alter. Was ist mit dieser
+Dialogue: 0,0:00:03.60,0:00:04.64,Clip,,0,0,0,,Reaction hier passiert,
+Dialogue: 0,0:00:04.86,0:00:05.31,Clip,,0,0,0,,ladies and gentlemen?
+Dialogue: 0,0:00:05.34,0:00:05.79,Clip,,0,0,0,,Können wir mal bitte
+Dialogue: 0,0:00:05.72,0:00:07.24,Clip,,0,0,0,,darüber reden? Was zur
+Dialogue: 0,0:00:07.24,0:00:08.46,Clip,,0,0,0,,Hölle? Ja, aber im
+Dialogue: 0,0:00:08.46,0:00:09.38,Clip,,0,0,0,,wahrsten Sinne des Wortes,
+Dialogue: 0,0:00:09.46,0:00:10.26,Clip,,0,0,0,,was zur Hölle passiert
+Dialogue: 0,0:00:10.26,0:00:10.71,Clip,,0,0,0,,hier?
+Dialogue: 0,0:00:11.50,0:00:12.44,Clip,,0,0,0,,Dieser Tag dient nicht
+Dialogue: 0,0:00:12.44,0:00:13.06,Clip,,0,0,0,,dazu, die Welt
+Dialogue: 0,0:00:13.06,0:00:13.70,Clip,,0,0,0,,ohnezugestattet. Wisst ihr
+Dialogue: 0,0:00:13.70,0:00:14.38,Clip,,0,0,0,,noch von Rui Janet?
+Dialogue: 0,0:00:14.74,0:00:15.44,Clip,,0,0,0,,Als ihr gesagt habt,
+Dialogue: 0,0:00:15.46,0:00:16.28,Clip,,0,0,0,,Bruder guckt ihr das mal
+Dialogue: 0,0:00:16.28,0:00:17.18,Clip,,0,0,0,,an, das ist geisteskrank.

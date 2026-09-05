@@ -1,0 +1,30 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:00.76,Clip,,0,0,0,,Interessant auf jeden
+Dialogue: 0,0:00:00.76,0:00:02.06,Clip,,0,0,0,,Fall, weil ich habe den
+Dialogue: 0,0:00:02.06,0:00:03.48,Clip,,0,0,0,,Fall damals auch verfolgt,
+Dialogue: 0,0:00:03.70,0:00:04.62,Clip,,0,0,0,,als es passiert ist, war
+Dialogue: 0,0:00:04.62,0:00:05.50,Clip,,0,0,0,,ich noch relativ jung,
+Dialogue: 0,0:00:05.98,0:00:06.74,Clip,,0,0,0,,aber ich habe es natürlich
+Dialogue: 0,0:00:06.74,0:00:08.44,Clip,,0,0,0,,auch mitbekommen und dann
+Dialogue: 0,0:00:08.44,0:00:09.58,Clip,,0,0,0,,hieß es auch sehr, sehr
+Dialogue: 0,0:00:09.58,0:00:10.42,Clip,,0,0,0,,schnell, Didi hat was
+Dialogue: 0,0:00:10.42,0:00:11.56,Clip,,0,0,0,,damit zu tun und Chuck
+Dialogue: 0,0:00:11.56,0:00:13.90,Clip,,0,0,0,,Knight ist da, {\c&H0022DDFF&}krass,{\c&H00FFFFFF&}
+Dialogue: 0,0:00:14.02,0:00:15.28,Clip,,0,0,0,,30 Jahre später,
+Dialogue: 0,0:00:15.90,0:00:16.72,Clip,,0,0,0,,kommen die damit um die
+Dialogue: 0,0:00:16.72,0:00:18.10,Clip,,0,0,0,,Ecke, ist schon, hätte ich
+Dialogue: 0,0:00:18.10,0:00:18.56,Clip,,0,0,0,,auch nicht mehr
+Dialogue: 0,0:00:18.56,0:00:20.07,Clip,,0,0,0,,mitgerechnet, um {\c&H0022DDFF&}ehrlich{\c&H00FFFFFF&} zu

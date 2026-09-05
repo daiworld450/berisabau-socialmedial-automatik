@@ -1,0 +1,29 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.42,Clip,,0,0,0,,Doch was heute morgen
+Dialogue: 0,0:00:01.42,0:00:03.38,Clip,,0,0,0,,geschehen ist, damit habe
+Dialogue: 0,0:00:03.38,0:00:03.96,Clip,,0,0,0,,ich {\c&H0022DDFF&}ehrlich{\c&H00FFFFFF&} gesagt
+Dialogue: 0,0:00:03.96,0:00:05.12,Clip,,0,0,0,,überhaupt nicht gerechnet.
+Dialogue: 0,0:00:05.66,0:00:07.10,Clip,,0,0,0,,Was denn? Denn gegen 1 .30
+Dialogue: 0,0:00:07.10,0:00:08.60,Clip,,0,0,0,,Uhr deutscher Zeit, wurde
+Dialogue: 0,0:00:08.60,0:00:10.16,Clip,,0,0,0,,Dwayne Keefi, die Davis,
+Dialogue: 0,0:00:10.58,0:00:11.96,Clip,,0,0,0,,tatsächlich wegen Mordes
+Dialogue: 0,0:00:11.96,0:00:13.36,Clip,,0,0,0,,ersten Grades an Tupac
+Dialogue: 0,0:00:13.36,0:00:14.26,Clip,,0,0,0,,Shakur schuldig
+Dialogue: 0,0:00:14.26,0:00:14.71,Clip,,0,0,0,,gesprochen.
+Dialogue: 0,0:00:15.30,0:00:16.80,Clip,,0,0,0,,Neeeeeee, {\c&H0022DDFF&}krass,{\c&H00FFFFFF&}
+Dialogue: 0,0:00:18.68,0:00:19.40,Clip,,0,0,0,,{\c&H0022DDFF&}krass,{\c&H00FFFFFF&}
+Dialogue: 0,0:00:20.50,0:00:22.08,Clip,,0,0,0,,das ist schon vorbei.
+Dialogue: 0,0:00:22.32,0:00:23.68,Clip,,0,0,0,,Er wurde schon schuldig gesprochen.

@@ -1,0 +1,32 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.20,Clip,,0,0,0,,Möge -Enfriedenruhen hat
+Dialogue: 0,0:00:01.20,0:00:02.16,Clip,,0,0,0,,{\c&H0022DDFF&}immer{\c&H00FFFFFF&} zu mir gesagt, mein
+Dialogue: 0,0:00:02.16,0:00:03.78,Clip,,0,0,0,,Sohn, das Gefährlichste
+Dialogue: 0,0:00:03.78,0:00:04.48,Clip,,0,0,0,,auf unserer Welt
+Dialogue: 0,0:00:04.48,0:00:06.40,Clip,,0,0,0,,sind
+Dialogue: 0,0:00:06.40,0:00:08.26,Clip,,0,0,0,,dumme Menschen mit sehr
+Dialogue: 0,0:00:08.26,0:00:08.80,Clip,,0,0,0,,viel Macht.
+Dialogue: 0,0:00:10.00,0:00:11.32,Clip,,0,0,0,,Und ladies and gentlemen,
+Dialogue: 0,0:00:11.60,0:00:12.88,Clip,,0,0,0,,genau dieses Problem haben
+Dialogue: 0,0:00:12.88,0:00:14.52,Clip,,0,0,0,,wir {\c&H0022DDFF&}alle.{\c&H00FFFFFF&} Guck mal, egal
+Dialogue: 0,0:00:14.52,0:00:16.00,Clip,,0,0,0,,ob man mich mag oder nicht
+Dialogue: 0,0:00:16.00,0:00:17.84,Clip,,0,0,0,,mag, ich spiele gar keine
+Dialogue: 0,0:00:17.84,0:00:18.29,Clip,,0,0,0,,Rolle.
+Dialogue: 0,0:00:18.82,0:00:19.90,Clip,,0,0,0,,Es geht gar nicht um mich,
+Dialogue: 0,0:00:20.08,0:00:20.84,Clip,,0,0,0,,ich will mich auch nicht
+Dialogue: 0,0:00:20.84,0:00:22.26,Clip,,0,0,0,,mit so etwas profilieren,
+Dialogue: 0,0:00:22.30,0:00:23.00,Clip,,0,0,0,,das ist ja krank.
+Dialogue: 0,0:00:23.76,0:00:24.48,Clip,,0,0,0,,Es geht auch nicht

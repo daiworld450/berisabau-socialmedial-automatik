@@ -24,17 +24,19 @@ from __future__ import annotations
 import json
 import sys
 import unittest
+from dataclasses import replace
 from datetime import date
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 
 WURZEL = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(WURZEL / "src"))
 
 from clipwerk import (ausgabe, bewertung, kandidaten, kategorien,   # noqa: E402
                       lernkurve, motor, plan, quellen, render,
-                      schnitt, signale, texte, untertitel, verlauf,
-                      wachstum)
+                      schnitt, signale, texte, transkript, untertitel,
+                      verlauf, wachstum)
 
 LEXIKON = signale.lade_lexikon(WURZEL / "content" / "clip_lexikon.json")
 HASHTAGS = kategorien.lade_hashtags(WURZEL / "content" / "clip_hashtags.json")
@@ -367,6 +369,28 @@ class Texte(unittest.TestCase):
         self.assertTrue(satz.startswith("„"),
                         f"unbelegte Behauptung als Hook: {satz}")
 
+    def test_hook_wiederholt_sich_nicht_im_selben_lauf(self):
+        """Ein Stream tragt zwanzig Momente desselben Signals. Steht ueber
+        allen derselbe Satz, liest sich der Kanal als Fliessband."""
+        note = bewertung.Bewertung(10, 10, 10, 5, 5, 5, "UNEXPECTED", 0.5)
+        benutzt: set[str] = set()
+        saetze = []
+        for i in range(4):
+            kandidat = kandidaten.Kandidat(
+                float(i * 100), float(i * 100 + 20), float(i * 100 + 10), 2.0,
+                {"sprache_ueberraschung": 2.0})
+            saetze.append(texte.hook(kandidat, note, benutzt))
+        self.assertEqual(len(set(saetze)), len(saetze),
+                         f"Hook doppelt im selben Lauf: {saetze}")
+
+        # Sind alle Fassungen vergeben, wiederholt sich etwas - aber
+        # berechenbar: derselbe Stream ergibt zweimal denselben Bericht.
+        kandidat = kandidaten.Kandidat(500.0, 520.0, 510.0, 2.0,
+                                       {"sprache_ueberraschung": 2.0})
+        erneut = set(benutzt)
+        self.assertEqual(texte.hook(kandidat, note, set(benutzt)),
+                         texte.hook(kandidat, note, erneut))
+
     def test_crossposting_variiert_den_hook(self):
         t = texte.Texte("Chat ist eskaliert 💀", "a", "b", "c", "d")
         self.assertNotEqual(texte.variante(t, "tiktok"),
@@ -689,11 +713,191 @@ class NurChat(unittest.TestCase):
             ausgabe.schreibe_paket(ergebnis, stream, Path(ordner))
             self.assertFalse((Path(ordner) / "untertitel").exists())
 
-    def test_niedrigere_schwelle_ist_belegt(self):
-        """Die abgesenkte Schwelle bildet einen gemessenen Abstand ab und
-        darf nicht über der normalen liegen."""
-        self.assertLess(bewertung.SCHWELLE_OHNE_TRANSKRIPT,
+    def test_schwelle_haengt_an_der_betriebsart(self):
+        """Jede Betriebsart hat ihre eigene Schwelle, und sie wird an der
+        vorhandenen Quelle festgemacht - nicht am Inhalt."""
+        voll = _beispielstream()
+        self.assertEqual(bewertung.schwelle_fuer(voll),
+                         bewertung.SCHWELLE_VERWERFEN)
+
+        ohne_chat = replace(voll, chat=[])
+        self.assertEqual(bewertung.schwelle_fuer(ohne_chat),
+                         bewertung.SCHWELLE_NUR_TRANSKRIPT)
+
+        ohne_text = replace(voll, segmente=[])
+        self.assertEqual(bewertung.schwelle_fuer(ohne_text),
+                         bewertung.SCHWELLE_NUR_CHAT)
+
+        # Ohne Transkript fallen Einstieg und Wortdichte aus der Rechnung
+        # heraus, statt als Null zu zählen. Was bleibt, trägt volles
+        # Gewicht - und das sind die großzügigen Teile. Deshalb liegt die
+        # Schwelle dort *höher*, nicht tiefer.
+        self.assertGreater(bewertung.SCHWELLE_NUR_CHAT,
+                           bewertung.SCHWELLE_VERWERFEN)
+        self.assertLess(bewertung.SCHWELLE_NUR_TRANSKRIPT,
                         bewertung.SCHWELLE_VERWERFEN)
+
+
+class Betriebsarten(unittest.TestCase):
+    """Was passiert, wenn eine der beiden Quellen fehlt.
+
+    Am 02.09.2026 lieferte ein Lauf über einen echten Stream mit 1549
+    erkannten Sprachsegmenten **null** Clips, und der Bericht sagte dazu
+    nur „kein Moment hat die Schwelle erreicht". Das war nicht der Stream,
+    das waren drei Fehler, die alle in dieselbe Richtung zeigten:
+
+    1. `_normiere` löschte jede Signalreihe, in der jeder Treffer einzeln
+       auftrat - und das sind ohne Chat fast alle.
+    2. Sprachsignale saßen nur auf der Anfangssekunde ihres Segments; die
+       Glättung zog sie danach auf ein Fünftel herunter.
+    3. Die Spitzenschwelle war eine feste Zahl, gemessen an einer Kurve mit
+       vollem Sensorsatz. Ohne Chat liegt dieselbe Kurve halb so hoch.
+
+    Jeder einzelne davon hätte gereicht. Deshalb wird hier jeder einzeln
+    geprüft, nicht nur das Gesamtergebnis.
+    """
+
+    def test_seltene_reihe_wird_nicht_ausgeloescht(self):
+        """Eine Reihe, in der jeder Treffer einzeln auftritt, trägt Signal.
+
+        Der Median der belegten Sekunden ist dort 1, die mittlere
+        Abweichung 0 - und damit war vorher die ganze Reihe null.
+        """
+        reihe = [0.0] * 200
+        for i in (17, 61, 92, 140, 171):
+            reihe[i] = 1.0
+        reihe[92] = 3.0
+        norm = signale._normiere(reihe)
+        self.assertGreater(max(norm), 0.0)
+        self.assertGreater(norm[92], norm[17])
+        self.assertEqual(norm[0], 0.0)
+
+    def test_sprachsignal_gilt_fuer_das_ganze_segment(self):
+        """Ein Satz ist eine Strecke, kein Punkt."""
+        stream = _beispielstream(mit_chat=False)
+        kurve = signale.kurve(stream, LEXIKON)
+        lachen = kurve.reihen["sprache_lachen"]
+        # Der Lacher steht in dem Segment von 35 bis 38 Sekunden.
+        self.assertGreater(sum(lachen[35:39]), 0.0)
+        self.assertGreater(len([w for w in lachen[35:39] if w > 0]), 1)
+
+    def test_bezug_haengt_an_der_quelle_nicht_am_inhalt(self):
+        voll = signale.kurve(_beispielstream(), LEXIKON)
+        ohne_chat = signale.kurve(_beispielstream(mit_chat=False), LEXIKON)
+        self.assertEqual(voll.bezug, 1.0)
+        self.assertLess(ohne_chat.bezug, 1.0)
+        self.assertGreater(ohne_chat.bezug, 0.4)
+        # Die Spitzenschwelle wandert mit, sonst findet die Kurve ohne Chat
+        # nie eine Spitze.
+        self.assertTrue(signale.spitzen(ohne_chat))
+
+    def test_ohne_chat_entstehen_trotzdem_momente(self):
+        """Der Regressionstest zum Lauf über Stream 2862735566."""
+        stream = _beispielstream(mit_chat=False)
+        ergebnis = motor.analysiere(stream, schwelle=0)
+        self.assertGreater(ergebnis.geprueft, 0)
+        self.assertTrue(ergebnis.clips)
+
+    def test_satzanfang_wird_vorsichtig_erkannt(self):
+        """Grossschreibung verraet den Satzanfang - aber nur, wenn es
+        ueberhaupt welche gibt."""
+        self.assertTrue(texte._satzanfang("Wer kennt das von euch?"))
+        self.assertFalse(texte._satzanfang("das mein rechter Fuß"))
+        # Ein durchgehend kleingeschriebenes Transkript sagt ueber
+        # Satzgrenzen nichts aus. Dort wird nicht bestraft.
+        self.assertTrue(texte._satzanfang("das mein rechter fuß"))
+        self.assertFalse(texte._satzanfang(""))
+
+    def test_zitat_beginnt_lieber_am_satzanfang(self):
+        """Ein ganzer Satz schlaegt ein Bruchstueck, auch wenn das
+        Bruchstueck naeher am Hoehepunkt liegt."""
+        segmente = [
+            quellen.Segment(0.0, 4.0, "keine Ahnung haben Leute. "
+                                      "Wer kennt das von euch?"),
+            quellen.Segment(4.0, 8.0, "gewisses Alter war bestimmt drüber"),
+        ]
+        kandidat = kandidaten.Kandidat(
+            start=0.0, ende=8.0, hoehepunkt=7.0, staerke=2.0, anteile={},
+            segmente=segmente)
+        self.assertEqual(texte.kernzitat(kandidat), "Wer kennt das von euch?")
+
+    def test_nicht_messbares_zaehlt_nicht_als_null(self):
+        """Ein fehlender Sensor senkt die Note nicht, er fällt heraus."""
+        # Zwei gleich gute Bestandteile, einer davon nicht messbar:
+        # das Ergebnis ist der messbare, nicht sein halber Wert.
+        self.assertAlmostEqual(
+            bewertung._mittel([(0.8, 0.5, True), (0.0, 0.5, False)]), 0.8)
+        self.assertAlmostEqual(
+            bewertung._mittel([(0.8, 0.5, True), (0.0, 0.5, True)]), 0.4)
+        self.assertEqual(bewertung._mittel([(0.8, 0.5, False)]), 0.0)
+
+
+class Transkript(unittest.TestCase):
+    """Die Umwandlung von faster-whisper in unser Format.
+
+    Das Modell selbst wird hier nicht geladen - das dauert Minuten und
+    braucht Netz. Geprüft wird die Naht: was faster-whisper liefert, muss
+    `quellen.lade_transkript` unverändert wieder einlesen können. Genau an
+    dieser Naht wären Wortzeiten still verlorengegangen, und ohne sie sitzen
+    die Untertitel auf dem Satz statt auf dem Wort.
+    """
+    def _roh(self, start, ende, text, woerter=None):
+        return SimpleNamespace(
+            start=start, ende=ende, end=ende, text=text,
+            words=[SimpleNamespace(word=w, start=a, end=b)
+                   for w, a, b in (woerter or [])] or None)
+
+    def test_text_wird_entrandet(self):
+        s = transkript._segment(
+            self._roh(1.0, 2.0, "   Das ist es!   "), True)
+        self.assertEqual(s["text"], "Das ist es!")
+
+    def test_wortzeiten_kommen_durch(self):
+        s = transkript._segment(self._roh(
+            12.0, 15.5, "Das ist nicht dein Ernst!",
+            [(" Das", 12.0, 12.3), (" ist", 12.3, 12.6),
+             ("  ", 12.6, 12.7), (" nicht", 12.7, 13.0)]), True)
+        # Das leere Wort faellt weg, die uebrigen behalten ihre Zeiten.
+        self.assertEqual([w["word"] for w in s["words"]],
+                         ["Das", "ist", "nicht"])
+        self.assertEqual(s["words"][0]["start"], 12.0)
+
+    def test_ohne_wortzeiten_kein_leeres_feld(self):
+        s = transkript._segment(self._roh(1.0, 2.0, "hm"), True)
+        self.assertNotIn("words", s)
+
+    def test_ergebnis_ist_wieder_einlesbar(self):
+        s = transkript._segment(self._roh(
+            12.0, 15.5, "Das ist nicht dein Ernst!",
+            [("Das", 12.0, 12.3), ("ist", 12.3, 12.6)]), True)
+        ohne = transkript._segment(self._roh(1.0, 2.0, "hm"), True)
+        with TemporaryDirectory() as ordner:
+            ziel = Path(ordner) / "t.json"
+            transkript.schreibe([s, ohne], ziel)
+            segmente = quellen.lade_transkript(ziel)
+
+        # lade_transkript sortiert nach Startzeit.
+        frueh, spaet = segmente
+        self.assertEqual(spaet.text, "Das ist nicht dein Ernst!")
+        self.assertEqual(spaet.woerter[0].text, "Das")
+        # Ohne echte Wortzeiten muessen sie geschaetzt werden, sonst haetten
+        # die Untertitel dort keinen Takt.
+        self.assertFalse(frueh.woerter)
+        self.assertTrue(frueh.wortliste())
+
+    def test_unbekanntes_modell_wird_abgelehnt(self):
+        with TemporaryDirectory() as ordner:
+            ton = Path(ordner) / "ton.m4a"
+            ton.write_bytes(b"x")
+            with self.assertRaises(transkript.TranskriptFehler):
+                transkript.erkenne(ton, Path(ordner) / "t.json",
+                                   modell="gibtsnicht")
+
+    def test_fehlende_tondatei_wird_gemeldet(self):
+        with TemporaryDirectory() as ordner:
+            with self.assertRaises(transkript.TranskriptFehler):
+                transkript.erkenne(Path(ordner) / "weg.m4a",
+                                   Path(ordner) / "t.json")
 
 
 class Gesamtlauf(unittest.TestCase):

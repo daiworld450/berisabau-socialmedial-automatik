@@ -112,6 +112,7 @@ class Ergebnis:
     verworfen: list[tuple[float, int, str]] = field(default_factory=list)
     kurve: sig.Signalkurve | None = None
     geprueft: int = 0
+    schwelle: int = bew.SCHWELLE_VERWERFEN
 
 
 def analysiere(stream: Stream, *, schwelle: int = bew.SCHWELLE_VERWERFEN,
@@ -148,7 +149,7 @@ def analysiere(stream: Stream, *, schwelle: int = bew.SCHWELLE_VERWERFEN,
         rohe.append(kandidat)
     rohe = kand.entdoppeln(rohe)
 
-    ergebnis = Ergebnis(kurve=kurve, geprueft=len(rohe))
+    ergebnis = Ergebnis(kurve=kurve, geprueft=len(rohe), schwelle=int(schwelle))
     bewertet: list[tuple[bew.Bewertung, kand.Kandidat]] = []
     for kandidat in rohe:
         note = bew.bewerte(kandidat, kurve, faktoren)
@@ -163,10 +164,13 @@ def analysiere(stream: Stream, *, schwelle: int = bew.SCHWELLE_VERWERFEN,
     bewertet = bewertet[:hoechstens]
     bewertet.sort(key=lambda p: p[1].start)
 
+    # Über alle Clips eines Streams hinweg gemerkt: kein Aufmacher soll
+    # zweimal dastehen, solange es noch eine ungenutzte Fassung gibt.
+    benutzte_hooks: set[str] = set()
     for nummer, (note, kandidat) in enumerate(bewertet, start=1):
         plan = schn.plane(kandidat, note, kurve, stream, layout, hat_facecam)
         texte = txt.baue(kandidat, note, stream.streamer, stream.spiel,
-                         hashtag_saetze)
+                         hashtag_saetze, benutzte_hooks=benutzte_hooks)
         zeilen = unt.zeilen(kandidat, lexikon)
         ergebnis.clips.append(Clip(
             nummer=nummer, kandidat=kandidat, note=note, plan=plan,

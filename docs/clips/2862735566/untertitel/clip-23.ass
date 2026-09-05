@@ -1,0 +1,30 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.10,Clip,,0,0,0,,Weißt du, was das heißt?
+Dialogue: 0,0:00:02.10,0:00:03.40,Clip,,0,0,0,,Der geht lebenslang rein
+Dialogue: 0,0:00:03.40,0:00:03.94,Clip,,0,0,0,,oder so, ne?
+Dialogue: 0,0:00:05.06,0:00:05.78,Clip,,0,0,0,,Vielleicht war das so
+Dialogue: 0,0:00:05.78,0:00:06.74,Clip,,0,0,0,,lange her oder so?
+Dialogue: 0,0:00:07.80,0:00:08.92,Clip,,0,0,0,,Was? Jury hat nicht mal
+Dialogue: 0,0:00:08.92,0:00:10.60,Clip,,0,0,0,,drei Stunden gebraucht, um
+Dialogue: 0,0:00:10.60,0:00:11.54,Clip,,0,0,0,,zu diesem Urteil zu
+Dialogue: 0,0:00:11.54,0:00:12.78,Clip,,0,0,0,,kommen. Nur mal so als
+Dialogue: 0,0:00:12.78,0:00:14.58,Clip,,0,0,0,,Vergleich. Aber ey, warte
+Dialogue: 0,0:00:14.58,0:00:15.46,Clip,,0,0,0,,mal, ich kriege hier paar
+Dialogue: 0,0:00:15.46,0:00:16.16,Clip,,0,0,0,,Sachen nicht auf die
+Dialogue: 0,0:00:16.16,0:00:16.61,Clip,,0,0,0,,Reihe.
+Dialogue: 0,0:00:17.46,0:00:19.62,Clip,,0,0,0,,Der ist doch seit 2010
+Dialogue: 0,0:00:19.62,0:00:21.30,Clip,,0,0,0,,in irgendwelchen Podcasts
+Dialogue: 0,0:00:21.30,0:00:23.69,Clip,,0,0,0,,und Interviews und prallt damit

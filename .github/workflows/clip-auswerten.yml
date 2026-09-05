@@ -1,17 +1,19 @@
 name: Clip-Werk – Stream auswerten
 
-# Holt den Chat eines Twitch-VODs und macht daraus Clip-Vorschläge.
+# Holt einen Twitch-VOD, erkennt den Text und macht daraus Clip-Vorschläge.
+# Ein Klick auf "Run workflow" genügt - weder Terminal noch eingerichteter
+# Rechner nötig, weil die GitHub-Server den Netzzugang mitbringen.
 #
-# Der Grund für diesen Workflow ist ein praktischer: die GitHub-Server haben
-# freien Netzzugang und kommen an Twitch heran. Wer den Stream auswerten
-# will, braucht damit weder ein Terminal noch einen eingerichteten Rechner -
-# ein Klick auf "Run workflow" hier auf der Weboberfläche genügt.
+# Warum über den Ton und nicht über den Chat: Twitch verlangt für Chatabrufe
+# einen signierten Nachweis aus einem angemeldeten Browser. Am Runner endet
+# das mit "failed integrity check". Das ist eine bewusste Schutzmaßnahme und
+# wird hier nicht umgangen. Ton und Video sind davon nicht betroffen - beides
+# wurde am Runner mehrfach anstandslos abgerufen.
 #
-# Bewusst nur der Chat, keine Spracherkennung: Whisper über einen langen
-# Stream sprengt die Laufzeit eines Actions-Jobs. Der Chat findet dieselben
-# Momente (siehe docs/05-CLIPWERK.md), nur ohne Untertitel und mit gröberem
-# Zuschnitt. Wer den vollen Durchlauf will, nimmt clip-holen.command auf dem
-# eigenen Rechner.
+# Das ist kein Verlust: mit Transkript liefert das Clip-Werk mehr als mit
+# Chat - Untertitel, Zitate als Hook, Satzgrenzen und das Herausschneiden von
+# Stille. Wer den Chat trotzdem einspeisen will, holt ihn angemeldet auf dem
+# eigenen Rechner und übergibt die Datei mit --chat.
 
 on:
   workflow_dispatch:
@@ -28,13 +30,32 @@ on:
         description: "Kategorie des Streams"
         type: string
         default: "Just Chatting"
+      modell:
+        description: "Spracherkennung: small ist der gute Kompromiss"
+        type: choice
+        options: ["tiny", "base", "small", "medium"]
+        default: "small"
       schwelle:
-        description: "Mindestpunktzahl, leer = automatisch (58 ohne Transkript)"
+        description: "Mindestpunktzahl, leer = 65"
         type: string
         default: ""
+      aus_lauf:
+        description: "Transkript aus einem frueheren Lauf uebernehmen (Lauf-Nummer, leer = neu erkennen)"
+        type: string
+        default: ""
+      rendern:
+        description: "Auch die fertigen Videos erzeugen (laedt das ganze VOD, dauert deutlich laenger)"
+        type: boolean
+        default: false
+      diagnose:
+        description: "Nur pruefen, ob der Ton erreichbar ist (nichts auswerten)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+  # Fuer das Nachladen des Transkripts aus einem frueheren Lauf.
+  actions: read
 
 # Zwei Läufe gleichzeitig würden sich beim Schreiben der Clip-Datenbank in
 # die Quere kommen.
@@ -45,7 +66,10 @@ concurrency:
 jobs:
   auswerten:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Spracherkennung über einen langen Stream braucht Zeit. Großzügig
+    # bemessen: lieber ein Lauf, der durchläuft, als einer, der kurz vor dem
+    # Ziel abgeschnitten wird.
+    timeout-minutes: 300
 
     steps:
       - uses: actions/checkout@v4
@@ -55,8 +79,25 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Chat-Werkzeug installieren
-        run: pip install chat-downloader
+      # ffmpeg und yt-dlp braucht beides: der Weg ueber den Ton und das
+      # Rendern. Das Spracherkennungsmodell dagegen nur der erste - wird ein
+      # Transkript uebernommen, ist der Lauf in einer Minute durch statt in
+      # vierzig.
+      - name: Werkzeuge installieren
+        if: ${{ inputs.aus_lauf == '' || inputs.rendern }}
+        run: |
+          # ffmpeg ist auf den Runnern NICHT vorinstalliert. Ohne es laedt
+          # yt-dlp den Ton zwar vollstaendig herunter und wirft ihn dann bei
+          # der Umwandlung weg - acht Minuten Download fuer nichts. Genau so
+          # ist Lauf #5 gescheitert.
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -n 1
+          pip install --quiet yt-dlp
+
+      - name: Spracherkennung installieren
+        if: ${{ inputs.aus_lauf == '' && !inputs.diagnose }}
+        run: pip install --quiet faster-whisper
 
       - name: Videonummer aus der Adresse lesen
         id: vod
@@ -72,30 +113,108 @@ jobs:
           echo "nummer=$NUMMER" >> "$GITHUB_OUTPUT"
           echo "Video $NUMMER"
 
-      - name: Chat laden
+      # Die Spracherkennung ist der teure Teil: 33 Minuten fuer zweieinhalb
+      # Stunden Stream. An der Eichung der Auswertung aendert sich haeufiger
+      # etwas als am Transkript - deshalb laesst sich das Ergebnis eines
+      # frueheren Laufs uebernehmen, statt denselben Ton noch einmal durch
+      # dasselbe Modell zu schicken. Ein Nachlauf kostet so eine Minute.
+      #
+      # Absichtlich ueber den Anhang und nicht ueber das Repository: das
+      # Transkript ist die woertliche Mitschrift eines fremden Streams und
+      # gehoert nicht in ein oeffentliches Repo.
+      - name: Transkript aus einem frueheren Lauf holen
+        if: ${{ inputs.aus_lauf != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: clips-${{ steps.vod.outputs.nummer }}
+          run-id: ${{ inputs.aus_lauf }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: uebernommen
+
+      - name: Uebernommenes Transkript pruefen
+        if: ${{ inputs.aus_lauf != '' }}
         run: |
           mkdir -p arbeit
-          chat_downloader "${{ inputs.vod }}" --output arbeit/chat.json
-          ls -lh arbeit/chat.json
+          if [ ! -s uebernommen/arbeit/transkript.json ]; then
+            echo "::error::Im Lauf ${{ inputs.aus_lauf }} liegt kein"
+            echo "Transkript fuer Video ${{ steps.vod.outputs.nummer }}."
+            echo "Entweder ist die Lauf-Nummer falsch, oder der Anhang ist"
+            echo "nach 30 Tagen abgelaufen. Dann ohne aus_lauf starten."
+            exit 1
+          fi
+          cp uebernommen/arbeit/transkript.json arbeit/transkript.json
+          python -c "import json,sys; d=json.load(open('arbeit/transkript.json')); \
+            print(len(d['segments']), 'Segmente uebernommen')" \
+            | tee -a arbeit/lauf.log
+
+      - name: Ton laden
+        if: ${{ inputs.aus_lauf == '' }}
+        run: |
+          mkdir -p arbeit
+          # Gegenprobe vor dem langen Download - lieber hier abbrechen als
+          # nach 200 Megabyte.
+          command -v ffmpeg >/dev/null || {
+            echo "::error::ffmpeg fehlt - die Umwandlung wuerde nach dem"
+            echo "Download scheitern. Siehe Schritt 'Werkzeuge installieren'."
+            exit 1
+          }
+          # Ausgabe mitschreiben: die Protokoll-Schnittstelle gibt nur das
+          # Ende eines Laufs heraus, und eine Meldung aus der Mitte wäre
+          # sonst nicht zu sehen. Der letzte Schritt gibt die Datei aus.
+          set -o pipefail
+          yt-dlp -f bestaudio --extract-audio --audio-format m4a \
+            -o arbeit/ton.m4a "${{ inputs.vod }}" 2>&1 | tee -a arbeit/lauf.log
+          ls -lh arbeit/ton.m4a | tee -a arbeit/lauf.log
+
+      - name: Nur Diagnose - hier ist Schluss
+        if: inputs.diagnose
+        run: |
+          echo "Diagnosemodus: der Ton ist da, ausgewertet wird nichts." \
+            | tee -a arbeit/lauf.log
+
+      - name: Text erkennen
+        if: ${{ !inputs.diagnose && inputs.aus_lauf == '' }}
+        run: |
+          set -o pipefail
+          python src/clipwerk/transkript.py arbeit/ton.m4a \
+            --ziel arbeit/transkript.json \
+            --modell "${{ inputs.modell }}" 2>&1 | tee -a arbeit/lauf.log
+
+      # Erst die nackten Zahlen, dann die Clips. Ein Bericht, der nur sagt
+      # "kein Moment hat die Schwelle erreicht", unterscheidet einen
+      # langweiligen Stream nicht von einer falsch geeichten Kurve - genau
+      # daran war Lauf #6 nicht zu erkennen.
+      - name: Zahlen der Kurve
+        if: ${{ !inputs.diagnose }}
+        run: |
+          set -o pipefail
+          python src/main.py clip diagnose \
+            --transkript arbeit/transkript.json \
+            --stream-id "${{ steps.vod.outputs.nummer }}" \
+            --streamer "${{ inputs.streamer }}" \
+            --spiel "${{ inputs.spiel }}" 2>&1 | tee arbeit/diagnose.log
 
       - name: Auswerten
+        if: ${{ !inputs.diagnose }}
         run: |
           if [ -n "${{ inputs.schwelle }}" ]; then
             SCHWELLE="--schwelle ${{ inputs.schwelle }}"
           else
             SCHWELLE=""
           fi
+          set -o pipefail
           # shellcheck disable=SC2086
           python src/main.py clip analyse \
-            --chat arbeit/chat.json \
+            --transkript arbeit/transkript.json \
             --stream-id "${{ steps.vod.outputs.nummer }}" \
             --streamer "${{ inputs.streamer }}" \
             --spiel "${{ inputs.spiel }}" \
             --ziel "docs/clips/${{ steps.vod.outputs.nummer }}" \
             --aufnehmen \
-            $SCHWELLE
+            $SCHWELLE 2>&1 | tee -a arbeit/lauf.log
 
       - name: Veröffentlichungsplan anhängen
+        if: ${{ !inputs.diagnose }}
         run: |
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
           if [ -s "$ORDNER/clips.json" ]; then
@@ -112,41 +231,104 @@ jobs:
           fi
 
       - name: Bericht ins Repo legen
+        if: ${{ !inputs.diagnose }}
         run: |
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
-          # Der rohe Chat bleibt draussen: er enthaelt tausende Nutzernamen
-          # und hat in einem oeffentlichen Repo nichts verloren. Er liegt
-          # unten als Artefakt, falls jemand ihn braucht.
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$ORDNER" content/clip_verlauf.json
           if git diff --staged --quiet; then
             echo "Nichts Neues - der Stream wurde schon einmal ausgewertet."
-          else
-            git commit -m "Clip-Vorschlaege fuer Stream ${{ steps.vod.outputs.nummer }}"
-            git push
+            exit 0
           fi
+          git commit -m "Clip-Vorschlaege fuer Stream ${{ steps.vod.outputs.nummer }}"
+          # Ein Lauf dauert vierzig Minuten. In der Zeit kann der Zweig
+          # weitergewandert sein - dann weist GitHub den Push ab, und die
+          # Auswertung waere umsonst gewesen, obwohl sie fertig ist.
+          # Also: neu aufsetzen und noch einmal versuchen.
+          for VERSUCH in 1 2 3 4; do
+            if git push; then
+              echo "Bericht abgelegt (Versuch $VERSUCH)."
+              exit 0
+            fi
+            echo "Push abgewiesen - hole den Zweig nach und setze neu auf."
+            git pull --rebase origin "$GITHUB_REF_NAME" || {
+              echo "::warning::Der Zweig laesst sich nicht sauber nachziehen."
+              break
+            }
+            sleep $((VERSUCH * VERSUCH * 2))
+          done
+          echo "::warning::Der Bericht konnte nicht ins Repo geschrieben"
+          echo "werden. Er liegt vollstaendig als Anhang an diesem Lauf -"
+          echo "verloren ist nichts, nur nicht im Repo."
 
-      - name: Bericht auch als Artefakt
+      # Ab hier die Videos. Bewusst erst nach dem Bericht: das Rendern
+      # dauert laenger als alles davor zusammen, und wenn es schiefgeht,
+      # liegen die Vorschlaege trotzdem schon im Repo.
+      - name: Video laden
+        if: ${{ inputs.rendern && !inputs.diagnose }}
+        run: |
+          set -o pipefail
+          df -h / | tail -n 1
+          # Auf 1080p begrenzt: darueber wird die Datei mehrere Gigabyte
+          # groesser, ohne dass ein 1080x1920-Clip davon etwas hat.
+          yt-dlp -f "bv*[height<=1080]+ba/b[height<=1080]" \
+            -o arbeit/vod.mp4 --merge-output-format mp4 \
+            "${{ inputs.vod }}" 2>&1 | tail -n 20 | tee -a arbeit/lauf.log
+          ls -lh arbeit/vod.mp4 | tee -a arbeit/lauf.log
+          df -h / | tail -n 1
+
+      - name: Clips rendern
+        if: ${{ inputs.rendern && !inputs.diagnose }}
+        run: |
+          set -o pipefail
+          ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
+          python src/main.py clip rendern \
+            --clips "$ORDNER/clips.json" \
+            --video arbeit/vod.mp4 \
+            --ausfuehren 2>&1 | tee -a arbeit/lauf.log
+          # Das Quellvideo ist mehrere Gigabyte gross und hat im Anhang
+          # nichts verloren - nur die fertigen Clips.
+          rm -f arbeit/vod.mp4
+          ls -lh "$ORDNER"/*.mp4 | tee -a arbeit/lauf.log
+
+      - name: Videos als Download
+        if: ${{ inputs.rendern && !inputs.diagnose }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos-${{ steps.vod.outputs.nummer }}
+          path: docs/clips/${{ steps.vod.outputs.nummer }}/*.mp4
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Bericht und Transkript als Download
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: clips-${{ steps.vod.outputs.nummer }}
           path: |
             docs/clips/${{ steps.vod.outputs.nummer }}/
+            !docs/clips/${{ steps.vod.outputs.nummer }}/*.mp4
+            arbeit/transkript.json
+            arbeit/diagnose.log
           retention-days: 30
-
-      - name: Rohen Chat als Artefakt
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chat-${{ steps.vod.outputs.nummer }}
-          path: arbeit/chat.json
-          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Zusammenfassung
         if: always()
         run: |
+          # Zuerst das Laufprotokoll, damit es am Ende steht und ohne
+          # Herunterladen des ganzen Protokolls lesbar ist.
+          if [ -s arbeit/lauf.log ]; then
+            echo "----- Lauf -----"
+            tail -n 25 arbeit/lauf.log
+            echo "----------------"
+          fi
+          if [ -s arbeit/diagnose.log ]; then
+            echo "----- Zahlen der Kurve -----"
+            cat arbeit/diagnose.log
+            echo "----------------------------"
+          fi
           ORDNER="docs/clips/${{ steps.vod.outputs.nummer }}"
           {
             echo "# Clip-Werk: Stream ${{ steps.vod.outputs.nummer }}"

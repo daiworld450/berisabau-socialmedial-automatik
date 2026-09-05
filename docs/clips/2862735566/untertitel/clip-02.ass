@@ -1,0 +1,32 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.12,Clip,,0,0,0,,Warte mal, ich mach das
+Dialogue: 0,0:00:01.12,0:00:01.57,Clip,,0,0,0,,mal hier.
+Dialogue: 0,0:00:02.96,0:00:03.41,Clip,,0,0,0,,Moment.
+Dialogue: 0,0:00:08.84,0:00:09.44,Clip,,0,0,0,,Hier, ladies and
+Dialogue: 0,0:00:09.44,0:00:10.76,Clip,,0,0,0,,gentlemen, haben wir
+Dialogue: 0,0:00:10.76,0:00:11.38,Clip,,0,0,0,,tatsächlich
+Dialogue: 0,0:00:12.18,0:00:13.44,Clip,,0,0,0,,meine {\c&H0022DDFF&}MRT{\c&H00FFFFFF&} -Bilder.
+Dialogue: 0,0:00:17.39,0:00:18.41,Clip,,0,0,0,,Hier ist mein Fuß, wie ihr
+Dialogue: 0,0:00:18.41,0:00:18.86,Clip,,0,0,0,,sehen könnt.
+Dialogue: 0,0:00:19.79,0:00:20.89,Clip,,0,0,0,,Das ist mein rechter Fuß.
+Dialogue: 0,0:00:21.29,0:00:22.89,Clip,,0,0,0,,Und ich gehe mal gleich
+Dialogue: 0,0:00:22.89,0:00:23.49,Clip,,0,0,0,,mit euch durch.
+Dialogue: 0,0:00:23.79,0:00:24.99,Clip,,0,0,0,,Ich habe das schon
+Dialogue: 0,0:00:24.99,0:00:26.07,Clip,,0,0,0,,auseinandergenommen.
+Dialogue: 0,0:00:27.27,0:00:28.09,Clip,,0,0,0,,Wie kriege ich den hier in
+Dialogue: 0,0:00:28.09,0:00:28.95,Clip,,0,0,0,,der Vollbild? Kriege ich
+Dialogue: 0,0:00:28.95,0:00:29.40,Clip,,0,0,0,,hier nicht rein?
+Dialogue: 0,0:00:29.49,0:00:31.82,Clip,,0,0,0,,Ist nicht schlimm. Auf jeden

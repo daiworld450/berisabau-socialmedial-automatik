@@ -81,8 +81,12 @@ def bericht(ergebnis: Ergebnis, stream: Stream) -> str:
         + f" · {len(stream.chat)} Chatnachrichten",
         "",
         f"{ergebnis.geprueft} Momente geprüft, {len(ergebnis.clips)} über "
-        f"{SCHWELLE_VERWERFEN} Punkten, davon {len(vorrang)} ab "
-        f"{SCHWELLE_PRIORITAET} Punkten (höchste Priorität).",
+        f"{ergebnis.schwelle} Punkten, davon {len(vorrang)} ab "
+        f"{SCHWELLE_PRIORITAET} Punkten (höchste Priorität)."
+        + ("" if ergebnis.schwelle == SCHWELLE_VERWERFEN else
+           f" Die Schwelle liegt bei {ergebnis.schwelle} statt "
+           f"{SCHWELLE_VERWERFEN}, weil eine der beiden Quellen fehlt – "
+           f"siehe bewertung.schwelle_fuer."),
         "",
     ]
     if not stream.chat:
@@ -97,10 +101,24 @@ def bericht(ergebnis: Ergebnis, stream: Stream) -> str:
                  "Zeitstempel sind Anhaltspunkte, kein fertiger Schnitt. "
                  "Mit Transkript wird aus denselben Momenten deutlich mehr.",
                  ""]
-    if not ergebnis.clips:
+    if not ergebnis.clips and ergebnis.geprueft:
         kopf += ["Kein Moment hat die Schwelle erreicht. Das ist ein "
                  "gültiges Ergebnis: nicht jeder Stream trägt einen Clip "
-                 "(Abschnitt 15).", ""]
+                 "(Abschnitt 15). Wo die geprüften Momente lagen, steht "
+                 "unter „Verworfen“.", ""]
+    elif not ergebnis.geprueft:
+        # Der Unterschied ist wichtig: „geprüft und zu schwach" ist ein
+        # Urteil über den Stream, „gar nichts geprüft" ist eine flache
+        # Kurve - und die ist fast immer ein Fehler an der Eichung, nicht
+        # am Stream. Genau so endete der erste Lauf über Stream 2862735566:
+        # 1549 Sprachsegmente, null geprüfte Momente.
+        kopf += ["> **Es wurde kein einziger Moment geprüft.** Das ist kein "
+                 "Urteil über den Stream: die Signalkurve hat nirgends "
+                 "ausgeschlagen. Bei einem Stream mit Sprache oder Chat ist "
+                 "das fast immer eine Eichung, die nicht zur Datenlage "
+                 "passt. Nachsehen mit `clip diagnose` – dort steht, welche "
+                 "Reihen tragen, wie hoch die Kurve liegt und wo die "
+                 "Spitzenschwelle steht.", ""]
 
     teile = ["\n".join(kopf)]
     for clip in ergebnis.clips:

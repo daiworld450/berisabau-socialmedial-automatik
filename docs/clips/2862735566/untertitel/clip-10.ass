@@ -1,0 +1,27 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Clip,Arial Black,72,&H00FFFFFF,&H00000000,&H80000000,-1,0,1,7,3,2,60,60,420,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.00,0:00:01.06,Clip,,0,0,0,,{\c&H0022DDFF&}Alles{\c&H00FFFFFF&} gut bei euch.
+Dialogue: 0,0:00:01.54,0:00:02.48,Clip,,0,0,0,,Ey danke erst mal, ich
+Dialogue: 0,0:00:02.48,0:00:03.08,Clip,,0,0,0,,muss mich hier kurz
+Dialogue: 0,0:00:03.08,0:00:04.38,Clip,,0,0,0,,bedanken. Warte mal.
+Dialogue: 0,0:00:05.36,0:00:07.04,Clip,,0,0,0,,Erst mal, warte mal, warte
+Dialogue: 0,0:00:07.04,0:00:08.40,Clip,,0,0,0,,mal, warte, warte, warte,
+Dialogue: 0,0:00:08.40,0:00:08.85,Clip,,0,0,0,,warte.
+Dialogue: 0,0:00:09.92,0:00:11.70,Clip,,0,0,0,,Erst mal dank an Karibik
+Dialogue: 0,0:00:11.70,0:00:13.64,Clip,,0,0,0,,Hendrik für dein Abo vor
+Dialogue: 0,0:00:13.64,0:00:15.52,Clip,,0,0,0,,19 Minuten. X -Act mal
+Dialogue: 0,0:00:15.52,0:00:16.80,Clip,,0,0,0,,lieber. Dankeschön vor 19
+Dialogue: 0,0:00:16.80,0:00:17.25,Clip,,0,0,0,,Minuten.
+Dialogue: 0,0:00:18.02,0:00:19.50,Clip,,0,0,0,,Kilominat vor 14 Minuten.

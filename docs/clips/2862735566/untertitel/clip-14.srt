@@ -1,0 +1,43 @@
+1
+00:00:00,000 --> 00:00:01,120
+Das ist dann nicht seriöse
+
+2
+00:00:01,120 --> 00:00:02,800
+Wissenschaft. Warte mal,
+
+3
+00:00:02,880 --> 00:00:04,700
+warte mal, seriöse
+
+4
+00:00:04,700 --> 00:00:05,740
+Wissenschaft. Guck mal,
+
+5
+00:00:06,760 --> 00:00:07,680
+ich will dir nur eine
+
+6
+00:00:07,680 --> 00:00:08,260
+Sache sagen.
+
+7
+00:00:09,140 --> 00:00:09,640
+Die großen
+
+8
+00:00:09,640 --> 00:00:11,540
+Errungenschaften bzw.
+
+9
+00:00:12,360 --> 00:00:13,740
+die Erkenntnisse, die wir
+
+10
+00:00:13,740 --> 00:00:15,100
+erlangt haben als
+
+11
+00:00:15,100 --> 00:00:16,300
+Menschheit, sag ich mal,

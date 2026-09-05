@@ -128,6 +128,14 @@ def _einstiegsguete(segment: Segment, kurve: Signalkurve) -> float:
     if not text:
         return 0.0
     note = 0.35
+    # Ein Ausschnitt, der mitten im Satz beginnt, verliert den Zuschauer in
+    # der ersten Sekunde - er hört ein Satzende ohne Satzanfang. Sichtbar
+    # ist das erst, seit das Transkript Großschreibung mitbringt; ein
+    # durchgehend kleingeschriebener Text wird nicht bestraft, weil er über
+    # Satzgrenzen nichts aussagt.
+    from .texte import _satzanfang
+    if not _satzanfang(text):
+        note -= 0.25
     if text.endswith("?") or "?" in text[:60]:
         note += 0.25
     if "!" in text or re.search(r"\b[A-ZÄÖÜ]{3,}\b", text):

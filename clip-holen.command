@@ -3,20 +3,23 @@
 #
 # So geht es:
 #   1. Diese Datei doppelklicken
-#   2. Die Adresse des VODs einfügen (das ist die Seite mit /videos/ darin)
+#   2. Die Adresse des VODs einfügen (die Seite mit /videos/ darin)
 #   3. Warten
 #
-# Alles andere passiert von selbst: Werkzeuge nachinstallieren, Chat laden,
-# auswerten, Ergebnisordner öffnen.
+# Alles andere passiert von selbst: Werkzeuge nachinstallieren, Ton laden,
+# Text erkennen, auswerten, Ergebnisordner öffnen.
 #
-# Warum ein VOD und nicht der Live-Stream: Chat und Transkript zählen beim
-# VOD ab derselben Sekunde null. Live kommen sie aus zwei Quellen mit zwei
-# Nullpunkten, und die Clips säßen um Sekunden daneben.
+# Warum ein VOD und nicht der Live-Stream: erst in der Aufzeichnung zählt
+# die Zeit ab einer festen Sekunde null. Live säßen die Clips daneben.
 #
-# Zwei Durchgänge, weil sie unterschiedlich lange dauern:
-#   Chat-Modus      wenige Minuten, findet die Momente
-#   Voller Durchlauf  Stunden, bringt Untertitel und fertige Videos
-# Der erste läuft immer, der zweite nur auf Nachfrage.
+# Warum über den Ton und nicht über den Chat: Twitch verlangt für Chatabrufe
+# einen signierten Nachweis aus einem angemeldeten Browser. Ohne den wird
+# jeder Abruf mit "failed integrity check" abgewiesen. Der Ton ist frei
+# abrufbar - und liefert ohnehin das bessere Ergebnis, weil daraus die
+# Untertitel und die Zitate für die Hooks entstehen.
+#
+# Der lange Teil ist die Spracherkennung: rechne bei zweieinhalb Stunden
+# Stream mit ein bis drei Stunden. Der Rechner darf dabei nicht schlafen.
 
 set -e
 
@@ -113,48 +116,63 @@ if [ ! -x "$VENV/bin/python" ]; then
 fi
 PY="$VENV/bin/python"
 
-if ! "$PY" -c "import chat_downloader" >/dev/null 2>&1; then
-  echo "Lade Chat-Werkzeug..."
+if ! "$PY" -c "import faster_whisper" >/dev/null 2>&1; then
+  echo "Richte Spracherkennung ein. Das sind einige hundert Megabyte,"
+  echo "einmalig. Bei langsamer Leitung dauert es ein paar Minuten."
   "$VENV/bin/pip" install --quiet --upgrade pip
-  "$VENV/bin/pip" install --quiet chat-downloader yt-dlp
+  "$VENV/bin/pip" install --quiet yt-dlp faster-whisper
 fi
 
 # --------------------------------------------------------------------------
-# Durchgang 1: Chat
+# Ton laden
 # --------------------------------------------------------------------------
-CHAT="$ZIEL/chat.json"
-if [ -s "$CHAT" ]; then
-  echo "Chat liegt schon vor, wird nicht neu geladen."
+TON="$ZIEL/ton.m4a"
+if [ -s "$TON" ]; then
+  echo "Ton liegt schon vor, wird nicht neu geladen."
 else
-  echo "Lade den Chat. Bei einem langen Stream dauert das einige Minuten."
-  echo "(Abbrechen mit Strg+C ist jederzeit gefahrlos.)"
+  echo "Lade den Ton des Streams..."
   echo
-  # Fortschritt bleibt sichtbar, Fehlermeldungen wandern ins Protokoll.
-  # Ein Python-Stacktrace hilft an dieser Stelle niemandem weiter; wer ihn
-  # braucht, findet ihn in der Datei.
-  LOG="$ZIEL/chat-protokoll.txt"
-  if ! "$VENV/bin/chat_downloader" "$URL" --output "$CHAT" 2>"$LOG"; then
+  if ! "$VENV/bin/yt-dlp" -f bestaudio --extract-audio --audio-format m4a \
+       -o "$TON" "$URL"; then
     echo
-    echo "Der Chat liess sich nicht laden. Haeufigste Gruende:"
+    echo "Der Ton liess sich nicht laden. Haeufigste Gruende:"
     echo "  - das VOD ist nur fuer Abonnenten sichtbar"
     echo "  - die Aufzeichnung ist schon geloescht"
     echo "  - keine Internetverbindung"
-    echo
-    echo "Letzte Zeilen des Protokolls:"
-    tail -n 3 "$LOG" 2>/dev/null | sed 's/^/  /'
-    echo
-    echo "Vollstaendig in: $LOG"
     printf "Zum Schliessen Enter druecken. "; read -r _; exit 1
   fi
-  rm -f "$LOG"
 fi
 
+# --------------------------------------------------------------------------
+# Text erkennen - der lange Teil
+# --------------------------------------------------------------------------
+TEXT="$ZIEL/transkript.json"
+if [ -s "$TEXT" ]; then
+  echo "Transkript liegt schon vor, wird nicht neu erkannt."
+else
+  echo
+  echo "Erkenne den gesprochenen Text."
+  echo "Das dauert bei zweieinhalb Stunden Stream ein bis drei Stunden."
+  echo "Der Rechner darf dabei nicht in den Ruhezustand gehen."
+  echo "(Abbrechen mit Strg+C ist gefahrlos - Ton und Fortschritt bleiben.)"
+  echo
+  cd "$WERK"
+  if ! "$PY" src/clipwerk/transkript.py "$TON" --ziel "$TEXT"; then
+    echo
+    echo "Die Spracherkennung ist gescheitert."
+    printf "Zum Schliessen Enter druecken. "; read -r _; exit 1
+  fi
+fi
+
+# --------------------------------------------------------------------------
+# Auswerten
+# --------------------------------------------------------------------------
 echo
 echo "Werte aus..."
 echo
 cd "$WERK"
 python3 src/main.py clip analyse \
-  --chat "$CHAT" \
+  --transkript "$TEXT" \
   --stream-id "$VOD" \
   --streamer K1ANUSH \
   --spiel "$SPIEL" \
@@ -163,111 +181,46 @@ python3 src/main.py clip analyse \
 
 echo
 echo "=============================================="
-echo "  Fertig - erste Runde"
+echo "  Fertig"
 echo "=============================================="
 echo
-echo "Die Vorschlaege liegen in:"
-echo "  $ZIEL/vorschlaege/bericht.md"
+echo "  $ZIEL/vorschlaege/bericht.md      die Clips zum Nachlesen"
+echo "  $ZIEL/vorschlaege/untertitel/     zum Einbrennen oder Hochladen"
 echo
 echo "Darin steht je Clip: Zeitstempel, Kategorie, Punktzahl, Hook,"
-echo "Schnittplan, Titel, Caption und Hashtags."
+echo "Schnittplan, Untertitel, Titel, Caption und Hashtags."
 echo
-echo "Was in dieser Runde fehlt: Untertitel und fertige Videodateien."
-echo "Dafuer muessen Ton und Bild geladen und der Text erkannt werden -"
-echo "das dauert bei einem langen Stream Stunden, nicht Minuten."
+echo "Veroeffentlichungsplan anzeigen:"
+echo "  python3 src/main.py clip plan --clips \"$ZIEL/vorschlaege/clips.json\""
 echo
 
 command -v open >/dev/null 2>&1 && open "$ZIEL/vorschlaege" 2>/dev/null || true
 
-printf "Jetzt den vollen Durchlauf starten (Untertitel + Videos)? [j/N] "
-read -r WEITER
-case "$WEITER" in
+printf "Auch das Video laden und die Clips fertig rendern? [j/N] "
+read -r MITVIDEO
+case "$MITVIDEO" in
   j|J) : ;;
   *)
-    echo
-    echo "Gut. Du kannst diese Datei jederzeit erneut starten - der Chat"
-    echo "ist gespeichert und wird nicht noch einmal geladen."
     printf "Zum Schliessen Enter druecken. "; read -r _
     exit 0 ;;
 esac
 
-# --------------------------------------------------------------------------
-# Durchgang 2: Ton, Transkript, Video
-# --------------------------------------------------------------------------
-echo
-if ! "$PY" -c "import whisper" >/dev/null 2>&1; then
-  echo "Lade Spracherkennung. Das sind ueber ein Gigabyte, einmalig."
-  "$VENV/bin/pip" install --quiet openai-whisper
-fi
-
-TON="$ZIEL/ton.m4a"
-if [ ! -s "$TON" ]; then
-  echo "Lade den Ton..."
-  "$VENV/bin/yt-dlp" -f bestaudio "$URL" -o "$TON"
-fi
-
-TEXT="$ZIEL/ton.json"
-if [ ! -s "$TEXT" ]; then
-  echo
-  echo "Erkenne den Text. Das ist der lange Teil - bei einem"
-  echo "Sechs-Stunden-Stream durchaus eine halbe Nacht."
-  echo "Der Rechner darf dabei nicht in den Ruhezustand gehen."
-  echo
-  "$VENV/bin/whisper" "$TON" --language de --model small \
-    --output_format json --output_dir "$ZIEL"
-fi
-
-if [ ! -s "$TEXT" ]; then
-  # Whisper benennt nach der Tondatei; falls anders, das erste JSON nehmen,
-  # das nicht der Chat ist.
-  GEFUNDEN=$(ls "$ZIEL"/*.json 2>/dev/null | grep -v 'chat\.json' | head -n 1)
-  [ -n "$GEFUNDEN" ] && TEXT="$GEFUNDEN"
-fi
-
 VIDEO="$ZIEL/vod.mp4"
-printf "Auch das Video laden und die Clips fertig rendern? [j/N] "
-read -r MITVIDEO
-case "$MITVIDEO" in
-  j|J)
-    if [ ! -s "$VIDEO" ]; then
-      echo "Lade das Video. Das koennen mehrere Gigabyte sein..."
-      "$VENV/bin/yt-dlp" "$URL" -o "$VIDEO"
-    fi
-    VIDEOARG="--video $VIDEO" ;;
-  *) VIDEOARG="" ;;
-esac
-
-echo
-echo "Werte erneut aus, diesmal mit Text..."
-echo
-# shellcheck disable=SC2086
-python3 src/main.py clip analyse \
-  --transkript "$TEXT" \
-  --chat "$CHAT" \
-  --stream-id "$VOD" \
-  --streamer K1ANUSH \
-  --spiel "$SPIEL" \
-  --ziel "$ZIEL/final" \
-  $VIDEOARG
-
-echo
-echo "=============================================="
-echo "  Fertig"
-echo "=============================================="
-echo
-echo "  $ZIEL/final/bericht.md      die Clips zum Nachlesen"
-echo "  $ZIEL/final/untertitel/     zum Einbrennen oder Hochladen"
-if [ -n "$VIDEOARG" ]; then
-  echo "  $ZIEL/final/rendern.sh      erzeugt die fertigen MP4s"
-  echo
-  echo "Zum Rendern im Terminal:  sh \"$ZIEL/final/rendern.sh\""
-  echo "Dafuer wird ffmpeg gebraucht:  brew install ffmpeg"
+if [ ! -s "$VIDEO" ]; then
+  echo "Lade das Video. Das koennen mehrere Gigabyte sein..."
+  "$VENV/bin/yt-dlp" "$URL" -o "$VIDEO"
 fi
-echo
-echo "Veroeffentlichungsplan anzeigen:"
-echo "  python3 src/main.py clip plan --clips \"$ZIEL/final/clips.json\""
-echo
 
-command -v open >/dev/null 2>&1 && open "$ZIEL/final" 2>/dev/null || true
+echo
+echo "Erzeuge die Renderbefehle..."
+python3 src/main.py clip rendern \
+  --clips "$ZIEL/vorschlaege/clips.json" \
+  --video "$VIDEO"
+
+echo
+echo "Zum Rendern:  sh \"$ZIEL/vorschlaege/rendern.sh\""
+echo "Dafuer wird ffmpeg gebraucht:  brew install ffmpeg"
+echo
+command -v open >/dev/null 2>&1 && open "$ZIEL/vorschlaege" 2>/dev/null || true
 printf "Zum Schliessen Enter druecken. "
 read -r _
