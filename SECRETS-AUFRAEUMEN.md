@@ -124,9 +124,27 @@ GitHub-API live (Commit `800d642`). Der Befund oben wurde vorher neu geprüft:
 `ANTHROPIC_API_KEY` und `TELEGRAM_CHAT_ID_ADS` haben weiterhin keinen Treffer
 in `.github/workflows/`.
 
-**Schritt 2 steht noch aus** — die Secrets sind bewusst nicht gelöscht, bis die
-Ads-Sitzung bestätigt, dass sie den Bot-Token und die Chat-ID nicht mehr aus
-diesem Repo bezieht. Bereichsgrenze vom 02.09.
+**Schritt 2 erledigt.** Die Ads-Sitzung hat bestätigt, dass nichts im
+Ads-Bereich diese Kopien liest: der Worker `ads-berichte` zieht `TELEGRAM_TOKEN`
+aus den Cloudflare-Secrets, die Ads-Workflows haben eigene Secrets im privaten
+Repo `daiworld450/ads-autopilot`, und GitHub-Secrets sind ohnehin repo-eigen.
+Danach vom Inhaber freigegeben und gelöscht. Übrig sind sechs Secrets, jedes
+davon von mindestens einem Workflow gelesen: `IG_USER_ID`, `FB_PAGE_ID`,
+`FB_PAGE_TOKEN`, `MEDIA_BASE_URL`, `TELEGRAM_BOT_TOKEN_BERISABAUSOCIALMEDIA`,
+`TELEGRAM_CHAT_ID`. Gegenprobe „Zugang prüfen" (postet nichts): Instagram OK ·
+Facebook OK · Telegram OK · Ads-Kanal erwartungsgemäß nicht eingerichtet.
+
+**Schritt 3 gilt so nicht mehr.** Der Wert hinter `TELEGRAM_BOT_TOKEN` gehört
+zu @BerisaBau_GoogleAds_Bot, der **live läuft**. Wer ihn beim BotFather
+erneuert, legt den Ads-Bot still, bis der neue Wert in Cloudflare
+(`wrangler secret put TELEGRAM_TOKEN` in `google-ads/worker`) und im privaten
+Repo (`gh secret set TELEGRAM_BOT_TOKEN -R daiworld450/ads-autopilot`) steht —
+und der Webhook muss danach neu gesetzt werden, weil ein Token-Wechsel ihn
+löscht. `getUpdates` dabei nicht aufrufen, das zerstört ihn erneut. Vorher der
+Ads-Sitzung Bescheid geben. `TELEGRAM_CHAT_ID_ADS` ist kein Geheimnis, die
+Nummer steht im Klartext in `google-ads/worker/wrangler.toml`. Beim
+`ANTHROPIC_API_KEY` ist derselbe Name auch im `ads-autopilot`-Repo gesetzt;
+ist es derselbe Wert, trifft ein Widerruf beide.
 
 **Nachtrag zur Prüfung am Ende dieser Datei:** Ein Lauf von
 `telegram-abfragen.yml` von Hand endet seit dem 01.09. **rot**, und das ist
